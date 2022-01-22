@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -14,20 +15,20 @@ public class SongList : MonoBehaviour
         Name, Modified, Artist
     }
 
-    private static readonly IComparer<BeatSaberSong> sortName =
+    private static readonly IComparer<BoomBoxPack> sortName =
         new WithFavouriteComparer((a, b) =>
-            string.Compare(a.SongName, b.SongName, StringComparison.InvariantCultureIgnoreCase));
+            string.Compare(a.SongTitle, b.SongTitle, StringComparison.InvariantCultureIgnoreCase));
 
-    private static readonly IComparer<BeatSaberSong> sortModified =
+    private static readonly IComparer<BoomBoxPack> sortModified =
         new WithFavouriteComparer((a, b) => b.LastWriteTime.CompareTo(a.LastWriteTime));
 
-    private static readonly IComparer<BeatSaberSong> sortArtist =
+    private static readonly IComparer<BoomBoxPack> sortArtist =
         new WithFavouriteComparer((a, b) =>
-            string.Compare(a.SongAuthorName, b.SongAuthorName, StringComparison.InvariantCultureIgnoreCase));
+            string.Compare(a.SongArtist, b.SongArtist, StringComparison.InvariantCultureIgnoreCase));
 
     private static bool lastVisitedWasWip = true;
 
-    public SortedSet<BeatSaberSong> Songs = new SortedSet<BeatSaberSong>(sortName);
+    public SortedSet<BoomBoxPack> Songs = new SortedSet<BoomBoxPack>(sortName);
     public bool WipLevels = true;
     public bool FilteredBySearch;
 
@@ -45,7 +46,7 @@ public class SongList : MonoBehaviour
     [SerializeField] private RecyclingListView newList;
     private SongSortType currentSort = SongSortType.Name;
 
-    private List<BeatSaberSong> filteredSongs = new List<BeatSaberSong>();
+    private List<BoomBoxPack> filteredSongs = new List<BoomBoxPack>();
 
     private void Start()
     {
@@ -63,10 +64,10 @@ public class SongList : MonoBehaviour
 
     public event Action<SongSortType> SortTypeChanged;
 
-    private void SwitchSort(IComparer<BeatSaberSong> newSort, Sprite sprite)
+    private void SwitchSort(IComparer<BoomBoxPack> newSort, Sprite sprite)
     {
         sortImage.sprite = sprite;
-        Songs = new SortedSet<BeatSaberSong>(Songs, newSort);
+        Songs = new SortedSet<BoomBoxPack>(Songs, newSort);
         UpdateSongList();
     }
 
@@ -119,10 +120,26 @@ public class SongList : MonoBehaviour
 
     public IEnumerator RefreshSongList()
     {
-        var directories =
-            Directory.GetDirectories(WipLevels
-                ? Settings.Instance.CustomWIPSongsFolder
-                : Settings.Instance.CustomSongsFolder);
+        // Iterate over .bom archives and extract the packs from them
+        foreach (var archive in Directory.GetFiles(Settings.Instance.CustomSongsFolder, "*.bom"))
+        {
+            Debug.LogWarning($"Found .bom archive: {archive}");
+
+            var newDirectory = archive.Substring(0, archive.Length - 4);
+
+            if (!Directory.Exists(newDirectory))
+            {
+                using var reader = File.OpenRead(archive);
+                using var zip = new ZipArchive(reader, ZipArchiveMode.Read);
+                
+                Directory.CreateDirectory(newDirectory);
+                zip.ExtractToDirectory(newDirectory);
+            }
+
+            File.Delete(archive);
+        }
+
+        var directories = Directory.GetDirectories(Settings.Instance.CustomSongsFolder);
         Songs.Clear();
         newList.Clear();
         var iterBeginTime = Time.realtimeSinceStartup;
@@ -135,7 +152,7 @@ public class SongList : MonoBehaviour
                 iterBeginTime = Time.realtimeSinceStartup;
             }
 
-            var song = BeatSaberSong.GetSongFromFolder(dir);
+            var song = BoomBoxPack.GetPackFromDirectory(dir);
             if (song == null)
                 Debug.LogWarning($"No song at location {dir} exists! Is it in a subfolder?");
             /*
@@ -175,8 +192,8 @@ public class SongList : MonoBehaviour
     public void FilterBySearch()
     {
         filteredSongs = Songs.Where(x =>
-            x.SongName.IndexOf(searchField.text, StringComparison.InvariantCultureIgnoreCase) >= 0 ||
-            x.SongAuthorName.IndexOf(searchField.text, StringComparison.InvariantCultureIgnoreCase) >= 0).ToList();
+            x.SongTitle.IndexOf(searchField.text, StringComparison.InvariantCultureIgnoreCase) >= 0 ||
+            x.SongArtist.IndexOf(searchField.text, StringComparison.InvariantCultureIgnoreCase) >= 0).ToList();
         ReloadListItems();
     }
 
@@ -188,9 +205,9 @@ public class SongList : MonoBehaviour
             newList.Refresh();
     }
 
-    public void RemoveSong(BeatSaberSong song) => Songs.Remove(song);
+    public void RemoveSong(BoomBoxPack song) => Songs.Remove(song);
 
-    public void AddSong(BeatSaberSong song)
+    public void AddSong(BoomBoxPack song)
     {
         Songs.Add(song);
         UpdateSongList();
@@ -213,11 +230,11 @@ public class SongList : MonoBehaviour
         }
     }
 
-    private class WithFavouriteComparer : FuncComparer<BeatSaberSong>
+    private class WithFavouriteComparer : FuncComparer<BoomBoxPack>
     {
-        public WithFavouriteComparer(Comparison<BeatSaberSong> comparison) : base(comparison) { }
+        public WithFavouriteComparer(Comparison<BoomBoxPack> comparison) : base(comparison) { }
 
-        public override int Compare(BeatSaberSong a, BeatSaberSong b) =>
+        public override int Compare(BoomBoxPack a, BoomBoxPack b) =>
             a?.IsFavourite != b?.IsFavourite ? a?.IsFavourite == true ? -1 : 1 : base.Compare(a, b);
     }
 }

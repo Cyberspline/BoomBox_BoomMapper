@@ -14,7 +14,7 @@ public class Settings
     public static Settings Instance => instance ??= Load();
 
     public string BeatSaberInstallation = "";
-    public string CustomSongsFolder => Path.Combine(BeatSaberInstallation, "Beat Saber_Data", "CustomLevels");
+    public string CustomSongsFolder => Path.Combine(BeatSaberInstallation, "BoomBox_Data", "Maps");
     public string CustomWIPSongsFolder => Path.Combine(BeatSaberInstallation, "Beat Saber_Data", "CustomWIPLevels");
     public string CustomPlatformsFolder => Path.Combine(BeatSaberInstallation, "CustomPlatforms");
 
@@ -129,7 +129,7 @@ public class Settings
         var infos = type.GetMembers(BindingFlags.Public | BindingFlags.Instance);
 
         // Use default settings if config does not exist
-        if (!File.Exists(Application.persistentDataPath + "/ChroMapperSettings.json"))
+        if (!File.Exists(Application.persistentDataPath + "/BoomMapperSettings.json"))
         {
             foreach (var info in infos)
             {
@@ -139,7 +139,7 @@ public class Settings
             return settings;
         }
 
-        using (var reader = new StreamReader(Application.persistentDataPath + "/ChroMapperSettings.json"))
+        using (var reader = new StreamReader(Application.persistentDataPath + "/BoomMapperSettings.json"))
         {
             var mainNode = JSON.Parse(reader.ReadToEnd());
 
@@ -285,7 +285,7 @@ public class Settings
             }
         }
 
-        using (var writer = new StreamWriter(Application.persistentDataPath + "/ChroMapperSettings.json", false))
+        using (var writer = new StreamWriter(Application.persistentDataPath + "/BoomMapperSettings.json", false))
             writer.Write(mainNode.ToString(2));
     }
 
@@ -357,11 +357,6 @@ public class Settings
         if (!Directory.Exists(Instance.CustomSongsFolder))
         {
             errorFeedback?.Invoke("validate.nofolders");
-            return false;
-        }
-        if (!Directory.Exists(Instance.CustomWIPSongsFolder))
-        {
-            errorFeedback?.Invoke("validate.nowip");
             return false;
         }
         return true;

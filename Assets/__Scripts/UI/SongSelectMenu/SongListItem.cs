@@ -45,7 +45,7 @@ public class SongListItem : RecyclingListViewItem, IPointerEnterHandler, IPointe
     private bool ignoreToggle;
     private string previousSearch = "";
 
-    private BeatSaberSong song;
+    private BoomBoxPack song;
 
     private SongList songList;
 
@@ -84,8 +84,8 @@ public class SongListItem : RecyclingListViewItem, IPointerEnterHandler, IPointe
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (BeatSaberSongContainer.Instance != null && song != null)
-            BeatSaberSongContainer.Instance.SelectSongForEditing(song);
+        if (BoomBoxSongContainer.Instance != null && song != null)
+            BoomBoxSongContainer.Instance.SelectSongForEditing(song);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -110,7 +110,7 @@ public class SongListItem : RecyclingListViewItem, IPointerEnterHandler, IPointe
             : stripped;
     }
 
-    public void AssignSong(BeatSaberSong song, string searchFieldText)
+    public void AssignSong(BoomBoxPack song, string searchFieldText)
     {
         if (this.song == song && previousSearch == searchFieldText) return;
 
@@ -118,15 +118,15 @@ public class SongListItem : RecyclingListViewItem, IPointerEnterHandler, IPointe
 
         previousSearch = searchFieldText;
         this.song = song;
-        var songName = HighlightSubstring(song.SongName, searchFieldText);
-        var artistName = HighlightSubstring(song.SongAuthorName, searchFieldText);
+        var songName = HighlightSubstring(song.SongTitle, searchFieldText);
+        var artistName = HighlightSubstring(song.SongArtist, searchFieldText);
 
-        title.text = $"{songName} <size=50%><i>{song.SongSubName.StripTMPTags()}</i></size>";
+        title.text = songName;
         artist.text = artistName;
         folder.text = song.Directory;
 
         duration.text = "-:--";
-        bpm.text = $"{song.BeatsPerMinute:N0}";
+        bpm.text = string.Empty;
 
         ignoreToggle = true;
         favouriteToggle.isOn = this.song.IsFavourite;
@@ -139,7 +139,7 @@ public class SongListItem : RecyclingListViewItem, IPointerEnterHandler, IPointe
 
     private IEnumerator LoadImage()
     {
-        var fullPath = Path.Combine(song.Directory, song.CoverImageFilename);
+        var fullPath = Path.Combine(song.Directory, song.ImageFile);
 
         if (cache.TryGetValue(fullPath, out var spriteRef) && spriteRef.TryGetTarget(out var existingSprite))
         {
@@ -214,7 +214,7 @@ public class SongListItem : RecyclingListViewItem, IPointerEnterHandler, IPointe
     private IEnumerator LoadDuration()
     {
         var cacheKey = Path.GetFullPath(song.Directory);
-        var fullPath = Path.Combine(song.Directory, song.SongFilename);
+        var fullPath = Path.Combine(song.Directory, song.AudioFile);
 
         if (!File.Exists(fullPath)) yield break;
 
@@ -234,8 +234,8 @@ public class SongListItem : RecyclingListViewItem, IPointerEnterHandler, IPointe
         }
 
         // Fallback just loads the song via unity
-        var extension = song.SongFilename.Contains(".")
-            ? Path.GetExtension(song.SongFilename.ToLower()).Replace(".", "")
+        var extension = song.AudioFile.Contains(".")
+            ? Path.GetExtension(song.AudioFile.ToLower()).Replace(".", "")
             : "";
 
         if (!string.IsNullOrEmpty(extension) && SongInfoEditUI.ExtensionToAudio.ContainsKey(extension))

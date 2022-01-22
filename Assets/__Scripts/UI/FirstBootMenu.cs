@@ -12,16 +12,13 @@ using UnityEngine.Localization.Settings;
 
 public class FirstBootMenu : MonoBehaviour
 {
-    private static readonly string oculusStoreBeatSaberFolderName = "hyperbolic-magnetism-beat-saber";
+    // TODO: Confirm with the boombox team that this is the correct oculus store folder name
+    private static readonly string oculusStoreFolderName = "cyberspline-boombox";
 
     [SerializeField] private GameObject directoryCanvas;
-
     [SerializeField] private TMP_InputField directoryField;
-
     [SerializeField] private TMP_Dropdown graphicsDropdown;
-
     [SerializeField] private GameObject helpPanel;
-
     [SerializeField] private InputBoxFileValidator validation;
 
     private readonly Regex appManifestRegex =
@@ -33,8 +30,8 @@ public class FirstBootMenu : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        //Fixes weird shit regarding how people write numbers (20,35 VS 20.35), causing issues in JSON
-        //This should be thread-wide, but I have this set throughout just in case it isnt.
+        // Fixes weird shit regarding how people write numbers (20,35 VS 20.35), causing issues in JSON
+        // This should be thread-wide, but I have this set throughout just in case it isnt.
         Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
         Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
 
@@ -138,8 +135,6 @@ public class FirstBootMenu : MonoBehaviour
                 Directory.CreateDirectory(Settings.Instance.BeatSaberInstallation);
             if (!Directory.Exists(Settings.Instance.CustomSongsFolder))
                 Directory.CreateDirectory(Settings.Instance.CustomSongsFolder);
-            if (!Directory.Exists(Settings.Instance.CustomWIPSongsFolder))
-                Directory.CreateDirectory(Settings.Instance.CustomWIPSongsFolder);
             SetDefaults();
             FirstBootRequirementsMet();
         }
@@ -164,9 +159,9 @@ public class FirstBootMenu : MonoBehaviour
 
     private string GuessSteamInstallationDirectory()
     {
-        // The Steam App ID seems to be static e.g. https://store.steampowered.com/app/620980/Beat_Saber/
+        // The Steam App ID seems to be static e.g. https://store.steampowered.com/app/1485120/BoomBox/
         var steamRegistryKey =
-            "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Steam App 620980";
+            "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Steam App 1485120";
         var registryValue = "InstallLocation";
         try
         {
@@ -212,7 +207,7 @@ public class FirstBootMenu : MonoBehaviour
 
         foreach (var libraryFolder in libraryFolders)
         {
-            var fileName = libraryFolder + "\\steamapps\\appmanifest_620980.acf";
+            var fileName = libraryFolder + "\\steamapps\\appmanifest_1485120.acf";
             if (File.Exists(fileName))
             {
                 using (var reader = new StreamReader(fileName))
@@ -240,14 +235,14 @@ public class FirstBootMenu : MonoBehaviour
 
             // older Oculus installations seem to have created the InitialAppLibrary value
             var installPath = TryRegistryWithPath(oculusRegistryKey + "\\Config", registryValue, software,
-                oculusStoreBeatSaberFolderName, "");
+                oculusStoreFolderName, "");
 
             if (!string.IsNullOrEmpty(installPath)) return installPath;
 
             // the default library for newer installations seem to be below the base directory in "Software\\Software" folder.
             registryValue = "Base";
             installPath = TryRegistryWithPath(oculusRegistryKey, registryValue, software, software,
-                oculusStoreBeatSaberFolderName);
+                oculusStoreFolderName);
 
             if (Directory.Exists(installPath))
                 return installPath;
@@ -284,7 +279,7 @@ public class FirstBootMenu : MonoBehaviour
         {
             var originalPath = libraryKey.OpenSubKey(subKeyName).GetValue("OriginalPath");
             if (originalPath != null && string.IsNullOrEmpty((string)originalPath)) continue;
-            var installPath = Path.Combine((string)originalPath, "Software", oculusStoreBeatSaberFolderName);
+            var installPath = Path.Combine((string)originalPath, "Software", oculusStoreFolderName);
             if (Directory.Exists(installPath)) return installPath;
         }
 
