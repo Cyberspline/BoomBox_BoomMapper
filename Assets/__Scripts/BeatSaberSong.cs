@@ -447,8 +447,6 @@ public class BeatSaberSong
 
                                 return container;
                             })
-                            .OrderBy(x =>
-                                SongInfoEditUI.CharacteristicDropdownToBeatmapName.IndexOf(x.BeatmapCharacteristicName))
                             .ToList();
                         break;
                 }

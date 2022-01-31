@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Serialization;
 
+[System.Obsolete("Use boombox please thanks")]
 public class BeatSaberSongContainer : MonoBehaviour
 {
     [FormerlySerializedAs("song")] public BeatSaberSong Song;

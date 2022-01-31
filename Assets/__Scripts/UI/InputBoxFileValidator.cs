@@ -31,7 +31,7 @@ public class InputBoxFileValidator : MonoBehaviour
         startOffset = transform.offsetMax;
         // This will get un-done on start, but will stop negative text scroll
         // Shouldn't really be in awake but it needs to run before SongInfoEditUI sets the text value
-        var song = BeatSaberSongContainer.Instance != null ? BeatSaberSongContainer.Instance.Song : null;
+        var song = BoomBoxSongContainer.Instance?.Pack;
 
         if (forceStartupValidationAlign || (enableValidation && song?.Directory != null))
             transform.offsetMax = new Vector2(startOffset.x - 36, startOffset.y);
@@ -41,7 +41,7 @@ public class InputBoxFileValidator : MonoBehaviour
 
     public void OnUpdate()
     {
-        var song = BeatSaberSongContainer.Instance != null ? BeatSaberSongContainer.Instance.Song : null;
+        var song = BoomBoxSongContainer.Instance?.Pack;
 
         var filename = input.text;
         if (!enableValidation || filename.Length == 0 || song?.Directory == null)
@@ -83,7 +83,7 @@ public class InputBoxFileValidator : MonoBehaviour
     {
         var exts = new[] { new ExtensionFilter(filetypeName, extensions), new ExtensionFilter("All Files", "*") };
 
-        if (BeatSaberSongContainer.Instance.Song is null || BeatSaberSongContainer.Instance.Song.Directory is null)
+        if (BoomBoxSongContainer.Instance is null || BoomBoxSongContainer.Instance.Pack.Directory is null)
         {
             PersistentUI.Instance.ShowDialogBox("Cannot locate song directory. Did you forget to save your map?", null,
                 PersistentUI.DialogBoxPresetType.Ok);
@@ -91,11 +91,15 @@ public class InputBoxFileValidator : MonoBehaviour
             return;
         }
 
-        var songDir = BeatSaberSongContainer.Instance.Song.Directory;
+        var songDir = BoomBoxSongContainer.Instance.Pack.Directory;
+
         CMInputCallbackInstaller.DisableActionMaps(typeof(InputBoxFileValidator),
             new[] { typeof(CMInput.IMenusExtendedActions) });
+
         var paths = StandaloneFileBrowser.OpenFilePanel("Open File", songDir, exts, false);
+
         StartCoroutine(ClearDisabledActionMaps());
+
         if (paths.Length > 0)
         {
             var directory = new DirectoryInfo(songDir);

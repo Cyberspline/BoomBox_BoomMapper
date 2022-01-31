@@ -40,7 +40,11 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private IEnumerator TooltipRoutine(float timeToWait)
     {
         var tooltipTextResult = TooltipOverride;
-        if (string.IsNullOrEmpty(TooltipOverride)) tooltipTextResult = LocalizedTooltip.GetLocalizedString();
+        
+        if (string.IsNullOrEmpty(TooltipOverride) && LocalizedTooltip != null && !LocalizedTooltip.IsEmpty)
+        {
+            tooltipTextResult = LocalizedTooltip.GetLocalizedString();
+        }
 
         PersistentUI.Instance.SetTooltip(tooltipTextResult, AdvancedTooltip);
         yield return new WaitForSeconds(timeToWait);

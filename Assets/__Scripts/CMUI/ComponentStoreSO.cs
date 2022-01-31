@@ -8,17 +8,7 @@ public class ComponentStoreSO : ScriptableObject
 
     [SerializeField] private List<CMUIComponentBase> components;
 
-    private void OnEnable()
-    {
-        if (Instance != null)
-        {
-            Debug.LogError("Component Store instance has already been assigned.");
-
-            DestroyImmediate(this);
-        }
-
-        Instance = this;
-    }
+    private void OnEnable() => Instance = this;
 
     /// <summary>
     /// Instantiates and returns a new <see cref="CMUIComponent{T}"/> parented to <paramref name="parent"/>,

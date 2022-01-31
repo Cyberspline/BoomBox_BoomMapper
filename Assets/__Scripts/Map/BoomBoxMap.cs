@@ -86,28 +86,28 @@ public class BoomBoxMap
     /// Bookmarks in the map
     /// </summary>
     [JsonProperty]
-    public List<BeatmapBookmark> Bookmarks;
+    public List<object> Bookmarks;
 
     /// <summary>
     /// Objects in the map
     /// </summary>
     [JsonProperty]
-    public List<BeatmapNote> Objects;
+    public List<object> Objects;
 
     /// <summary>
     /// Obstacles in the map
     /// </summary>
     [JsonProperty]
-    public List<BeatmapObstacle> Obstacles;
+    public List<object> Obstacles;
 
     /// <summary>
     /// Location and file name of the map
     /// </summary>
-    public string DirectoryAndFile;
+    public FileInfo FileInfo;
 
     public void Save()
     {
-        if (string.IsNullOrEmpty(DirectoryAndFile))
+        if (string.IsNullOrEmpty(FileInfo.FullName))
         {
             throw new InvalidOperationException("Map was not created correctly.");
         }
@@ -116,7 +116,7 @@ public class BoomBoxMap
         Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
         Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
 
-        using var writer = new StreamWriter(DirectoryAndFile, false);
+        using var writer = new StreamWriter(FileInfo.FullName, false);
 
         var json = JsonSerializer.CreateDefault();
         json.Serialize(writer, this);

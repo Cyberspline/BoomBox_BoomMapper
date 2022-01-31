@@ -112,14 +112,18 @@ public class BoomBoxPack
             maps = new List<BoomBoxMap>();
 
             var json = JsonSerializer.CreateDefault();
+            var dir = new DirectoryInfo(Directory);
 
             // Loop over .box files in the repo
-            foreach (var file in System.IO.Directory.GetFiles(Settings.Instance.CustomPlatformsFolder, "*.box"))
+            foreach (var file in dir.EnumerateFiles("*.box"))
             {
-                using var reader = new StreamReader(file);
+                using var reader = new StreamReader(file.FullName);
                 using var jsonReader = new JsonTextReader(reader);
 
-                maps.Add(json.Deserialize<BoomBoxMap>(jsonReader));
+                var map = json.Deserialize<BoomBoxMap>(jsonReader);
+                map.FileInfo = file;
+
+                maps.Add(map);
             }
 
             return maps;

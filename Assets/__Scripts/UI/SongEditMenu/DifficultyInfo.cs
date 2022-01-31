@@ -3,33 +3,43 @@ using UnityEngine;
 
 public class DifficultyInfo : MonoBehaviour
 {
-    [SerializeField] private TMP_InputField bpmField;
+    [SerializeField] private TMP_InputField creator;
+    [SerializeField] private TMP_InputField description;
+    [SerializeField] private TMP_InputField tags;
+    [SerializeField] private TMP_Dropdown style;
+    [SerializeField] private TMP_Dropdown biome;
 
-    [SerializeField] private TMP_InputField halfJumpDurationField;
-    [SerializeField] private TMP_InputField jumpDistanceField;
+    private BoomBoxMap selectedMap;
 
-    [SerializeField] private TMP_InputField njsField;
-    [SerializeField] private TMP_InputField songBeatOffsetField;
-
-    public void Start()
+    public void SelectMap(BoomBoxMap map)
     {
-        njsField.onValueChanged.AddListener(v => UpdateValues());
-        songBeatOffsetField.onValueChanged.AddListener(v => UpdateValues());
-        bpmField.onValueChanged.AddListener(v => UpdateValues());
+        selectedMap = map;
+
+        // Turn on/off all fields if map is null
+        creator.interactable = 
+            description.interactable =
+            tags.interactable =
+            style.interactable =
+            biome.interactable =
+            map != null;
+
+        if (map == null) return;
+
+        creator.SetTextWithoutNotify(map.Creator);
+        description.SetTextWithoutNotify(map.Description);
+        tags.SetTextWithoutNotify(map.Tags);
+        style.SetValueWithoutNotify(map.MapStyle);
+        biome.SetValueWithoutNotify(map.BiomeType);
     }
 
-    private void UpdateValues()
-    {
-        float.TryParse(bpmField.text, out var bpm);
-        float.TryParse(njsField.text, out var songNoteJumpSpeed);
-        float.TryParse(songBeatOffsetField.text, out var songStartBeatOffset);
+    public void UpdateCreator(string creator) => selectedMap.Creator = creator;
 
-        var halfJumpDuration = SpawnParameterHelper.CalculateHalfJumpDuration(songNoteJumpSpeed, songStartBeatOffset, bpm);
+    public void UpdateDescription(string description) => selectedMap.Description = description;
 
-        var num = 60 / bpm;
-        var jumpDistance = songNoteJumpSpeed * num * halfJumpDuration * 2;
+    public void UpdateTags(string tags) => selectedMap.Tags = tags;
 
-        halfJumpDurationField.text = halfJumpDuration.ToString();
-        jumpDistanceField.text = jumpDistance.ToString("0.00");
-    }
+    public void UpdateStyle (int style) => selectedMap.MapStyle = style;
+
+    public void UpdateBiome(int biome) => selectedMap.BiomeType = biome;
+
 }

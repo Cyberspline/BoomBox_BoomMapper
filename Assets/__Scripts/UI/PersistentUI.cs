@@ -452,9 +452,11 @@ public class PersistentUI : MonoBehaviour
 
         var title = dialogBox.AddComponent<TextComponent>().WithInitialValue(() => message);
 
-        for (var i = 0; i < buttonText.Count; i++)
+        foreach (var text in buttonText)
         {
-            var button = dialogBox.AddFooterButton(() => result?.Invoke(i), buttonText[i]);
+            var i = buttonText.IndexOf(text);
+
+            var button = dialogBox.AddFooterButton(() => result?.Invoke(i), text);
         
             if (i < ba.Length && ba[i].material.shaderKeywords.Contains("GLOW_ON"))
             {

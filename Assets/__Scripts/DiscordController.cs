@@ -76,11 +76,14 @@ public class DiscordController : MonoBehaviour
 
         activity.Assets.LargeImage = platformDiscordID;
 
+        // TODO: boombox biomes
+        /*
         var jsonEnvironmentName = BeatSaberSongContainer.Instance.Song.EnvironmentName;
 
         var platformName = SongInfoEditUI.VanillaEnvironments
             .Find(x => x.JsonName == jsonEnvironmentName)?.HumanName ?? jsonEnvironmentName;
         activity.Assets.LargeText = platformName;
+        */
 
         UpdatePresence();
     }

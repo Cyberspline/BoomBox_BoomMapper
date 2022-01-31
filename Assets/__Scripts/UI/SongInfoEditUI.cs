@@ -22,99 +22,48 @@ public class SongInfoEditUI : MenuBase
         {"ogg", AudioType.OGGVORBIS}, {"egg", AudioType.OGGVORBIS}, {"wav", AudioType.WAV}
     };
 
-    public static List<Environment> VanillaEnvironments = new List<Environment>
-    {
-        new Environment("Default", "DefaultEnvironment"),
-        new Environment("Big Mirror", "BigMirrorEnvironment"),
-        new Environment("Triangle", "TriangleEnvironment"),
-        new Environment("Nice", "NiceEnvironment"),
-        new Environment("K/DA", "KDAEnvironment"),
-        new Environment("Monstercat", "MonstercatEnvironment"),
-        new Environment("Dragons", "DragonsEnvironment"),
-        new Environment("Origins",
-            "OriginsEnvironment"), //i swear to god if beat games reverts this back i am going to lose my shit
-        new Environment("Crab Rave", "CrabRaveEnvironment"),
-        new Environment("Panic! At The Disco", "PanicEnvironment"),
-        new Environment("Rocket League", "RocketEnvironment"),
-        new Environment("Green Day", "GreenDayEnvironment"),
-        new Environment("Green Day Grenade", "GreenDayGrenadeEnvironment"),
-        new Environment("Timbaland", "TimbalandEnvironment"),
-        new Environment("FitBeat", "FitBeatEnvironment"),
-        new Environment("Linkin Park", "LinkinParkEnvironment"),
-        new Environment("BTS", "BTSEnvironment"),
-        new Environment("Kaleidoscope", "KaleidoscopeEnvironment"),
-        new Environment("Interscope", "InterscopeEnvironment"),
-        new Environment("Skrillex", "SkrillexEnvironment"),
-        new Environment("Billie", "BillieEnvironment"),
-        new Environment("Spooky", "HalloweenEnvironment")
-    };
-
-    private static readonly List<string> vanillaDirectionalEnvironments = new List<string> { "GlassDesertEnvironment" };
-
-    public static List<string> CharacteristicDropdownToBeatmapName = new List<string>
-    {
-        "Standard",
-        "NoArrows",
-        "OneSaber",
-        "360Degree",
-        "90Degree",
-        "Lightshow",
-        "Lawless"
-    };
-
     [SerializeField] private AudioSource previewAudio;
 
     [SerializeField] private DifficultySelect difficultySelect;
     [SerializeField] private TMP_InputField nameField;
-    [SerializeField] private TMP_InputField subNameField;
     [SerializeField] private TMP_InputField songAuthorField;
-    [SerializeField] private TMP_InputField authorField;
     [SerializeField] private TMP_InputField coverImageField;
 
     [SerializeField] private TMP_InputField bpmField;
     [SerializeField] private TMP_InputField prevStartField;
     [SerializeField] private TMP_InputField prevDurField;
 
-    [SerializeField] private TMP_Dropdown environmentDropdown;
-    [SerializeField] private TMP_Dropdown customPlatformsDropdown;
-
     [SerializeField] private TMP_InputField audioPath;
-    [SerializeField] private TMP_InputField offset;
 
     [SerializeField] private Image revertInfoButtonImage;
-
-    [SerializeField] private ContributorsController contributorController;
 
     private Coroutine reloadSongDataCoroutine;
     public Action TempSongLoadedEvent;
 
-    private BeatSaberSong Song => BeatSaberSongContainer.Instance.Song;
-    private GameObject ContributorWrapper => contributorController.transform.parent.gameObject;
+    private BoomBoxPack Song => BoomBoxSongContainer.Instance.Pack;
 
     private void Start()
     {
-        if (BeatSaberSongContainer.Instance == null)
+        if (BoomBoxSongContainer.Instance == null)
         {
             SceneManager.LoadScene(0);
             return;
         }
 
-        // Make sure the contributor panel has been initialised
-        ContributorWrapper.SetActive(true);
-
         LoadFromSong();
     }
 
-    public static int GetDirectionalEnvironmentIDFromString(string platforms) =>
-        vanillaDirectionalEnvironments.IndexOf(platforms);
+    // TODO: Remove
+    [Obsolete]
+    public static int GetDirectionalEnvironmentIDFromString(string platforms) => -1;
 
-    public static int GetEnvironmentIDFromString(string environment)
-    {
-        var result = VanillaEnvironments.TakeWhile(i => i.JsonName != environment).Count();
-        return result == VanillaEnvironments.Count ? 0 : result;
-    }
+    // TODO: Remove
+    [Obsolete]
+    public static int GetEnvironmentIDFromString(string environment) => -1;
 
-    public static string GetEnvironmentNameFromID(int id) => VanillaEnvironments[id].JsonName;
+    // TODO: Remove
+    [Obsolete]
+    public static string GetEnvironmentNameFromID(int id) => null;
 
     /// <summary>
     ///     Default object to select when pressing Tab and nothing is selected
@@ -136,41 +85,20 @@ public class SongInfoEditUI : MenuBase
     /// </summary>
     public void SaveToSong()
     {
-        Song.SongName = nameField.text;
-        Song.SongSubName = subNameField.text;
-        Song.SongAuthorName = songAuthorField.text;
-        Song.LevelAuthorName = authorField.text;
-        Song.CoverImageFilename = coverImageField.text;
-        Song.SongFilename = audioPath.text;
+        Song.SongTitle = nameField.text;
+        Song.SongArtist = songAuthorField.text;
+        Song.ImageFile = coverImageField.text;
+        Song.AudioFile = audioPath.text;
 
-        Song.BeatsPerMinute = GetTextValue(bpmField);
-        Song.PreviewStartTime = GetTextValue(prevStartField);
-        Song.PreviewDuration = GetTextValue(prevDurField);
-        Song.SongTimeOffset = GetTextValue(offset);
+        // TODO: bpm
+        //Song.BeatsPerMinute = GetTextValue(bpmField);
+        Song.PreviewTime = GetTextValue(prevStartField) / 1000;
+        Song.PreviewDuration = GetTextValue(prevDurField) / 1000;
 
-        Song.EnvironmentName = GetEnvironmentNameFromID(environmentDropdown.value);
+        // TODO: Switch to biomes
+        //Song.EnvironmentName = GetEnvironmentNameFromID(environmentDropdown.value);
 
-        if (Song.CustomData == null) Song.CustomData = new JSONObject();
-
-        if (customPlatformsDropdown.value > 0)
-        {
-            Song.CustomData["_customEnvironment"] = customPlatformsDropdown.captionText.text;
-            if (CustomPlatformsLoader.Instance.GetAllEnvironments()
-                .TryGetValue(customPlatformsDropdown.captionText.text, out var info))
-            {
-                Song.CustomData["_customEnvironmentHash"] = info.Md5Hash;
-            }
-        }
-        else
-        {
-            Song.CustomData.Remove("_customEnvironment");
-            Song.CustomData.Remove("_customEnvironmentHash");
-        }
-
-        contributorController.Commit();
-        Song.Contributors = contributorController.Contributors;
-
-        Song.SaveSong();
+        Song.Save();
 
         // Update duration cache (This needs to be beneath SaveSong so that the directory is garaunteed to be created)
         // also dont forget to null check please thanks
@@ -190,56 +118,60 @@ public class SongInfoEditUI : MenuBase
     /// </summary>
     public void LoadFromSong()
     {
-        nameField.text = Song.SongName;
-        subNameField.text = Song.SongSubName;
-        songAuthorField.text = Song.SongAuthorName;
-        authorField.text = Song.LevelAuthorName;
+        nameField.text = Song.SongTitle;
+        songAuthorField.text = Song.SongArtist;
 
         BroadcastMessage("OnValidate"); // god unity why are you so dumb
 
-        coverImageField.text = Song.CoverImageFilename;
-        audioPath.text = Song.SongFilename;
+        coverImageField.text = Song.ImageFile;
+        audioPath.text = Song.AudioFile;
 
-        offset.text = Song.SongTimeOffset.ToString(CultureInfo.InvariantCulture);
+        // TODO: Get bpm from a difficulty
+        //bpmField.text = Song.BeatsPerMinute.ToString(CultureInfo.InvariantCulture);
 
-        bpmField.text = Song.BeatsPerMinute.ToString(CultureInfo.InvariantCulture);
-        prevStartField.text = Song.PreviewStartTime.ToString(CultureInfo.InvariantCulture);
-        prevDurField.text = Song.PreviewDuration.ToString(CultureInfo.InvariantCulture);
+        var maps = Song.Maps;
 
-        environmentDropdown.ClearOptions();
-        environmentDropdown.AddOptions(VanillaEnvironments.Select(it => it.HumanName).ToList());
-        environmentDropdown.value = GetEnvironmentIDFromString(Song.EnvironmentName);
+        var bpms = maps.Select(x => x.TimingPoints.Find(y => y.Offset == 0)).Where(x => x != null);
 
-        customPlatformsDropdown.ClearOptions();
-        customPlatformsDropdown.AddOptions(new List<string> { "None" });
-        customPlatformsDropdown.AddOptions(CustomPlatformsLoader.Instance.GetAllEnvironmentIds());
+        var distinctBpms = bpms.DistinctBy(x => x.Bpm);
+        var bpmCount = distinctBpms.Count();
 
-        customPlatformsDropdown.value = CustomPlatformFromSong();
-        if (customPlatformsDropdown.value == 0) customPlatformsDropdown.captionText.text = "None";
-
-        contributorController.UndoChanges();
-
-        ReloadAudio();
-    }
-
-    /// <summary>
-    ///     Get the id for the custom platform specified in the song data
-    /// </summary>
-    /// <returns>Custom platform index</returns>
-    private int CustomPlatformFromSong()
-    {
-        if (Song.CustomData != null)
+        if (bpmCount > 1)
         {
-            if (Song.CustomData["_customEnvironment"] != null && Song.CustomData["_customEnvironment"] != "")
-            {
-                return CustomPlatformsLoader.Instance.GetAllEnvironmentIds()
-                    .IndexOf(Song.CustomData["_customEnvironment"]) + 1;
-            }
+            // TODO: Localize
+            var dialogBox = PersistentUI.Instance.CreateNewDialogBox().WithTitle("BPM Ambiguity Detected");
 
-            return 0;
+            dialogBox.AddComponent<TextComponent>()
+                .WithInitialValue(() => "BoomMapper has detected multiple starting BPMs in your pack.\n\n" +
+                    "For simplicity, BoomMapper will have one starting BPM for all maps in the pack.\n\n" + 
+                    "Please select which starting BPM BoomMapper will apply to all maps.");
+
+            var dropdown = dialogBox.AddComponent<DropdownComponent>()
+                .WithOptionsList(maps.Select(x =>
+                    string.Format("{0} ({1} BPM)", x.DifficultyName, x.TimingPoints.Find(y => y.Offset == 0))
+                    ));
+
+            // TODO: These should be chained methods
+            dropdown.SetValueAccessor(() => 0);
+            dropdown.SetOnValueChanged(i => bpmField.text = bpms.ElementAt(i).Bpm.ToString(CultureInfo.InvariantCulture));
+
+            dialogBox.AddFooterButton(null, "Ok");
+        }
+        else if (bpmCount == 1)
+        {
+            bpmField.text = distinctBpms.First().Bpm.ToString(CultureInfo.InvariantCulture);
+        }
+        else
+        {
+            // Default BPM.
+            bpmField.text = "120";
         }
 
-        return 0;
+        // Preview Time and Duration are in milliseconds. It will be easier on the user if we convert to seconds and back.
+        prevStartField.text = (Song.PreviewTime / 1000).ToString(CultureInfo.InvariantCulture);
+        prevDurField.text = (Song.PreviewDuration / 1000).ToString(CultureInfo.InvariantCulture);
+
+        ReloadAudio();
     }
 
     /// <summary>
@@ -257,7 +189,7 @@ public class SongInfoEditUI : MenuBase
     {
         if (Song.Directory == null) yield break;
 
-        var fullPath = Path.Combine(Song.Directory, useTemp ? audioPath.text : Song.SongFilename);
+        var fullPath = Path.Combine(Song.Directory, useTemp ? audioPath.text : Song.AudioFile);
 
         // Commented out since Song Time Offset changes need to reload the song, even if its the same file
         //if (fullPath == loadedSong)
@@ -291,52 +223,10 @@ public class SongInfoEditUI : MenuBase
 
                 clip.name = "Song";
 
-                if (GetTextValue(offset) != 0 && applySongTimeOffset)
-                {
-                    // Take songTimeOffset into account by adjusting clip data forward/backward
-
-                    // Guaranteed to always be an integer multiple of the number of channels
-                    var songTimeOffsetSamples =
-                        Mathf.CeilToInt(float.Parse(offset.text) * clip.frequency) * clip.channels;
-                    var samples = new float[clip.samples * clip.channels];
-
-                    clip.GetData(samples, 0);
-
-                    // Negative offset: Shift existing data forward, fill in beginning blank with 0s
-                    if (songTimeOffsetSamples < 0)
-                    {
-                        Array.Resize(ref samples, samples.Length - songTimeOffsetSamples);
-
-                        for (var i = samples.Length - 1; i >= 0; i--)
-                        {
-                            var shiftIndex = i + songTimeOffsetSamples;
-
-                            samples[i] = shiftIndex < 0 ? 0 : samples[shiftIndex];
-                        }
-                    }
-                    // Positive offset: Shift existing data backward, cut off ending blank
-                    else
-                    {
-                        for (var i = 0; i < samples.Length; i++)
-                        {
-                            var shiftIndex = i + songTimeOffsetSamples;
-
-                            samples[i] = shiftIndex >= samples.Length ? 0 : samples[shiftIndex];
-                        }
-
-                        // Bit of a hacky workaround, since you can't create an AudioClip with 0 length,
-                        // and something in the spectrogram code doesn't like too short lengths either
-                        // This just sets a minimum of 4096 samples per channel
-                        Array.Resize(ref samples, Math.Max(samples.Length - songTimeOffsetSamples, clip.channels * 4096));
-                    }
-
-                    // Create a new AudioClip because apparently you can't change the length of an existing one
-                    clip = AudioClip.Create(clip.name, samples.Length / clip.channels, clip.channels, clip.frequency, false);
-                    clip.SetData(samples, 0);
-                }
+                // Unfortunately BoomBox does not have any form of song, so that code is removed
 
                 previewAudio.clip = clip;
-                BeatSaberSongContainer.Instance.LoadedSong = clip;
+                BoomBoxSongContainer.Instance.LoadedSong = clip;
 
                 if (useTemp) TempSongLoadedEvent?.Invoke();
             }
@@ -359,7 +249,7 @@ public class SongInfoEditUI : MenuBase
     /// </summary>
     public void DeleteMap() =>
         PersistentUI.Instance.ShowDialogBox("SongEditMenu", "delete.dialog", HandleDeleteMap,
-            PersistentUI.DialogBoxPresetType.YesNo, new object[] { Song.SongName });
+            PersistentUI.DialogBoxPresetType.YesNo, new object[] { Song.SongTitle });
 
     /// <summary>
     ///     Delete the map, it's still recoverable externally
@@ -406,27 +296,14 @@ public class SongInfoEditUI : MenuBase
 
         using (var archive = ZipFile.Open(zipPath, ZipArchiveMode.Create))
         {
-            archive.CreateEntryFromFile(infoFileLocation,
-                "Info.dat"); //oh yeah lolpants is gonna kill me if it isnt packaged as "Info.dat"
+            archive.CreateEntryFromFile(infoFileLocation, "info.dat");
 
-            AddToZip(archive, Song.CoverImageFilename);
-            AddToZip(archive, Song.SongFilename);
-            AddToZip(archive, "cinema-video.json");
+            AddToZip(archive, Song.ImageFile);
+            AddToZip(archive, Song.AudioFile);
 
-            foreach (var contributor in Song.Contributors.DistinctBy(it => it.LocalImageLocation))
+            foreach (var set in Song.Maps)
             {
-                var imageLocation = Path.Combine(Song.Directory, contributor.LocalImageLocation);
-                if (contributor.LocalImageLocation != Song.CoverImageFilename &&
-                    File.Exists(imageLocation) && !File.GetAttributes(imageLocation).HasFlag(FileAttributes.Directory))
-                {
-                    archive.CreateEntryFromFile(imageLocation, contributor.LocalImageLocation);
-                }
-            }
-
-            foreach (var set in Song.DifficultyBeatmapSets)
-            {
-                foreach (var map in set.DifficultyBeatmaps)
-                    AddToZip(archive, map.BeatmapFilename);
+                AddToZip(archive, set.FileInfo.Name);
             }
         }
 
@@ -498,7 +375,7 @@ public class SongInfoEditUI : MenuBase
     public void EditMapButtonPressed()
     {
         // If no difficulty is selected or there is a dialog open do nothing
-        if (BeatSaberSongContainer.Instance.DifficultyData == null || PersistentUI.Instance.DialogBoxIsEnabled) return;
+        if (BoomBoxSongContainer.Instance.Map == null || PersistentUI.Instance.DialogBoxIsEnabled) return;
 
         var a = Settings.Instance.Load_Notes;
         var b = Settings.Instance.Load_Obstacles;
@@ -532,16 +409,13 @@ public class SongInfoEditUI : MenuBase
         if (r == 0)
         {
             var map = difficultySelect.CurrentDiff;
-            PersistentUI.UpdateBackground(Song);
 
             Debug.Log("Transitioning...");
             if (map != null)
             {
                 Settings.Instance.LastLoadedMap = Song.Directory;
-                Settings.Instance.LastLoadedChar = BeatSaberSongContainer.Instance.DifficultyData.ParentBeatmapSet
-                    .BeatmapCharacteristicName;
-                Settings.Instance.LastLoadedDiff = BeatSaberSongContainer.Instance.DifficultyData.Difficulty;
-                BeatSaberSongContainer.Instance.Map = map;
+                Settings.Instance.LastLoadedDiff = BoomBoxSongContainer.Instance.Map.DifficultyName;
+                BoomBoxSongContainer.Instance.Map = map;
                 SceneTransitionManager.Instance.LoadScene("03_Mapper", LoadAudio(false, true));
             }
         }
@@ -569,28 +443,8 @@ public class SongInfoEditUI : MenuBase
             return true;
         }
 
-        if (contributorController.IsDirty())
-        {
-            PersistentUI.Instance.ShowDialogBox("SongEditMenu", "unsavedcontributor.warning", callback,
-                PersistentUI.DialogBoxPresetType.YesNo);
-            return true;
-        }
-
         callback(0);
         return false;
-    }
-
-    /// <summary>
-    ///     Edit contributors button has been pressed
-    ///     Check there are no unsaved changes
-    /// </summary>
-    public void EditContributors()
-    {
-        // Do nothing if a dialog is open
-        if (PersistentUI.Instance.DialogBoxIsEnabled) return;
-
-        var wrapper = ContributorWrapper;
-        wrapper.SetActive(!wrapper.activeSelf);
     }
 
     /// <summary>
@@ -599,12 +453,6 @@ public class SongInfoEditUI : MenuBase
     public void UndoChanges()
     {
         reloadSongDataCoroutine = StartCoroutine(SpinReloadSongDataButton());
-
-        if (ContributorWrapper.activeSelf)
-        {
-            contributorController.UndoChanges();
-            return;
-        }
 
         LoadFromSong();
     }
@@ -666,31 +514,15 @@ public class SongInfoEditUI : MenuBase
     /// </summary>
     /// <returns>True if user has made changes, false otherwise</returns>
     private bool IsDirty() =>
-        Song.SongName != nameField.text ||
-        Song.SongSubName != subNameField.text ||
-        Song.SongAuthorName != songAuthorField.text ||
-        Song.LevelAuthorName != authorField.text ||
-        Song.CoverImageFilename != coverImageField.text ||
-        Song.SongFilename != audioPath.text ||
-        !NearlyEqual(Song.BeatsPerMinute, GetTextValue(bpmField)) ||
-        !NearlyEqual(Song.PreviewStartTime, GetTextValue(prevStartField)) ||
-        !NearlyEqual(Song.PreviewDuration, GetTextValue(prevDurField)) ||
-        !NearlyEqual(Song.SongTimeOffset, GetTextValue(offset)) ||
-        environmentDropdown.value != GetEnvironmentIDFromString(Song.EnvironmentName) ||
-        customPlatformsDropdown.value != CustomPlatformFromSong();
+        Song.SongTitle != nameField.text ||
+        Song.SongArtist != songAuthorField.text ||
+        Song.ImageFile != coverImageField.text ||
+        Song.AudioFile != audioPath.text ||
+        // TODO: bpm
+        //!NearlyEqual(Song.BeatsPerMinute, GetTextValue(bpmField)) ||
+        !NearlyEqual(Song.PreviewTime, GetTextValue(prevStartField)) ||
+        !NearlyEqual(Song.PreviewDuration, GetTextValue(prevDurField));
 
     private static bool NearlyEqual(float a, float b, float epsilon = 0.01f) =>
         a.Equals(b) || Math.Abs(a - b) < epsilon;
-
-    public class Environment
-    {
-        public readonly string HumanName;
-        public readonly string JsonName;
-
-        public Environment(string humanName, string jsonName)
-        {
-            HumanName = humanName;
-            JsonName = jsonName;
-        }
-    }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using SimpleJSON;
 using UnityEngine;
 
@@ -32,7 +33,14 @@ public abstract class BeatmapObject
     /// <summary>
     ///     Time, in beats, where this object is located.
     /// </summary>
+    [Obsolete("Use BoomBox \"Offset\" thanks")]
     public float Time;
+
+    /// <summary>
+    /// Time, in milliseconds, where this object is located.
+    /// </summary>
+    [JsonProperty]
+    public float Offset;
 
     /// <summary>
     ///     An expandable <see cref="JSONNode" /> that stores data for Beat Saber mods to use.
