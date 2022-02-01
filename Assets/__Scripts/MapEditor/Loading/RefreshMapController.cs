@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.IO;
+using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,18 +11,7 @@ public class RefreshMapController : MonoBehaviour, CMInput.IRefreshMapActions
     [SerializeField] private TracksManager tracksManager;
     [SerializeField] private AudioTimeSyncController atsc;
     [SerializeField] private TMP_FontAsset cancelFontAsset;
-    [SerializeField] private TMP_FontAsset moreOptionsFontAsset;
     [SerializeField] private TMP_FontAsset thingYouCanRefreshFontAsset;
-    private BeatSaberSong.DifficultyBeatmap diff;
-    private BeatSaberMap map;
-    private BeatSaberSong song;
-
-    private void Start()
-    {
-        song = BeatSaberSongContainer.Instance.Song;
-        diff = BeatSaberSongContainer.Instance.DifficultyData;
-        map = BeatSaberSongContainer.Instance.Map;
-    }
 
     public void OnRefreshMap(InputAction.CallbackContext context)
     {
@@ -67,19 +58,26 @@ public class RefreshMapController : MonoBehaviour, CMInput.IRefreshMapActions
     private IEnumerator RefreshMap(bool notes, bool obstacles, bool events, bool others, bool full)
     {
         yield return PersistentUI.Instance.FadeInLoadingScreen();
-        map = song.GetMapFromDifficultyBeatmap(diff);
-        loader.UpdateMapData(map);
+
+        var json = JsonSerializer.CreateDefault();
+        using var reader = new StreamReader(BoomBoxSongContainer.Instance.Map.FileInfo.FullName);
+        using var jsonReader = new JsonTextReader(reader);
+
+        var map = json.Deserialize<BoomBoxMap>(jsonReader);
+        BoomBoxSongContainer.Instance.Map = map;
+        
         var currentBeat = atsc.CurrentBeat;
         atsc.MoveToTimeInBeats(0);
-        if (notes || full) yield return StartCoroutine(loader.LoadObjects(map.Notes));
+
+        if (notes || full) yield return StartCoroutine(loader.LoadObjects(map.Objects));
         if (obstacles || full) yield return StartCoroutine(loader.LoadObjects(map.Obstacles));
-        if (events || full) yield return StartCoroutine(loader.LoadObjects(map.Events));
-        if (others || full) yield return StartCoroutine(loader.LoadObjects(map.BpmChanges));
-        if (others || full) yield return StartCoroutine(loader.LoadObjects(map.CustomEvents));
-        if (full) BeatSaberSongContainer.Instance.Map.MainNode = map.MainNode;
+        if (others || full) yield return StartCoroutine(loader.LoadObjects(map.TimingPoints));
+
         tracksManager.RefreshTracks();
         SelectionController.RefreshMap();
+
         atsc.MoveToTimeInBeats(currentBeat);
+        
         yield return PersistentUI.Instance.FadeOutLoadingScreen();
     }
 }

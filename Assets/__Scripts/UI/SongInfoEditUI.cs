@@ -131,9 +131,9 @@ public class SongInfoEditUI : MenuBase
 
         var maps = Song.Maps;
 
-        var bpms = maps.Select(x => x.TimingPoints.Find(y => y.Offset == 0)).Where(x => x != null);
+        var bpms = maps.Select(x => x.BeginningBPM);
 
-        var distinctBpms = bpms.DistinctBy(x => x.Bpm);
+        var distinctBpms = bpms.Distinct();
         var bpmCount = distinctBpms.Count();
 
         if (bpmCount > 1)
@@ -141,25 +141,31 @@ public class SongInfoEditUI : MenuBase
             // TODO: Localize
             var dialogBox = PersistentUI.Instance.CreateNewDialogBox().WithTitle("BPM Ambiguity Detected");
 
+            // Add label text which explains the problem (more than 1 starting BPM) and what the user needs to do
+            // TODO: Localize
             dialogBox.AddComponent<TextComponent>()
                 .WithInitialValue(() => "BoomMapper has detected multiple starting BPMs in your pack.\n\n" +
                     "For simplicity, BoomMapper will have one starting BPM for all maps in the pack.\n\n" + 
                     "Please select which starting BPM BoomMapper will apply to all maps.");
 
+            // Add a dropdown which will force the user to select one BPM to apply
             var dropdown = dialogBox.AddComponent<DropdownComponent>()
+                // Populate dropdown with formatted strings of difficulty name and BPM
+                // Example: "Master (320 BPM)" and "Expert (128 BPM)"
                 .WithOptionsList(maps.Select(x =>
-                    string.Format("{0} ({1} BPM)", x.DifficultyName, x.TimingPoints.Find(y => y.Offset == 0))
-                    ));
+                    string.Format("{0} ({1} BPM)", x.DifficultyName, x.TimingPoints.Find(y => y.TimeInMilliseconds == 0))
+                    ))
+                // Set default value to the first difficulty
+                .WithInitialValue(() => 0)
+                // Register OnChanged event to dynamically change bpm text
+                .OnChanged<DropdownComponent, int>(i => bpmField.text = bpms.ElementAt(i).ToString(CultureInfo.InvariantCulture));
 
-            // TODO: These should be chained methods
-            dropdown.SetValueAccessor(() => 0);
-            dropdown.SetOnValueChanged(i => bpmField.text = bpms.ElementAt(i).Bpm.ToString(CultureInfo.InvariantCulture));
-
-            dialogBox.AddFooterButton(null, "Ok");
+            // Add footer button which will apply the selected value
+            dialogBox.AddFooterButton(() => bpmField.text = bpms.ElementAt(dropdown.Value).ToString(CultureInfo.InvariantCulture), "Ok");
         }
         else if (bpmCount == 1)
         {
-            bpmField.text = distinctBpms.First().Bpm.ToString(CultureInfo.InvariantCulture);
+            bpmField.text = distinctBpms.First().ToString(CultureInfo.InvariantCulture);
         }
         else
         {

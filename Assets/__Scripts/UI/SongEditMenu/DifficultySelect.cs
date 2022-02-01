@@ -131,9 +131,9 @@ public class DifficultySelect : MonoBehaviour
             bpm = 120;
         }
 
-        if ((map.TimingPoints ??= new List<BeatmapBPMChange>()).Find(x => x.Offset == 0).Bpm != bpm)
+        if ((map.TimingPoints ??= new List<BeatmapBPMChange>()).Find(x => x.TimeInMilliseconds == 0).Bpm != bpm)
         {
-            map.TimingPoints.RemoveAll(x => x.Offset == 0);
+            map.TimingPoints.RemoveAll(x => x.TimeInMilliseconds == 0);
             map.TimingPoints.Add(new BeatmapBPMChange(bpm, 0));
         }
 

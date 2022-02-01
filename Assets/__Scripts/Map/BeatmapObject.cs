@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 using SimpleJSON;
 using UnityEngine;
@@ -31,17 +32,20 @@ public abstract class BeatmapObject
     public bool HasAttachedContainer = false;
 
     /// <summary>
-    ///     Time, in beats, where this object is located.
+    /// Time, in beats, where this object is located.
     /// </summary>
-    [Obsolete("Use BoomBox \"Offset\" thanks")]
-    public float Time;
+    public float Time
+    {
+        get => GetBeatsFromMilliseconds(TimeInMilliseconds);
+        set => TimeInMilliseconds = GetMillisceondsFromBeats(value);
+    }
 
     /// <summary>
     /// Time, in milliseconds, where this object is located.
+    /// In JSON, this is either called "Offset" or "StartTime", depending on the data structure.
     /// </summary>
-    [JsonProperty]
-    public float Offset;
-
+    public abstract float TimeInMilliseconds { get; set; }
+    
     /// <summary>
     ///     An expandable <see cref="JSONNode" /> that stores data for Beat Saber mods to use.
     /// </summary>
@@ -104,19 +108,7 @@ public abstract class BeatmapObject
 
     public override string ToString() => ConvertToJson().ToString();
 
-    /*public override bool Equals(object obj) // We do not need Equals anymore since IsConflictingWith exists
-    {
-        if (obj is BeatmapObject other)
-        {
-            return ConvertToJSON().ToString() == other.ConvertToJSON().ToString();
-        }
-        return false;
-    }*/
-    public virtual void Apply(BeatmapObject originalData)
-    {
-        Time = originalData.Time;
-        CustomData = originalData.CustomData?.Clone();
-    }
+    public virtual void Apply(BeatmapObject originalData) => TimeInMilliseconds = originalData.TimeInMilliseconds;
 
     public JSONNode GetOrCreateCustomData()
     {
@@ -125,4 +117,14 @@ public abstract class BeatmapObject
 
         return CustomData;
     }
+
+    // With how often this will get called, I think inlining will be necessary.
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    protected float GetBeatsFromMilliseconds(float milliseconds)
+        => BoomBoxSongContainer.Instance.Map.BeginningBPM / 60 * milliseconds / 1000;
+
+    // With how often this will get called, I think inlining will be necessary.
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    protected float GetMillisceondsFromBeats(float beats)
+        => 60 / BoomBoxSongContainer.Instance.Map.BeginningBPM * beats * 1000;
 }

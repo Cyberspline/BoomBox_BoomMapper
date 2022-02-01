@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using Newtonsoft.Json;
 
@@ -66,7 +67,7 @@ public class BoomBoxMap
     /// Timing points for the map (internally going to re-use BPM changes)
     /// </summary>
     [JsonProperty]
-    public List<BeatmapBPMChange> TimingPoints;
+    public List<BeatmapBPMChange> TimingPoints = new List<BeatmapBPMChange>();
 
     /// <summary>
     /// Unused list.
@@ -86,24 +87,47 @@ public class BoomBoxMap
     /// Bookmarks in the map
     /// </summary>
     [JsonProperty]
-    public List<object> Bookmarks;
+    public List<BeatmapBookmark> Bookmarks = new List<BeatmapBookmark>();
 
     /// <summary>
-    /// Objects in the map
+    /// Objects/notes in the map
     /// </summary>
     [JsonProperty]
-    public List<object> Objects;
+    public List<BeatmapNote> Objects = new List<BeatmapNote>();
 
     /// <summary>
     /// Obstacles in the map
     /// </summary>
     [JsonProperty]
-    public List<object> Obstacles;
+    public List<BeatmapObstacle> Obstacles = new List<BeatmapObstacle>();
 
     /// <summary>
     /// Location and file name of the map
     /// </summary>
     public FileInfo FileInfo;
+
+    /// <summary>
+    /// Beginning BPM of the map, determined by the first BPM Change.
+    /// </summary>
+    public float BeginningBPM
+    {
+        get => beginningBpm ??= TimingPoints.OrderBy(x => x.TimeInMilliseconds).FirstOrDefault()?.Bpm ?? 120;
+        set
+        {
+            beginningBpm = value;
+
+            if (TimingPoints.Count > 0)
+            {
+                TimingPoints.OrderBy(x => x.TimeInMilliseconds).FirstOrDefault().Bpm = value;
+            }
+            else
+            {
+                TimingPoints.Add(new BeatmapBPMChange(value, 0));
+            }
+        }
+    }
+
+    private float? beginningBpm = null;
 
     public void Save()
     {

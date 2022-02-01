@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using SimpleJSON;
 
+[Serializable]
 public class BeatmapBPMChange : BeatmapObject
 {
     /// <summary>
@@ -11,6 +12,9 @@ public class BeatmapBPMChange : BeatmapObject
 
     [JsonProperty]
     public float Bpm;
+    
+    [JsonProperty("Offset")]
+    public override float TimeInMilliseconds { get; set; }
 
     public float BeatsPerBar;
     public float MetronomeOffset;
@@ -28,7 +32,7 @@ public class BeatmapBPMChange : BeatmapObject
     public BeatmapBPMChange(float bpm, float time)
     {
         Bpm = bpm;
-        Offset = time;
+        TimeInMilliseconds = time;
         BeatsPerBar = 4;
         MetronomeOffset = 4;
     }

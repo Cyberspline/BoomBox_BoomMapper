@@ -15,9 +15,6 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
 
     [SerializeField] private List<MeshRenderer> noteRenderer;
     [SerializeField] private MeshRenderer bombRenderer;
-    [SerializeField] private MeshRenderer dotRenderer;
-    [SerializeField] private MeshRenderer arrowRenderer;
-    [SerializeField] private SpriteRenderer swingArcRenderer;
 
     private bool currentState;
 
@@ -37,58 +34,40 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
             UpdateMaterials();
         }
 
-        SetArcVisible(NotesContainer.ShowArcVisualizer);
         CheckTranslucent();
     }
 
     internal static Vector3 Directionalize(BeatmapNote mapNoteData)
     {
-        if (mapNoteData is null) return Vector3.zero;
-        var directionEuler = Vector3.zero;
-        var cutDirection = mapNoteData.CutDirection;
-        switch (cutDirection)
+        if (mapNoteData == null) return Vector3.zero;
+
+        var yaw = 0f;
+        switch (mapNoteData.RadialIndex)
         {
-            case BeatmapNote.NoteCutDirectionUp:
-                directionEuler += new Vector3(0, 0, 180);
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+                yaw = -145f;
                 break;
-            case BeatmapNote.NoteCutDirectionDown:
-                directionEuler += new Vector3(0, 0, 0);
+            case 5:
+            case 9:
+                yaw = -140f;
                 break;
-            case BeatmapNote.NoteCutDirectionLeft:
-                directionEuler += new Vector3(0, 0, -90);
+            case 6:
+            case 7:
+            case 8:
+                yaw = -130f;
                 break;
-            case BeatmapNote.NoteCutDirectionRight:
-                directionEuler += new Vector3(0, 0, 90);
-                break;
-            case BeatmapNote.NoteCutDirectionUpRight:
-                directionEuler += new Vector3(0, 0, 135);
-                break;
-            case BeatmapNote.NoteCutDirectionUpLeft:
-                directionEuler += new Vector3(0, 0, -135);
-                break;
-            case BeatmapNote.NoteCutDirectionDownLeft:
-                directionEuler += new Vector3(0, 0, -45);
-                break;
-            case BeatmapNote.NoteCutDirectionDownRight:
-                directionEuler += new Vector3(0, 0, 45);
+            case 10:
+            case 11:
+                yaw = -130f;
                 break;
         }
 
-        if (mapNoteData.CustomData?.HasKey("_cutDirection") ?? false)
-        {
-            directionEuler = new Vector3(0, 0, mapNoteData.CustomData["_cutDirection"]?.AsFloat ?? 0);
-        }
-        else
-        {
-            if (cutDirection >= 1000) directionEuler += new Vector3(0, 0, 360 - (cutDirection - 1000));
-        }
-
-        return directionEuler;
+        return new Vector3(yaw, 0, RadialIndexTable.Instance.GetNoteInwardRotation(mapNoteData.RadialIndex));
     }
-
-    public void SetDotVisible(bool b) => dotRenderer.enabled = b;
-
-    public void SetArrowVisible(bool b) => arrowRenderer.enabled = b;
 
     public void SetBomb(bool b)
     {
@@ -97,11 +76,6 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
 
         bombRenderer.gameObject.SetActive(b);
         bombRenderer.enabled = b;
-    }
-
-    public void SetArcVisible(bool showArcVisualizer)
-    {
-        if (swingArcRenderer != null) swingArcRenderer.enabled = showArcVisualizer;
     }
 
     public static BeatmapNoteContainer SpawnBeatmapNote(BeatmapNote noteData, ref GameObject notePrefab)

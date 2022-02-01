@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using SimpleJSON;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -30,19 +31,47 @@ public class BeatmapNote : BeatmapObject, IBeatmapObjectBounds
     public const int NoteCutDirectionUpRight = 5;
     public const int NoteCutDirectionDownLeft = 6;
     public const int NoteCutDirectionDownRight = 7;
-
     public const int NoteCutDirectionAny = 8;
     public const int NoteCutDirectionNone = 9;
+
+    public const int HandLeft = 1;
+    public const int HandRight = 2;
+
     [FormerlySerializedAs("_lineIndex")] public int LineIndex;
     [FormerlySerializedAs("_lineLayer")] public int LineLayer;
-    [FormerlySerializedAs("_type")] public int Type;
     [FormerlySerializedAs("_cutDirection")] public int CutDirection;
 
     [FormerlySerializedAs("id")] public uint ID;
 
-    /*
-     * MapNote Logic
-     */
+    /// <summary>
+    /// Hand used to hit the note (1 = left, 2 = right?)
+    /// </summary>
+    [JsonProperty]
+    public int Hand = HandLeft;
+
+    /// <summary>
+    /// Type of note (always 1)
+    /// </summary>
+    // TODO make constant; Type should always be "1" for notes
+    [JsonProperty]
+    [FormerlySerializedAs("_type")]
+    public int Type = 1;
+
+    /// <summary>
+    /// Orbital ring to position notes around (always 1)
+    /// </summary>
+    // TODO make constant; OrbitalType should always be "1" for notes
+    [JsonProperty()]
+    public int OrbitalType = 1;
+
+    /// <summary>
+    /// Index into the final position of an object, and potentially its rotation.
+    /// </summary>
+    [JsonProperty]
+    public int RadialIndex = 0;
+
+    [JsonProperty("StartTime")]
+    public override float TimeInMilliseconds { get; set; }
 
     public BeatmapNote() { }
 
@@ -86,36 +115,12 @@ public class BeatmapNote : BeatmapObject, IBeatmapObjectBounds
         return node;
     }
 
-    public Vector2 GetPosition()
-    {
-        if (CustomData?.HasKey("_position") ?? false)
-            return CustomData["_position"].ReadVector2() + new Vector2(0.5f, 0);
+    public Vector2 GetPosition() => RadialIndexTable.Instance.GetNotePlacement(RadialIndex);
 
-        var position = LineIndex - 1.5f;
-        float layer = LineLayer;
-
-        if (LineIndex >= 1000)
-            position = (LineIndex / 1000f) - 2.5f;
-        else if (LineIndex <= -1000) position = (LineIndex / 1000f) - 0.5f;
-
-        if (LineLayer >= 1000 || LineLayer <= -1000) layer = (LineLayer / 1000f) - 1f;
-
-        return new Vector2(position, layer);
-    }
-
-    public Vector3 GetScale()
-    {
-        if (CustomData?.HasKey("_scale") ?? false) return CustomData["_scale"].ReadVector3();
-        return Vector3.one;
-    }
+    public Vector3 GetScale() => Vector3.one;
 
     protected override bool IsConflictingWithObjectAtSameTime(BeatmapObject other, bool deletion)
-    {
-        if (other is BeatmapNote note)
-            // Only down to 1/4 spacing
-            return Vector2.Distance(note.GetPosition(), GetPosition()) < 0.1;
-        return false;
-    }
+        => other is BeatmapNote note && note.RadialIndex == RadialIndex;
 
     public override void Apply(BeatmapObject originalData)
     {
@@ -123,10 +128,9 @@ public class BeatmapNote : BeatmapObject, IBeatmapObjectBounds
 
         if (originalData is BeatmapNote note)
         {
-            Type = note.Type;
-            CutDirection = note.CutDirection;
-            LineIndex = note.LineIndex;
-            LineLayer = note.LineLayer;
+            Hand = note.Hand;
+            Type = OrbitalType = 1;
+            RadialIndex = note.RadialIndex;
         }
     }
 }

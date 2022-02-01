@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 027307bb8860ed840b11ae6d2c2f567a, type: 3}
+  m_Name: RadialIndexTableSO
+  m_EditorClassIdentifier: 
+  notePlacements:
+  - {x: 0.72, y: 0}
+  - {x: 0.36, y: -0.089999996}
+  - {x: 0, y: -0.12}
+  - {x: -0.36, y: -0.089999996}
+  - {x: -0.72, y: 0}
+  - {x: -0.72, y: 0.6}
+  - {x: -0.375, y: 0.78}
+  - {x: 0, y: 0.86}
+  - {x: 0.375, y: 0.78}
+  - {x: 0.72, y: 0.6}
+  - {x: 0.72, y: 0.3}
+  - {x: -0.79, y: 0.3}
+  noteDirections:
+  - {x: 0.463, y: -0.887}
+  - {x: 0.261, y: -0.966}
+  - {x: 0, y: -1}
+  - {x: -0.263, y: -0.966}
+  - {x: -0.464, y: -0.887}
+  - {x: -0.648, y: 0.762}
+  - {x: -0.263, y: 0.965}
+  - {x: 0, y: 1}
+  - {x: 0.262, y: 0.965}
+  - {x: 0.647, y: 0.762}
+  - {x: 1, y: 0}
+  - {x: -1, y: 0}
+  obstaclePlacements:
+  - {x: 2, y: 2}
+  - {x: 2, y: 0.6666}
+  - {x: 2, y: -2}
+  - {x: 0.6666, y: -2}
+  - {x: 0, y: -2}
+  - {x: -0.6666, y: -2}
+  - {x: -2, y: -2}
+  - {x: -2, y: 0.6666}
+  - {x: -2, y: 2}
+  - {x: -0.6666, y: 2}
+  - {x: 0, y: 2}
+  - {x: 0.6666, y: 2}
+  - {x: 2, y: 1.3332}
+  - {x: 2, y: 0}
+  - {x: 2, y: -0.6666}
+  - {x: 2, y: -1.3332}
+  - {x: 1.3332, y: -2}
+  - {x: -1.3332, y: -2}
+  - {x: -2, y: -1.3332}
+  - {x: -2, y: -0.6666}
+  - {x: -2, y: 0}
+  - {x: -2, y: 1.3332}
+  - {x: -1.3332, y: 2}
+  - {x: 1.3332, y: 2}
+  noteInwardRotation:
+  - 207.6
+  - 195.1862
+  - 180
+  - 164.81
+  - 152.4
+  - 40.32
+  - 15.19
+  - 0
+  - -15.19
+  - -40.32
+  - -90
+  - 90

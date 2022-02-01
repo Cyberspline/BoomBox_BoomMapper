@@ -49,6 +49,8 @@ public class MapEvent : BeatmapObject
     [FormerlySerializedAs("_type")] public int Type;
     [FormerlySerializedAs("_value")] public int Value;
     [FormerlySerializedAs("_lightGradient")] public ChromaGradient LightGradient;
+    
+    public override float TimeInMilliseconds { get; set; }
 
     /*
      * MapEvent logic

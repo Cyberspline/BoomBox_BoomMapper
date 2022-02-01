@@ -8,10 +8,9 @@ public class RotationCallbackController : MonoBehaviour
     [SerializeField] private BeatmapObjectCallbackController interfaceCallback;
     [FormerlySerializedAs("atsc")] public AudioTimeSyncController Atsc;
     [SerializeField] private EventsContainer events;
-    private readonly string[] enabledCharacteristics = { "360Degree", "90Degree", "Lawless" };
 
     public Action<bool, int> RotationChangedEvent; //Natural, degrees
-    public bool IsActive { get; private set; }
+    public bool IsActive { get; private set; } = false;
     public MapEvent LatestRotationEvent { get; private set; }
 
     public int Rotation { get; private set; }
@@ -19,15 +18,6 @@ public class RotationCallbackController : MonoBehaviour
     // Start is called before the first frame update
     internal void Start()
     {
-        var set = BeatSaberSongContainer.Instance.DifficultyData.ParentBeatmapSet;
-        IsActive = enabledCharacteristics.Contains(set.BeatmapCharacteristicName);
-        if (IsActive && Settings.Instance.Reminder_Loading360Levels)
-        {
-            PersistentUI.Instance.ShowDialogBox(
-                "PersistentUI", "360warning"
-                , Handle360LevelReminder, PersistentUI.DialogBoxPresetType.OkIgnore);
-        }
-
         interfaceCallback.EventPassedThreshold += EventPassedThreshold;
         Atsc.PlayToggle += PlayToggle;
         Atsc.TimeChanged += OnTimeChanged;
@@ -47,8 +37,6 @@ public class RotationCallbackController : MonoBehaviour
         if (Settings.Instance.RotateTrack) return;
         RotationChangedEvent?.Invoke(false, 0);
     }
-
-    private void Handle360LevelReminder(int res) => Settings.Instance.Reminder_Loading360Levels = res == 0;
 
     private void OnTimeChanged()
     {

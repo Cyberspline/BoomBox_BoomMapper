@@ -98,24 +98,22 @@ public class DiscordController : MonoBehaviour
         switch (to.name)
         {
             case "00_FirstBoot":
-                details = "Selecting install folder...";
-                break;
+                return;
             case "01_SongSelectMenu":
                 details = "Viewing song list.";
                 break;
             case "02_SongEditMenu":
-                details = BeatSaberSongContainer.Instance.Song.SongName;
+                details = BoomBoxSongContainer.Instance.Pack.SongTitle;
                 state = "Viewing song info.";
                 break;
             case "03_Mapper":
-                var songContainer = BeatSaberSongContainer.Instance;
+                var songContainer = BoomBoxSongContainer.Instance;
 
-                var song = songContainer.Song;
-                var diff = songContainer.DifficultyData;
-                var beatmapSet = diff.ParentBeatmapSet;
+                var song = songContainer.Pack;
+                var diff = songContainer.Map;
 
-                details = $"Editing {song.SongName}";
-                state = $"{beatmapSet.BeatmapCharacteristicName} {diff.Difficulty}";
+                details = $"Editing {song.SongTitle}";
+                state = $"{diff.DifficultyName}";
                 break;
             case "04_Options":
                 details = "Editing ChroMapper options";

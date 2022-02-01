@@ -19,7 +19,9 @@ public class AudioTimeSyncController : MonoBehaviour, CMInput.IPlaybackActions, 
     [SerializeField] private BPMChangesContainer bpmChangesContainer;
     [SerializeField] private GridRenderingController gridRenderingController;
     [SerializeField] private CustomStandaloneInputModule customStandaloneInputModule;
-    [FormerlySerializedAs("song")] [HideInInspector] public BeatSaberSong Song;
+
+    [FormerlySerializedAs("song")] [HideInInspector] public BoomBoxPack Pack;
+    [HideInInspector] public BoomBoxMap Map;
 
     [SerializeField] private float currentBeat;
     [SerializeField] private float currentSeconds;
@@ -89,17 +91,23 @@ public class AudioTimeSyncController : MonoBehaviour, CMInput.IPlaybackActions, 
         try
         {
             //Init dat stuff
-            clip = BeatSaberSongContainer.Instance.LoadedSong;
-            Song = BeatSaberSongContainer.Instance.Song;
+            clip = BoomBoxSongContainer.Instance.LoadedSong;
+            Pack = BoomBoxSongContainer.Instance.Pack;
+            Map = BoomBoxSongContainer.Instance.Map;
+
             ResetTime();
             IsPlaying = false;
+
             SongAudioSource.clip = clip;
             SongAudioSource.volume = Settings.Instance.SongVolume;
             waveformSource.clip = clip;
+
             UpdateMovables();
             if (Settings.NonPersistentSettings.ContainsKey(PrecisionSnapName))
                 GridMeasureSnapping = (int)Settings.NonPersistentSettings[PrecisionSnapName];
+
             GridMeasureSnappingChanged?.Invoke(GridMeasureSnapping);
+
             LoadInitialMap.LevelLoadedEvent += OnLevelLoaded;
             Settings.NotifyBySettingName("SongSpeed", UpdateSongSpeed);
             Settings.NotifyBySettingName("SongVolume", UpdateSongVolume);
@@ -328,9 +336,9 @@ public class AudioTimeSyncController : MonoBehaviour, CMInput.IPlaybackActions, 
 
     public float FindRoundedBeatTime(float beat, float snap = -1) => bpmChangesContainer.FindRoundedBpmTime(beat, snap);
 
-    public float GetBeatFromSeconds(float seconds) => Song.BeatsPerMinute / 60 * seconds;
+    public float GetBeatFromSeconds(float seconds) => Map.BeginningBPM / 60 * seconds;
 
-    public float GetSecondsFromBeat(float beat) => 60 / Song.BeatsPerMinute * beat;
+    public float GetSecondsFromBeat(float beat) => 60 / Map.BeginningBPM * beat;
 
     private void ValidatePosition()
     {
@@ -339,9 +347,10 @@ public class AudioTimeSyncController : MonoBehaviour, CMInput.IPlaybackActions, 
 
         if (currentSeconds < 0) currentSeconds = 0;
         if (currentBeat < 0) currentBeat = 0;
-        if (currentSeconds > BeatSaberSongContainer.Instance.LoadedSong.length)
+
+        if (currentSeconds > clip.length)
         {
-            CurrentSeconds = BeatSaberSongContainer.Instance.LoadedSong.length;
+            CurrentSeconds = clip.length;
             SnapToGrid(true);
         }
     }

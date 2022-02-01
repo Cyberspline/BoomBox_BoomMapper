@@ -253,12 +253,6 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
         noteAppearanceSo.SetNoteAppearance(DraggedObjectContainer);
     }
 
-    internal override void RefreshVisuals()
-    {
-        base.RefreshVisuals();
-        instantiatedContainer.SetArcVisible(false);
-    }
-
     private void HandleKeyUpdate(InputAction.CallbackContext context, int id)
     {
         if (context.performed ^ heldKeys[id]) flagDirectionsUpdate = true;

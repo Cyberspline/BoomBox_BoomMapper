@@ -4,6 +4,8 @@ using SimpleJSON;
 public class BeatmapCustomEvent : BeatmapObject
 {
     public string Type;
+    
+    public override float TimeInMilliseconds { get; set; }
 
     public BeatmapCustomEvent(JSONNode node)
     {

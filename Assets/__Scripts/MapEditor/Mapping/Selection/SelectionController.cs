@@ -326,7 +326,7 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
         var bpmChanges =
             BeatmapObjectContainerCollection.GetCollectionForType<BPMChangesContainer>(BeatmapObject.ObjectType.BpmChange);
         var lastBpmChange = bpmChanges.FindLastBpm(atsc.CurrentBeat);
-        copiedBpm = lastBpmChange?.Bpm ?? atsc.Song.BeatsPerMinute;
+        copiedBpm = lastBpmChange?.Bpm ?? atsc.Map.BeginningBPM;
     }
 
     /// <summary>
@@ -475,12 +475,6 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
             collection.LoadedObjects.Add(data);
 
             if (collection.LoadedContainers.TryGetValue(data, out var con)) con.UpdateGridPosition();
-
-            if (collection is NotesContainer notesContainer)
-            {
-                notesContainer.RefreshSpecialAngles(original, false, false);
-                notesContainer.RefreshSpecialAngles(data, false, false);
-            }
 
             allActions.Add(new BeatmapObjectModifiedAction(data, data, original, "", true));
         }

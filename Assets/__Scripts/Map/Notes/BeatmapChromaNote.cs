@@ -1,4 +1,5 @@
-﻿public class BeatmapChromaNote : BeatmapNote
+﻿[System.Obsolete("Unused, please remove")]
+public class BeatmapChromaNote : BeatmapNote
 {
     public const int Monochrome = NoteCutDirectionUp;
     public const int Bidirectional = NoteCutDirectionLeft;
