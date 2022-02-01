@@ -22,6 +22,8 @@ public class PersistentUI : MonoBehaviour
     public Slider LevelLoadSlider;
     public TextMeshProUGUI LevelLoadSliderLabel;
 
+    [Header("Only here to load ScriptableObjects")]
+    [SerializeField] private ScriptableObject[] sos;
     [SerializeField] private Localization localization;
     [Header("Loading")] [SerializeField] private CanvasGroup loadingCanvasGroup;
     [SerializeField] private TMP_Text loadingTip;
