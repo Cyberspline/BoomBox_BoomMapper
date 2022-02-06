@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using SimpleJSON;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -15,8 +13,6 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
     private const int downKey = 2;
     private const int rightKey = 3;
 
-    // Chroma Color Stuff
-    public static readonly string ChromaColorKey = "PlaceChromaObjects";
     [FormerlySerializedAs("noteAppearanceSO")] [SerializeField] private NoteAppearanceSO noteAppearanceSo;
     [SerializeField] private DeleteToolController deleteToolController;
     [SerializeField] private PrecisionPlacementGridController precisionPlacement;
@@ -24,6 +20,8 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
     [SerializeField] private BeatmapNoteInputController beatmapNoteInputController;
     [SerializeField] private ColorPicker colorPicker;
     [SerializeField] private ToggleColourDropdown dropdown;
+    [SerializeField] private BeatmapNoteContainer placementAreaPrefab;
+    [SerializeField] private RadialIndexTable radialIndexTable;
 
     // TODO: Perhaps move this into Settings as a user-configurable option
     private readonly float
@@ -36,28 +34,31 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
     private bool diagonal;
     private bool flagDirectionsUpdate;
 
-    // Chroma Color Check
-    public static bool CanPlaceChromaObjects
-    {
-        get
-        {
-            if (Settings.NonPersistentSettings.ContainsKey(ChromaColorKey))
-                return (bool)Settings.NonPersistentSettings[ChromaColorKey];
-            return false;
-        }
-    }
-
-    public override bool IsValid
-    {
-        get
-        {
-            if (Settings.Instance.PrecisionPlacementGrid)
-                return base.IsValid || (UsePrecisionPlacement && IsActive && !NodeEditorController.IsActive);
-            return base.IsValid;
-        }
-    }
-
     public override int PlacementXMin => base.PlacementXMax * -1;
+
+    internal override void Start()
+    {
+        var cachedNote = new BeatmapNote();
+
+        for (var i = 0; i < radialIndexTable.NotePlacements; i++)
+        {
+            cachedNote.RadialIndex = i;
+
+            var note = Instantiate(placementAreaPrefab,
+                radialIndexTable.GetNotePlacement(i), Quaternion.Euler(BeatmapNoteContainer.Directionalize(cachedNote)),
+                ParentTrack);
+            
+            note.Setup();
+
+            // Ensure our intersection collider is on the right layer for placement
+            note.GetComponent<IntersectionCollider>().CollisionLayer = 11;
+
+            note.SetColor(Color.gray);
+            note.SetAlpha(0.3f, true);
+        }
+
+        base.Start();
+    }
 
     private void LateUpdate()
     {
@@ -108,15 +109,6 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
             UpdateCut(BeatmapNote.NoteCutDirectionDownLeft);
     }
 
-    // Toggle Chroma Color Function
-    public void PlaceChromaObjects(bool v)
-    {
-        if (Settings.NonPersistentSettings.ContainsKey(ChromaColorKey))
-            Settings.NonPersistentSettings[ChromaColorKey] = v;
-        else
-            Settings.NonPersistentSettings.Add(ChromaColorKey, v);
-    }
-
     public override BeatmapAction GenerateAction(BeatmapObject spawned, IEnumerable<BeatmapObject> container) =>
         new BeatmapObjectPlacementAction(spawned, container, "Placed a note.");
 
@@ -126,54 +118,10 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
     public override void OnPhysicsRaycast(Intersections.IntersectionHit hit, Vector3 _)
     {
         var roundedHit = ParentTrack.InverseTransformPoint(hit.Point);
-        roundedHit = new Vector3(roundedHit.x, roundedHit.y, RoundedTime * EditorScaleController.EditorScale);
+        roundedHit.z = RoundedTime * EditorScaleController.EditorScale;
 
-        // Check if Chroma Color notes button is active and apply _color
-        if (CanPlaceChromaObjects && dropdown.Visible)
-        {
-            // Doing the same a Chroma 2.0 events but with notes insted
-            queuedData.GetOrCreateCustomData()["_color"] = colorPicker.CurrentColor;
-        }
-        else
-        {
-            // If not remove _color
-            if (queuedData.CustomData != null && queuedData.CustomData.HasKey("_color"))
-            {
-                queuedData.CustomData.Remove("_color");
-
-                if (queuedData.CustomData.Count <= 0) //Set customData to null if there is no customData to store
-                    queuedData.CustomData = null;
-            }
-        }
-
-        if (UsePrecisionPlacement)
-        {
-            queuedData.LineIndex = queuedData.LineLayer = 0;
-
-            instantiatedContainer.transform.localPosition = roundedHit;
-
-            var position = new JSONArray(); //We do some manual array stuff to get rounding decimals to work.
-            position[0] = Math.Round(roundedHit.x - 0.5f, 3);
-            position[1] = Math.Round(roundedHit.y - 0.5f, 3);
-            queuedData.GetOrCreateCustomData()["_position"] = position;
-
-            precisionPlacement.TogglePrecisionPlacement(true);
-            precisionPlacement.UpdateMousePosition(hit.Point);
-        }
-        else
-        {
-            precisionPlacement.TogglePrecisionPlacement(false);
-            if (queuedData.CustomData != null && queuedData.CustomData.HasKey("_position"))
-            {
-                queuedData.CustomData.Remove("_position"); //Remove NE position since we are no longer working with it.
-
-                if (queuedData.CustomData.Count <= 0) //Set customData to null if there is no customData to store
-                    queuedData.CustomData = null;
-            }
-
-            queuedData.LineIndex = Mathf.RoundToInt(instantiatedContainer.transform.localPosition.x + 1.5f);
-            queuedData.LineLayer = Mathf.RoundToInt(instantiatedContainer.transform.localPosition.y - 0.5f);
-        }
+        queuedData.LineIndex = Mathf.RoundToInt(instantiatedContainer.transform.localPosition.x + 1.5f);
+        queuedData.LineLayer = Mathf.RoundToInt(instantiatedContainer.transform.localPosition.y - 0.5f);
 
         UpdateAppearance();
     }
@@ -206,30 +154,6 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
     {
         queuedData.Type = type;
         UpdateAppearance();
-    }
-
-    public void ChangeChromaToggle(bool isChromaToggleNote)
-    {
-        if (isChromaToggleNote)
-        {
-            var data = new BeatmapChromaNote(queuedData) { BombRotation = BeatmapChromaNote.Alternate };
-            queuedData = data;
-        }
-        else if (queuedData is BeatmapChromaNote data)
-        {
-            queuedData = data.ConvertToNote();
-        }
-
-        UpdateAppearance();
-    }
-
-    public void UpdateChromaValue(int chromaNoteValue)
-    {
-        if (queuedData is BeatmapChromaNote chroma)
-        {
-            chroma.BombRotation = chromaNoteValue;
-            UpdateAppearance();
-        }
     }
 
     private void UpdateAppearance()

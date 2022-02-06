@@ -3,9 +3,6 @@ using UnityEngine.Serialization;
 
 public class BeatmapObstacleContainer : BeatmapObjectContainer
 {
-    private static readonly int colorTint = Shader.PropertyToID("_ColorTint");
-    private static readonly int shaderScale = Shader.PropertyToID("_WorldScale");
-
     [FormerlySerializedAs("obstacleData")] public BeatmapObstacle ObstacleData;
 
     public override BeatmapObject ObjectData { get => ObstacleData; set => ObstacleData = (BeatmapObstacle)value; }
@@ -24,7 +21,7 @@ public class BeatmapObstacleContainer : BeatmapObjectContainer
 
     public void SetColor(Color color)
     {
-        MaterialPropertyBlock.SetColor(colorTint, color);
+        //MaterialPropertyBlock.SetColor(colorTint, color);
         UpdateMaterials();
     }
 
@@ -32,7 +29,7 @@ public class BeatmapObstacleContainer : BeatmapObjectContainer
     {
         transform.localScale = scale;
 
-        MaterialPropertyBlock.SetVector(shaderScale, scale);
+        //MaterialPropertyBlock.SetVector(shaderScale, scale);
         UpdateMaterials();
     }
 
@@ -56,7 +53,7 @@ public class BeatmapObstacleContainer : BeatmapObjectContainer
         SetScale(new Vector3(
             1,
             localDirection.magnitude,
-            Mathf.Abs(duration)
+            Mathf.Max(0.3f, duration)
         ));
 
         UpdateCollisionGroups();

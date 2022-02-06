@@ -14,7 +14,6 @@ public class PlacementModeController : MonoBehaviour
     }
 
     [SerializeField] private NotePlacement notePlacement;
-    [SerializeField] private BombPlacement bombPlacement;
     [SerializeField] private ObstaclePlacement obstaclePlacement;
     [SerializeField] private DeleteToolController deleteToolController;
 
@@ -37,7 +36,6 @@ public class PlacementModeController : MonoBehaviour
     {
         var mode = (PlacementMode)placementMode;
         notePlacement.IsActive = mode == PlacementMode.Note;
-        bombPlacement.IsActive = mode == PlacementMode.Bomb;
         obstaclePlacement.IsActive = mode == PlacementMode.Wall;
         deleteToolController.UpdateDeletion(mode == PlacementMode.Delete);
     }

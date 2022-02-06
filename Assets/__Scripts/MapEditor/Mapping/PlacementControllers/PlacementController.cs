@@ -115,8 +115,9 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
         {
             var hit = gridsHit.OrderBy(i => i.Distance).First();
 
-            var hitTransform =
-                hit.GameObject.transform; //Make a reference to the transform instead of calling hit.transform a lot
+            // Cache the transform because its a tiny bit expensive
+            var hitTransform = hit.GameObject.transform; 
+            
             if (!hitTransform.IsChildOf(transform) || PersistentUI.Instance.DialogBoxIsEnabled)
             {
                 ColliderExit();
@@ -256,7 +257,9 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
         var placementObj = hit.GameObject.GetComponentInParent<T>();
         if (placementObj != null)
         {
-            var boundLocal = placementObj.GetComponentsInChildren<Renderer>().FirstOrDefault(it => it.name == "Grid X")
+            var boundLocal = placementObj.GetComponentsInChildren<Renderer>(true)
+                .Where(it => it.name == "Grid X")
+                .First()
                 .bounds;
 
             // Transform the bounds into the pseudo-world space we use for selection

@@ -11,12 +11,13 @@ public class BeatmapBookmark : BeatmapObject
     [JsonProperty("Message")]
     public string Name = "Invalid Bookmark";
 
-    [JsonProperty()]
+    [JsonProperty]
     public const int SnappingBeatDivType = 4;
 
     [JsonProperty("Offset")]
     public override float TimeInMilliseconds { get; set; }
 
+    [JsonIgnore]
     public Color Color;
 
     public BeatmapBookmark() { }

@@ -1,20 +1,15 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Serialization;
 
 public class BeatmapNoteContainer : BeatmapObjectContainer
 {
     private static readonly Color unassignedColor = new Color(0.1544118f, 0.1544118f, 0.1544118f);
 
+    private static readonly int emissionColor = Shader.PropertyToID("_EmissionColor");
     private static readonly int alwaysTranslucent = Shader.PropertyToID("_AlwaysTranslucent");
+    private static readonly int translucentAlpha = Shader.PropertyToID("_TranslucentAlpha");
 
     [FormerlySerializedAs("mapNoteData")] public BeatmapNote MapNoteData;
-
-    [SerializeField] private GameObject simpleBlock;
-    [SerializeField] private GameObject complexBlock;
-
-    [SerializeField] private List<MeshRenderer> noteRenderer;
-    [SerializeField] private MeshRenderer bombRenderer;
 
     private bool currentState;
 
@@ -23,20 +18,10 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
     public override void Setup()
     {
         base.Setup();
-
-        if (simpleBlock != null)
-        {
-            simpleBlock.SetActive(Settings.Instance.SimpleBlocks);
-            complexBlock.SetActive(!Settings.Instance.SimpleBlocks);
-
-            MaterialPropertyBlock.SetFloat("_Lit", Settings.Instance.SimpleBlocks ? 0 : 1);
-
-            UpdateMaterials();
-        }
-
         CheckTranslucent();
     }
 
+    // TODO: Make this not static, do on UpdateGridPosition instaed
     internal static Vector3 Directionalize(BeatmapNote mapNoteData)
     {
         if (mapNoteData == null) return Vector3.zero;
@@ -66,16 +51,10 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
                 break;
         }
 
-        return new Vector3(yaw, 0, RadialIndexTable.Instance.GetNoteInwardRotation(mapNoteData.RadialIndex));
-    }
+        var pitch = RadialIndexTable.Instance.GetNoteInwardRotation(mapNoteData.RadialIndex);
 
-    public void SetBomb(bool b)
-    {
-        simpleBlock.SetActive(!b && Settings.Instance.SimpleBlocks);
-        complexBlock.SetActive(!b && !Settings.Instance.SimpleBlocks);
-
-        bombRenderer.gameObject.SetActive(b);
-        bombRenderer.enabled = b;
+        // DO NOT TOUCH THIS. THE ORDER MATTERS.
+        return (Quaternion.Euler(0, 0, pitch) * Quaternion.Euler(yaw, 0, 0)).eulerAngles;
     }
 
     public static BeatmapNoteContainer SpawnBeatmapNote(BeatmapNote noteData, ref GameObject notePrefab)
@@ -89,8 +68,8 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
     public override void UpdateGridPosition()
     {
         transform.localPosition = (Vector3)MapNoteData.GetPosition() +
-                                  new Vector3(0, 0.5f, MapNoteData.Time * EditorScaleController.EditorScale);
-        transform.localScale = MapNoteData.GetScale() + new Vector3(0.5f, 0.5f, 0.5f);
+                                  new Vector3(0, 0, MapNoteData.Time * EditorScaleController.EditorScale);
+        transform.localScale = MapNoteData.GetScale();
         UpdateCollisionGroups();
         SetRotation(AssignedTrack != null ? AssignedTrack.RotationValue.y : 0);
     }
@@ -109,7 +88,14 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
 
     public void SetColor(Color? color)
     {
-        MaterialPropertyBlock.SetColor(BeatmapObjectContainer.color, color ?? unassignedColor);
+        MaterialPropertyBlock.SetColor(emissionColor, color ?? unassignedColor);
+        UpdateMaterials();
+    }
+
+    public void SetAlpha(float alpha, bool forceTranslucent = false)
+    {
+        MaterialPropertyBlock.SetFloat(alwaysTranslucent, forceTranslucent ? 1 : 0);
+        MaterialPropertyBlock.SetFloat(translucentAlpha, alpha);
         UpdateMaterials();
     }
 
@@ -119,12 +105,5 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
 
         base.AssignTrack(track);
         track.TimeChanged += CheckTranslucent;
-    }
-
-    internal override void UpdateMaterials()
-    {
-        foreach (var renderer in noteRenderer) renderer.SetPropertyBlock(MaterialPropertyBlock);
-        foreach (var renderer in SelectionRenderers) renderer.SetPropertyBlock(MaterialPropertyBlock);
-        bombRenderer.SetPropertyBlock(MaterialPropertyBlock);
     }
 }

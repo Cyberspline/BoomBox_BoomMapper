@@ -32,11 +32,12 @@ public class BoxSelectionPlacementController : PlacementController<MapEvent, Bea
 
     public override int PlacementXMax => int.MaxValue;
 
+    /*
     private void OnDrawGizmos()
     {
         if (!Application.isPlaying || instantiatedContainer is null) return;
         Gizmos.color = Color.red;
-        var boxyBoy = instantiatedContainer.GetComponent<BoxCollider>();
+        var boxyBoy = instantiatedContainer.GetComponentInChildren<IntersectionCollider>().BoundsRenderer;
         var bounds = new Bounds
         {
             center = boxyBoy.bounds.center,
@@ -44,7 +45,7 @@ public class BoxSelectionPlacementController : PlacementController<MapEvent, Bea
         };
         Gizmos.DrawMesh(instantiatedContainer.GetComponentInChildren<MeshFilter>().mesh, bounds.center,
             instantiatedContainer.transform.rotation, bounds.size);
-    }
+    }*/
 
     public void OnActivateBoxSelect(InputAction.CallbackContext context) => keybindPressed = context.performed;
 

@@ -74,7 +74,6 @@ public class NotesContainer : BeatmapObjectContainerCollection
         var noteData = obj as BeatmapNote;
         noteAppearanceSo.SetNoteAppearance(note);
         note.Setup();
-        note.SetBomb(noteData.Type == BeatmapNote.NoteTypeBomb);
         note.transform.localEulerAngles = BeatmapNoteContainer.Directionalize(noteData);
 
         var track = tracksManager.GetTrackAtTime(obj.Time);

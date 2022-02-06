@@ -10,6 +10,7 @@ public class RadialIndexTable : ScriptableObject
      * Thanks a lot to HardCPP for giving me this data straight from BoomBox itself.
      */
 
+    [SerializeField] private Vector2 globalScale = Vector2.one;
     [SerializeField] private Vector2 globalOffset = Vector2.up;
     [Header("Notes")]
     [SerializeField] private List<Vector2> notePlacements = new List<Vector2>();
@@ -18,12 +19,16 @@ public class RadialIndexTable : ScriptableObject
     [Header("Obstacles")]
     [SerializeField] private List<Vector2> obstaclePlacements = new List<Vector2>();
 
+    public int NotePlacements => notePlacements.Count;
+
+    public int ObstaclePlacements => obstaclePlacements.Count;
+
     /// <summary>
     /// Gets the 2D position of a note
     /// </summary>
     /// <param name="radialIndex">Radial index of the note, which determines its position.</param>
     /// <returns>Position of the note</returns>
-    public Vector2 GetNotePlacement(int radialIndex) => notePlacements[radialIndex] + globalOffset;
+    public Vector2 GetNotePlacement(int radialIndex) => (notePlacements[radialIndex] * globalScale) + globalOffset;
 
     /// <summary>
     /// Gets the (undetermined) direction for a note
@@ -44,7 +49,7 @@ public class RadialIndexTable : ScriptableObject
     /// </summary>
     /// <param name="radialIndex">Radial index of an obstacle point, which determines its position</param>
     /// <returns>Position of the obstacle point.</returns>
-    public Vector2 GetObstaclePlacement(int radialIndex) => obstaclePlacements[radialIndex] + globalOffset;
+    public Vector2 GetObstaclePlacement(int radialIndex) => (obstaclePlacements[radialIndex] * globalScale) + globalOffset;
 
     private void OnEnable() => Instance = this;
 }

@@ -1,47 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using SimpleJSON;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
 public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObstacleContainer, ObstaclesContainer>
 {
-    // Chroma Color Stuff
-    public static readonly string ChromaColorKey = "PlaceChromaObjects";
     [FormerlySerializedAs("obstacleAppearanceSO")] [SerializeField] private ObstacleAppearanceSO obstacleAppearanceSo;
     [SerializeField] private PrecisionPlacementGridController precisionPlacement;
     [SerializeField] private ColorPicker colorPicker;
     [SerializeField] private ToggleColourDropdown dropdown;
+    [SerializeField] private GameObject placementAreaPrefab;
+    [SerializeField] private RadialIndexTable radialIndexTable;
 
     private int originIndex;
 
     private float startTime;
 
-    // Chroma Color Check
-    public static bool CanPlaceChromaObjects
-    {
-        get
-        {
-            if (Settings.NonPersistentSettings.ContainsKey(ChromaColorKey))
-                return (bool)Settings.NonPersistentSettings[ChromaColorKey];
-            return false;
-        }
-    }
-
     public static bool IsPlacing { get; private set; }
 
     public override int PlacementXMin => base.PlacementXMax * -1;
-
-    public override bool IsValid
-    {
-        get
-        {
-            if (Settings.Instance.PrecisionPlacementGrid)
-                return base.IsValid || (UsePrecisionPlacement && IsActive && !NodeEditorController.IsActive);
-            return base.IsValid;
-        }
-    }
 
     private float SmallestRankableWallDuration => Atsc.GetBeatFromSeconds(0.016f);
 
@@ -50,6 +28,17 @@ public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObs
 
     public override BeatmapObstacle GenerateOriginalData() =>
         new BeatmapObstacle(0, 0, BeatmapObstacle.ValueFullBarrier, 0, 1);
+
+    internal override void Start()
+    {
+        for (var i = 0; i < radialIndexTable.ObstaclePlacements; i++)
+        {
+            Instantiate(placementAreaPrefab,
+                radialIndexTable.GetObstaclePlacement(i), Quaternion.identity, ParentTrack);
+        }
+
+        base.Start();
+    }
 
     public override void OnPhysicsRaycast(Intersections.IntersectionHit hit, Vector3 transformedPoint)
     {
@@ -61,103 +50,44 @@ public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObs
         obstacleAppearanceSo.SetObstacleAppearance(instantiatedContainer);
         var roundedHit = ParentTrack.InverseTransformPoint(hit.Point);
 
-        // Check if ChromaToggle notes button is active and apply _color
-        if (CanPlaceChromaObjects && dropdown.Visible)
-        {
-            // Doing the same a Chroma 2.0 events but with notes insted
-            queuedData.GetOrCreateCustomData()["_color"] = colorPicker.CurrentColor;
-        }
-        else
-        {
-            // If not remove _color
-            if (queuedData.CustomData != null && queuedData.CustomData.HasKey("_color"))
-            {
-                queuedData.CustomData.Remove("_color");
-
-                if (queuedData.CustomData.Count <= 0) //Set customData to null if there is no customData to store
-                    queuedData.CustomData = null;
-            }
-        }
 
         var wallTransform = instantiatedContainer.transform;
 
         if (IsPlacing)
         {
-            if (UsePrecisionPlacement)
-            {
-                roundedHit = new Vector3(roundedHit.x, roundedHit.y, RoundedTime * EditorScaleController.EditorScale);
+            roundedHit = new Vector3(
+                Mathf.Ceil(Math.Min(Math.Max(roundedHit.x, Bounds.min.x + 0.01f), Bounds.max.x)),
+                Mathf.Ceil(Math.Min(Math.Max(roundedHit.y, 0.01f), 3f)),
+                RoundedTime * EditorScaleController.EditorScale
+            );
 
-                Vector2 position = queuedData.CustomData["_position"];
-                var localPosition = new Vector3(position.x, position.y, startTime * EditorScaleController.EditorScale);
-                wallTransform.localPosition = localPosition;
+            wallTransform.localPosition = new Vector3(
+                originIndex - 2, queuedData.Type == BeatmapObstacle.ValueFullBarrier ? 0 : 1.5f,
+                startTime * EditorScaleController.EditorScale);
+            queuedData.Width = Mathf.CeilToInt(roundedHit.x + 2) - originIndex;
 
-                var newLocalScale = roundedHit - localPosition;
-                newLocalScale = new Vector3(newLocalScale.x, Mathf.Max(newLocalScale.y, 0.01f), newLocalScale.z);
-                instantiatedContainer.SetScale(newLocalScale);
+            instantiatedContainer.SetScale(new Vector3(queuedData.Width,
+                wallTransform.localScale.y, wallTransform.localScale.z));
 
-                var scale = new JSONArray(); //We do some manual array stuff to get rounding decimals to work.
-                scale[0] = Math.Round(newLocalScale.x, 3);
-                scale[1] = Math.Round(newLocalScale.y, 3);
-                queuedData.CustomData["_scale"] = scale;
-
-                precisionPlacement.TogglePrecisionPlacement(true);
-                precisionPlacement.UpdateMousePosition(hit.Point);
-            }
-            else
-            {
-                roundedHit = new Vector3(
-                    Mathf.Ceil(Math.Min(Math.Max(roundedHit.x, Bounds.min.x + 0.01f), Bounds.max.x)),
-                    Mathf.Ceil(Math.Min(Math.Max(roundedHit.y, 0.01f), 3f)),
-                    RoundedTime * EditorScaleController.EditorScale
-                );
-
-                wallTransform.localPosition = new Vector3(
-                    originIndex - 2, queuedData.Type == BeatmapObstacle.ValueFullBarrier ? 0 : 1.5f,
-                    startTime * EditorScaleController.EditorScale);
-                queuedData.Width = Mathf.CeilToInt(roundedHit.x + 2) - originIndex;
-
-                instantiatedContainer.SetScale(new Vector3(queuedData.Width,
-                    wallTransform.localScale.y, wallTransform.localScale.z));
-
-                precisionPlacement.TogglePrecisionPlacement(false);
-            }
+            precisionPlacement.TogglePrecisionPlacement(false);
 
             return;
         }
 
-        if (UsePrecisionPlacement)
-        {
-            wallTransform.localPosition = roundedHit;
-            instantiatedContainer.SetScale(Vector3.one / 2f);
-            queuedData.LineIndex = queuedData.Type = 0;
+        var vanillaType = transformedPoint.y <= 1.5f ? 0 : 1;
 
-            if (queuedData.CustomData == null) queuedData.CustomData = new JSONObject();
+        wallTransform.localPosition = new Vector3(
+            wallTransform.localPosition.x - 0.5f,
+            vanillaType * 1.5f,
+            wallTransform.localPosition.z);
 
-            var position = new JSONArray(); //We do some manual array stuff to get rounding decimals to work.
-            position[0] = Math.Round(roundedHit.x, 3);
-            position[1] = Math.Round(roundedHit.y, 3);
-            queuedData.CustomData["_position"] = position;
+        instantiatedContainer.SetScale(new Vector3(1, wallTransform.localPosition.y == 0 ? 3.5f : 2, 0));
 
-            precisionPlacement.TogglePrecisionPlacement(true);
-            precisionPlacement.UpdateMousePosition(hit.Point);
-        }
-        else
-        {
-            var vanillaType = transformedPoint.y <= 1.5f ? 0 : 1;
+        queuedData.CustomData = null;
+        queuedData.LineIndex = Mathf.RoundToInt(wallTransform.localPosition.x + 2);
+        queuedData.Type = vanillaType;
 
-            wallTransform.localPosition = new Vector3(
-                wallTransform.localPosition.x - 0.5f,
-                vanillaType * 1.5f,
-                wallTransform.localPosition.z);
-
-            instantiatedContainer.SetScale(new Vector3(1, wallTransform.localPosition.y == 0 ? 3.5f : 2, 0));
-
-            queuedData.CustomData = null;
-            queuedData.LineIndex = Mathf.RoundToInt(wallTransform.localPosition.x + 2);
-            queuedData.Type = vanillaType;
-
-            precisionPlacement.TogglePrecisionPlacement(false);
-        }
+        precisionPlacement.TogglePrecisionPlacement(false);
     }
 
     public override void OnMousePositionUpdate(InputAction.CallbackContext context)
