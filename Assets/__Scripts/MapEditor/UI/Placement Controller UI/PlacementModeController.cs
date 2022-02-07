@@ -6,9 +6,7 @@ public class PlacementModeController : MonoBehaviour
     public enum PlacementMode
     {
         [PickerChoice("Mapper", "place.note")] Note,
-        [PickerChoice("Mapper", "place.bomb")] Bomb,
         [PickerChoice("Mapper", "place.wall")] Wall,
-
         [PickerChoice("Mapper", "place.delete")]
         Delete
     }

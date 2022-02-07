@@ -777,22 +777,6 @@
             "id": "55b78d3d-8ced-467c-a88f-d5cf50532d2e",
             "actions": [
                 {
-                    "name": "Down Note",
-                    "type": "Button",
-                    "id": "91d9fcf9-57ed-4bfa-a024-bd388f56a3f2",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Right Note",
-                    "type": "Button",
-                    "id": "e63abaea-687c-486a-aee9-133901bc362c",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Up Note",
                     "type": "Button",
                     "id": "16488a28-3686-46ed-9637-285b7e5a9e72",
@@ -804,6 +788,22 @@
                     "name": "Left Note",
                     "type": "Button",
                     "id": "ea80fd88-1337-4dbd-a7a9-9f1bdd9ecae4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Down Note",
+                    "type": "Button",
+                    "id": "91d9fcf9-57ed-4bfa-a024-bd388f56a3f2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Right Note",
+                    "type": "Button",
+                    "id": "e63abaea-687c-486a-aee9-133901bc362c",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -853,44 +853,11 @@
                 {
                     "name": "",
                     "id": "752ce1da-9d61-4779-b6ed-75d0d214292a",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ChroMapper Default",
-                    "action": "Down Note",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d8232af9-72c8-46d6-bb23-023443cbf276",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ChroMapper Default",
-                    "action": "Left Note",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a24d5b1b-8b2b-4978-84e8-1257904d2017",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ChroMapper Default",
-                    "action": "Right Note",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e8e63a70-7c85-4205-8648-1b10ca6aa84b",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "ChroMapper Default",
-                    "action": "Up Note",
+                    "action": "Down Note",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -946,6 +913,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Down Left Note",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e8e63a70-7c85-4205-8648-1b10ca6aa84b",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Up Note",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d8232af9-72c8-46d6-bb23-023443cbf276",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Left Note",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a24d5b1b-8b2b-4978-84e8-1257904d2017",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Right Note",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

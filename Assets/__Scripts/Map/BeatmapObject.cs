@@ -24,16 +24,19 @@ public abstract class BeatmapObject
         BpmChange
     }
 
+    [JsonIgnore]
     public abstract ObjectType BeatmapType { get; set; }
 
     /// <summary>
     ///     Whether or not there exists a <see cref="BeatmapObjectContainer" /> that contains this data.
     /// </summary>
+    [JsonIgnore]
     public bool HasAttachedContainer = false;
 
     /// <summary>
     /// Time, in beats, where this object is located.
     /// </summary>
+    [JsonIgnore]
     public float Time
     {
         get => GetBeatsFromMilliseconds(TimeInMilliseconds);
@@ -45,10 +48,11 @@ public abstract class BeatmapObject
     /// In JSON, this is either called "Offset" or "StartTime", depending on the data structure.
     /// </summary>
     public abstract float TimeInMilliseconds { get; set; }
-    
+
     /// <summary>
     ///     An expandable <see cref="JSONNode" /> that stores data for Beat Saber mods to use.
     /// </summary>
+    [JsonIgnore]
     public JSONNode CustomData;
 
     public abstract JSONNode ConvertToJson();
@@ -64,28 +68,17 @@ public abstract class BeatmapObject
     public static T GenerateCopy<T>(T originalData) where T : BeatmapObject
     {
         if (originalData is null) throw new ArgumentException("originalData is null.");
-        T objectData;
-        switch (originalData)
-        {
-            case MapEvent evt:
-                var ev = new MapEvent(evt.Time, evt.Type, evt.Value, originalData.CustomData?.Clone())
-                {
-                    LightGradient = evt.LightGradient?.Clone()
-                };
-                objectData = ev as T;
-                break;
-            case BeatmapNote note:
-                objectData = new BeatmapNote(note.Time, note.LineIndex, note.LineLayer, note.Type,
-                    note.CutDirection, originalData.CustomData?.Clone()) as T;
-                break;
-            default:
-                objectData =
-                    Activator.CreateInstance(originalData.GetType(), new object[] { originalData.ConvertToJson() }) as T;
-                objectData.CustomData = originalData.CustomData?.Clone();
-                break;
-        }
 
-        return objectData;
+        using var textWriter = new System.IO.StringWriter();
+        using var jsonWriter = new JsonTextWriter(textWriter);
+
+        var json = JsonSerializer.CreateDefault();
+        json.Serialize(jsonWriter, originalData);
+
+        using var textReader = new System.IO.StringReader(textWriter.ToString());
+        using var jsonReader = new JsonTextReader(textReader);
+
+        return json.Deserialize<T>(jsonReader);
     }
 
     protected JSONNode RetrieveRequiredNode(JSONNode node, string key)

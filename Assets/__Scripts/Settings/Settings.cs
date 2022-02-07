@@ -84,7 +84,7 @@ public class Settings
     public bool Reset360DisplayOnCompleteTurn = true;
     public string Language = "en";
     public bool HighContrastGrids = false;
-    public float GridTransparency = 0f;
+    public float GridTransparency = 0.75f;
     public float UIScale = 1;
     public CameraPosition[] SavedPositions = new CameraPosition[8];
     public bool Reminder_UnsupportedEditorOffset = true;

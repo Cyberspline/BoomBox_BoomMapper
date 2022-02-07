@@ -13,23 +13,35 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
     private const int downKey = 2;
     private const int rightKey = 3;
 
+    // Dictionary of one/two held keys (^^^) to their assigned radial index.
+    private static readonly Dictionary<(int, int?), int> keyToRadialIndexMap = new Dictionary<(int, int?), int>()
+    {
+        { (rightKey, downKey), 0 },
+        { (downKey, rightKey), 1 },
+        { (downKey, null), 2 },
+        { (downKey, leftKey), 3 },
+        { (leftKey, downKey), 4 },
+        { (leftKey, upKey), 5 },
+        { (upKey, leftKey), 6 },
+        { (upKey, null), 7 },
+        { (upKey, rightKey), 8 },
+        { (rightKey, upKey), 9 },
+        { (rightKey, null), 10 },
+        { (leftKey, null), 11 },
+    };
+
     [FormerlySerializedAs("noteAppearanceSO")] [SerializeField] private NoteAppearanceSO noteAppearanceSo;
     [SerializeField] private DeleteToolController deleteToolController;
-    [SerializeField] private PrecisionPlacementGridController precisionPlacement;
-    [SerializeField] private LaserSpeedController laserSpeedController;
     [SerializeField] private BeatmapNoteInputController beatmapNoteInputController;
-    [SerializeField] private ColorPicker colorPicker;
-    [SerializeField] private ToggleColourDropdown dropdown;
     [SerializeField] private BeatmapNoteContainer placementAreaPrefab;
     [SerializeField] private RadialIndexTable radialIndexTable;
 
     // TODO: Perhaps move this into Settings as a user-configurable option
-    private readonly float
-        diagonalStickMAXTime = 0.3f; // This controls the maximum time that a note will stay a diagonal
+    // This controls the maximum time that a note will stay a diagonal
+    private readonly float diagonalStickMAXTime = 0.3f;
 
-    // REVIEW: Perhaps partner with Obama to turn this list of bools
-    // into some binary shifting goodness
-    private readonly List<bool> heldKeys = new List<bool> { false, false, false, false };
+    private int? firstHeldKey = null;
+    private int? secondHeldKey = null;
 
     private bool diagonal;
     private bool flagDirectionsUpdate;
@@ -47,14 +59,21 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
             var note = Instantiate(placementAreaPrefab,
                 radialIndexTable.GetNotePlacement(i), Quaternion.Euler(BeatmapNoteContainer.Directionalize(cachedNote)),
                 ParentTrack);
-            
-            note.Setup();
 
             // Ensure our intersection collider is on the right layer for placement
-            note.GetComponent<IntersectionCollider>().CollisionLayer = 11;
+            var collider = note.GetComponent<IntersectionCollider>();
+            Intersections.UnregisterColliderFromGroups(collider);
+            collider.CollisionLayer = note.gameObject.layer = 11;
+            Intersections.RegisterColliderToGroups(collider);
+
+            note.Setup();
 
             note.SetColor(Color.gray);
             note.SetAlpha(0.3f, true);
+
+            var radialIndexContainer = note.gameObject.AddComponent<PlacementRadialIndexContainer>();
+            radialIndexContainer.RadialIndex = i;
+            radialIndexContainer.Owner = this;
         }
 
         base.Start();
@@ -69,7 +88,6 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
         }
     }
 
-    //TODO perhaps make a helper function to deal with the context.performed and context.canceled checks
     public void OnDownNote(InputAction.CallbackContext context) => HandleKeyUpdate(context, downKey);
 
     public void OnLeftNote(InputAction.CallbackContext context) => HandleKeyUpdate(context, leftKey);
@@ -80,33 +98,22 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
 
     public void OnDotNote(InputAction.CallbackContext context)
     {
-        if (!context.performed) return;
-        deleteToolController.UpdateDeletion(false);
-        UpdateCut(BeatmapNote.NoteCutDirectionAny);
     }
 
     public void OnUpLeftNote(InputAction.CallbackContext context)
     {
-        if (context.performed && !laserSpeedController.Activated)
-            UpdateCut(BeatmapNote.NoteCutDirectionUpLeft);
     }
 
     public void OnUpRightNote(InputAction.CallbackContext context)
     {
-        if (context.performed && !laserSpeedController.Activated)
-            UpdateCut(BeatmapNote.NoteCutDirectionUpRight);
     }
 
     public void OnDownRightNote(InputAction.CallbackContext context)
     {
-        if (context.performed && !laserSpeedController.Activated)
-            UpdateCut(BeatmapNote.NoteCutDirectionDownRight);
     }
 
     public void OnDownLeftNote(InputAction.CallbackContext context)
     {
-        if (context.performed && !laserSpeedController.Activated)
-            UpdateCut(BeatmapNote.NoteCutDirectionDownLeft);
     }
 
     public override BeatmapAction GenerateAction(BeatmapObject spawned, IEnumerable<BeatmapObject> container) =>
@@ -117,42 +124,38 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
 
     public override void OnPhysicsRaycast(Intersections.IntersectionHit hit, Vector3 _)
     {
-        var roundedHit = ParentTrack.InverseTransformPoint(hit.Point);
-        roundedHit.z = RoundedTime * EditorScaleController.EditorScale;
+        if (firstHeldKey != null)
+        {
+            instantiatedContainer.UpdateGridPosition();
+            instantiatedContainer.transform.localEulerAngles = BeatmapNoteContainer.Directionalize(queuedData);
 
-        queuedData.LineIndex = Mathf.RoundToInt(instantiatedContainer.transform.localPosition.x + 1.5f);
-        queuedData.LineLayer = Mathf.RoundToInt(instantiatedContainer.transform.localPosition.y - 0.5f);
+            return;
+        }
 
-        UpdateAppearance();
+        if (hit.GameObject.TryGetComponent<PlacementRadialIndexContainer>(out var radialIndexContainer))
+        {
+            UpdateRadialIndex(radialIndexContainer.RadialIndex);
+        }
+        else
+        {
+            SendMessage("ColliderExit");
+        }
     }
 
-    public void UpdateCut(int value)
+    public void UpdateRadialIndex(int radialIndex)
     {
-        queuedData.CutDirection = value;
-        if (DraggedObjectContainer != null && DraggedObjectContainer.MapNoteData != null)
-        {
-            DraggedObjectContainer.MapNoteData.CutDirection = value;
-            noteAppearanceSo.SetNoteAppearance(DraggedObjectContainer);
-        }
-        else if (beatmapNoteInputController.QuickModificationActive && Settings.Instance.QuickNoteEditing)
-        {
-            var note = ObjectUnderCursor();
-            if (note != null && note.ObjectData is BeatmapNote noteData)
-            {
-                var newData = BeatmapObject.GenerateCopy(noteData);
-                newData.CutDirection = value;
+        queuedData.RadialIndex = radialIndex;
 
-                BeatmapActionContainer.AddAction(
-                    new BeatmapObjectModifiedAction(newData, noteData, noteData, "Quick edit"), true);
-            }
-        }
+        instantiatedContainer.UpdateGridPosition();
+        instantiatedContainer.transform.localEulerAngles = BeatmapNoteContainer.Directionalize(queuedData);
 
         UpdateAppearance();
     }
 
     public void UpdateType(int type)
     {
-        queuedData.Type = type;
+        // dirty conversion from beat saber to boombox types
+        queuedData.Hand = type + 1;
         UpdateAppearance();
     }
 
@@ -179,24 +182,41 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
 
     private void HandleKeyUpdate(InputAction.CallbackContext context, int id)
     {
-        if (context.performed ^ heldKeys[id]) flagDirectionsUpdate = true;
-        heldKeys[id] = context.performed;
+        if (context.performed)
+        {
+            if (firstHeldKey == null)
+            {
+                firstHeldKey = id;
+            }
+            else
+            {
+                secondHeldKey = id;
+            }
+
+            flagDirectionsUpdate = true;
+        }
+        else if (context.canceled)
+        {
+            if (firstHeldKey == id)
+            {
+                firstHeldKey = secondHeldKey;
+                secondHeldKey = null;
+            }
+            else if (secondHeldKey == id)
+            {
+                secondHeldKey = null;
+            }
+
+            flagDirectionsUpdate = true;
+        }
     }
 
     private void HandleDirectionValues()
     {
         deleteToolController.UpdateDeletion(false);
 
-        var upNote = heldKeys[upKey];
-        var downNote = heldKeys[downKey];
-        var leftNote = heldKeys[leftKey];
-        var rightNote = heldKeys[rightKey];
         var previousDiagonalState = diagonal;
-
-        var handleUpDownNotes = upNote ^ downNote; // XOR: True if the values are different, false if the same
-        var handleLeftRightNotes = leftNote ^ rightNote;
-
-        diagonal = handleUpDownNotes && handleLeftRightNotes;
+        diagonal = secondHeldKey != null;
 
         if (previousDiagonalState && diagonal == false)
         {
@@ -204,36 +224,23 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
             return;
         }
 
-        if (handleUpDownNotes && !handleLeftRightNotes) // We handle simple up/down notes
+        if (firstHeldKey != null && 
+            keyToRadialIndexMap.TryGetValue((firstHeldKey.Value, secondHeldKey), out var radialIndex))
         {
-            if (upNote) UpdateCut(BeatmapNote.NoteCutDirectionUp);
-            else UpdateCut(BeatmapNote.NoteCutDirectionDown);
-        }
-        else if (!handleUpDownNotes && handleLeftRightNotes) // We handle simple left/right notes
-        {
-            if (leftNote) UpdateCut(BeatmapNote.NoteCutDirectionLeft);
-            else UpdateCut(BeatmapNote.NoteCutDirectionRight);
-        }
-        else if (diagonal) //We need to do a diagonal
-        {
-            if (leftNote)
-            {
-                if (upNote) UpdateCut(BeatmapNote.NoteCutDirectionUpLeft);
-                else UpdateCut(BeatmapNote.NoteCutDirectionDownLeft);
-            }
-            else
-            {
-                if (upNote) UpdateCut(BeatmapNote.NoteCutDirectionUpRight);
-                else UpdateCut(BeatmapNote.NoteCutDirectionDownRight);
-            }
+            UpdateRadialIndex(radialIndex);
         }
     }
 
     private IEnumerator CheckForDiagonalUpdate()
     {
-        var previousHeldKeys = new List<bool>(heldKeys);
+        var previousKeys = (firstHeldKey, secondHeldKey);
+
         yield return new WaitForSeconds(diagonalStickMAXTime);
+
         // Weird way of saying "Are the keys being held right now the same as before"
-        if (!previousHeldKeys.Except(heldKeys).Any()) flagDirectionsUpdate = true;
+        if (previousKeys.firstHeldKey == firstHeldKey && previousKeys.secondHeldKey == secondHeldKey)
+        {
+            flagDirectionsUpdate = true;
+        }
     }
 }

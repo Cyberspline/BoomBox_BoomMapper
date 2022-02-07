@@ -56,7 +56,6 @@ public class ColorTypeController : MonoBehaviour
     public void UpdateValue(int type)
     {
         notePlacement.UpdateType(type);
-        lightMode.UpdateValue();
         UpdateUI();
     }
 

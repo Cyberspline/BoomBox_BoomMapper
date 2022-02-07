@@ -20,14 +20,10 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
     private static SelectionController instance;
 
     [SerializeField] private AudioTimeSyncController atsc;
-    [SerializeField] private Material selectionMaterial;
-    [SerializeField] private Transform moveableGridTransform;
     [SerializeField] private Color selectedColor;
     [SerializeField] private Color copiedColor;
     [SerializeField] private TracksManager tracksManager;
-    [SerializeField] private EventPlacement eventPlacement;
 
-    [SerializeField] private CreateEventTypeLabels labels;
     private bool shiftInPlace;
 
     private bool shiftInTime;
@@ -451,12 +447,6 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
         SelectionChangedEvent?.Invoke();
         RefreshSelectionMaterial(false);
 
-        if (eventPlacement.objectContainerCollection.PropagationEditing != EventsContainer.PropMode.Off)
-        {
-            eventPlacement.objectContainerCollection.PropagationEditing =
-                eventPlacement.objectContainerCollection.PropagationEditing;
-        }
-
         Debug.Log("Pasted!");
     }
 
@@ -547,76 +537,6 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
                     }
                 }
             }
-            else if (data is MapEvent e)
-            {
-                var events = eventPlacement.objectContainerCollection;
-                if (eventPlacement.objectContainerCollection.PropagationEditing == EventsContainer.PropMode.Light)
-                {
-                    var max = events.platformDescriptor.LightingManagers[events.EventTypeToPropagate].ControllingLights
-                        .Select(x => x.LightID).Max();
-
-                    var curId = e.IsLightIdEvent ? e.LightId[0] : 0;
-                    var newId = Math.Min(curId + leftRight, max);
-                    if (newId < 1)
-                        data.CustomData?.Remove("_lightID");
-                    else
-                        data.GetOrCreateCustomData()["_lightID"] = newId;
-                }
-                else if (eventPlacement.objectContainerCollection.PropagationEditing == EventsContainer.PropMode.Prop)
-                {
-                    var oldId = (e.IsLightIdEvent
-                        ? labels.LightIdsToPropId(events.EventTypeToPropagate, e.LightId)
-                        : null) ?? -1;
-                    var max = events.platformDescriptor.LightingManagers[events.EventTypeToPropagate].LightsGroupedByZ
-                        .Length;
-                    var newId = Math.Min(oldId + leftRight, max - 1);
-
-                    if (newId < 0)
-                    {
-                        data.CustomData?.Remove("_lightID");
-                    }
-                    else
-                    {
-                        data.GetOrCreateCustomData()["_lightID"] =
-                            labels.PropIdToLightIdsJ(events.EventTypeToPropagate, newId);
-                    }
-                }
-                else
-                {
-                    var oldType = e.Type;
-
-                    var modified = labels.EventTypeToLaneId(e.Type);
-
-                    modified += leftRight;
-
-                    if (modified < 0) modified = 0;
-
-                    var laneCount = labels.MaxLaneId();
-
-                    if (modified > laneCount) modified = laneCount;
-
-                    e.Type = labels.LaneIdToEventType(modified);
-
-                    if (e.IsLightIdEvent && !e.CustomData["_lightID"].IsArray)
-                    {
-                        var editorID = labels.LightIDToEditor(oldType, e.LightId[0]);
-                        e.CustomData["_lightID"] = labels.EditorToLightID(e.Type, editorID);
-                    }
-                    else if (e.IsLightIdEvent)
-                    {
-                        e.CustomData["_lightID"] = labels.PropIdToLightIdsJ(e.Type, e.PropId);
-                    }
-
-                    if (e.CustomData != null && e.CustomData.HasKey("_lightID") &&
-                        e.CustomData["_lightID"].IsArray &&
-                        e.CustomData["_lightID"].Count == 0)
-                    {
-                        e.CustomData.Remove("_lightID");
-                    }
-                }
-
-                if (data.CustomData?.Count <= 0) data.CustomData = null;
-            }
 
             return new BeatmapObjectModifiedAction(data, data, original, "", true);
         }).ToList();
@@ -631,7 +551,7 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
     /// </summary>
     public static void RefreshMap()
     {
-        if (BeatSaberSongContainer.Instance.Map != null)
+        if (BoomBoxSongContainer.Instance.Map != null)
         {
             var newObjects = new Dictionary<BeatmapObject.ObjectType, IEnumerable<BeatmapObject>>();
             foreach (int num in Enum.GetValues(typeof(BeatmapObject.ObjectType)))
@@ -644,28 +564,20 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
 
             if (Settings.Instance.Load_Notes)
             {
-                BeatSaberSongContainer.Instance.Map.Notes =
+                BoomBoxSongContainer.Instance.Map.Objects =
                     newObjects[BeatmapObject.ObjectType.Note].Cast<BeatmapNote>().ToList();
             }
 
             if (Settings.Instance.Load_Obstacles)
             {
-                BeatSaberSongContainer.Instance.Map.Obstacles =
+                BoomBoxSongContainer.Instance.Map.Obstacles =
                     newObjects[BeatmapObject.ObjectType.Obstacle].Cast<BeatmapObstacle>().ToList();
-            }
-
-            if (Settings.Instance.Load_Events)
-            {
-                BeatSaberSongContainer.Instance.Map.Events =
-                    newObjects[BeatmapObject.ObjectType.Event].Cast<MapEvent>().ToList();
             }
 
             if (Settings.Instance.Load_Others)
             {
-                BeatSaberSongContainer.Instance.Map.BpmChanges =
+                BoomBoxSongContainer.Instance.Map.TimingPoints =
                     newObjects[BeatmapObject.ObjectType.BpmChange].Cast<BeatmapBPMChange>().ToList();
-                BeatSaberSongContainer.Instance.Map.CustomEvents = newObjects[BeatmapObject.ObjectType.CustomEvent]
-                    .Cast<BeatmapCustomEvent>().ToList();
             }
         }
     }

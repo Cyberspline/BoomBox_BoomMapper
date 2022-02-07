@@ -53,9 +53,6 @@ public class EventsContainer : BeatmapObjectContainerCollection, CMInput.IEventG
 
             labels.UpdateLabels(value, EventTypeToPropagate,
                 value == PropMode.Off ? 16 + ExtraInterscopeLanes : propagationLength + 1);
-            eventPlacement.SetGridSize(value != PropMode.Off
-                ? propagationLength + 1
-                : SpecialEventTypeCount + platformDescriptor.LightingManagers.Count(s => s != null));
             EventTypePropagationSize = propagationLength;
             UpdatePropagationMode();
         }

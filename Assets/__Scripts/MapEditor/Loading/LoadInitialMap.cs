@@ -23,7 +23,9 @@ public class LoadInitialMap : MonoBehaviour
         yield return new WaitUntil(() => atsc.Initialized);
 
         // TODO: Remove, replace with BoomBox biomes (maybe)
-        PlatformLoadedEvent?.Invoke(Instantiate(basicPlatform, PlatformOffset, Quaternion.identity));
+        var platform = Instantiate(basicPlatform, PlatformOffset, Quaternion.identity);
+        PlatformLoadedEvent?.Invoke(platform);
+        platform.gameObject.SetActive(false);
 
         yield return StartCoroutine(loader.HardRefresh());
 

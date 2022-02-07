@@ -102,16 +102,9 @@ public class BeatmapObstacle : BeatmapObject, IBeatmapObjectBounds
     }
 
     protected override bool IsConflictingWithObjectAtSameTime(BeatmapObject other, bool deletion)
-    {
-        if (other is BeatmapObstacle obstacle)
-        {
-            if (IsNoodleExtensionsWall || obstacle.IsNoodleExtensionsWall)
-                return ConvertToJson().ToString() == other.ConvertToJson().ToString();
-            return LineIndex == obstacle.LineIndex && Type == obstacle.Type;
-        }
-
-        return false;
-    }
+        => other is BeatmapObstacle obstacle
+        && A.RadialIndex == obstacle.A.RadialIndex
+        && B.RadialIndex == obstacle.B.RadialIndex;
 
     public override void Apply(BeatmapObject originalData)
     {
