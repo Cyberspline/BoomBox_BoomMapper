@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 027307bb8860ed840b11ae6d2c2f567a, type: 3}
   m_Name: RadialIndexTableSO
   m_EditorClassIdentifier: 
-  globalScale: {x: 1.75, y: 1.75}
-  globalOffset: {x: 0, y: 1.75}
+  globalScale: {x: 1, y: 1}
+  globalOffset: {x: 0, y: 1}
   notePlacements:
   - {x: 0.72, y: 0}
   - {x: 0.36, y: -0.089999996}

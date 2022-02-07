@@ -52,7 +52,7 @@ public abstract class BeatmapObject
     /// <summary>
     ///     An expandable <see cref="JSONNode" /> that stores data for Beat Saber mods to use.
     /// </summary>
-    [JsonIgnore]
+    [JsonIgnore, Obsolete]
     public JSONNode CustomData;
 
     public abstract JSONNode ConvertToJson();

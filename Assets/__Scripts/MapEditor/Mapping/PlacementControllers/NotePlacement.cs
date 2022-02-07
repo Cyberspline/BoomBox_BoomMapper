@@ -120,7 +120,7 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
         new BeatmapObjectPlacementAction(spawned, container, "Placed a note.");
 
     public override BeatmapNote GenerateOriginalData() =>
-        new BeatmapNote(0, 0, 0, BeatmapNote.NoteTypeA, BeatmapNote.NoteCutDirectionDown);
+        new BeatmapNote(0, 0, 0, 1, BeatmapNote.NoteCutDirectionDown);
 
     public override void OnPhysicsRaycast(Intersections.IntersectionHit hit, Vector3 _)
     {
