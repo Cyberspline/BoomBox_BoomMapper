@@ -8,6 +8,7 @@ public class BeatmapBPMChange : BeatmapObject
     /// <summary>
     ///     Correctly rounded, modified BPM beat for this event. Internal use only.
     /// </summary>
+    [JsonIgnore]
     public int Beat = 0;
 
     [JsonProperty]
@@ -16,7 +17,10 @@ public class BeatmapBPMChange : BeatmapObject
     [JsonProperty("Offset")]
     public override float TimeInMilliseconds { get; set; }
 
+    [JsonIgnore, Obsolete]
     public float BeatsPerBar;
+
+    [JsonIgnore, Obsolete]
     public float MetronomeOffset;
 
     public BeatmapBPMChange() { }

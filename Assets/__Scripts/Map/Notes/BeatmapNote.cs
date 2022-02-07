@@ -37,11 +37,11 @@ public class BeatmapNote : BeatmapObject, IBeatmapObjectBounds
     public const int HandLeft = 1;
     public const int HandRight = 2;
 
-    [FormerlySerializedAs("_lineIndex")] public int LineIndex;
-    [FormerlySerializedAs("_lineLayer")] public int LineLayer;
-    [FormerlySerializedAs("_cutDirection")] public int CutDirection;
+    [JsonIgnore, Obsolete, FormerlySerializedAs("_lineIndex")] public int LineIndex;
+    [JsonIgnore, Obsolete, FormerlySerializedAs("_lineLayer")] public int LineLayer;
+    [JsonIgnore, Obsolete, FormerlySerializedAs("_cutDirection")] public int CutDirection;
 
-    [FormerlySerializedAs("id")] public uint ID;
+    [JsonIgnore, Obsolete, FormerlySerializedAs("id")] public uint ID;
 
     /// <summary>
     /// Hand used to hit the note (1 = left, 2 = right?)
@@ -95,10 +95,7 @@ public class BeatmapNote : BeatmapObject, IBeatmapObjectBounds
         CustomData = customData;
     }
 
-    public bool IsMainDirection => CutDirection == NoteCutDirectionUp || CutDirection == NoteCutDirectionDown ||
-                                   CutDirection == NoteCutDirectionLeft ||
-                                   CutDirection == NoteCutDirectionRight;
-
+    [JsonIgnore]
     public override ObjectType BeatmapType { get; set; } = ObjectType.Note;
 
     public Vector2 GetCenter() => GetPosition() + new Vector2(0f, 0.5f);

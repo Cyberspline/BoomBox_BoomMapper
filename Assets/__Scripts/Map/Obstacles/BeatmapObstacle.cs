@@ -13,10 +13,11 @@ public class BeatmapObstacle : BeatmapObject, IBeatmapObjectBounds
 
     public static readonly float MappingextensionsStartHeightMultiplier = 1.35f;
     public static readonly float MappingextensionsUnitsToFullHeightWall = 1000 / 3.5f;
-    [FormerlySerializedAs("_lineIndex")] public int LineIndex;
-    [FormerlySerializedAs("_type")] public int Type;
-    [FormerlySerializedAs("_duration")] public float Duration;
-    [FormerlySerializedAs("_width")] public int Width;
+
+    [JsonIgnore, Obsolete, FormerlySerializedAs("_lineIndex")] public int LineIndex;
+    [JsonIgnore, Obsolete, FormerlySerializedAs("_type")] public int Type;
+    [JsonIgnore, Obsolete, FormerlySerializedAs("_duration")] public float Duration;
+    [JsonIgnore, Obsolete, FormerlySerializedAs("_width")] public int Width;
 
     [JsonProperty()]
     public Point A;
@@ -73,11 +74,13 @@ public class BeatmapObstacle : BeatmapObject, IBeatmapObjectBounds
         };
     }
 
+    [JsonIgnore, Obsolete]
     public bool IsNoodleExtensionsWall => CustomData != null &&
                                           (CustomData.HasKey("_position") || CustomData.HasKey("_scale")
                                                                            || CustomData.HasKey("_localRotation") ||
                                                                            CustomData.HasKey("_rotation"));
 
+    [JsonIgnore]
     public override ObjectType BeatmapType { get; set; } = ObjectType.Obstacle;
 
     public Vector2 GetCenter()
@@ -156,7 +159,7 @@ public class BeatmapObstacle : BeatmapObject, IBeatmapObjectBounds
         /// <summary>
         /// Orbital type for obstacle (always 2 AKA obstacle orbit)
         /// </summary>
-        [JsonProperty()]
+        [JsonProperty]
         public const int OrbitalType = 2;
 
         /// <summary>
