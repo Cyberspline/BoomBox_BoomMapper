@@ -67,16 +67,19 @@ public class BoomBoxPack
     /// <summary>
     /// Pack folder
     /// </summary>
+    [JsonIgnore]
     public string Directory;
 
     /// <summary>
     /// Last write time
     /// </summary>
+    [JsonIgnore]
     public DateTime LastWriteTime;
 
     /// <summary>
     /// Whether or not this pack is favorited by the mapper. This is an editor-exclusive feature.
     /// </summary>
+    [JsonIgnore]
     public bool IsFavourite
     {
         get => isFavourite;
@@ -99,10 +102,11 @@ public class BoomBoxPack
             isFavourite = value;
         }
     }
-   
+
     /// <summary>
     /// All of the maps in the pack. Populated and deserialized on first access.
     /// </summary>
+    [JsonIgnore]
     public List<BoomBoxMap> Maps
     {
         get
@@ -111,8 +115,18 @@ public class BoomBoxPack
 
             maps = new List<BoomBoxMap>();
 
+            if (string.IsNullOrEmpty(Directory))
+            {
+                Directory = Path.Combine(Settings.Instance.CustomSongsFolder, stagedDirectory ?? CleanSongName);
+            }
+
             var json = JsonSerializer.CreateDefault();
             var dir = new DirectoryInfo(Directory);
+
+            if (!dir.Exists)
+            {
+                dir.Create();
+            }
 
             // Loop over .box files in the repo
             foreach (var file in dir.EnumerateFiles("*.box"))
@@ -130,6 +144,10 @@ public class BoomBoxPack
         }
     }
 
+    [JsonIgnore]
+    public string CleanSongName => Path.GetInvalidFileNameChars()
+        .Aggregate(SongTitle, (res, el) => res.Replace(el.ToString(), string.Empty));
+
     private bool isFavourite;
     private List<BoomBoxMap> maps = null;
 
@@ -146,9 +164,6 @@ public class BoomBoxPack
         SongTitle = name;
         stagedDirectory = CleanSongName;
     }
-
-    public string CleanSongName => Path.GetInvalidFileNameChars()
-        .Aggregate(SongTitle, (res, el) => res.Replace(el.ToString(), string.Empty));
 
     /// <summary>
     /// Attempts to save the info.dat file.

@@ -104,11 +104,13 @@ public class BoomBoxMap
     /// <summary>
     /// Location and file name of the map
     /// </summary>
+    [JsonIgnore]
     public FileInfo FileInfo;
 
     /// <summary>
     /// Beginning BPM of the map, determined by the first BPM Change.
     /// </summary>
+    [JsonIgnore]
     public float BeginningBPM
     {
         get => beginningBpm ??= TimingPoints.OrderBy(x => x.TimeInMilliseconds).FirstOrDefault()?.Bpm ?? 120;
@@ -127,6 +129,7 @@ public class BoomBoxMap
         }
     }
 
+    [JsonIgnore]
     private float? beginningBpm = null;
 
     public void Save()

@@ -56,30 +56,9 @@ public class DifficultySelect : MonoBehaviour
         LoadDifficulties();
     }
 
-    /// <summary>
-    ///     Update the offset of the selected diff
-    ///     If there's no selected diff this just goes into oblivion
-    /// </summary>
-    public void UpdateOffset()
+    public void UpdateDifficultySettings()
     {
-        if (selected == null || !diffs.ContainsKey(selected.Name)) return;
-
-        var diff = diffs[selected.Name];
-
-        selected.ShowDirtyObjects(diff);
-    }
-
-    /// <summary>
-    ///     Update the NJS of the selected diff
-    ///     If there's no selected diff this just goes into oblivion
-    /// </summary>
-    public void UpdateNJS()
-    {
-        if (selected == null || !diffs.ContainsKey(selected.Name)) return;
-
-        var diff = diffs[selected.Name];
-
-        selected.ShowDirtyObjects(diff);
+        selected.ShowDirtyObjects(diffs[selected.Name]);
     }
 
     [Obsolete("BoomBox does not support environment enhancement.")]
@@ -131,15 +110,23 @@ public class DifficultySelect : MonoBehaviour
             bpm = 120;
         }
 
-        if ((map.TimingPoints ??= new List<BeatmapBPMChange>()).Find(x => x.TimeInMilliseconds == 0).Bpm != bpm)
+        if (map.TimingPoints == null || map.TimingPoints.Count == 0)
         {
-            map.TimingPoints.RemoveAll(x => x.TimeInMilliseconds == 0);
+            map.TimingPoints ??= new List<BeatmapBPMChange>();
+            map.TimingPoints.Add(new BeatmapBPMChange(bpm, 0));
+        }
+        else if (map.TimingPoints.OrderBy(x => x.TimeInMilliseconds).First().Bpm != bpm)
+        {
+            map.TimingPoints.Remove(map.TimingPoints.OrderBy(x => x.TimeInMilliseconds).First());
             map.TimingPoints.Add(new BeatmapBPMChange(bpm, 0));
         }
 
-        map.FileInfo = new FileInfo(Path.Combine(localSong.Directory, localDiff.CustomName));
+        var cleanName = Path.GetInvalidFileNameChars()
+        .Aggregate(localDiff.CustomName, (res, el) => res.Replace(el.ToString(), string.Empty));
 
-        if (oldPath.Exists && oldPath != map.FileInfo && !map.FileInfo.Exists)
+        map.FileInfo = new FileInfo(Path.Combine(localSong.Directory, cleanName + ".box"));
+
+        if (oldPath != null && oldPath.Exists && oldPath != map.FileInfo && !map.FileInfo.Exists)
         {
             // This should properly "convert" difficulties just fine
             if (firstSave)
@@ -189,7 +176,7 @@ public class DifficultySelect : MonoBehaviour
         }
 
         selected = null;
-        difficultyInfo.SelectMap(null);
+        difficultyInfo.SelectMap(this, null);
     }
 
     /// <summary>
@@ -220,7 +207,7 @@ public class DifficultySelect : MonoBehaviour
         var diff = diffs[row.Name];
         BoomBoxSongContainer.Instance.Map = diff.Map;
 
-        difficultyInfo.SelectMap(diff.Map);
+        difficultyInfo.SelectMap(this, diff);
     }
 
     /// <summary>
@@ -298,6 +285,8 @@ public class DifficultySelect : MonoBehaviour
                 }
             }
 
+            Song.Maps.Add(map);
+
             diffs[row.Name] = new DifficultySettings(map, true);
 
             row.ShowDirtyObjects(diffs[row.Name]);
@@ -341,6 +330,8 @@ public class DifficultySelect : MonoBehaviour
         if (row == selected) DeselectDiff();
 
         diffs.Remove(row.Name);
+
+        Song.Maps.Remove(map);
         Song.Save();
 
         row.SetInteractable(false);

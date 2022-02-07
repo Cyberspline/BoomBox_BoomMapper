@@ -92,8 +92,8 @@ public class SongInfoEditUI : MenuBase
 
         // TODO: bpm
         //Song.BeatsPerMinute = GetTextValue(bpmField);
-        Song.PreviewTime = GetTextValue(prevStartField) / 1000;
-        Song.PreviewDuration = GetTextValue(prevDurField) / 1000;
+        Song.PreviewTime = GetTextValue(prevStartField) * 1000;
+        Song.PreviewDuration = GetTextValue(prevDurField) * 1000;
 
         // TODO: Switch to biomes
         //Song.EnvironmentName = GetEnvironmentNameFromID(environmentDropdown.value);

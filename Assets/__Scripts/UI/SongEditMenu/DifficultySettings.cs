@@ -6,9 +6,13 @@ public class DifficultySettings
     public BoomBoxMap Map { get; }
     
     public string CustomName = "";
+    public string Creator = "";
+    public string Description = "";
+    public string Tags = "";
+    public int MapStyle = 0;
+    public int BiomeType = 0;
+
     public bool ForceDirty;
-    public float NoteJumpMovementSpeed = 16;
-    public float NoteJumpStartBeatOffset;
 
     public DifficultySettings(BoomBoxMap map)
     {
@@ -23,9 +27,14 @@ public class DifficultySettings
     ///     Check if the user has made changes
     /// </summary>
     /// <returns>True if changes have been made, false otherwise</returns>
-    public bool IsDirty() =>
-        ForceDirty ||
-        !(CustomName ?? "").Equals(Map.DifficultyName == null);
+    public bool IsDirty() => Map != null &&
+        (ForceDirty ||
+        !(CustomName ?? "").Equals(Map.DifficultyName ?? "") ||
+        !(Creator ?? "").Equals(Map.Creator ?? "") ||
+        !(Description ?? "").Equals(Map.Description ?? "") ||
+        !(Tags ?? "").Equals(Map.Tags ?? "") ||
+        !MapStyle.Equals(Map.MapStyle) ||
+        !BiomeType.Equals(Map.BiomeType));
 
     /// <summary>
     ///     Save the users changes to the backing DifficultyBeatmap object
@@ -35,8 +44,11 @@ public class DifficultySettings
         ForceDirty = false;
 
         Map.DifficultyName = CustomName;
-
-        Map.Save();
+        Map.Creator = Creator;
+        Map.Description = Description;
+        Map.Tags = Tags;
+        Map.BiomeType = BiomeType;
+        Map.MapStyle = MapStyle;
     }
 
     /// <summary>
@@ -45,5 +57,10 @@ public class DifficultySettings
     public void Revert()
     {
         CustomName = Map.DifficultyName;
+        Creator = Map.Creator;
+        Description = Map.Description;
+        Tags = Map.Tags;
+        BiomeType = Map.BiomeType;
+        MapStyle = Map.MapStyle;
     }
 }

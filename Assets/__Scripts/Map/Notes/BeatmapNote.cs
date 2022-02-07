@@ -53,15 +53,14 @@ public class BeatmapNote : BeatmapObject, IBeatmapObjectBounds
     /// Type of note (always 1)
     /// </summary>
     // TODO make constant; Type should always be "1" for notes
-    [JsonProperty]
-    [FormerlySerializedAs("_type")]
+    [JsonProperty, FormerlySerializedAs("_type")]
     public int Type = 1;
 
     /// <summary>
     /// Orbital ring to position notes around (always 1)
     /// </summary>
     // TODO make constant; OrbitalType should always be "1" for notes
-    [JsonProperty()]
+    [JsonProperty]
     public int OrbitalType = 1;
 
     /// <summary>
