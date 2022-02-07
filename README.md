@@ -1,4 +1,4 @@
-﻿![This is ChroMapper.](https://github.com/Cyberspline/BoomBox_BoomMapper/blob/boombox/Assets/_Graphics/Textures And Sprites/ChroMapperTextNew.png)
+﻿![This is ChroMapper.](https://github.com/Cyberspline/BoomBox_BoomMapper/blob/boombox/Assets/_Graphics/Textures%20And%20Sprites/ChroMapperTextNew.png)
 
 [![Crowdin](https://badges.crowdin.net/chromapper/localized.svg)](https://crowdin.com/project/chromapper)
 
