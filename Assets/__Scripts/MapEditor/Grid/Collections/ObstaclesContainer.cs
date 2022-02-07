@@ -12,13 +12,13 @@ public class ObstaclesContainer : BeatmapObjectContainerCollection
 
     internal override void SubscribeToCallbacks()
     {
-        Shader.SetGlobalFloat("_OutsideAlpha", 0.25f);
+        Shader.SetGlobalFloat("_OutsideAlpha", 1f);
         AudioTimeSyncController.PlayToggle += OnPlayToggle;
     }
 
     internal override void UnsubscribeToCallbacks() => AudioTimeSyncController.PlayToggle -= OnPlayToggle;
 
-    private void OnPlayToggle(bool playing) => Shader.SetGlobalFloat("_OutsideAlpha", playing ? 0 : 0.25f);
+    private void OnPlayToggle(bool playing) => Shader.SetGlobalFloat("_OutsideAlpha", playing ? 0 : 1);
 
     public void UpdateColor(Color obstacle) => obstacleAppearanceSo.DefaultObstacleColor = obstacle;
 

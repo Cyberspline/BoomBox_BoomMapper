@@ -146,6 +146,8 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
     {
         queuedData.RadialIndex = radialIndex;
 
+        if (instantiatedContainer == null) return;
+
         instantiatedContainer.UpdateGridPosition();
         instantiatedContainer.transform.localEulerAngles = BeatmapNoteContainer.Directionalize(queuedData);
 

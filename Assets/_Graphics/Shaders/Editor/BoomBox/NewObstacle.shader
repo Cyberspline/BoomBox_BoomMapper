@@ -206,6 +206,9 @@ Shader "NewObstacle"
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
 
+			// Hello! This is global!
+			uniform float _OutsideAlpha;
+
 			CBUFFER_START(UnityPerMaterial)
 			float2 _Tiling;
 			float _AlbedoIntensity;
@@ -457,7 +460,7 @@ Shader "NewObstacle"
 				float fresnelNode67 = ( _biasColorF + _scaleColorF * pow( 1.0 - fresnelNdotV67, 0.72 ) );
 				float4 IrasdecentColor86 = ( SampleGradient( gradient58, ( ZDistance33 * fresnelNode67 ) ) * fresnelNode67 * _GlowColor * max( ZDistance33 , 0.2 ) );
 				
-				float smoothstepResult10 = smoothstep( 0.0 , _fadeFloorDistance , WorldPosition.y);
+				float smoothstepResult10 = lerp(_OutsideAlpha, 1, clamp(WorldPosition.y / _fadeFloorDistance, 0, 1));
 				
 				float3 BakedAlbedo = 0;
 				float3 BakedEmission = 0;
