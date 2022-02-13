@@ -14,7 +14,7 @@ public abstract class CMUIComponent<T> : CMUIComponentBase
         get => internalValue;
         set
         {
-            internalValue = value;
+            internalValue = ValidateValue(value);
             onValueChanged?.Invoke(internalValue);
             OnValueUpdated(internalValue);
         }
@@ -47,6 +47,8 @@ public abstract class CMUIComponent<T> : CMUIComponentBase
 
     protected virtual void OnValueUpdated(T updatedValue) { }
 
+    protected virtual T ValidateValue(T rawValue) => rawValue;
+
     private void Awake()
     {
         if (valueAccessor != null)
@@ -65,4 +67,19 @@ public abstract class CMUIComponent<T> : CMUIComponentBase
 /// </summary>
 public abstract class CMUIComponentBase : MonoBehaviour
 {
+    /// <summary>
+    /// Enables or disables the label, if this component has a label.
+    /// </summary>
+    /// <exception cref="InvalidOperationException">
+    /// This component does not have a label to act upon.
+    /// </exception>
+    internal virtual void SetLabelEnabled(bool enabled) => throw new InvalidOperationException("This component has no label.");
+
+    /// <summary>
+    /// Sets the text for the component label, if this component has a label.
+    /// </summary>
+    /// <exception cref="InvalidOperationException">
+    /// This component does not have a label to act upon.
+    /// </exception>
+    internal virtual void SetLabelText(string text) => throw new InvalidOperationException("This component has no label.");
 }
