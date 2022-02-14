@@ -33,7 +33,7 @@ namespace Tests
             BeatmapNote noteA = new BeatmapNote
             {
                 Time = 2,
-                Type = BeatmapNote.NoteTypeA,
+                Hand = BeatmapNote.NoteTypeA,
                 LineIndex = BeatmapNote.LineIndexFarLeft,
                 LineLayer = BeatmapNote.LineLayerBottom,
                 CutDirection = BeatmapNote.NoteCutDirectionLeft
@@ -41,7 +41,7 @@ namespace Tests
             BeatmapNote noteB = new BeatmapNote
             {
                 Time = 3,
-                Type = BeatmapNote.NoteTypeB,
+                Hand = BeatmapNote.NoteTypeB,
                 LineIndex = BeatmapNote.LineIndexFarRight,
                 LineLayer = BeatmapNote.LineLayerTop,
                 CutDirection = BeatmapNote.NoteCutDirectionUpRight

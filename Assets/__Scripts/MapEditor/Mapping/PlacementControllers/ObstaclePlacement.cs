@@ -55,7 +55,7 @@ public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObs
 
                 instantiatedContainer.transform.position = radialIndexTable.GetObstaclePlacement(radialIndex);
                 instantiatedContainer.transform.localEulerAngles = Vector3.zero;
-                instantiatedContainer.SetScale(new Vector3(1, 0.3f, 0.3f));
+                instantiatedContainer.SetScale(new Vector3(0.5f, 0.3f, 0.3f));
             }
         }
         else

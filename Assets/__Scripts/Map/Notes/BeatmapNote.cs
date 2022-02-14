@@ -54,14 +54,14 @@ public class BeatmapNote : BeatmapObject, IBeatmapObjectBounds
     /// </summary>
     // TODO make constant; Type should always be "1" for notes
     [JsonProperty, FormerlySerializedAs("_type")]
-    public int Type = 1;
+    public readonly int Type = 1;
 
     /// <summary>
     /// Orbital ring to position notes around (always 1)
     /// </summary>
     // TODO make constant; OrbitalType should always be "1" for notes
     [JsonProperty]
-    public int OrbitalType = 1;
+    public readonly int OrbitalType = 1;
 
     /// <summary>
     /// Index into the final position of an object, and potentially its rotation.
@@ -125,7 +125,6 @@ public class BeatmapNote : BeatmapObject, IBeatmapObjectBounds
         if (originalData is BeatmapNote note)
         {
             Hand = note.Hand;
-            Type = OrbitalType = 1;
             RadialIndex = note.RadialIndex;
         }
     }

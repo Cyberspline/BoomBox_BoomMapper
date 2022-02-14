@@ -14,6 +14,7 @@ Shader "HitObjectShader"
 		_OpaqueAlpha("OpaqueAlpha", Float) = 1
 		_OverNoteInterfaceColor("OverNoteInterfaceColor", Color) = (1, 1, 1, 0)
 		[Toggle] _AlwaysTranslucent("AlwaysTranslucent", Float) = 0
+		_ObjectTime("Song Time", Float) = 0
 
 		//_TessPhongStrength( "Tess Phong Strength", Range( 0, 1 ) ) = 0.5
 		//_TessValue( "Tess Max Tessellation", Range( 1, 32 ) ) = 16
@@ -198,6 +199,9 @@ Shader "HitObjectShader"
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
 
+			// Hello! We're global variables.
+			uniform float _SongTime;
+
 			CBUFFER_START(UnityPerMaterial)
 			float4 _BaseMap_ST;
 			float4 _EmissionMap_ST;
@@ -207,6 +211,7 @@ Shader "HitObjectShader"
 			float _OpaqueAlpha;
 			float4 _OverNoteInterfaceColor;
 			float _AlwaysTranslucent;
+			float _ObjectTime;
 			#ifdef TESSELLATION_ON
 				float _TessPhongStrength;
 				float _TessValue;
@@ -392,8 +397,10 @@ Shader "HitObjectShader"
 				float Alpha = 1;
 				float AlphaClipThreshold = 0.5;
 				float AlphaClipThresholdShadow = 0.5;
-
-				float alpha = _AlwaysTranslucent >= 1 ? _TranslucentAlpha : _OpaqueAlpha;
+				
+				float alpha = (_AlwaysTranslucent >= 1 || _ObjectTime + 0.001 - _SongTime <= 0)
+					? _TranslucentAlpha
+					: _OpaqueAlpha;
 
 				clip(isDithered(IN.ScreenPosition.xy / IN.ScreenPosition.w, alpha));
 

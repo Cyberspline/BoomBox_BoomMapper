@@ -174,9 +174,7 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
     public override void TransferQueuedToDraggedObject(ref BeatmapNote dragged, BeatmapNote queued)
     {
         dragged.Time = queued.Time;
-        dragged.LineIndex = queued.LineIndex;
-        dragged.LineLayer = queued.LineLayer;
-        dragged.CutDirection = queued.CutDirection;
+        dragged.RadialIndex = queued.RadialIndex;
         if (DraggedObjectContainer != null)
             DraggedObjectContainer.transform.localEulerAngles = BeatmapNoteContainer.Directionalize(dragged);
         noteAppearanceSo.SetNoteAppearance(DraggedObjectContainer);

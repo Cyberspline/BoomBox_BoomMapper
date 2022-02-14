@@ -31,7 +31,7 @@ namespace Tests
             BeatmapNote noteA = new BeatmapNote
             {
                 Time = 2,
-                Type = BeatmapNote.NoteTypeA
+                Hand = BeatmapNote.HandRight
             };
             notesContainer.SpawnObject(noteA);
 
@@ -64,12 +64,12 @@ namespace Tests
             BeatmapNote noteA = new BeatmapNote
             {
                 Time = 2,
-                Type = BeatmapNote.NoteTypeA
+                Hand = BeatmapNote.NoteTypeA
             };
             BeatmapNote noteB = new BeatmapNote
             {
                 Time = 2,
-                Type = BeatmapNote.NoteTypeB,
+                Hand = BeatmapNote.NoteTypeB,
                 LineIndex = 1,
                 LineLayer = 1
             };
@@ -183,7 +183,7 @@ namespace Tests
             notePlacement.queuedData = new BeatmapNote
             {
                 Time = 2,
-                Type = BeatmapNote.NoteTypeA
+                Hand = BeatmapNote.NoteTypeA
             };
             notePlacement.RoundedTime = notePlacement.queuedData.Time;
             notePlacement.ApplyToMap();
@@ -191,7 +191,7 @@ namespace Tests
             notePlacement.queuedData = new BeatmapNote
             {
                 Time = 2,
-                Type = BeatmapNote.NoteTypeB
+                Hand = BeatmapNote.NoteTypeB
             };
             notePlacement.RoundedTime = notePlacement.queuedData.Time;
             notePlacement.ApplyToMap();

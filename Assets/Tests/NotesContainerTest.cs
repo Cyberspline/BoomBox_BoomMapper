@@ -38,14 +38,14 @@ namespace Tests
             BeatmapNote noteA = new BeatmapNote
             {
                 Time = 2,
-                Type = BeatmapNote.NoteTypeA
+                Hand = BeatmapNote.NoteTypeA
             };
             notesContainer.SpawnObject(noteA);
 
             BeatmapNote noteB = new BeatmapNote
             {
                 Time = 3,
-                Type = BeatmapNote.NoteTypeA
+                Hand = BeatmapNote.NoteTypeA
             };
             notesContainer.SpawnObject(noteB);
 

@@ -7,8 +7,10 @@ using UnityEngine.UI;
 
 public class AudioTimeSyncController : MonoBehaviour, CMInput.IPlaybackActions, CMInput.ITimelineActions
 {
-    private const float cancelPlayInputDuration = 0.3f;
     public static readonly string PrecisionSnapName = "PrecisionSnap";
+    private static readonly int songTime = Shader.PropertyToID("_SongTime");
+
+    private const float cancelPlayInputDuration = 0.3f;
 
     [FormerlySerializedAs("songAudioSource")] public AudioSource SongAudioSource;
     [SerializeField] private AudioSource waveformSource;
@@ -238,6 +240,8 @@ public class AudioTimeSyncController : MonoBehaviour, CMInput.IPlaybackActions, 
 
     private void UpdateMovables()
     {
+        Shader.SetGlobalFloat(songTime, currentBeat);
+
         var position = currentBeat * EditorScaleController.EditorScale;
 
         gridRenderingController.UpdateOffset(position);

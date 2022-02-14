@@ -35,7 +35,7 @@ public class BookmarkContainer : MonoBehaviour, IPointerClickHandler, IPointerDo
     // This fixes position of bookmarks to match aspect ratios
     public void RefreshPosition(float width)
     {
-        var unitsPerBeat = width / manager.Atsc.GetBeatFromSeconds(BeatSaberSongContainer.Instance.LoadedSong.length);
+        var unitsPerBeat = width / manager.Atsc.GetBeatFromSeconds(BoomBoxSongContainer.Instance.LoadedSong.length);
         var rectTransform = (RectTransform)transform;
         rectTransform.anchoredPosition = new Vector2(unitsPerBeat * Data.Time, 50);
     }

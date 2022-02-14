@@ -51,7 +51,7 @@ public class BeatmapObstacleContainer : BeatmapObjectContainer
         transform.up = localDirection.normalized;
 
         SetScale(new Vector3(
-            1,
+            0.5f,
             localDirection.magnitude,
             Mathf.Max(0.3f, duration)
         ));

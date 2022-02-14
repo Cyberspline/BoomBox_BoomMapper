@@ -78,7 +78,7 @@ public abstract class BeatmapObject
         using var textReader = new System.IO.StringReader(textWriter.ToString());
         using var jsonReader = new JsonTextReader(textReader);
 
-        return json.Deserialize<T>(jsonReader);
+        return json.Deserialize(jsonReader, originalData.GetType()) as T;
     }
 
     protected JSONNode RetrieveRequiredNode(JSONNode node, string key)

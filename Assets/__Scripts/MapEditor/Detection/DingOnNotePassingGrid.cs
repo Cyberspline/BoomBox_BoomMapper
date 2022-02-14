@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -123,36 +122,29 @@ public class DingOnNotePassingGrid : MonoBehaviour
 
     private void PlaySound(bool initial, int index, BeatmapObject objectData)
     {
+        if (!(objectData is BeatmapNote note)) return;
+
+        // Should be cached because Time is a property that converts MS to Beats
+        var time = note.Time;
+
         // Filter notes that are too far behind the current beat
         // (Commonly occurs when Unity freezes for some unrelated fucking reason)
-        if (objectData.Time - container.AudioTimeSyncController.CurrentBeat <= -0.5f) return;
+        if (time - container.AudioTimeSyncController.CurrentBeat <= -0.5f) return;
 
         //actual ding stuff
-        if (objectData.Time == lastCheckedTime || !NoteTypeToDing[((BeatmapNote)objectData).Type]) return;
+        if (time == lastCheckedTime || !NoteTypeToDing[note.Type]) return;
+
         /*
          * As for why we are not using "initial", it is so notes that are not supposed to ding do not prevent notes at
          * the same time that are supposed to ding from triggering the sound effects.
          */
-        lastCheckedTime = objectData.Time;
+        lastCheckedTime = time;
         var soundListId = Settings.Instance.NoteHitSound;
         var list = soundLists[soundListId];
 
-        var shortCut = false;
-        if (index - densityCheckOffset > 0 && index + densityCheckOffset < container.LoadedObjects.Count)
-        {
-            var first = container.LoadedObjects.ElementAt(index + densityCheckOffset);
-            var second = container.LoadedObjects.ElementAt(index - densityCheckOffset);
-            if (first != null && second != null)
-            {
-                if (first.Time - objectData.Time <= thresholdInNoteTime &&
-                    objectData.Time - second.Time <= thresholdInNoteTime)
-                {
-                    shortCut = true;
-                }
-            }
-        }
+        var shortCut = time - lastCheckedTime < thresholdInNoteTime;
 
-        var timeUntilDing = objectData.Time - atsc.CurrentSongBeats;
+        var timeUntilDing = time - atsc.CurrentSongBeats;
         var hitTime = (atsc.GetSecondsFromBeat(timeUntilDing) / songSpeed) - offset;
         audioUtil.PlayOneShotSound(list.GetRandomClip(shortCut), Settings.Instance.NoteHitVolume, 1, hitTime);
     }

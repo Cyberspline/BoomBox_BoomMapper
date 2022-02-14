@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "RadialIndexTableSO", menuName = "Map/Radial Index Table")]
@@ -22,6 +23,10 @@ public class RadialIndexTable : ScriptableObject
     public int NotePlacements => notePlacements.Count;
 
     public int ObstaclePlacements => obstaclePlacements.Count;
+
+    private Dictionary<int, int> mirroredNotePlacementIndices = new Dictionary<int, int>();
+
+    private Dictionary<int, int> mirroredObstaclePlacementIndices = new Dictionary<int, int>();
 
     /// <summary>
     /// Gets the 2D position of a note
@@ -50,6 +55,38 @@ public class RadialIndexTable : ScriptableObject
     /// <param name="radialIndex">Radial index of an obstacle point, which determines its position</param>
     /// <returns>Position of the obstacle point.</returns>
     public Vector2 GetObstaclePlacement(int radialIndex) => (obstaclePlacements[radialIndex] * globalScale) + globalOffset;
+
+    public int GetMirroredNoteRadialIndex(int radialIndex)
+    {
+        if (!mirroredNotePlacementIndices.TryGetValue(radialIndex, out var mirroredRadialIndex))
+        {
+            var position = (GetNotePlacement(radialIndex) / globalScale) - globalOffset;
+            position.x *= -1;
+
+            var closest = notePlacements.OrderBy((x) => Vector2.Distance(x, position));
+            mirroredRadialIndex = notePlacements.IndexOf(closest.First());
+
+            mirroredNotePlacementIndices.Add(radialIndex, mirroredRadialIndex);
+        }
+
+        return mirroredRadialIndex;
+    }
+
+    public int GetMirroredObstacleRadialIndex(int radialIndex)
+    {
+        if (!mirroredObstaclePlacementIndices.TryGetValue(radialIndex, out var mirroredRadialIndex))
+        {
+            var position = (GetObstaclePlacement(radialIndex) / globalScale) - globalOffset;
+            position.x *= -1;
+
+            var closest = obstaclePlacements.OrderBy((x) => Vector2.Distance(x, position));
+            mirroredRadialIndex = obstaclePlacements.IndexOf(closest.First());
+
+            mirroredObstaclePlacementIndices.Add(radialIndex, mirroredRadialIndex);
+        }
+
+        return mirroredRadialIndex;
+    }
 
     private void OnEnable() => Instance = this;
 }

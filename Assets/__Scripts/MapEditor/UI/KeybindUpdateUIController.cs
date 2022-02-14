@@ -2,7 +2,7 @@
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsActions
+public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsActions, CMInput.IEventUIActions
 {
     [SerializeField] private PlacementModeController placeMode;
     [SerializeField] private LightingModeController lightMode;
@@ -87,4 +87,11 @@ public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsAction
     public void OnUpdateSwingArcVisualizer(InputAction.CallbackContext context)
     {
     }
+
+    // TODO: Move Swap Cursor Interval out of Event UI. It belongs in Workflows
+    public void OnTypeOn(InputAction.CallbackContext context) { }
+    public void OnTypeFlash(InputAction.CallbackContext context) { }
+    public void OnTypeOff(InputAction.CallbackContext context) { }
+    public void OnTypeFade(InputAction.CallbackContext context) { }
+    public void OnTogglePrecisionRotation(InputAction.CallbackContext context) { }
 }

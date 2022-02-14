@@ -65,13 +65,11 @@ public class BeatmapNoteInputController : BeatmapInputController<BeatmapNoteCont
 
     public void InvertNote(BeatmapNoteContainer note)
     {
-        if (note.MapNoteData.Type == BeatmapNote.NoteTypeBomb) return;
-
         var original = BeatmapObject.GenerateCopy(note.ObjectData);
-        var newType = note.MapNoteData.Type == BeatmapNote.NoteTypeA
-            ? BeatmapNote.NoteTypeB
-            : BeatmapNote.NoteTypeA;
-        note.MapNoteData.Type = newType;
+        var newHand = note.MapNoteData.Hand == BeatmapNote.HandRight
+            ? BeatmapNote.HandLeft
+            : BeatmapNote.HandRight;
+        note.MapNoteData.Hand = newHand;
         noteAppearanceSo.SetNoteAppearance(note);
         BeatmapActionContainer.AddAction(new BeatmapObjectModifiedAction(note.ObjectData, note.ObjectData, original));
     }

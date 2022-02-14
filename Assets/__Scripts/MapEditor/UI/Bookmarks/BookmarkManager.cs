@@ -27,7 +27,8 @@ public class BookmarkManager : MonoBehaviour, CMInput.IBookmarksActions
     private IEnumerator Start()
     {
         yield return new WaitForSeconds(0.1f); //Wait for time
-        bookmarkContainers = BeatSaberSongContainer.Instance.Map.Bookmarks.Select(bookmark =>
+
+        bookmarkContainers = BoomBoxSongContainer.Instance.Map.Bookmarks.Select(bookmark =>
         {
             var container = Instantiate(bookmarkContainerPrefab, transform).GetComponent<BookmarkContainer>();
             container.name = bookmark.Name;
@@ -78,14 +79,14 @@ public class BookmarkManager : MonoBehaviour, CMInput.IBookmarksActions
         container.RefreshPosition(timelineCanvas.sizeDelta.x + canvasWidthOffset);
 
         bookmarkContainers = bookmarkContainers.Append(container).OrderBy(it => it.Data.Time).ToList();
-        BeatSaberSongContainer.Instance.Map.Bookmarks = bookmarkContainers.Select(x => x.Data).ToList();
+        BoomBoxSongContainer.Instance.Map.Bookmarks = bookmarkContainers.Select(x => x.Data).ToList();
         BookmarksUpdated.Invoke();
     }
 
     internal void DeleteBookmark(BookmarkContainer container)
     {
         bookmarkContainers.Remove(container);
-        BeatSaberSongContainer.Instance.Map.Bookmarks = bookmarkContainers.Select(x => x.Data).ToList();
+        BoomBoxSongContainer.Instance.Map.Bookmarks = bookmarkContainers.Select(x => x.Data).ToList();
         BookmarksUpdated.Invoke();
     }
 

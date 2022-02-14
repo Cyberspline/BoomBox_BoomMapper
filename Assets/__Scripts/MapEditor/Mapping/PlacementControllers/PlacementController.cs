@@ -146,10 +146,11 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
 
         OnPhysicsRaycast(hit, roundedHit);
         queuedData.Time = RoundedTime;
+
         if ((IsDraggingObject || IsDraggingObjectAtTime) && queuedData != null)
         {
             TransferQueuedToDraggedObject(ref draggedObjectData, BeatmapObject.GenerateCopy(queuedData));
-            DraggedObjectContainer.ObjectData.Time = placementZ / EditorScaleController.EditorScale;
+            draggedObjectData.Time = queuedData.Time;
             if (DraggedObjectContainer != null) DraggedObjectContainer.UpdateGridPosition();
         }
     }
