@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4222731422578252}
-  - component: {fileID: 6629995464547447196}
+  - component: {fileID: -6028754074958764783}
   m_Layer: 0
   m_Name: Selection Wall of Doom
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6629995464547447196
+--- !u!114 &-6028754074958764783
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,33 +42,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1056647016207082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49ca58ce40fce7e49b2b44aa558a5819, type: 3}
+  m_Script: {fileID: 11500000, guid: 51eeeb932eac8f74eaa67b1318cdc743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragging: 0
-  ModelMaterials: []
-  SelectionMaterials: []
-  boxCollider: {fileID: 0}
-  eventData:
+  Dragging: 0
+  Colliders: []
+  SelectionRenderers: []
+  BoxCollider: {fileID: 0}
+  MapNoteData:
     HasAttachedContainer: 0
-    _time: 0
-    PropId: 0
-    _type: 0
-    _value: 0
-    _lightGradient:
-      Duration: 0
-      StartColor: {r: 0, g: 0, b: 0, a: 0}
-      EndColor: {r: 0, g: 0, b: 0, a: 0}
-      EasingType: 
-  eventsContainer: {fileID: 0}
-  eventAppearance: {fileID: 0}
-  eventRenderer: []
-  tracksManager: {fileID: 0}
-  valueDisplay: {fileID: 0}
-  eventGradientController: {fileID: 0}
-  cubeModel: {fileID: 0}
-  pyramidModel: {fileID: 0}
-  labels: {fileID: 0}
+    LineIndex: 0
+    LineLayer: 0
+    CutDirection: 0
+    ID: 0
+    Hand: 1
+    RadialIndex: 0
 --- !u!1 &1453166767989322
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,10 +108,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -148,6 +138,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5603620774301396515
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,10 +212,12 @@ LineRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

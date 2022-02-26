@@ -20,7 +20,8 @@ public class BeatmapBookmark : BeatmapObject
     [JsonIgnore]
     public Color Color;
 
-    public BeatmapBookmark() { }
+    public BeatmapBookmark()
+        => Color = Color.HSVToRGB((float)rand.NextDouble(), 0.75f, 1);
 
     public BeatmapBookmark(JSONNode node)
     {

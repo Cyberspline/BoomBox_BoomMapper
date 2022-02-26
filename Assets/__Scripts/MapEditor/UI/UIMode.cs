@@ -20,7 +20,6 @@ public class UIMode : MonoBehaviour, CMInput.IUIModeActions
     [FormerlySerializedAs("_cameraController")] [SerializeField] private CameraController cameraController;
     [SerializeField] private GameObject[] gameObjectsWithRenderersToToggle;
     [SerializeField] private Transform[] thingsThatRequireAMoveForPreview;
-    [FormerlySerializedAs("_rotationCallbackController")] [SerializeField] private RotationCallbackController rotationCallbackController;
     [SerializeField] private AudioTimeSyncController atsc;
 
     public string Keybind = "CTRL+H";
@@ -66,19 +65,7 @@ public class UIMode : MonoBehaviour, CMInput.IUIModeActions
         if (context.performed && !BPMTapperController.IsActive)
         {
             var currentOption = selected.parent.GetSiblingIndex();
-            var nextOption = currentOption + 1;
-
-            var disablePlayingMode = rotationCallbackController.IsActive;
-
-            if (nextOption == (int)UIModeType.Playing && disablePlayingMode) nextOption++;
-
-            if (nextOption < 0)
-            {
-                nextOption = modes.Count - 1;
-                if (disablePlayingMode) nextOption--;
-            }
-
-            if (nextOption >= modes.Count) nextOption = 0;
+            var nextOption = (currentOption + 1) % modes.Count;
 
             if (currentOption == (int)UIModeType.Playing && nextOption != currentOption)
             {

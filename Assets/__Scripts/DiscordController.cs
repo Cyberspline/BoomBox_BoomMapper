@@ -28,7 +28,6 @@ public class DiscordController : MonoBehaviour
                 ActivityManager = Discord.GetActivityManager();
                 ActivityManager.ClearActivity(res => { });
                 SceneManager.activeSceneChanged += SceneUpdated;
-                LoadInitialMap.PlatformLoadedEvent += LoadPlatform;
             }
             else
             {
@@ -61,32 +60,9 @@ public class DiscordController : MonoBehaviour
     private void OnDestroy()
     {
         SceneManager.activeSceneChanged -= SceneUpdated;
-        LoadInitialMap.PlatformLoadedEvent -= LoadPlatform;
     }
 
     private void OnApplicationQuit() => Discord?.Dispose();
-
-    private void LoadPlatform(PlatformDescriptor platform)
-    {
-        var platformDiscordID = platform.gameObject.name
-            .Replace("(Clone)", "")
-            .Replace(" ", "")
-            .ToLowerInvariant()
-            .Trim();
-
-        activity.Assets.LargeImage = platformDiscordID;
-
-        // TODO: boombox biomes
-        /*
-        var jsonEnvironmentName = BeatSaberSongContainer.Instance.Song.EnvironmentName;
-
-        var platformName = SongInfoEditUI.VanillaEnvironments
-            .Find(x => x.JsonName == jsonEnvironmentName)?.HumanName ?? jsonEnvironmentName;
-        activity.Assets.LargeText = platformName;
-        */
-
-        UpdatePresence();
-    }
 
     private void SceneUpdated(Scene from, Scene to)
     {

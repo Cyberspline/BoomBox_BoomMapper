@@ -97,7 +97,7 @@ public class BeatmapNote : BeatmapObject, IBeatmapObjectBounds
     [JsonIgnore]
     public override ObjectType BeatmapType { get; set; } = ObjectType.Note;
 
-    public Vector2 GetCenter() => GetPosition() + new Vector2(0f, 0.5f);
+    public Vector2 GetPoint() => GetPosition() + new Vector2(0f, 0.5f);
 
     public override JSONNode ConvertToJson()
     {
@@ -116,7 +116,7 @@ public class BeatmapNote : BeatmapObject, IBeatmapObjectBounds
     public Vector3 GetScale() => Vector3.one;
 
     protected override bool IsConflictingWithObjectAtSameTime(BeatmapObject other, bool deletion)
-        => other is BeatmapNote note && note.RadialIndex == RadialIndex;
+        => other is BeatmapNote note && note.Hand == Hand;
 
     public override void Apply(BeatmapObject originalData)
     {

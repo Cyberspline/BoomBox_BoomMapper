@@ -7,11 +7,6 @@ public class BeatmapObstacleContainer : BeatmapObjectContainer
 
     public override BeatmapObject ObjectData { get => ObstacleData; set => ObstacleData = (BeatmapObstacle)value; }
 
-    public int ChunkEnd => (int)((ObstacleData.Time + ObstacleData.Duration) / Intersections.ChunkSize);
-
-    public bool IsRotatedByNoodleExtensions =>
-        ObstacleData.CustomData != null && (ObstacleData.CustomData?.HasKey("_rotation") ?? false);
-
     public static BeatmapObstacleContainer SpawnObstacle(BeatmapObstacle data, TracksManager _, ref GameObject prefab)
     {
         var container = Instantiate(prefab).GetComponent<BeatmapObstacleContainer>();
@@ -35,26 +30,13 @@ public class BeatmapObstacleContainer : BeatmapObjectContainer
 
     public override void UpdateGridPosition()
     {
-        var duration = Mathf.Abs(ObstacleData.B.StartTime - ObstacleData.A.StartTime) * EditorScaleController.EditorScale;
+        var a = ObstacleData.A.GetPoint();
+        var b = ObstacleData.B.GetPoint();
 
-        var bounds = ObstacleData.GetShape();
+        transform.localRotation = Quaternion.LookRotation(b - a, Vector3.forward);
+        transform.localPosition = new Vector3(a.x, a.y, ObstacleData.Time * EditorScaleController.EditorScale);
 
-        // Enforce positive scale, offset our obstacles to match.
-        transform.localPosition = new Vector3(
-            bounds.Position + (bounds.Width < 0 ? bounds.Width : 0),
-            bounds.StartHeight + (bounds.Height < 0 ? bounds.Height : 0),
-            (ObstacleData.Time * EditorScaleController.EditorScale) + (duration < 0 ? duration : 0)
-        );
-
-        var localDirection = ObstacleData.B.GetCenter() - ObstacleData.A.GetCenter();
-
-        transform.up = localDirection.normalized;
-
-        SetScale(new Vector3(
-            0.5f,
-            localDirection.magnitude,
-            Mathf.Max(0.3f, duration)
-        ));
+        SetScale(new Vector3(0.8f, 0.3f, (a - b).magnitude));
 
         UpdateCollisionGroups();
     }

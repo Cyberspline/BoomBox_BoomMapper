@@ -84,7 +84,8 @@ public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObs
     public override void TransferQueuedToDraggedObject(ref BeatmapObstacle dragged, BeatmapObstacle queued)
     {
         dragged.Time = queued.Time;
-        dragged.LineIndex = queued.LineIndex;
+
+        // TODO: Figure out elegant solution to dragging points. Nearest point is dragged?
     }
 
     public override void CancelPlacement()
@@ -94,7 +95,6 @@ public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObs
             IsPlacing = false;
             queuedData = GenerateOriginalData();
             instantiatedContainer.ObstacleData = queuedData;
-            obstacleAppearanceSo.SetObstacleAppearance(instantiatedContainer);
             instantiatedContainer.transform.localScale = new Vector3(
                 1, instantiatedContainer.transform.localPosition.y == 0 ? 3.5f : 2, 0);
         }

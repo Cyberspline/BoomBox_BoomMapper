@@ -32,7 +32,6 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
 
     [FormerlySerializedAs("noteAppearanceSO")] [SerializeField] private NoteAppearanceSO noteAppearanceSo;
     [SerializeField] private DeleteToolController deleteToolController;
-    [SerializeField] private BeatmapNoteInputController beatmapNoteInputController;
     [SerializeField] private BeatmapNoteContainer placementAreaPrefab;
     [SerializeField] private RadialIndexTable radialIndexTable;
 

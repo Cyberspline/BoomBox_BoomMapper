@@ -2,10 +2,9 @@
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsActions, CMInput.IEventUIActions
+public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsActions
 {
-    [SerializeField] private PlacementModeController placeMode;
-    [SerializeField] private LightingModeController lightMode;
+    [SerializeField] private DeleteToolController deleteToolController;
     [SerializeField] private PrecisionStepDisplayController stepController;
     [SerializeField] private RightButtonPanel rightButtonPanel;
 
@@ -27,21 +26,21 @@ public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsAction
         rightButtonPanel.TogglePanel();
     }
 
-    public void OnPlaceBlueNoteorEvent(InputAction.CallbackContext context)
+    public void OnPlaceBlueNote(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         blueToggle.onValueChanged.Invoke(true);
-        placeMode.SetMode(PlacementModeController.PlacementMode.Note);
+        deleteToolController.UpdateDeletion(false);
     }
 
-    public void OnPlaceRedNoteorEvent(InputAction.CallbackContext context)
+    public void OnPlaceRedNote(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         redToggle.onValueChanged.Invoke(true);
-        placeMode.SetMode(PlacementModeController.PlacementMode.Note);
+        deleteToolController.UpdateDeletion(false);
     }
 
-    public void OnToggleNoteorEvent(InputAction.CallbackContext context)
+    public void OnToggleNoteColor(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         if (colorType.LeftSelectedEnabled())
@@ -50,20 +49,10 @@ public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsAction
             redToggle.onValueChanged.Invoke(true);
     }
 
-    public void OnPlaceBomb(InputAction.CallbackContext context)
-    {
-    }
-
-    public void OnPlaceObstacle(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
-        placeMode.SetMode(PlacementModeController.PlacementMode.Wall);
-    }
-
     public void OnToggleDeleteTool(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        placeMode.SetMode(PlacementModeController.PlacementMode.Delete);
+        deleteToolController.UpdateDeletion(true);
     }
 
     public void OnMirror(InputAction.CallbackContext context)
@@ -87,11 +76,4 @@ public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsAction
     public void OnUpdateSwingArcVisualizer(InputAction.CallbackContext context)
     {
     }
-
-    // TODO: Move Swap Cursor Interval out of Event UI. It belongs in Workflows
-    public void OnTypeOn(InputAction.CallbackContext context) { }
-    public void OnTypeFlash(InputAction.CallbackContext context) { }
-    public void OnTypeOff(InputAction.CallbackContext context) { }
-    public void OnTypeFade(InputAction.CallbackContext context) { }
-    public void OnTogglePrecisionRotation(InputAction.CallbackContext context) { }
 }

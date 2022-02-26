@@ -98,8 +98,6 @@ public class PersistentUI : MonoBehaviour
         UpdateDSPBufferSize();
         AudioListener.volume = Settings.Instance.Volume;
 
-        RequirementCheck.Setup();
-
         centerDisplay.Host = this;
         bottomDisplay.Host = this;
     }

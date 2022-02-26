@@ -18,19 +18,16 @@ public class PauseManager : MonoBehaviour, CMInput.IPauseMenuActions
     private readonly IEnumerable<Type> disabledActionMaps = typeof(CMInput).GetNestedTypes().Where(t =>
         t.IsInterface && t != typeof(CMInput.IUtilsActions) && t != typeof(CMInput.IPauseMenuActions));
 
-    private PlatformDescriptor platform;
     private UIModeType previousUIModeType = UIModeType.Normal;
 
     private void Start()
     {
         OptionsController.OptionsLoadedEvent += OptionsLoaded;
-        LoadInitialMap.PlatformLoadedEvent += PlatformLoaded;
     }
 
     private void OnDestroy()
     {
         IsPaused = false;
-        LoadInitialMap.PlatformLoadedEvent -= PlatformLoaded;
         OptionsController.OptionsLoadedEvent -= OptionsLoaded;
     }
 
@@ -44,8 +41,6 @@ public class PauseManager : MonoBehaviour, CMInput.IPauseMenuActions
         if (IsPaused) TogglePause();
     }
 
-    private void PlatformLoaded(PlatformDescriptor descriptor) => platform = descriptor;
-
     public void TogglePause()
     {
         IsPaused = !IsPaused;
@@ -54,8 +49,6 @@ public class PauseManager : MonoBehaviour, CMInput.IPauseMenuActions
             CMInputCallbackInstaller.DisableActionMaps(typeof(PauseManager), disabledActionMaps);
             previousUIModeType = UIMode.SelectedMode;
             uiMode.SetUIMode(UIModeType.Normal, false);
-            foreach (var e in platform.gameObject.GetComponentsInChildren<LightsManager>())
-                e.ChangeAlpha(0, 1, e.ControllingLights);
         }
         else
         {

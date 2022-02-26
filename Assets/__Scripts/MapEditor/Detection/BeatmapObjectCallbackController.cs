@@ -7,14 +7,11 @@ using UnityEngine.Serialization;
 //Name and idea totally not stolen directly from Beat Saber
 public class BeatmapObjectCallbackController : MonoBehaviour
 {
-    private static readonly int eventsToLookAhead = 75;
     private static readonly int notesToLookAhead = 25;
 
     [SerializeField] private NotesContainer notesContainer;
-    [SerializeField] private EventsContainer eventsContainer;
 
     [SerializeField] private AudioTimeSyncController timeSyncController;
-    [SerializeField] private UIMode uiMode;
 
     [SerializeField] private bool useOffsetFromConfig = true;
 
@@ -25,14 +22,13 @@ public class BeatmapObjectCallbackController : MonoBehaviour
     [FormerlySerializedAs("offset")] public float Offset;
 
     [SerializeField] private int nextNoteIndex;
-    [SerializeField] private int nextEventIndex;
 
     [FormerlySerializedAs("useAudioTime")] public bool UseAudioTime;
 
-    private readonly List<BeatmapObject> nextEvents = new List<BeatmapObject>();
-    private readonly List<BeatmapObject> nextNotes = new List<BeatmapObject>();
-    private Queue<BeatmapObject> allEvents = new Queue<BeatmapObject>();
-    private Queue<BeatmapObject> allNotes = new Queue<BeatmapObject>();
+    private readonly HashSet<BeatmapObject> nextNotes = new HashSet<BeatmapObject>();
+    private HashSet<BeatmapObject> allNotes = new HashSet<BeatmapObject>();
+    private HashSet<BeatmapObject> queuedToClear = new HashSet<BeatmapObject>();
+
     private float curTime;
     public Action<bool, int, BeatmapObject> EventPassedThreshold;
 
@@ -40,60 +36,54 @@ public class BeatmapObjectCallbackController : MonoBehaviour
     public Action<bool, int> RecursiveEventCheckFinished;
     public Action<bool, int> RecursiveNoteCheckFinished;
 
-    private void Start()
-    {
-        notesContainer.ObjectSpawnedEvent += NotesContainer_ObjectSpawnedEvent;
-        notesContainer.ObjectDeletedEvent += NotesContainer_ObjectDeletedEvent;
-        eventsContainer.ObjectSpawnedEvent += EventsContainer_ObjectSpawnedEvent;
-        eventsContainer.ObjectDeletedEvent += EventsContainer_ObjectDeletedEvent;
-    }
-
     private void LateUpdate()
     {
         if (useOffsetFromConfig)
         {
-            if (UIMode.SelectedMode == UIModeType.Playing || UIMode.SelectedMode == UIModeType.Preview)
-            {
-                if (useDespawnOffset)
-                {
-                    Offset = 0;
-                }
-                else
-                {
-                    var songNoteJumpSpeed = BeatSaberSongContainer.Instance.DifficultyData.NoteJumpMovementSpeed;
-                    var songStartBeatOffset = BeatSaberSongContainer.Instance.DifficultyData.NoteJumpStartBeatOffset;
-                    var bpm = BeatSaberSongContainer.Instance.Song.BeatsPerMinute;
-                    Offset = SpawnParameterHelper.CalculateHalfJumpDuration(songNoteJumpSpeed, songStartBeatOffset, bpm);
-                }
-            }
-            else
-            {
-                Offset = useDespawnOffset
-                    ? Settings.Instance.Offset_Despawning * -1
-                    : Settings.Instance.Offset_Spawning;
-            }
+            Offset = useDespawnOffset
+                ? Settings.Instance.Offset_Despawning * -1
+                : Settings.Instance.Offset_Spawning;
 
             if (!useDespawnOffset) Shader.SetGlobalFloat("_ObstacleFadeRadius", Offset * EditorScaleController.EditorScale);
+        }
+
+        if (queuedToClear.Count > 0)
+        {
+            foreach (var toClear in queuedToClear)
+            {
+                allNotes.Remove(toClear);
+                nextNotes.Remove(toClear);
+            }
+
+            queuedToClear.Clear();
         }
 
         if (timeSyncController.IsPlaying)
         {
             curTime = UseAudioTime ? timeSyncController.CurrentSongBeats : timeSyncController.CurrentBeat;
             RecursiveCheckNotes(true, true);
-            RecursiveCheckEvents(true, true);
         }
     }
 
-    private void OnEnable() => timeSyncController.PlayToggle += OnPlayToggle;
+    private void OnEnable()
+    {
+        notesContainer.ObjectSpawnedEvent += NotesContainer_ObjectSpawnedEvent;
+        notesContainer.ObjectDeletedEvent += NotesContainer_ObjectDeletedEvent;
+        timeSyncController.PlayToggle += OnPlayToggle;
+    }
 
-    private void OnDisable() => timeSyncController.PlayToggle -= OnPlayToggle;
+    private void OnDisable()
+    {
+        notesContainer.ObjectSpawnedEvent -= NotesContainer_ObjectSpawnedEvent;
+        notesContainer.ObjectDeletedEvent -= NotesContainer_ObjectDeletedEvent;
+        timeSyncController.PlayToggle -= OnPlayToggle;
+    }
 
     private void OnPlayToggle(bool playing)
     {
         if (playing)
         {
             CheckAllNotes(false);
-            CheckAllEvents(false);
         }
     }
 
@@ -102,66 +92,35 @@ public class BeatmapObjectCallbackController : MonoBehaviour
         //notesContainer.SortObjects();
         curTime = UseAudioTime ? timeSyncController.CurrentSongBeats : timeSyncController.CurrentBeat;
         allNotes.Clear();
-        allNotes = new Queue<BeatmapObject>(notesContainer.LoadedObjects);
-        while (allNotes.Count > 0 && allNotes.Peek().Time < curTime + Offset) allNotes.Dequeue();
+        allNotes = new HashSet<BeatmapObject>(notesContainer.LoadedObjects.Where(x => x.Time >= curTime + Offset));
+
         nextNoteIndex = notesContainer.LoadedObjects.Count - allNotes.Count;
         RecursiveNoteCheckFinished?.Invoke(natural, nextNoteIndex - 1);
         nextNotes.Clear();
+
         for (var i = 0; i < notesToLookAhead; i++)
         {
-            if (allNotes.Any())
-                nextNotes.Add(allNotes.Dequeue());
-        }
-    }
-
-    private void CheckAllEvents(bool natural)
-    {
-        allEvents.Clear();
-        allEvents = new Queue<BeatmapObject>(eventsContainer.LoadedObjects);
-        while (allEvents.Count > 0 && allEvents.Peek().Time < curTime + Offset) allEvents.Dequeue();
-        nextEventIndex = eventsContainer.LoadedObjects.Count - allEvents.Count;
-        RecursiveEventCheckFinished?.Invoke(natural, nextEventIndex - 1);
-        nextEvents.Clear();
-        for (var i = 0; i < eventsToLookAhead; i++)
-        {
-            if (allEvents.Any())
-                nextEvents.Add(allEvents.Dequeue());
+            if (allNotes.Count > 0) QueueNextObject(allNotes, nextNotes);
         }
     }
 
     private void RecursiveCheckNotes(bool init, bool natural)
     {
-        var passed = nextNotes.FindAll(x => x.Time <= curTime + Offset);
+        var passed = nextNotes.Where(x => x.Time <= curTime + Offset).ToArray();
         foreach (var newlyAdded in passed)
         {
             if (natural) NotePassedThreshold?.Invoke(init, nextNoteIndex, newlyAdded);
             nextNotes.Remove(newlyAdded);
-            if (allNotes.Any() && natural) nextNotes.Add(allNotes.Dequeue());
+            if (allNotes.Count > 0 && natural) QueueNextObject(allNotes, nextNotes);
             nextNoteIndex++;
-        }
-    }
-
-    private void RecursiveCheckEvents(bool init, bool natural)
-    {
-        var passed = nextEvents.FindAll(x => x.Time <= curTime + Offset);
-        foreach (var newlyAdded in passed)
-        {
-            if (natural) EventPassedThreshold?.Invoke(init, nextEventIndex, newlyAdded);
-            nextEvents.Remove(newlyAdded);
-            if (allEvents.Any() && natural) nextEvents.Add(allEvents.Dequeue());
-            nextEventIndex++;
         }
     }
 
     private void NotesContainer_ObjectSpawnedEvent(BeatmapObject obj) => OnObjSpawn(obj, nextNotes);
 
-    private void NotesContainer_ObjectDeletedEvent(BeatmapObject obj) => OnObjDeleted(obj, nextNotes, allNotes);
+    private void NotesContainer_ObjectDeletedEvent(BeatmapObject obj) => OnObjDeleted(obj);
 
-    private void EventsContainer_ObjectSpawnedEvent(BeatmapObject obj) => OnObjSpawn(obj, nextEvents);
-
-    private void EventsContainer_ObjectDeletedEvent(BeatmapObject obj) => OnObjDeleted(obj, nextEvents, allEvents);
-
-    private void OnObjSpawn(BeatmapObject obj, List<BeatmapObject> nextObjects)
+    private void OnObjSpawn(BeatmapObject obj, HashSet<BeatmapObject> nextObjects)
     {
         if (!timeSyncController.IsPlaying) return;
 
@@ -171,38 +130,21 @@ public class BeatmapObjectCallbackController : MonoBehaviour
         }
     }
 
-    private void OnObjDeleted(BeatmapObject obj, List<BeatmapObject> nextObjects, Queue<BeatmapObject> allObjects)
+    private void OnObjDeleted(BeatmapObject obj)
     {
         if (!timeSyncController.IsPlaying) return;
 
         if (obj.Time >= timeSyncController.CurrentBeat)
         {
-            nextObjects.Remove(obj);
-
-            if (allObjects.Count > 0)
-            {
-                // BS way of removing one singular object from a queue but I guess it's the best we've got
-                // (without allowcating a new queue from a LINQ statement)
-                var firstObj = allObjects.Peek();
-
-                do
-                {
-                    var curObj = allObjects.Dequeue();
-
-                    if (curObj != obj)
-                    {
-                        allObjects.Enqueue(curObj);
-                    }
-                } while (allObjects.Peek() != firstObj);
-            }
+            queuedToClear.Add(obj);
         }
     }
 
-    private void OnDestroy()
+    private void QueueNextObject(HashSet<BeatmapObject> allObjs, HashSet<BeatmapObject> nextObjs)
     {
-        notesContainer.ObjectSpawnedEvent -= NotesContainer_ObjectSpawnedEvent;
-        notesContainer.ObjectDeletedEvent -= NotesContainer_ObjectDeletedEvent;
-        eventsContainer.ObjectSpawnedEvent -= EventsContainer_ObjectSpawnedEvent;
-        eventsContainer.ObjectDeletedEvent -= EventsContainer_ObjectDeletedEvent;
+        // Assumes that the "Count > 0" check happens before this is called
+        var first = allObjs.First();
+        nextObjs.Add(first);
+        allObjs.Remove(first);
     }
 }

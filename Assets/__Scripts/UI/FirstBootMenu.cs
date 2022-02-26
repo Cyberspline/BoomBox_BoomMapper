@@ -140,12 +140,7 @@ public class FirstBootMenu : MonoBehaviour
         }
     }
 
-    public void FirstBootRequirementsMet()
-    {
-        ColourHistory.Load(); //Load color history from file.
-        CustomPlatformsLoader.Instance.Init();
-        SceneTransitionManager.Instance.LoadScene("01_SongSelectMenu");
-    }
+    public void FirstBootRequirementsMet() => SceneTransitionManager.Instance.LoadScene("01_SongSelectMenu");
 
     public void ToggleHelp() => helpPanel.SetActive(!helpPanel.activeSelf);
 

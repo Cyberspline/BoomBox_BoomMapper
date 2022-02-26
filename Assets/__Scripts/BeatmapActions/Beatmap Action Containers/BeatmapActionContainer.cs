@@ -51,7 +51,6 @@ public class BeatmapActionContainer : MonoBehaviour, CMInput.IActionsActions
         var param = new BeatmapActionParams(this);
         lastActive.Undo(param);
         lastActive.Active = false;
-        nodeEditor.ObjectWasSelected();
     }
 
     public void Redo()
@@ -69,7 +68,6 @@ public class BeatmapActionContainer : MonoBehaviour, CMInput.IActionsActions
         var param = new BeatmapActionParams(this);
         action.Redo(param);
         action.Active = true;
-        nodeEditor.ObjectWasSelected();
     }
 
     public void OnUndo(InputAction.CallbackContext context)

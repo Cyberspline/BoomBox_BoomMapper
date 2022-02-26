@@ -524,10 +524,8 @@ public class SongInfoEditUI : MenuBase
         Song.SongArtist != songAuthorField.text ||
         Song.ImageFile != coverImageField.text ||
         Song.AudioFile != audioPath.text ||
-        // TODO: bpm
-        //!NearlyEqual(Song.BeatsPerMinute, GetTextValue(bpmField)) ||
-        !NearlyEqual(Song.PreviewTime, GetTextValue(prevStartField)) ||
-        !NearlyEqual(Song.PreviewDuration, GetTextValue(prevDurField));
+        !NearlyEqual(Song.PreviewTime, GetTextValue(prevStartField) * 1000) ||
+        !NearlyEqual(Song.PreviewDuration, GetTextValue(prevDurField) * 1000);
 
     private static bool NearlyEqual(float a, float b, float epsilon = 0.01f) =>
         a.Equals(b) || Math.Abs(a - b) < epsilon;

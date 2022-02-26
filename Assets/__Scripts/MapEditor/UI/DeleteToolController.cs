@@ -1,15 +1,16 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class DeleteToolController : MonoBehaviour
 {
-    public static Action DeleteToolActivatedEvent;
     public static bool IsActive { get; private set; }
+
+    [SerializeField] private Toggle deletionToggle;
 
     public void UpdateDeletion(bool enabled)
     {
         IsActive = enabled;
-        if (enabled) DeleteToolActivatedEvent?.Invoke();
+        deletionToggle.SetIsOnWithoutNotify(enabled);
     }
 
     public void ToggleDeletion() => UpdateDeletion(!IsActive);

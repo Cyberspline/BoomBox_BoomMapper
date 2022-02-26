@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class MirrorSelection : MonoBehaviour
 {
-    [SerializeField] private NoteAppearanceSO noteAppearance;
-    [SerializeField] private EventAppearanceSO eventAppearance;
-    [SerializeField] private TracksManager tracksManager;
-    [SerializeField] private CreateEventTypeLabels labels;
-
     public void MirrorTime()
     {
         if (!SelectionController.HasSelectedObjects())
@@ -41,7 +36,6 @@ public class MirrorSelection : MonoBehaviour
             return;
         }
 
-        var events = BeatmapObjectContainerCollection.GetCollectionForType<EventsContainer>(BeatmapObject.ObjectType.Event);
         var allActions = new List<BeatmapAction>();
         foreach (var con in SelectionController.SelectedObjects)
         {

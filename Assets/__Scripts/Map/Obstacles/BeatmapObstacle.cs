@@ -83,10 +83,10 @@ public class BeatmapObstacle : BeatmapObject, IBeatmapObjectBounds
     [JsonIgnore]
     public override ObjectType BeatmapType { get; set; } = ObjectType.Obstacle;
 
-    public Vector2 GetCenter()
+    public Vector2 GetPoint()
     {
-        var centerA = A.GetCenter();
-        var centerB = B.GetCenter();
+        var centerA = A.GetPoint();
+        var centerB = B.GetPoint();
 
         // I will assume the center will be the midpoint of the two points
         return (centerA + centerB) / 2;
@@ -124,8 +124,8 @@ public class BeatmapObstacle : BeatmapObject, IBeatmapObjectBounds
 
     public ObstacleBounds GetShape()
     {
-        var positionA = A.GetCenter();
-        var positionB = B.GetCenter();
+        var positionA = A.GetPoint();
+        var positionB = B.GetPoint();
 
         var width = Mathf.Abs(positionA.x - positionB.x);
         var height = Mathf.Abs(positionA.y - positionB.y);
@@ -168,6 +168,6 @@ public class BeatmapObstacle : BeatmapObject, IBeatmapObjectBounds
         [JsonProperty]
         public int RadialIndex = 0;
 
-        public Vector2 GetCenter() => RadialIndexTable.Instance.GetObstaclePlacement(RadialIndex);
+        public Vector2 GetPoint() => RadialIndexTable.Instance.GetObstaclePlacement(RadialIndex);
     }
 }

@@ -10,12 +10,9 @@ public class CameraController : MonoBehaviour, CMInput.ICameraActions
 {
     private static CameraController instance;
 
-    [SerializeField] private Vector3[] presetPositions;
-    [SerializeField] private Vector3[] presetRotations;
     [SerializeField] private float movementSpeed;
     [SerializeField] private float mouseSensitivity;
     [SerializeField] private Transform noteGridTransform;
-    [FormerlySerializedAs("_uiMode")] [SerializeField] private UIMode uiMode;
     [SerializeField] private CustomStandaloneInputModule customStandaloneInputModule;
 
     [FormerlySerializedAs("_rotationCallbackController")] public RotationCallbackController RotationCallbackController;
@@ -33,12 +30,10 @@ public class CameraController : MonoBehaviour, CMInput.ICameraActions
     private readonly Type[] actionMapsDisabledWhileMoving =
     {
         typeof(CMInput.IPlacementControllersActions), typeof(CMInput.INotePlacementActions),
-        typeof(CMInput.IEventPlacementActions), typeof(CMInput.ISavingActions), typeof(CMInput.ITimelineActions),
-        typeof(CMInput.IPlatformSoloLightGroupActions), typeof(CMInput.IPlaybackActions),
+        typeof(CMInput.IEventPlacementActions), typeof(CMInput.ISavingActions),
+        typeof(CMInput.ITimelineActions), typeof(CMInput.IPlaybackActions),
         typeof(CMInput.IBeatmapObjectsActions), typeof(CMInput.INoteObjectsActions),
-        typeof(CMInput.IEventObjectsActions), typeof(CMInput.IObstacleObjectsActions),
-        typeof(CMInput.ICustomEventsContainerActions), typeof(CMInput.IBPMTapperActions),
-        typeof(CMInput.IEventUIActions), typeof(CMInput.IUIModeActions)
+        typeof(CMInput.IBPMTapperActions), typeof(CMInput.IUIModeActions)
     };
 
     private Vector2 savedMousePos = Vector2.zero;
@@ -216,7 +211,7 @@ public class CameraController : MonoBehaviour, CMInput.ICameraActions
 
     public void OnAttachtoNoteGrid(CallbackContext context)
     {
-        if (RotationCallbackController.IsActive && context.performed && noteGridTransform.gameObject.activeInHierarchy)
+        if (context.performed && noteGridTransform.gameObject.activeInHierarchy)
             LockedOntoNoteGrid = !LockedOntoNoteGrid;
     }
 

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class BoxSelectionPlacementController : PlacementController<MapEvent, BeatmapEventContainer, EventsContainer>,
+public class BoxSelectionPlacementController : PlacementController<BeatmapNote, BeatmapNoteContainer, NotesContainer>,
     CMInput.IBoxSelectActions
 {
     [FormerlySerializedAs("customCollection")] public CustomEventsContainer CustomCollection;
@@ -51,7 +51,7 @@ public class BoxSelectionPlacementController : PlacementController<MapEvent, Bea
 
     public override BeatmapAction GenerateAction(BeatmapObject spawned, IEnumerable<BeatmapObject> conflicting) => null;
 
-    public override MapEvent GenerateOriginalData() => new MapEvent(float.MaxValue, 69, 420);
+    public override BeatmapNote GenerateOriginalData() => new BeatmapNote(float.MaxValue, 69, 420, 1337, -1);
 
     protected override bool TestForType<T>(Intersections.IntersectionHit hit, BeatmapObject.ObjectType type)
     {
@@ -143,22 +143,7 @@ public class BoxSelectionPlacementController : PlacementController<MapEvent, Bea
 
                 if (bo is IBeatmapObjectBounds obj)
                 {
-                    p = obj.GetCenter();
-                }
-                else if (bo is MapEvent evt)
-                {
-                    var position = evt.GetPosition(Labels, EventsContainer.PropagationEditing,
-                        EventsContainer.EventTypeToPropagate);
-
-                    // Not visible = notselectable
-                    if (position == null) return;
-
-                    p = new Vector2(position?.x + Bounds.min.x ?? 0, position?.y ?? 0);
-                }
-                else if (bo is BeatmapCustomEvent custom)
-                {
-                    p = new Vector2(CustomCollection.CustomEventTypes.IndexOf(custom.Type) + Bounds.min.x + 0.5f,
-                        0.5f);
+                    p = obj.GetPoint();
                 }
 
                 // Check if calculated position is outside bounds
@@ -216,5 +201,5 @@ public class BoxSelectionPlacementController : PlacementController<MapEvent, Bea
         foreach (var selectedObject in selected) SelectionController.Deselect(selectedObject);
     }
 
-    public override void TransferQueuedToDraggedObject(ref MapEvent dragged, MapEvent queued) { }
+    public override void TransferQueuedToDraggedObject(ref BeatmapNote dragged, BeatmapNote queued) { }
 }

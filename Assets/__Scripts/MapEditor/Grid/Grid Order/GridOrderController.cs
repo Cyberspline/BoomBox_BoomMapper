@@ -8,10 +8,6 @@ public class GridOrderController : MonoBehaviour
 
     private static bool dirty;
 
-    [SerializeField] private GridRotationController gridRotationController;
-
-    private void Start() => gridRotationController.ObjectRotationChangedEvent += MarkDirty;
-
     private void LateUpdate()
     {
         if (!dirty) return; //We do not want this updating every frame so that's why we have a Dirty system.
@@ -48,8 +44,6 @@ public class GridOrderController : MonoBehaviour
             childX += Mathf.Ceil(kvp.Value.Any() ? kvp.Value.Max(x => x.Size) + 1 : 0);
         }
     }
-
-    private void OnDestroy() => gridRotationController.ObjectRotationChangedEvent -= MarkDirty;
 
     public static int GetSizeForOrder(int order)
     {

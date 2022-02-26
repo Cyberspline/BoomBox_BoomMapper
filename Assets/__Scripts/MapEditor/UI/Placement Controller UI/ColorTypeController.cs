@@ -4,43 +4,24 @@ using UnityEngine.UI;
 public class ColorTypeController : MonoBehaviour
 {
     [SerializeField] private NotePlacement notePlacement;
-    [SerializeField] private LightingModeController lightMode;
-    [SerializeField] private CustomColorsUIController customColors;
+    [SerializeField] private DeleteToolController deleteToolController;
     [SerializeField] private Image leftSelected;
     [SerializeField] private Image rightSelected;
     [SerializeField] private Image leftNote;
-    [SerializeField] private Image leftLight;
     [SerializeField] private Image rightNote;
-    [SerializeField] private Image rightLight;
-
-    private PlatformDescriptor platform;
 
     private void Start()
     {
         leftSelected.enabled = true;
         rightSelected.enabled = false;
-        LoadInitialMap.PlatformLoadedEvent += SetupColors;
-        customColors.CustomColorsUpdatedEvent += UpdateColors;
-    }
-
-    private void OnDestroy()
-    {
-        customColors.CustomColorsUpdatedEvent -= UpdateColors;
-        LoadInitialMap.PlatformLoadedEvent -= SetupColors;
-    }
-
-    private void SetupColors(PlatformDescriptor descriptor)
-    {
-        platform = descriptor;
         UpdateColors();
     }
 
+    // TODO: What are good default colors for boombox
     private void UpdateColors()
     {
-        leftNote.color = platform.Colors.RedNoteColor;
-        leftLight.color = platform.Colors.RedColor;
-        rightNote.color = platform.Colors.BlueNoteColor;
-        rightLight.color = platform.Colors.BlueColor;
+        leftNote.color = Color.red;
+        rightNote.color = Color.blue;
     }
 
     public void RedNote(bool active)
@@ -56,13 +37,14 @@ public class ColorTypeController : MonoBehaviour
     public void UpdateValue(int type)
     {
         notePlacement.UpdateType(type);
+        deleteToolController.UpdateDeletion(false);
         UpdateUI();
     }
 
     public void UpdateUI()
     {
-        leftSelected.enabled = notePlacement.queuedData.Type == BeatmapNote.NoteTypeA;
-        rightSelected.enabled = notePlacement.queuedData.Type == BeatmapNote.NoteTypeB;
+        leftSelected.enabled = notePlacement.queuedData.Hand == BeatmapNote.HandLeft;
+        rightSelected.enabled = notePlacement.queuedData.Hand == BeatmapNote.HandRight;
     }
 
     public bool LeftSelectedEnabled() => leftSelected.enabled;

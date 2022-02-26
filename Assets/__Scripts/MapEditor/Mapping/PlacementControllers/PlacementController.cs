@@ -17,7 +17,6 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
     [FormerlySerializedAs("interfaceGridParent")] [SerializeField] protected Transform InterfaceGridParent;
     [SerializeField] protected bool AssignTo360Tracks;
     [SerializeField] private BeatmapObject.ObjectType objectDataType;
-    [SerializeField] private bool startingActiveState;
     [FormerlySerializedAs("atsc")] [SerializeField] protected AudioTimeSyncController Atsc;
     [SerializeField] private CustomStandaloneInputModule customStandaloneInputModule;
     [FormerlySerializedAs("tracksManager")] [SerializeField] protected TracksManager TracksManager;
@@ -26,7 +25,7 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
     [SerializeField] private Transform noteGridTransform;
 
     [FormerlySerializedAs("bounds")] public Bounds Bounds;
-    public bool IsActive;
+    public bool IsActive = true;
 
     private bool applicationFocus;
     private bool applicationFocusChanged;
@@ -50,10 +49,13 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
 
     [HideInInspector] internal virtual float RoundedTime { get; set; }
 
-    public virtual bool IsValid => !Input.GetMouseButton(1) && !SongTimelineController.IsHovering && IsActive &&
-                                   !BoxSelectionPlacementController.IsSelecting && applicationFocus &&
-                                   !SceneTransitionManager.IsLoading && KeybindsController.IsMouseInWindow &&
-                                   !DeleteToolController.IsActive && !NodeEditorController.IsActive;
+    public virtual bool IsValid => IsActive
+        && !customStandaloneInputModule.IsPointerOverGameObject<GraphicRaycaster>(-1, true)
+        && !BoxSelectionPlacementController.IsSelecting
+        && applicationFocus
+        && !SceneTransitionManager.IsLoading
+        && KeybindsController.IsMouseInWindow
+        && !DeleteToolController.IsActive;
 
     public virtual int PlacementXMin => 0;
 
@@ -62,7 +64,6 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
     internal virtual void Start()
     {
         queuedData = GenerateOriginalData();
-        IsActive = startingActiveState;
         MainCamera = Camera.main;
     }
 
@@ -115,8 +116,6 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
 
         // Cache the transform because its a tiny bit expensive
         var hitTransform = hit.GameObject.transform;
-
-        if (customStandaloneInputModule.IsPointerOverGameObject<GraphicRaycaster>(-1, true)) return;
 
         CalculateTimes(hit, out var roundedHit, out var roundedTime);
         RoundedTime = roundedTime;

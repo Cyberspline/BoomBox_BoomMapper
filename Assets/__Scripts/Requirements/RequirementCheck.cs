@@ -4,6 +4,7 @@
  * The intention here is to create a simple interface that a CM plugin can implement
  * in order to check if a mod requirement or suggestion should be added
  */
+// TODO: Remove
 public abstract class RequirementCheck
 {
     public enum RequirementType

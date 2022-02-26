@@ -403,6 +403,10 @@ public class DifficultySelect : MonoBehaviour
                 {
                     OnClick(row);
                 }
+                else if (selected == null)
+                {
+                    OnClick(row);
+                }
             }
             else
             {

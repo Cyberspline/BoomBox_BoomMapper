@@ -1,3 +1,4 @@
-﻿public class BeatmapCustomEventInputController : BeatmapInputController<BeatmapCustomEventContainer>
+﻿// TODO: Remove
+public class BeatmapCustomEventInputController : UnityEngine.MonoBehaviour
 {
 }

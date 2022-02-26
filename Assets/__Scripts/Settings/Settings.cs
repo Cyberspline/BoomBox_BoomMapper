@@ -87,9 +87,6 @@ public class Settings
     public float GridTransparency = 0.75f;
     public float UIScale = 1;
     public CameraPosition[] SavedPositions = new CameraPosition[8];
-    public bool Reminder_UnsupportedEditorOffset = true;
-    public bool PyramidEventModels = false;
-    public EventModelType EventModel = EventModelType.Block;
     public int ReleaseChannel = 0;
     public string ReleaseServer = "https://cm.topc.at";
     public int DSPBufferSize = 10;
@@ -228,12 +225,6 @@ public class Settings
 
     private void UpdateOldSettings()  //Put code in here to transfer any settings that are fundamentally changed and require conversion from an old setting to a new setting
     {
-        if (PyramidEventModels)
-        {
-            EventModel = EventModelType.Pyramid;
-            PyramidEventModels = false;
-        }
-
         if (BongoBoye)
         {
             BongoCat = 0;

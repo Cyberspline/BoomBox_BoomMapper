@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [Serializable]
+// TODO: Remove
 public class BeatSaberMap
 {
     [FormerlySerializedAs("directoryAndFile")] public string DirectoryAndFile;
@@ -49,7 +50,6 @@ public class BeatSaberMap
             MainNode["_version"] = Version;
 
             var events = new JSONArray();
-            foreach (var e in Events) events.Add(e.ConvertToJson());
 
             var notes = new JSONArray();
             foreach (var n in Notes) notes.Add(n.ConvertToJson());
@@ -181,7 +181,6 @@ public class BeatSaberMap
                         break;
 
                     case "_events":
-                        foreach (JSONNode n in node) eventsList.Add(new MapEvent(n));
                         break;
                     case "_notes":
                         foreach (JSONNode n in node) notesList.Add(new BeatmapNote(n));
