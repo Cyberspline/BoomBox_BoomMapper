@@ -50,7 +50,6 @@ MonoBehaviour:
   - {fileID: 5656241720920303499}
   SelectionRenderers:
   - {fileID: 8114256179164014649}
-  BoxCollider: {fileID: 0}
   MapNoteData:
     HasAttachedContainer: 0
     LineIndex: 0
@@ -58,8 +57,6 @@ MonoBehaviour:
     CutDirection: 0
     ID: 0
     Hand: 1
-    Type: 0
-    OrbitalType: 1
     RadialIndex: 0
 --- !u!114 &5656241720920303499
 MonoBehaviour:
@@ -116,7 +113,7 @@ GameObject:
   - component: {fileID: 4916747771009594417}
   - component: {fileID: 8328307558745340820}
   - component: {fileID: 6084610283104866142}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DrumsThick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +196,7 @@ GameObject:
   - component: {fileID: 6976231800364929878}
   - component: {fileID: 6304852875369913587}
   - component: {fileID: 8114256179164014649}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DrumsThick Selection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
