@@ -66,7 +66,6 @@ public class CameraController : MonoBehaviour, CMInput.ICameraActions
         UpdateAA(Settings.Instance.CameraAA);
         Settings.NotifyBySettingName(nameof(Settings.CameraAA), UpdateAA);
         OnLocation(0);
-        LockedOntoNoteGrid = true;
     }
 
     private void Update()
@@ -206,12 +205,6 @@ public class CameraController : MonoBehaviour, CMInput.ICameraActions
             CMInputCallbackInstaller.DisableActionMaps(typeof(CameraController), actionMapsDisabledWhileMoving);
         else if (context.canceled)
             CMInputCallbackInstaller.ClearDisabledActionMaps(typeof(CameraController), actionMapsDisabledWhileMoving);
-    }
-
-    public void OnAttachtoNoteGrid(CallbackContext context)
-    {
-        if (context.performed && noteGridTransform.gameObject.activeInHierarchy)
-            LockedOntoNoteGrid = !LockedOntoNoteGrid;
     }
 
     public void OnToggleFullscreen(CallbackContext context)

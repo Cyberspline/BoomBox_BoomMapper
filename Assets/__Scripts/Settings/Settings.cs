@@ -68,6 +68,8 @@ public class Settings
     public string LastLoadedChar = "";
     public string LastLoadedDiff = "";
 
+    public bool OverviewCamera = false;
+
     public int LastSongSortType = (int)SongList.SongSortType.Name;
 
     public static Dictionary<string, FieldInfo> AllFieldInfos = new Dictionary<string, FieldInfo>();

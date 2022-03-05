@@ -1,4 +1,3 @@
-using System.Collections;
 public class MetadataQuickSettings : QuickSettings
 {
     // TODO: Localize everything
@@ -7,7 +6,7 @@ public class MetadataQuickSettings : QuickSettings
         var pack = BoomBoxSongContainer.Instance.Pack;
         var map = BoomBoxSongContainer.Instance.Map;
 
-        DialogBox.WithTitle("Metadata Settings");
+        DialogBox.WithTitle("Mapper", "quicksettings.metadata");
 
         DialogBox.AddComponent<TextComponent>().WithInitialValue("Pack");
 

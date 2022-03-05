@@ -51,14 +51,6 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Attach to Note Grid"",
-                    ""type"": ""Button"",
-                    ""id"": ""3a674479-bfd9-4f9e-8d57-8c5eebd67e5e"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""Toggle Fullscreen"",
                     ""type"": ""Button"",
                     ""id"": ""15237594-4027-4cbc-92ed-cad40331f90e"",
@@ -212,39 +204,6 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""ChroMapper Default"",
                     ""action"": ""Elevate Camera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Ctrl+R"",
-                    ""id"": ""f96165b6-7a77-4ce8-ab8d-166c2958cbc7"",
-                    ""path"": ""ButtonWithOneModifier"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Attach to Note Grid"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""modifier"",
-                    ""id"": ""bf81106b-ca69-4948-9737-99a5cb7d6c93"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Attach to Note Grid"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""button"",
-                    ""id"": ""80282e30-b9da-4796-a007-833830be27b4"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Attach to Note Grid"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -2470,7 +2429,6 @@ public class @CMInput : IInputActionCollection, IDisposable
         m_Camera_MoveCamera = m_Camera.FindAction("Move Camera", throwIfNotFound: true);
         m_Camera_RotateCamera = m_Camera.FindAction("+Rotate Camera", throwIfNotFound: true);
         m_Camera_ElevateCamera = m_Camera.FindAction("Elevate Camera", throwIfNotFound: true);
-        m_Camera_AttachtoNoteGrid = m_Camera.FindAction("Attach to Note Grid", throwIfNotFound: true);
         m_Camera_ToggleFullscreen = m_Camera.FindAction("Toggle Fullscreen", throwIfNotFound: true);
         m_Camera_Location1 = m_Camera.FindAction("Location 1", throwIfNotFound: true);
         m_Camera_Location2 = m_Camera.FindAction("Location 2", throwIfNotFound: true);
@@ -2644,7 +2602,6 @@ public class @CMInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Camera_MoveCamera;
     private readonly InputAction m_Camera_RotateCamera;
     private readonly InputAction m_Camera_ElevateCamera;
-    private readonly InputAction m_Camera_AttachtoNoteGrid;
     private readonly InputAction m_Camera_ToggleFullscreen;
     private readonly InputAction m_Camera_Location1;
     private readonly InputAction m_Camera_Location2;
@@ -2660,7 +2617,6 @@ public class @CMInput : IInputActionCollection, IDisposable
         public InputAction @MoveCamera => m_Wrapper.m_Camera_MoveCamera;
         public InputAction @RotateCamera => m_Wrapper.m_Camera_RotateCamera;
         public InputAction @ElevateCamera => m_Wrapper.m_Camera_ElevateCamera;
-        public InputAction @AttachtoNoteGrid => m_Wrapper.m_Camera_AttachtoNoteGrid;
         public InputAction @ToggleFullscreen => m_Wrapper.m_Camera_ToggleFullscreen;
         public InputAction @Location1 => m_Wrapper.m_Camera_Location1;
         public InputAction @Location2 => m_Wrapper.m_Camera_Location2;
@@ -2689,9 +2645,6 @@ public class @CMInput : IInputActionCollection, IDisposable
                 @ElevateCamera.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnElevateCamera;
                 @ElevateCamera.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnElevateCamera;
                 @ElevateCamera.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnElevateCamera;
-                @AttachtoNoteGrid.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnAttachtoNoteGrid;
-                @AttachtoNoteGrid.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnAttachtoNoteGrid;
-                @AttachtoNoteGrid.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnAttachtoNoteGrid;
                 @ToggleFullscreen.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnToggleFullscreen;
                 @ToggleFullscreen.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnToggleFullscreen;
                 @ToggleFullscreen.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnToggleFullscreen;
@@ -2729,9 +2682,6 @@ public class @CMInput : IInputActionCollection, IDisposable
                 @ElevateCamera.started += instance.OnElevateCamera;
                 @ElevateCamera.performed += instance.OnElevateCamera;
                 @ElevateCamera.canceled += instance.OnElevateCamera;
-                @AttachtoNoteGrid.started += instance.OnAttachtoNoteGrid;
-                @AttachtoNoteGrid.performed += instance.OnAttachtoNoteGrid;
-                @AttachtoNoteGrid.canceled += instance.OnAttachtoNoteGrid;
                 @ToggleFullscreen.started += instance.OnToggleFullscreen;
                 @ToggleFullscreen.performed += instance.OnToggleFullscreen;
                 @ToggleFullscreen.canceled += instance.OnToggleFullscreen;
@@ -3883,7 +3833,6 @@ public class @CMInput : IInputActionCollection, IDisposable
         void OnMoveCamera(InputAction.CallbackContext context);
         void OnRotateCamera(InputAction.CallbackContext context);
         void OnElevateCamera(InputAction.CallbackContext context);
-        void OnAttachtoNoteGrid(InputAction.CallbackContext context);
         void OnToggleFullscreen(InputAction.CallbackContext context);
         void OnLocation1(InputAction.CallbackContext context);
         void OnLocation2(InputAction.CallbackContext context);

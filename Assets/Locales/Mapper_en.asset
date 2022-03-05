@@ -290,6 +290,14 @@ MonoBehaviour:
     m_Localized: Close the editor without saving.
     m_Metadata:
       m_Items: []
+  - m_Id: 78638426140246016
+    m_Localized: Metadata Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78638489654591488
+    m_Localized: Graphics Settings
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:

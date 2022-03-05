@@ -38,14 +38,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Attach to Note Grid",
-                    "type": "Button",
-                    "id": "3a674479-bfd9-4f9e-8d57-8c5eebd67e5e",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Toggle Fullscreen",
                     "type": "Button",
                     "id": "15237594-4027-4cbc-92ed-cad40331f90e",
@@ -199,39 +191,6 @@
                     "processors": "",
                     "groups": "ChroMapper Default",
                     "action": "Elevate Camera",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Ctrl+R",
-                    "id": "f96165b6-7a77-4ce8-ab8d-166c2958cbc7",
-                    "path": "ButtonWithOneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Attach to Note Grid",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "bf81106b-ca69-4948-9737-99a5cb7d6c93",
-                    "path": "<Keyboard>/ctrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Attach to Note Grid",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "button",
-                    "id": "80282e30-b9da-4796-a007-833830be27b4",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Attach to Note Grid",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
