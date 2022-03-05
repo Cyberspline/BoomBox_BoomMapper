@@ -37,7 +37,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5
-    m_Localized: "Instalaci\xF3n de Beat Saber"
+    m_Localized: BoomBox Installation
     m_Metadata:
       m_Items: []
   - m_Id: 6
@@ -60,48 +60,8 @@ MonoBehaviour:
     m_Localized: Escala del editor
     m_Metadata:
       m_Items: []
-  - m_Id: 11
-    m_Localized: Escala de editor precisa
-    m_Metadata:
-      m_Items: []
-  - m_Id: 12
-    m_Localized: "Rotaci\xF3n 360/90"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 13
-    m_Localized: "No colocar paredes de duraci\xF3n 0"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 15
-    m_Localized: Notas precisas
-    m_Metadata:
-      m_Items: []
-  - m_Id: 16
-    m_Localized: "C\xE1lculo alternativo del tama\xF1o de Hyper Walls"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 17
-    m_Localized: "Cuadr\xEDcula de notas anteriores"
-    m_Metadata:
-      m_Items: []
   - m_Id: 18
     m_Localized: "Velocidad de la canci\xF3n"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 19
-    m_Localized: Cantidad de carriles de notas
-    m_Metadata:
-      m_Items: []
-  - m_Id: 20
-    m_Localized: "Ajustes de rat\xF3n"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 21
-    m_Localized: "Selecci\xF3n en caja"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 22
-    m_Localized: Destacar notas colocadas
     m_Metadata:
       m_Items: []
   - m_Id: 23
@@ -110,10 +70,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 24
     m_Localized: Cargar notas
-    m_Metadata:
-      m_Items: []
-  - m_Id: 25
-    m_Localized: Cargar eventos
     m_Metadata:
       m_Items: []
   - m_Id: 26
@@ -152,10 +108,6 @@ MonoBehaviour:
     m_Localized: Sonido de golpe de notas azules
     m_Metadata:
       m_Items: []
-  - m_Id: 35
-    m_Localized: Sonido de golpe de bombas
-    m_Metadata:
-      m_Items: []
   - m_Id: 36
     m_Localized: Sonidos de golpe
     m_Metadata:
@@ -164,40 +116,8 @@ MonoBehaviour:
     m_Localized: Editor
     m_Metadata:
       m_Items: []
-  - m_Id: 38
-    m_Localized: Forma de onda
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39
-    m_Localized: Emular Chroma
-    m_Metadata:
-      m_Items: []
-  - m_Id: 40
-    m_Localized: Luces RGB
-    m_Metadata:
-      m_Items: []
-  - m_Id: 41
-    m_Localized: Reflejos de entorno
-    m_Metadata:
-      m_Items: []
-  - m_Id: 42
-    m_Localized: Colorear paredes falsas
-    m_Metadata:
-      m_Items: []
   - m_Id: 43
     m_Localized: "Renderizar l\xEDneas de comp\xE1s sobre todo"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 44
-    m_Localized: Bloom de alta calidad
-    m_Metadata:
-      m_Items: []
-  - m_Id: 45
-    m_Localized: Visualizar gradientes de Chroma
-    m_Metadata:
-      m_Items: []
-  - m_Id: 46
-    m_Localized: Bloques simples
     m_Metadata:
       m_Items: []
   - m_Id: 47
@@ -218,18 +138,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 52
     m_Localized: Visuales
-    m_Metadata:
-      m_Items: []
-  - m_Id: 53
-    m_Localized: Seguir el workflow con la forma de onda
-    m_Metadata:
-      m_Items: []
-  - m_Id: 54
-    m_Localized: Habilitar el editor de nodo
-    m_Metadata:
-      m_Items: []
-  - m_Id: 55
-    m_Localized: Atajo del editor de nodo
     m_Metadata:
       m_Items: []
   - m_Id: 56
@@ -288,12 +196,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 68
-    m_Localized: "ChroMapper le permite a los desarrolladores crear y compartir plugins.\n\nLos
-      desarrolladores de ChroMapper no ser\xE1n responsables de cualquier da\xF1o
-      causado por plugins cargados. Depende del usuario decidir qu\xE9 plugins instalar.\n\nRecomendamos
-      buscar plugins creados por desarrolladores confiables. Por ejemplo, busca plugins
-      de ChroMapper que sean de c\xF3digo abierto, en donde su c\xF3digo fuente est\xE9
-      disponible p\xFAblicamente para revisar y tomar decisiones en base a ello."
+    m_Localized: 'BoomMapper supports the ability for developers to create and share
+      plugins.
+
+
+      BoomMapper developers will not be held liable for any damage
+      caused by loaded plugins. It is up to the user to decide which plugins they
+      want to install.
+
+
+      We recommend finding plugins made by trustworthy developers.
+      For example, look for BoomMapper plugins that are open source, where its internal
+      source code is available for all to look through and make their own informed
+      decisions.'
     m_Metadata:
       m_Items: []
   - m_Id: 69
@@ -312,32 +227,8 @@ MonoBehaviour:
     m_Localized: "Configuraci\xF3n experimental"
     m_Metadata:
       m_Items: []
-  - m_Id: 72
-    m_Localized: "Precisi\xF3n decimal del valor de tiempo"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 73
-    m_Localized: '{TextValue} decimal(es)'
-    m_Metadata:
-      m_Items:
-      - id: 0
-  - m_Id: 74
-    m_Localized: "Por cu\xE1ntos decimales redondear los valores de \"_time\" por
-      cada objeto del mapa visible cuando se guarda al disco.\nMenor precisi\xF3n
-      significa m\xE1s posibilidad de errores, pero puede ahorrar respacio en mapas
-      m\xE1s complejos."
-    m_Metadata:
-      m_Items: []
   - m_Id: 75
     m_Localized: "Gu\xEDa de desarrollo de plugins"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 80
-    m_Localized: "\xBFDeber\xEDamos cargar obst\xE1culos?"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 81
-    m_Localized: "Cambiar la escala de la cuadr\xEDcula de notas anteriores."
     m_Metadata:
       m_Items: []
   - m_Id: 82
@@ -351,37 +242,13 @@ MonoBehaviour:
     m_Localized: "Cambiar cada cu\xE1nto tiempo el auto-guardado se activa."
     m_Metadata:
       m_Items: []
-  - m_Id: 84
-    m_Localized: Destaca las notas recientemente colocadas en magenta.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 85
-    m_Localized: "La escala del editor ser\xE1 determinada por varias estad\xEDsticas
-      del mapa, incluyendo la velocidad de salto de notas (NJS) y su BPM.\nRecomendado
-      solo para previsualizar tu mapa. Esto anular\xE1 la opci\xF3n de escala del
-      editor."
-    m_Metadata:
-      m_Items: []
   - m_Id: 86
     m_Localized: "Invierte la direcci\xF3n del desplazamiento al cambiar la precisi\xF3n
       del paso."
     m_Metadata:
       m_Items: []
-  - m_Id: 87
-    m_Localized: "\xBFDeseas cargar los eventos del mapa?"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 88
-    m_Localized: Renderizado de bloques menos elegante y con mayor contraste
-    m_Metadata:
-      m_Items: []
   - m_Id: 89
     m_Localized: Cantidad de intervalos de 5 golpes a mostrar mientras se edita.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 90
-    m_Localized: Gira los objetos del mapa y el editor para visualizar mejor un nivel
-      en 360 grados.
     m_Metadata:
       m_Items: []
   - m_Id: 91
@@ -398,7 +265,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 94
-    m_Localized: "C\xF3mo de lejos apareceran las notas y los eventos."
+    m_Localized: How far notes will spawn.
     m_Metadata:
       m_Items: []
   - m_Id: 95
@@ -409,16 +276,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 96
-    m_Localized: Activa/desactiva Discord RPC en ChroMapper.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 97
-    m_Localized: Take half jump into account when loading hyper (negative duration)
-      walls. Will require a restart of the editor.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 98
-    m_Localized: "Hace que sea imposible colocar muros de duraci\xF3n 0."
+    m_Localized: Toggles Discord RPC for BoomMapper.
     m_Metadata:
       m_Items: []
   - m_Id: 99
@@ -433,94 +291,30 @@ MonoBehaviour:
     m_Localized: "\xBFC\xF3mo de r\xE1pido debe reproducirse la canci\xF3n?"
     m_Metadata:
       m_Items: []
-  - m_Id: 102
-    m_Localized: Activa/desactiva el sonido de las bombas cuando pasan.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 103
-    m_Localized: "Si mantienes pulsada la tecla Shift mientras colocas muros o notas,
-      aparecer\xE1 una cuadr\xEDcula extendida con el encaje desactivado."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 104
-    m_Localized: Activa/desactiva los reflejos causados por las luces y los objetos.
-    m_Metadata:
-      m_Items: []
   - m_Id: 105
     m_Localized: "Hace que los textos de la l\xEDnea de medida aparezcan encima de
       <i>todo</i>. Puede causar algunos problemas cuando se mira a trav\xE9s de una
       nota."
     m_Metadata:
       m_Items: []
-  - m_Id: 106
-    m_Localized: "Cada evento con un gradiente Chroma 2.0 asociado generar\xE1 una
-      vista previa en la cuadr\xEDcula 3D."
-    m_Metadata:
-      m_Items: []
   - m_Id: 107
     m_Localized: "Mostrar forma de onda de la canci\xF3n"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 108
-    m_Localized: En lugar de seleccionar, presione N para activar/desactivar el editor
-      de nodos.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 109
-    m_Localized: Cambia cuantos carriles usa tu mapa.
     m_Metadata:
       m_Items: []
   - m_Id: 110
     m_Localized: "Hace que la transici\xF3n al men\xFA de pausa sea instant\xE1nea."
     m_Metadata:
       m_Items: []
-  - m_Id: 111
-    m_Localized: "Reproduce el efecto resplandor a plena o media resoluci\xF3n. Se
-      recomienda mantenerlo a m\xE1xima resoluci\xF3n."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 112
-    m_Localized: "Activa o desactiva caracter\xEDsticas de Chroma, como la propagaci\xF3n
-      entre anillos"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 113
-    m_Localized: "Alterna el Tema Oscuro (no afecta al men\xFA de opciones)"
-    m_Metadata:
-      m_Items: []
   - m_Id: 114
-    m_Localized: "C\xF3mo de lejos desaparecer\xE1n las notas y los eventos."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 115
-    m_Localized: "Activa el editor de nodos. \xA1Prueba a seleccionar un objeto!"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 116
-    m_Localized: "Activa o desactiva la iluminaci\xF3n de Chroma RGB"
+    m_Localized: How far notes will despawn.
     m_Metadata:
       m_Items: []
   - m_Id: 117
     m_Localized: "Cambia el campo de visi\xF3n de la c\xE1mara"
     m_Metadata:
       m_Items: []
-  - m_Id: 118
-    m_Localized: "Colorea los muros de anchura y duraci\xF3n negativa de forma distinta
-      a los muros est\xE1ndar."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 119
-    m_Localized: Permite que la forma de onda cambie de lado al alternar entre espacios
-      de trabajo.
-    m_Metadata:
-      m_Items: []
   - m_Id: 120
     m_Localized: "Cambia c\xF3mo de r\xE1pido se mueve la c\xE1mara."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 121
-    m_Localized: "Usa Ctrl-Click para dibujar una caja y seleccionar en lugar de
-      pintar tu selecci\xF3n."
     m_Metadata:
       m_Items: []
   - m_Id: 122
@@ -533,7 +327,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 124
-    m_Localized: "Ubicaci\xF3n de tu instalaci\xF3n de Beat Saber."
+    m_Localized: Location of your BoomBox installation.
     m_Metadata:
       m_Items: []
   - m_Id: 125
@@ -563,8 +357,7 @@ MonoBehaviour:
   - m_Id: 131
     m_Localized: Extensiones
     m_Metadata:
-      m_Items:
-      - id: 0
+      m_Items: []
   - m_Id: 132
     m_Localized: Experimentales
     m_Metadata:
@@ -573,11 +366,6 @@ MonoBehaviour:
     m_Localized: "Cr\xE9ditos"
     m_Metadata:
       m_Items: []
-  - m_Id: 134
-    m_Localized: '{TextValue}'
-    m_Metadata:
-      m_Items:
-      - id: 0
   - m_Id: 135
     m_Localized: '{TextValue}'
     m_Metadata:
@@ -618,14 +406,6 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - id: 0
-  - m_Id: 143
-    m_Localized: "Restringe el visor de rotaci\xF3n"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 144
-    m_Localized: "Restringe el visor de rotaci\xF3n entre 0 y 360."
-    m_Metadata:
-      m_Items: []
   - m_Id: 145
     m_Localized: Idioma
     m_Metadata:
@@ -640,8 +420,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 148
-    m_Localized: Es posible que ChroMapper necesite ser reiniciado para que los cambios
-      se apliquen.
+    m_Localized: BoomMapper may need to be restarted for the changes to take affect.
     m_Metadata:
       m_Items: []
   - m_Id: 149
@@ -652,19 +431,6 @@ MonoBehaviour:
     m_Localized: Incrementa el contraste entre las lineas de medida y su fondo.
     m_Metadata:
       m_Items: []
-  - m_Id: 151
-    m_Localized: Permitir eventos personalizados
-    m_Metadata:
-      m_Items: []
-  - m_Id: 152
-    m_Localized: Permitir el uso de eventos personalizados en tus mapas
-    m_Metadata:
-      m_Items: []
-  - m_Id: 153
-    m_Localized: '{TextValue}'
-    m_Metadata:
-      m_Items:
-      - id: 0
   - m_Id: 154
     m_Localized: Escala de la interfaz de usuario
     m_Metadata:
@@ -678,14 +444,6 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - id: 0
-  - m_Id: 157
-    m_Localized: Modelo de eventos
-    m_Metadata:
-      m_Items: []
-  - m_Id: 158
-    m_Localized: Change lighting event models.
-    m_Metadata:
-      m_Items: []
   - m_Id: 159
     m_Localized: "Canal de publicaci\xF3n"
     m_Metadata:
@@ -713,23 +471,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 165
     m_Localized: "\xA1Todo bien!"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 166
-    m_Localized: "Tama\xF1o del texto del editor de nodos"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 167
-    m_Localized: "Reduce el tama\xF1o del texto para poder ver m\xE1s contenido del
-      json en la pantalla"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 168
-    m_Localized: "Tama\xF1o del editor de nodos"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 169
-    m_Localized: "C\xF3mo de grande debe aparecer el editor de nodos"
     m_Metadata:
       m_Items: []
   - m_Id: 170
@@ -779,10 +520,6 @@ MonoBehaviour:
     m_Localized: Show Notes Per Second in Counters+
     m_Metadata:
       m_Items: []
-  - m_Id: 4756105506816
-    m_Localized: Show Swings Per Second in Counters+
-    m_Metadata:
-      m_Items: []
   - m_Id: 4923839918080
     m_Localized: Show Red/Blue Note Ratio in Counters+
     m_Metadata:
@@ -791,20 +528,12 @@ MonoBehaviour:
     m_Localized: Show Obstacle count in Counters+
     m_Metadata:
       m_Items: []
-  - m_Id: 5433380745216
-    m_Localized: Show Event count in Counters+
-    m_Metadata:
-      m_Items: []
   - m_Id: 5576540729344
     m_Localized: Show BPM Change count in Counters+
     m_Metadata:
       m_Items: []
   - m_Id: 5797878345728
     m_Localized: Show Current BPM in Counters+
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6094344335360
-    m_Localized: Show Time Spent Mapping in Counters+
     m_Metadata:
       m_Items: []
   - m_Id: 7740667375616
@@ -819,10 +548,6 @@ MonoBehaviour:
     m_Localized: Mostrar notas por segundo
     m_Metadata:
       m_Items: []
-  - m_Id: 8262946304000
-    m_Localized: Show Swings Per Second
-    m_Metadata:
-      m_Items: []
   - m_Id: 8468374925312
     m_Localized: "Mostrar proproci\xF3n Rojo/Azul"
     m_Metadata:
@@ -831,28 +556,12 @@ MonoBehaviour:
     m_Localized: Mostrar contador de obstaculos
     m_Metadata:
       m_Items: []
-  - m_Id: 8904158916608
-    m_Localized: Mostrar contador de eventos
-    m_Metadata:
-      m_Items: []
   - m_Id: 9070869917696
     m_Localized: Show BPM Change Count
     m_Metadata:
       m_Items: []
   - m_Id: 9291620331520
     m_Localized: Mostrar los BPM actuales
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9443374444544
-    m_Localized: Show Time Spent Mapping
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1564790530682880
-    m_Localized: Show Bomb count in Counters+
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1565145339441152
-    m_Localized: "Mostrar n\xFAmero de bombas"
     m_Metadata:
       m_Items: []
   - m_Id: 1062316191744
@@ -890,7 +599,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1664599280979968
-    m_Localized: Tweak the maximum framerate that CM will run at.
+    m_Localized: Tweak the maximum framerate that BoomMapper will run at.
     m_Metadata:
       m_Items: []
   - m_Id: 1894945813565440
@@ -898,24 +607,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1894950121115648
-    m_Localized: Fijar la velocidad de fotogramas de ChroMapper a la tasa de refresco
-      de tu pantalla.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4089437985878016
-    m_Localized: Makes Editor Scale independent of map BPM
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4090246341505024
-    m_Localized: BPM Independent Editor Scale
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9689541752557568
-    m_Localized: Visualize Chroma event alpha using the height of the event
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9689824679333888
-    m_Localized: Visualize Chroma Alpha
+    m_Localized: Lock BoomMapper's framerate to the refresh rate of your display.
     m_Metadata:
       m_Items: []
   - m_Id: 16675690602758144
@@ -926,9 +618,21 @@ MonoBehaviour:
     m_Localized: Anti-Aliasing
     m_Metadata:
       m_Items: []
+  - m_Id: 76977035641683968
+    m_Localized: Auto Save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76977092520640512
+    m_Localized: Regularly create backups of the currently open map.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76978036666859520
+    m_Localized: Waveform
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 010000000000000042000000000000004900000000000000830000000000000086000000000000008700000000000000880000000000000089000000000000008a000000000000008b000000000000008c000000000000008d000000000000008e0000000000000099000000000000009c00000000000000ad0000000000000000b07a73ae0400000000b21e87040000
+        m_Entries: 01000000000000004200000000000000490000000000000086000000000000008700000000000000880000000000000089000000000000008a000000000000008b000000000000008c000000000000008d000000000000008e0000000000000099000000000000009c00000000000000ad0000000000000000b07a73ae0400000000b21e87040000

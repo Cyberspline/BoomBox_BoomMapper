@@ -44,11 +44,6 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - id: 0
-  - m_Id: 6
-    m_Localized: "Ewents: {EventCount}\u30FE(\u3003^\u2207^)\uFF89"
-    m_Metadata:
-      m_Items:
-      - id: 0
   - m_Id: 7
     m_Localized: "BPM Wanges: {BPMCount} \uFF3C(^\u03C9^\uFF3C)"
     m_Metadata:
@@ -64,15 +59,6 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - id: 0
-  - m_Id: 10
-    m_Localized: Exwit ;w;
-    m_Metadata:
-      m_Items: []
-  - m_Id: 11
-    m_Localized: "Fwip the tabwe\nWithwout sawing! (\uFF89\u2267\u2207\u2266)\uFF89
-      \uFF90 \u2538\u2501\u2538"
-    m_Metadata:
-      m_Items: []
   - m_Id: 12
     m_Localized: "Swave And Ewit \u30FD(\u309C\u2207\u309C)\u30CE"
     m_Metadata:
@@ -89,52 +75,6 @@ MonoBehaviour:
     m_Localized: OwOpens the OwOptions menu
     m_Metadata:
       m_Items: []
-  - m_Id: 16
-    m_Localized: "Awto Swave\u25DE( \uFF64\u141B)\uFF64\uFF3F/"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 17
-    m_Localized: "Save eawy, (^\uFF70^)\nsave owften! (^\uFF2F^)"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 18
-    m_Localized: "Cwomwatic\nAbewwation (\u25D5\u25B3\u25D5\u273F)"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 19
-    m_Localized: 'Enabwes da Cwomatic Abewwation
-
-
-      post pwocewwing effect.'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 20
-    m_Localized: "Wightshow \uFF61(\u273F\u203F\u273F)\uFF61"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 21
-    m_Localized: Hwides evwyting exsept da pwatfowm.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 23
-    m_Localized: "Pwost Pwoceww Intensity \u25D1.\u25D1"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 24
-    m_Localized: "Contwowl wight intensity. \u25D1.\u25D1"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 26
-    m_Localized: Convewt Fwom Wegacy
-    m_Metadata:
-      m_Items: []
-  - m_Id: 27
-    m_Localized: 'Cownvewt Cwhoma 1.x
-
-
-      to Chroma 2.0 ewents'
-    m_Metadata:
-      m_Items: []
   - m_Id: 28
     m_Localized: Swave 'w'
     m_Metadata:
@@ -143,21 +83,13 @@ MonoBehaviour:
     m_Localized: "Save eawy, (^\uFF70^);save owften! (^\uFF2F^)"
     m_Metadata:
       m_Items:
-      - id: 0
+      - id: 1
   - m_Id: 30
-    m_Localized: "Quit CowoMappew (\u3112o\u3112)"
+    m_Localized: Close to Desktop
     m_Metadata:
       m_Items: []
   - m_Id: 31
-    m_Localized: "Exit CowoMappew (\u3112o\u3112)"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 33
-    m_Localized: Wefwesh Wotations
-    m_Metadata:
-      m_Items: []
-  - m_Id: 34
-    m_Localized: Wefwesh objects and how dey are affected by wotation.
+    m_Localized: Exit BoomMapper
     m_Metadata:
       m_Items: []
   - m_Id: 35
@@ -166,10 +98,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 36
     m_Localized: Bwue Note.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 37
-    m_Localized: "Bombs. (\u25D5\uFE4F\u25D5\u273F)"
     m_Metadata:
       m_Items: []
   - m_Id: 38
@@ -181,44 +109,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 40
-    m_Localized: Miwwow sewection, simiwa to da weft handed-mode.
+    m_Localized: Mirror
     m_Metadata:
       m_Items: []
   - m_Id: 41
     m_Localized: Change Workfwows.
     m_Metadata:
       m_Items:
-      - id: 0
+      - id: 2
   - m_Id: 42
     m_Localized: Dewete stuff. :c
-    m_Metadata:
-      m_Items: []
-  - m_Id: 43
-    m_Localized: Da wight wiww be tuwned owff.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 44
-    m_Localized: Da wight wiww be tuwned on.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 45
-    m_Localized: Da wight wiww fade to bwack.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 46
-    m_Localized: Da wight wiww fwash fwom bwack.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 47
-    m_Localized: Wasew Speed
-    m_Metadata:
-      m_Items: []
-  - m_Id: 48
-    m_Localized: Stwobe Genewatow
-    m_Metadata:
-      m_Items: []
-  - m_Id: 49
-    m_Localized: "Add some Chwoma RGB to youw wights (\uFF89\u25D5\u30EE\u25D5)\uFF89*:\uFF65\uFF9F\u2727."
     m_Metadata:
       m_Items: []
   - m_Id: 50
@@ -274,134 +174,7 @@ MonoBehaviour:
     m_Localized: '{Keybind} To Change'
     m_Metadata:
       m_Items:
-      - id: 0
-  - m_Id: 65
-    m_Localized: Pwace Cowoma RGB ewents.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 66
-    m_Localized: 'Picks cowows off of
-
-
-      Cowoma cowowed owbwects.'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 67
-    m_Localized: Paint Sewected Owbwects
-    m_Metadata:
-      m_Items: []
-  - m_Id: 68
-    m_Localized: Set cowow for Left Nowote
-    m_Metadata:
-      m_Items: []
-  - m_Id: 69
-    m_Localized: Set cowow for Wight Nowote
-    m_Metadata:
-      m_Items: []
-  - m_Id: 70
-    m_Localized: Set cowo fow Wed Wighting Ewents
-    m_Metadata:
-      m_Items: []
-  - m_Id: 71
-    m_Localized: Set cowo fow Bwue Wighting Ewents
-    m_Metadata:
-      m_Items: []
-  - m_Id: 72
-    m_Localized: Set cowo fow Obstacwes
-    m_Metadata:
-      m_Items: []
-  - m_Id: 73
-    m_Localized: Weset Nowote Cowows
-    m_Metadata:
-      m_Items: []
-  - m_Id: 74
-    m_Localized: Weset Wight Cowows
-    m_Metadata:
-      m_Items: []
-  - m_Id: 75
-    m_Localized: Weset Obstacwe Cowow
-    m_Metadata:
-      m_Items: []
-  - m_Id: 76
-    m_Localized: Wegulaw
-    m_Metadata:
-      m_Items: []
-  - m_Id: 77
-    m_Localized: Genewates weguwar ewents.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 78
-    m_Localized: Cowoma
-    m_Metadata:
-      m_Items: []
-  - m_Id: 79
-    m_Localized: Cweates gwadients between cowoma cowos whiwe genewating a stowobe.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 80
-    m_Localized: Dynamic
-    m_Metadata:
-      m_Items: []
-  - m_Id: 81
-    m_Localized: Dynamicawwy changes Stowobe Type A when an ewent is hit whiwe genewating
-      a stowobe.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 82
-    m_Localized: Wed Ewents
-    m_Metadata:
-      m_Items: []
-  - m_Id: 83
-    m_Localized: Stowobe wiww genewate ownly Wed ewents when appwicabwe.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 84
-    m_Localized: Bwue Ewents
-    m_Metadata:
-      m_Items: []
-  - m_Id: 85
-    m_Localized: Stowobe wiww genewate ownly Bwue ewents when appwicabwe.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 86
-    m_Localized: Fwip Cowowsh
-    m_Metadata:
-      m_Items: []
-  - m_Id: 87
-    m_Localized: Stwobe wiww awtewnate between both cowows when abwe.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 88
-    m_Localized: Stowobe Intewwal
-    m_Metadata:
-      m_Items: []
-  - m_Id: 89
-    m_Localized: "How dense da stowobe/gwadient wiww be.\nWecommended vawues: 1/8
-      and\n 1/16"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 90
-    m_Localized: Stowobe Easwing
-    m_Metadata:
-      m_Items: []
-  - m_Id: 91
-    m_Localized: "Detewmines wate of change of stowobe.\nFow higher ewent density,
-      incwease \n Stowobe Interwal.\n\nFow mowe infowmation, see: https://easings.net/
-      \u2605~(\u25E0\u203F\u25D5\u273F)"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 92
-    m_Localized: Genewate Stowobe
-    m_Metadata:
-      m_Items: []
-  - m_Id: 93
-    m_Localized: Cwose
-    m_Metadata:
-      m_Items: []
-  - m_Id: 94
-    m_Localized: Ewits Node Ewitor.
-    m_Metadata:
-      m_Items: []
+      - id: 3
   - m_Id: 95
     m_Localized: Pwease entew da BPM fow dis BPM change.
     m_Metadata:
@@ -450,15 +223,6 @@ MonoBehaviour:
     m_Localized: Owobstacwes
     m_Metadata:
       m_Items: []
-  - m_Id: 105
-    m_Localized: 'Wotation ewents awe disabwed outside owf da 360 Degwee, 90 Degwee,
-      and Wawwess chawactewistics. :C
-
-
-      If youw wiwsh two pwace dese ewents,
-      pwease cweate difficuwties fow da afowementioned chawactewistics. (>.<)'
-    m_Metadata:
-      m_Items: []
   - m_Id: 106
     m_Localized: Awe youw suwe you want to dewete dis bookmawk?
     m_Metadata:
@@ -468,21 +232,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 108
-    m_Localized: Do youw want to sawve befow quiting CowoMappew?
-    m_Metadata:
-      m_Items: []
-  - m_Id: 109
-    m_Localized: To powpowy uwse Stwobe Genewatow, pwease sewect 2 end powoints wit
-      da same ewent twype.
+    m_Localized: Do you want to save before quiting BoomMapper?
     m_Metadata:
       m_Items: []
   - m_Id: 110
     m_Localized: Due to Uwunity shadew westwictions, da maximwum amowount owf BPM
       Changes youw cwan have is {0}.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 111
-    m_Localized: "Nowode Editow is vewy powefuw - Be cawfuw! (-\u2019\u0E4F_\u0E4F\u2019-)"
     m_Metadata:
       m_Items: []
   - m_Id: 112
@@ -501,175 +256,12 @@ MonoBehaviour:
     m_Localized: Cancew -n-
     m_Metadata:
       m_Items: []
-  - m_Id: 116
-    m_Localized: Pwace Cowoma Cowored Obwects
-    m_Metadata:
-      m_Items: []
-  - m_Id: 117
-    m_Localized: Se bwoost cowo fow Bwue Wighting Ewents
-    m_Metadata:
-      m_Items: []
-  - m_Id: 118
-    m_Localized: Se bwoost cowo fow Wed Wighting Ewents
-    m_Metadata:
-      m_Items: []
-  - m_Id: 119
-    m_Localized: Chwoma Eashing
-    m_Metadata:
-      m_Items: []
-  - m_Id: 120
-    m_Localized: Changesh eashing fow Chwoma gwadients.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 121
-    m_Localized: Use Wed event.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 122
-    m_Localized: Use Bwue event.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 123
-    m_Localized: Bwasic Ewent Stwobe
-    m_Metadata:
-      m_Items: []
-  - m_Id: 124
-    m_Localized: Chwoma 2.0w0 Gwadient
-    m_Metadata:
-      m_Items: []
-  - m_Id: 125
-    m_Localized: Pwecise Laser Spweed Intewpolation
-    m_Metadata:
-      m_Items: []
-  - m_Id: 126
-    m_Localized: Pwacement Intewval
-    m_Metadata:
-      m_Items: []
-  - m_Id: 127
-    m_Localized: Contwols da density of gwenerated event.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 128
-    m_Localized: Laser Spweed Easing
-    m_Metadata:
-      m_Items: []
-  - m_Id: 129
-    m_Localized: Contwols amwount of da pwecision fow spweed walues.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 130
-    m_Localized: Lowk Laser Wotation
-    m_Metadata:
-      m_Items: []
-  - m_Id: 131
-    m_Localized: Pwevents laser wotation fwom wandomly chwanging.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 132
-    m_Localized: Shpin Diwecshun
-    m_Metadata:
-      m_Items: []
-  - m_Id: 133
-    m_Localized: Contwols which diwection da laser spinn.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 134
-    m_Localized: Cwockwise
-    m_Metadata:
-      m_Items: []
-  - m_Id: 135
-    m_Localized: Cwounta-Cwockwise
-    m_Metadata:
-      m_Items: []
-  - m_Id: 136
-    m_Localized: Wandom
-    m_Metadata:
-      m_Items: []
-  - m_Id: 137
-    m_Localized: Unjique Laser Diwections
-    m_Metadata:
-      m_Items: []
-  - m_Id: 138
-    m_Localized: Enswuwes dat Lweft and Wight lasers will wotate in opwosidee diwections.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 139
-    m_Localized: Dwecimal Pwecision
-    m_Metadata:
-      m_Items: []
-  - m_Id: 140
-    m_Localized: Contwols amwount of da pwecision fow spweed walues.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 141
-    m_Localized: 'Swings Pew Secownd: {OverallSPS:F2}'
-    m_Metadata:
-      m_Items:
-      - id: 0
-  - m_Id: 143
-    m_Localized: Chwoma Stjep Gwadient
-    m_Metadata:
-      m_Items: []
-  - m_Id: 32
-    m_Localized: "Here at Chroma\xAE we value your eye-cone thingies.\r\n\r\nA recent
-      trend of duochromitis has plagued the VR community this last year, and we've
-      decided to balance the playing field.\r\n\r\nChroma\xAE, and it's big brother
-      ChromaToggle\u2122, can bring you up from your sad, rainbowless life into a
-      world of Pentachrome\u2122 magic. Experience the joy of having up to six different
-      colours of blocks flying towards you at break neck speed! If that's not enough
-      for you, we even offer a cacophony of Technicolour\xA9 lightwaves, to bring
-      your eyes to their knees!\r\n\r\nNow, with something as brilliant and Nobel
-      Peace Price worthy as the Chroma Suite\u2122, specialized software needs to
-      be created to handle these beasts of technological engineering. That's where
-      ChroMapper\xAE comes into play!\r\n\r\nChroMapper\u2122 makes it easy for the
-      everyday Joe to use the power of Chroma\xA9 RGB\u2122 to create lightshows
-      and maps that are far superior to their duochromatic counterparts! Reality
-      Check Through The Skull? Slap some Chroma on that mofo and you've got yourself
-      a map worthy of Cube Community!\r\n\r\nSo, what are you waiting for? Stop living
-      in your sad two-color world and join us enlightened individuals with the power
-      of Chroma\xAE RGB and ChroMapper\u2122!\r\n\r\n=========================================\r\n\r\nWelcome
-      to ChroMapper!\r\n\r\nChroMapper is an in-development, Unity based mapper for
-      Beat Saber which specializes in advanced map creation. Prepare to fill the
-      eyes of yourself and others with powerful lightshows and wall maps that would
-      make everyone flock to your Beat Saver page!\r\n\r\nChroMapper is not perfect;
-      bugs, issues, and other misconveniences can happen. If you encounter some of
-      these, please go to #cm-bug-reports in the ChroMapper discord, or #cm-suggestions
-      if you want to have ideas to add to, or improve, the ChroMapper. Somehow don't
-      have Discord? Use the ChroMapper GitHub repository!\r\n\r\nControls have been
-      relocated to the \"Keybinds\" section in the Settings menu. Please go there
-      to view all the keybinds!"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 148
-    m_Localized: Fwade
-    m_Metadata:
-      m_Items: []
-  - m_Id: 151
-    m_Localized: Fwash
-    m_Metadata:
-      m_Items: []
-  - m_Id: 150
-    m_Localized: Owff
-    m_Metadata:
-      m_Items: []
-  - m_Id: 149
-    m_Localized: Own
-    m_Metadata:
-      m_Items: []
-  - m_Id: 153
-    m_Localized: Pwecision Wotation
-    m_Metadata:
-      m_Items: []
   - m_Id: 152
     m_Localized: Cuwsow Intwewval
     m_Metadata:
       m_Items: []
   - m_Id: 144
     m_Localized: Nowote
-    m_Metadata:
-      m_Items: []
-  - m_Id: 145
-    m_Localized: Bwomb
     m_Metadata:
       m_Items: []
   - m_Id: 146
@@ -680,10 +272,6 @@ MonoBehaviour:
     m_Localized: "Dwelete ;\u2014;"
     m_Metadata:
       m_Items: []
-  - m_Id: 154
-    m_Localized: Swawps wat side da spectwogwam is own
-    m_Metadata:
-      m_Items: []
   - m_Id: 155
     m_Localized: "Entew da name owf dis new Bowokmawk. \u30FD(^\u25C7^*)/"
     m_Metadata:
@@ -692,17 +280,12 @@ MonoBehaviour:
     m_Localized: 'Cuwwent fastnes: {CurrentBPM:0.###}'
     m_Metadata:
       m_Items:
-      - id: 0
+      - id: 4
   - m_Id: 1123800776704
     m_Localized: 'Wed/Bwu Watio: {RedBlueRatio:F2} (I know you keep checking this)'
     m_Metadata:
       m_Items:
-      - id: 0
-  - m_Id: 3209883108945920
-    m_Localized: 'OH NO BOMBS: {BombCount}'
-    m_Metadata:
-      m_Items:
-      - id: 0
+      - id: 5
   - m_Id: 12803634470490112
     m_Localized: Sewect da nyu cowow fow this bukmawk
     m_Metadata:
@@ -711,9 +294,37 @@ MonoBehaviour:
     m_Localized: "Sewect stuff fiwst! \u30FE(\uFF9F\u0434\uFF9F)\uFF89"
     m_Metadata:
       m_Items: []
+  - m_Id: 78620000642465792
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78620058251231232
+    m_Localized: Close the editor without saving.
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 00b07a265f670b00070000000000000000003fb3360000000600000000000000010000000000000003000000000000000200000000000000040000000000000005000000000000000000bfa7050100008d0000000000000008000000000000001d0000000000000009000000000000004000000000000000
+    00000001:
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 00b07a265f670b00070000000000000000003fb3360000000600000000000000010000000000000003000000000000000200000000000000040000000000000005000000000000000000bfa7050100008d0000000000000008000000000000001d0000000000000009000000000000004000000000000000
+    00000002:
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 290000000000000000b07a265f670b00070000000000000000003fb3360000000600000000000000010000000000000003000000000000000200000000000000040000000000000005000000000000000000bfa7050100008d0000000000000008000000000000001d0000000000000009000000000000004000000000000000
+    00000003:
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 290000000000000000b07a265f670b00070000000000000000003fb3360000000600000000000000010000000000000003000000000000000200000000000000040000000000000005000000000000000000bfa7050100008d0000000000000008000000000000001d0000000000000009000000000000004000000000000000
+    00000004:
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 290000000000000000b07a265f670b00070000000000000000003fb3360000000600000000000000010000000000000003000000000000000200000000000000040000000000000005000000000000000000bfa7050100008d0000000000000008000000000000001d0000000000000009000000000000004000000000000000
+    00000005:
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
         m_Entries: 290000000000000000b07a265f670b00070000000000000000003fb3360000000600000000000000010000000000000003000000000000000200000000000000040000000000000005000000000000000000bfa7050100008d0000000000000008000000000000001d0000000000000009000000000000004000000000000000

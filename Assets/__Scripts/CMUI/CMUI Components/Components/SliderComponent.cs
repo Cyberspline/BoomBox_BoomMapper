@@ -57,14 +57,14 @@ public class SliderComponent : CMUIComponentWithLabel<float>
         }
 
         slider.SetValueWithoutNotify(updatedValue);
-
+        
         UpdateText();
     }
 
     protected override float ValidateValue(float rawValue)
         => precision == 0
             ? Mathf.Clamp(rawValue, slider.minValue, slider.maxValue)
-            : Mathf.Clamp(rawValue, slider.minValue / precision, slider.maxValue / precision);
+            : Mathf.Clamp(rawValue, slider.minValue * precision, slider.maxValue * precision);
 
     private void Start()
     {

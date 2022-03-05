@@ -39,25 +39,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6
-    m_Localized: "\uC120\uD0DD\uD55C \uACBD\uB85C\uC5D0\uC11C \"Beat Saber_Data\"
-      \uB610\uB294 \"CustomLevels\" \uD3F4\uB354\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4!"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7
-    m_Localized: "\uC120\uD0DD\uD55C \uACBD\uB85C\uC5D0\uC11C \"CustomWIPLevel\"
-      \uD3F4\uB354\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4!"
+    m_Localized: No "BoomBox_Data" or "Maps" folder found at chosen location!
     m_Metadata:
       m_Items: []
   - m_Id: 8
-    m_Localized: "{0}\n\nChroMapper\uAC00 \uB204\uB77D\uB41C \uD3F4\uB354\uB97C \uC0DD\uC131\uD558\uB3C4\uB85D
-      \uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
+    m_Localized: '{0}
+
+
+      Would you like BoomMapper to generate the missing folders?'
     m_Metadata:
       m_Items: []
   - m_Id: 9
-    m_Localized: "\uAC8C\uC784 \uC124\uCE58 \uD3F4\uB354\uB9CC\uC744 \uC0AC\uC6A9\uD560
-      \uD544\uC694\uB294 \uC5C6\uC2B5\uB2C8\uB2E4. \uADF8\uC800 \"/Beat Saber_Data/CustomLevels/\",
-      \"/Beat Saber_Data/CustomWIPLevels/\"\uB97C \uAC00\uC9C4 \uD3F4\uB354\uB77C\uBA74
-      \uCDA9\uBD84\uD569\uB2C8\uB2E4."
+    m_Localized: You do not need a true BoomBox installation. Just select any location
+      and BoomMapper will ask you to generate any missing folders.
     m_Metadata:
       m_Items: []
   - m_Id: 10

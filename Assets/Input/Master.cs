@@ -673,6 +673,14 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Cancel Placement"",
+                    ""type"": ""Button"",
+                    ""id"": ""46847cde-27d4-4053-97f9-16d618e5e779"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -763,6 +771,17 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""action"": ""Initiate Click and Drag at Time"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cf4e59e4-9cd9-4f60-8f21-43ba4c0a1ef0"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Cancel Placement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -845,166 +864,6 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""ChroMapper Default"",
                     ""action"": ""Right Note"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Event Placement"",
-            ""id"": ""d0462ea9-c717-4662-b004-e7b66e957cc9"",
-            ""actions"": [
-                {
-                    ""name"": ""Rotation: 15 Degrees"",
-                    ""type"": ""Button"",
-                    ""id"": ""51596ba1-f128-48c4-b563-b4553f121a1e"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                },
-                {
-                    ""name"": ""Rotation: 30 Degrees"",
-                    ""type"": ""Button"",
-                    ""id"": ""cb255ff2-9a90-44fd-a139-433a56a04612"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                },
-                {
-                    ""name"": ""Rotation: 45 Degrees"",
-                    ""type"": ""Button"",
-                    ""id"": ""2aa190df-15aa-4507-a947-7f4aaa7175bc"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                },
-                {
-                    ""name"": ""Rotation: 60 Degrees"",
-                    ""type"": ""Button"",
-                    ""id"": ""666291dd-9d51-4f5d-87a2-8ce834a7779c"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                },
-                {
-                    ""name"": ""Negative Rotation Modifier"",
-                    ""type"": ""Button"",
-                    ""id"": ""88d0b651-1178-4c79-a5f1-8ea75fafec79"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                },
-                {
-                    ""name"": ""Rotate In Place Left"",
-                    ""type"": ""Button"",
-                    ""id"": ""495ff970-c1be-4d9e-b6e5-25d4656ac258"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                },
-                {
-                    ""name"": ""Rotate In Place Right"",
-                    ""type"": ""Button"",
-                    ""id"": ""b4f5c09c-5a5b-456d-b383-ce9277daae64"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                },
-                {
-                    ""name"": ""Rotate In Place Modifier"",
-                    ""type"": ""Button"",
-                    ""id"": ""0708fcf5-8b14-46b7-97c2-4a9c7577075d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""c7ad07e7-8790-452a-8bdc-a301fedaff56"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Rotation: 15 Degrees"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""bc17f8d9-7868-4557-8ca6-3acd787acd43"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Rotation: 30 Degrees"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d4b70180-b3d4-47af-ae16-dda507b87380"",
-                    ""path"": ""<Keyboard>/3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Rotation: 45 Degrees"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d749c574-a404-4087-a71b-b38850d3db76"",
-                    ""path"": ""<Keyboard>/4"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Rotation: 60 Degrees"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""16ae0d9f-09a8-4e34-9ba2-ca2af05b34aa"",
-                    ""path"": ""<Keyboard>/shift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Negative Rotation Modifier"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""de4c99fa-1cb8-4197-be86-dd018ac9698b"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Rotate In Place Left"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9fcd9c8b-a4f4-4cb8-87f9-f5b88ad168ab"",
-                    ""path"": ""<Keyboard>/shift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Rotate In Place Modifier"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ef840ea6-28cb-4ea2-80be-1d800b5bd5be"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Rotate In Place Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1812,14 +1671,6 @@ public class @CMInput : IInputActionCollection, IDisposable
             ""id"": ""d18a448a-b849-4a22-a103-3a79418bc61b"",
             ""actions"": [
                 {
-                    ""name"": ""Update Note Direction"",
-                    ""type"": ""Button"",
-                    ""id"": ""bc91082a-7c68-45d3-b368-0e6984e98661"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                },
-                {
                     ""name"": ""Invert Note Colors"",
                     ""type"": ""Button"",
                     ""id"": ""5bf4f065-0e9f-4166-a219-7ec603ae88c6"",
@@ -1837,39 +1688,6 @@ public class @CMInput : IInputActionCollection, IDisposable
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": ""Keyboard"",
-                    ""id"": ""1171f62c-0f8d-4675-acfd-6179c6acc22e"",
-                    ""path"": ""ButtonWithOneModifier"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Update Note Direction"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""modifier"",
-                    ""id"": ""c671d9c9-3509-4aab-aa3f-6b774b73fab2"",
-                    ""path"": ""<Keyboard>/alt"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Update Note Direction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""button"",
-                    ""id"": ""6a07e536-7c00-4341-85fd-f27f37e449b1"",
-                    ""path"": ""<Mouse>/scroll/y"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Update Note Direction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
                 {
                     ""name"": """",
                     ""id"": ""a1a9d032-f76b-4e85-8d27-46380767f735"",
@@ -1889,6 +1707,123 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Quick Direction Modifier"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""BPM Change Objects"",
+            ""id"": ""dcc47838-c346-486c-8c4c-6a3074023cb3"",
+            ""actions"": [
+                {
+                    ""name"": ""Replace BPM"",
+                    ""type"": ""Button"",
+                    ""id"": ""9f9b573b-d4b1-439c-b3f9-17336ada4933"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Tweak BPM Value"",
+                    ""type"": ""Button"",
+                    ""id"": ""d5500879-426b-4d21-b2e8-b9e11de4c331"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""Keyboard"",
+                    ""id"": ""21a62bbe-f4ce-419f-ae19-14d29edb1362"",
+                    ""path"": ""ButtonWithOneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Replace BPM"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""bd0c2548-257d-4551-8c64-dd5f86c44543"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Replace BPM"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""414dede3-0ceb-4e97-b164-772b756aeebd"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Replace BPM"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard"",
+                    ""id"": ""b9437e71-7074-402d-9abe-9f1ef4071e15"",
+                    ""path"": ""ButtonWithOneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tweak BPM Value"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""64333cae-86d5-436c-a120-2657519d7464"",
+                    ""path"": ""<Keyboard>/alt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Tweak BPM Value"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""02a89018-2048-45e5-bcf2-61356550f061"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Tweak BPM Value"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
+        },
+        {
+            ""name"": ""Box Select"",
+            ""id"": ""ce387cfe-7aed-46ef-ab8b-e0cf196f6a96"",
+            ""actions"": [
+                {
+                    ""name"": ""Activate Box Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""1bfcb620-0275-4b3e-a89d-2e5d52203c8d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f6185091-72dd-4efb-ab34-6ea3096834c6"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Activate Box Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1949,58 +1884,17 @@ public class @CMInput : IInputActionCollection, IDisposable
             ]
         },
         {
-            ""name"": ""Selecting"",
-            ""id"": ""6964f0f1-558d-46e7-aad0-caa88576d216"",
+            ""name"": ""Selection"",
+            ""id"": ""b3792a28-92fa-4821-90b9-504529c52fd1"",
             ""actions"": [
                 {
                     ""name"": ""Deselect All"",
                     ""type"": ""Button"",
-                    ""id"": ""843ec7df-2ea7-4a04-bdd8-dab6f351222c"",
+                    ""id"": ""f592a091-9740-4e72-8f17-4d26ccf2698a"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press""
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": ""Keyboard"",
-                    ""id"": ""6ec20df8-70e6-4e81-b88d-d49d8946c8ab"",
-                    ""path"": ""ButtonWithOneModifier"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Deselect All"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
                 },
-                {
-                    ""name"": ""modifier"",
-                    ""id"": ""b7fa0985-c08e-4fb3-9916-8ec8c089609d"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Deselect All"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""button"",
-                    ""id"": ""fd8858fe-7e16-4241-8183-7bf767569fbf"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Deselect All"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                }
-            ]
-        },
-        {
-            ""name"": ""Modifying Selection"",
-            ""id"": ""b3792a28-92fa-4821-90b9-504529c52fd1"",
-            ""actions"": [
                 {
                     ""name"": ""Delete Objects"",
                     ""type"": ""Button"",
@@ -2308,6 +2202,39 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""action"": ""Shifting Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard"",
+                    ""id"": ""79c5c421-e970-43e6-953e-444eb99927b1"",
+                    ""path"": ""ButtonWithOneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Deselect All"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""5c1aa968-84dd-4c65-bc43-0d48e8bc1d67"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Deselect All"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""2d1bb3a4-abb8-4b08-ad50-25849b624648"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Deselect All"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -2407,123 +2334,6 @@ public class @CMInput : IInputActionCollection, IDisposable
             ]
         },
         {
-            ""name"": ""Cancel Placement"",
-            ""id"": ""181ef8a3-4a33-4fdb-980e-80e1f05dcaac"",
-            ""actions"": [
-                {
-                    ""name"": ""Cancel Placement"",
-                    ""type"": ""Button"",
-                    ""id"": ""e5739486-8857-4097-bff2-191f94393ee5"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""21ee156d-d800-46cd-8f54-5457a708e891"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Cancel Placement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""BPM Change Objects"",
-            ""id"": ""dcc47838-c346-486c-8c4c-6a3074023cb3"",
-            ""actions"": [
-                {
-                    ""name"": ""Replace BPM"",
-                    ""type"": ""Button"",
-                    ""id"": ""9f9b573b-d4b1-439c-b3f9-17336ada4933"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Tweak BPM Value"",
-                    ""type"": ""Button"",
-                    ""id"": ""d5500879-426b-4d21-b2e8-b9e11de4c331"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": ""Keyboard"",
-                    ""id"": ""21a62bbe-f4ce-419f-ae19-14d29edb1362"",
-                    ""path"": ""ButtonWithOneModifier"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Replace BPM"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""modifier"",
-                    ""id"": ""bd0c2548-257d-4551-8c64-dd5f86c44543"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Replace BPM"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""button"",
-                    ""id"": ""414dede3-0ceb-4e97-b164-772b756aeebd"",
-                    ""path"": ""<Mouse>/middleButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Replace BPM"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Keyboard"",
-                    ""id"": ""b9437e71-7074-402d-9abe-9f1ef4071e15"",
-                    ""path"": ""ButtonWithOneModifier"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Tweak BPM Value"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""modifier"",
-                    ""id"": ""64333cae-86d5-436c-a120-2657519d7464"",
-                    ""path"": ""<Keyboard>/alt"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Tweak BPM Value"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""button"",
-                    ""id"": ""02a89018-2048-45e5-bcf2-61356550f061"",
-                    ""path"": ""<Mouse>/scroll/y"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Tweak BPM Value"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                }
-            ]
-        },
-        {
             ""name"": ""MenusExtended"",
             ""id"": ""0a34d3d3-4820-4928-bf89-0c72500b3025"",
             ""actions"": [
@@ -2591,33 +2401,6 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""ChroMapper Default"",
                     ""action"": ""Toggle Debug Console"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Box Select"",
-            ""id"": ""ce387cfe-7aed-46ef-ab8b-e0cf196f6a96"",
-            ""actions"": [
-                {
-                    ""name"": ""Activate Box Select"",
-                    ""type"": ""Button"",
-                    ""id"": ""1bfcb620-0275-4b3e-a89d-2e5d52203c8d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""f6185091-72dd-4efb-ab34-6ea3096834c6"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Activate Box Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -2713,22 +2496,13 @@ public class @CMInput : IInputActionCollection, IDisposable
         m_PlacementControllers_InitiateClickandDrag = m_PlacementControllers.FindAction("Initiate Click and Drag", throwIfNotFound: true);
         m_PlacementControllers_InitiateClickandDragatTime = m_PlacementControllers.FindAction("Initiate Click and Drag at Time", throwIfNotFound: true);
         m_PlacementControllers_MousePositionUpdate = m_PlacementControllers.FindAction("+Mouse Position Update", throwIfNotFound: true);
+        m_PlacementControllers_CancelPlacement = m_PlacementControllers.FindAction("Cancel Placement", throwIfNotFound: true);
         // Note Placement
         m_NotePlacement = asset.FindActionMap("Note Placement", throwIfNotFound: true);
         m_NotePlacement_UpNote = m_NotePlacement.FindAction("Up Note", throwIfNotFound: true);
         m_NotePlacement_LeftNote = m_NotePlacement.FindAction("Left Note", throwIfNotFound: true);
         m_NotePlacement_DownNote = m_NotePlacement.FindAction("Down Note", throwIfNotFound: true);
         m_NotePlacement_RightNote = m_NotePlacement.FindAction("Right Note", throwIfNotFound: true);
-        // Event Placement
-        m_EventPlacement = asset.FindActionMap("Event Placement", throwIfNotFound: true);
-        m_EventPlacement_Rotation15Degrees = m_EventPlacement.FindAction("Rotation: 15 Degrees", throwIfNotFound: true);
-        m_EventPlacement_Rotation30Degrees = m_EventPlacement.FindAction("Rotation: 30 Degrees", throwIfNotFound: true);
-        m_EventPlacement_Rotation45Degrees = m_EventPlacement.FindAction("Rotation: 45 Degrees", throwIfNotFound: true);
-        m_EventPlacement_Rotation60Degrees = m_EventPlacement.FindAction("Rotation: 60 Degrees", throwIfNotFound: true);
-        m_EventPlacement_NegativeRotationModifier = m_EventPlacement.FindAction("Negative Rotation Modifier", throwIfNotFound: true);
-        m_EventPlacement_RotateInPlaceLeft = m_EventPlacement.FindAction("Rotate In Place Left", throwIfNotFound: true);
-        m_EventPlacement_RotateInPlaceRight = m_EventPlacement.FindAction("Rotate In Place Right", throwIfNotFound: true);
-        m_EventPlacement_RotateInPlaceModifier = m_EventPlacement.FindAction("Rotate In Place Modifier", throwIfNotFound: true);
         // Workflows
         m_Workflows = asset.FindActionMap("Workflows", throwIfNotFound: true);
         m_Workflows_ToggleNoteColor = m_Workflows.FindAction("Toggle Note Color", throwIfNotFound: true);
@@ -2774,28 +2548,32 @@ public class @CMInput : IInputActionCollection, IDisposable
         m_BeatmapObjects_JumptoObjectTime = m_BeatmapObjects.FindAction("Jump to Object Time", throwIfNotFound: true);
         // Note Objects
         m_NoteObjects = asset.FindActionMap("Note Objects", throwIfNotFound: true);
-        m_NoteObjects_UpdateNoteDirection = m_NoteObjects.FindAction("Update Note Direction", throwIfNotFound: true);
         m_NoteObjects_InvertNoteColors = m_NoteObjects.FindAction("Invert Note Colors", throwIfNotFound: true);
         m_NoteObjects_QuickDirectionModifier = m_NoteObjects.FindAction("Quick Direction Modifier", throwIfNotFound: true);
+        // BPM Change Objects
+        m_BPMChangeObjects = asset.FindActionMap("BPM Change Objects", throwIfNotFound: true);
+        m_BPMChangeObjects_ReplaceBPM = m_BPMChangeObjects.FindAction("Replace BPM", throwIfNotFound: true);
+        m_BPMChangeObjects_TweakBPMValue = m_BPMChangeObjects.FindAction("Tweak BPM Value", throwIfNotFound: true);
+        // Box Select
+        m_BoxSelect = asset.FindActionMap("Box Select", throwIfNotFound: true);
+        m_BoxSelect_ActivateBoxSelect = m_BoxSelect.FindAction("Activate Box Select", throwIfNotFound: true);
         // BPM Tapper
         m_BPMTapper = asset.FindActionMap("BPM Tapper", throwIfNotFound: true);
         m_BPMTapper_ToggleBPMTapper = m_BPMTapper.FindAction("Toggle BPM Tapper", throwIfNotFound: true);
         // Pause Menu
         m_PauseMenu = asset.FindActionMap("Pause Menu", throwIfNotFound: true);
         m_PauseMenu_PauseEditor = m_PauseMenu.FindAction("Pause Editor", throwIfNotFound: true);
-        // Selecting
-        m_Selecting = asset.FindActionMap("Selecting", throwIfNotFound: true);
-        m_Selecting_DeselectAll = m_Selecting.FindAction("Deselect All", throwIfNotFound: true);
-        // Modifying Selection
-        m_ModifyingSelection = asset.FindActionMap("Modifying Selection", throwIfNotFound: true);
-        m_ModifyingSelection_DeleteObjects = m_ModifyingSelection.FindAction("Delete Objects", throwIfNotFound: true);
-        m_ModifyingSelection_Cut = m_ModifyingSelection.FindAction("Cut", throwIfNotFound: true);
-        m_ModifyingSelection_Paste = m_ModifyingSelection.FindAction("Paste", throwIfNotFound: true);
-        m_ModifyingSelection_Copy = m_ModifyingSelection.FindAction("Copy", throwIfNotFound: true);
-        m_ModifyingSelection_OverwritePaste = m_ModifyingSelection.FindAction("Overwrite Paste", throwIfNotFound: true);
-        m_ModifyingSelection_ShiftingMovement = m_ModifyingSelection.FindAction("Shifting Movement", throwIfNotFound: true);
-        m_ModifyingSelection_ActivateShiftinTime = m_ModifyingSelection.FindAction("Activate Shift in Time", throwIfNotFound: true);
-        m_ModifyingSelection_ActivateShiftinPlace = m_ModifyingSelection.FindAction("Activate Shift in Place", throwIfNotFound: true);
+        // Selection
+        m_Selection = asset.FindActionMap("Selection", throwIfNotFound: true);
+        m_Selection_DeselectAll = m_Selection.FindAction("Deselect All", throwIfNotFound: true);
+        m_Selection_DeleteObjects = m_Selection.FindAction("Delete Objects", throwIfNotFound: true);
+        m_Selection_Cut = m_Selection.FindAction("Cut", throwIfNotFound: true);
+        m_Selection_Paste = m_Selection.FindAction("Paste", throwIfNotFound: true);
+        m_Selection_Copy = m_Selection.FindAction("Copy", throwIfNotFound: true);
+        m_Selection_OverwritePaste = m_Selection.FindAction("Overwrite Paste", throwIfNotFound: true);
+        m_Selection_ShiftingMovement = m_Selection.FindAction("Shifting Movement", throwIfNotFound: true);
+        m_Selection_ActivateShiftinTime = m_Selection.FindAction("Activate Shift in Time", throwIfNotFound: true);
+        m_Selection_ActivateShiftinPlace = m_Selection.FindAction("Activate Shift in Place", throwIfNotFound: true);
         // UI Mode
         m_UIMode = asset.FindActionMap("UI Mode", throwIfNotFound: true);
         m_UIMode_ToggleUIMode = m_UIMode.FindAction("Toggle UI Mode", throwIfNotFound: true);
@@ -2803,13 +2581,6 @@ public class @CMInput : IInputActionCollection, IDisposable
         m_SongSpeed = asset.FindActionMap("Song Speed", throwIfNotFound: true);
         m_SongSpeed_DecreaseSongSpeed = m_SongSpeed.FindAction("Decrease Song Speed", throwIfNotFound: true);
         m_SongSpeed_IncreaseSongSpeed = m_SongSpeed.FindAction("Increase Song Speed", throwIfNotFound: true);
-        // Cancel Placement
-        m_CancelPlacement = asset.FindActionMap("Cancel Placement", throwIfNotFound: true);
-        m_CancelPlacement_CancelPlacement = m_CancelPlacement.FindAction("Cancel Placement", throwIfNotFound: true);
-        // BPM Change Objects
-        m_BPMChangeObjects = asset.FindActionMap("BPM Change Objects", throwIfNotFound: true);
-        m_BPMChangeObjects_ReplaceBPM = m_BPMChangeObjects.FindAction("Replace BPM", throwIfNotFound: true);
-        m_BPMChangeObjects_TweakBPMValue = m_BPMChangeObjects.FindAction("Tweak BPM Value", throwIfNotFound: true);
         // MenusExtended
         m_MenusExtended = asset.FindActionMap("MenusExtended", throwIfNotFound: true);
         m_MenusExtended_Tab = m_MenusExtended.FindAction("Tab", throwIfNotFound: true);
@@ -2817,9 +2588,6 @@ public class @CMInput : IInputActionCollection, IDisposable
         // Debug
         m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
         m_Debug_ToggleDebugConsole = m_Debug.FindAction("Toggle Debug Console", throwIfNotFound: true);
-        // Box Select
-        m_BoxSelect = asset.FindActionMap("Box Select", throwIfNotFound: true);
-        m_BoxSelect_ActivateBoxSelect = m_BoxSelect.FindAction("Activate Box Select", throwIfNotFound: true);
         // Audio
         m_Audio = asset.FindActionMap("Audio", throwIfNotFound: true);
         m_Audio_ToggleHitsoundMute = m_Audio.FindAction("Toggle Hitsound Mute", throwIfNotFound: true);
@@ -3111,6 +2879,7 @@ public class @CMInput : IInputActionCollection, IDisposable
     private readonly InputAction m_PlacementControllers_InitiateClickandDrag;
     private readonly InputAction m_PlacementControllers_InitiateClickandDragatTime;
     private readonly InputAction m_PlacementControllers_MousePositionUpdate;
+    private readonly InputAction m_PlacementControllers_CancelPlacement;
     public struct PlacementControllersActions
     {
         private @CMInput m_Wrapper;
@@ -3119,6 +2888,7 @@ public class @CMInput : IInputActionCollection, IDisposable
         public InputAction @InitiateClickandDrag => m_Wrapper.m_PlacementControllers_InitiateClickandDrag;
         public InputAction @InitiateClickandDragatTime => m_Wrapper.m_PlacementControllers_InitiateClickandDragatTime;
         public InputAction @MousePositionUpdate => m_Wrapper.m_PlacementControllers_MousePositionUpdate;
+        public InputAction @CancelPlacement => m_Wrapper.m_PlacementControllers_CancelPlacement;
         public InputActionMap Get() { return m_Wrapper.m_PlacementControllers; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -3140,6 +2910,9 @@ public class @CMInput : IInputActionCollection, IDisposable
                 @MousePositionUpdate.started -= m_Wrapper.m_PlacementControllersActionsCallbackInterface.OnMousePositionUpdate;
                 @MousePositionUpdate.performed -= m_Wrapper.m_PlacementControllersActionsCallbackInterface.OnMousePositionUpdate;
                 @MousePositionUpdate.canceled -= m_Wrapper.m_PlacementControllersActionsCallbackInterface.OnMousePositionUpdate;
+                @CancelPlacement.started -= m_Wrapper.m_PlacementControllersActionsCallbackInterface.OnCancelPlacement;
+                @CancelPlacement.performed -= m_Wrapper.m_PlacementControllersActionsCallbackInterface.OnCancelPlacement;
+                @CancelPlacement.canceled -= m_Wrapper.m_PlacementControllersActionsCallbackInterface.OnCancelPlacement;
             }
             m_Wrapper.m_PlacementControllersActionsCallbackInterface = instance;
             if (instance != null)
@@ -3156,6 +2929,9 @@ public class @CMInput : IInputActionCollection, IDisposable
                 @MousePositionUpdate.started += instance.OnMousePositionUpdate;
                 @MousePositionUpdate.performed += instance.OnMousePositionUpdate;
                 @MousePositionUpdate.canceled += instance.OnMousePositionUpdate;
+                @CancelPlacement.started += instance.OnCancelPlacement;
+                @CancelPlacement.performed += instance.OnCancelPlacement;
+                @CancelPlacement.canceled += instance.OnCancelPlacement;
             }
         }
     }
@@ -3217,95 +2993,6 @@ public class @CMInput : IInputActionCollection, IDisposable
         }
     }
     public NotePlacementActions @NotePlacement => new NotePlacementActions(this);
-
-    // Event Placement
-    private readonly InputActionMap m_EventPlacement;
-    private IEventPlacementActions m_EventPlacementActionsCallbackInterface;
-    private readonly InputAction m_EventPlacement_Rotation15Degrees;
-    private readonly InputAction m_EventPlacement_Rotation30Degrees;
-    private readonly InputAction m_EventPlacement_Rotation45Degrees;
-    private readonly InputAction m_EventPlacement_Rotation60Degrees;
-    private readonly InputAction m_EventPlacement_NegativeRotationModifier;
-    private readonly InputAction m_EventPlacement_RotateInPlaceLeft;
-    private readonly InputAction m_EventPlacement_RotateInPlaceRight;
-    private readonly InputAction m_EventPlacement_RotateInPlaceModifier;
-    public struct EventPlacementActions
-    {
-        private @CMInput m_Wrapper;
-        public EventPlacementActions(@CMInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Rotation15Degrees => m_Wrapper.m_EventPlacement_Rotation15Degrees;
-        public InputAction @Rotation30Degrees => m_Wrapper.m_EventPlacement_Rotation30Degrees;
-        public InputAction @Rotation45Degrees => m_Wrapper.m_EventPlacement_Rotation45Degrees;
-        public InputAction @Rotation60Degrees => m_Wrapper.m_EventPlacement_Rotation60Degrees;
-        public InputAction @NegativeRotationModifier => m_Wrapper.m_EventPlacement_NegativeRotationModifier;
-        public InputAction @RotateInPlaceLeft => m_Wrapper.m_EventPlacement_RotateInPlaceLeft;
-        public InputAction @RotateInPlaceRight => m_Wrapper.m_EventPlacement_RotateInPlaceRight;
-        public InputAction @RotateInPlaceModifier => m_Wrapper.m_EventPlacement_RotateInPlaceModifier;
-        public InputActionMap Get() { return m_Wrapper.m_EventPlacement; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(EventPlacementActions set) { return set.Get(); }
-        public void SetCallbacks(IEventPlacementActions instance)
-        {
-            if (m_Wrapper.m_EventPlacementActionsCallbackInterface != null)
-            {
-                @Rotation15Degrees.started -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnRotation15Degrees;
-                @Rotation15Degrees.performed -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnRotation15Degrees;
-                @Rotation15Degrees.canceled -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnRotation15Degrees;
-                @Rotation30Degrees.started -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnRotation30Degrees;
-                @Rotation30Degrees.performed -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnRotation30Degrees;
-                @Rotation30Degrees.canceled -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnRotation30Degrees;
-                @Rotation45Degrees.started -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnRotation45Degrees;
-                @Rotation45Degrees.performed -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnRotation45Degrees;
-                @Rotation45Degrees.canceled -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnRotation45Degrees;
-                @Rotation60Degrees.started -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnRotation60Degrees;
-                @Rotation60Degrees.performed -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnRotation60Degrees;
-                @Rotation60Degrees.canceled -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnRotation60Degrees;
-                @NegativeRotationModifier.started -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnNegativeRotationModifier;
-                @NegativeRotationModifier.performed -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnNegativeRotationModifier;
-                @NegativeRotationModifier.canceled -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnNegativeRotationModifier;
-                @RotateInPlaceLeft.started -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnRotateInPlaceLeft;
-                @RotateInPlaceLeft.performed -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnRotateInPlaceLeft;
-                @RotateInPlaceLeft.canceled -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnRotateInPlaceLeft;
-                @RotateInPlaceRight.started -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnRotateInPlaceRight;
-                @RotateInPlaceRight.performed -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnRotateInPlaceRight;
-                @RotateInPlaceRight.canceled -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnRotateInPlaceRight;
-                @RotateInPlaceModifier.started -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnRotateInPlaceModifier;
-                @RotateInPlaceModifier.performed -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnRotateInPlaceModifier;
-                @RotateInPlaceModifier.canceled -= m_Wrapper.m_EventPlacementActionsCallbackInterface.OnRotateInPlaceModifier;
-            }
-            m_Wrapper.m_EventPlacementActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Rotation15Degrees.started += instance.OnRotation15Degrees;
-                @Rotation15Degrees.performed += instance.OnRotation15Degrees;
-                @Rotation15Degrees.canceled += instance.OnRotation15Degrees;
-                @Rotation30Degrees.started += instance.OnRotation30Degrees;
-                @Rotation30Degrees.performed += instance.OnRotation30Degrees;
-                @Rotation30Degrees.canceled += instance.OnRotation30Degrees;
-                @Rotation45Degrees.started += instance.OnRotation45Degrees;
-                @Rotation45Degrees.performed += instance.OnRotation45Degrees;
-                @Rotation45Degrees.canceled += instance.OnRotation45Degrees;
-                @Rotation60Degrees.started += instance.OnRotation60Degrees;
-                @Rotation60Degrees.performed += instance.OnRotation60Degrees;
-                @Rotation60Degrees.canceled += instance.OnRotation60Degrees;
-                @NegativeRotationModifier.started += instance.OnNegativeRotationModifier;
-                @NegativeRotationModifier.performed += instance.OnNegativeRotationModifier;
-                @NegativeRotationModifier.canceled += instance.OnNegativeRotationModifier;
-                @RotateInPlaceLeft.started += instance.OnRotateInPlaceLeft;
-                @RotateInPlaceLeft.performed += instance.OnRotateInPlaceLeft;
-                @RotateInPlaceLeft.canceled += instance.OnRotateInPlaceLeft;
-                @RotateInPlaceRight.started += instance.OnRotateInPlaceRight;
-                @RotateInPlaceRight.performed += instance.OnRotateInPlaceRight;
-                @RotateInPlaceRight.canceled += instance.OnRotateInPlaceRight;
-                @RotateInPlaceModifier.started += instance.OnRotateInPlaceModifier;
-                @RotateInPlaceModifier.performed += instance.OnRotateInPlaceModifier;
-                @RotateInPlaceModifier.canceled += instance.OnRotateInPlaceModifier;
-            }
-        }
-    }
-    public EventPlacementActions @EventPlacement => new EventPlacementActions(this);
 
     // Workflows
     private readonly InputActionMap m_Workflows;
@@ -3726,14 +3413,12 @@ public class @CMInput : IInputActionCollection, IDisposable
     // Note Objects
     private readonly InputActionMap m_NoteObjects;
     private INoteObjectsActions m_NoteObjectsActionsCallbackInterface;
-    private readonly InputAction m_NoteObjects_UpdateNoteDirection;
     private readonly InputAction m_NoteObjects_InvertNoteColors;
     private readonly InputAction m_NoteObjects_QuickDirectionModifier;
     public struct NoteObjectsActions
     {
         private @CMInput m_Wrapper;
         public NoteObjectsActions(@CMInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @UpdateNoteDirection => m_Wrapper.m_NoteObjects_UpdateNoteDirection;
         public InputAction @InvertNoteColors => m_Wrapper.m_NoteObjects_InvertNoteColors;
         public InputAction @QuickDirectionModifier => m_Wrapper.m_NoteObjects_QuickDirectionModifier;
         public InputActionMap Get() { return m_Wrapper.m_NoteObjects; }
@@ -3745,9 +3430,6 @@ public class @CMInput : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_NoteObjectsActionsCallbackInterface != null)
             {
-                @UpdateNoteDirection.started -= m_Wrapper.m_NoteObjectsActionsCallbackInterface.OnUpdateNoteDirection;
-                @UpdateNoteDirection.performed -= m_Wrapper.m_NoteObjectsActionsCallbackInterface.OnUpdateNoteDirection;
-                @UpdateNoteDirection.canceled -= m_Wrapper.m_NoteObjectsActionsCallbackInterface.OnUpdateNoteDirection;
                 @InvertNoteColors.started -= m_Wrapper.m_NoteObjectsActionsCallbackInterface.OnInvertNoteColors;
                 @InvertNoteColors.performed -= m_Wrapper.m_NoteObjectsActionsCallbackInterface.OnInvertNoteColors;
                 @InvertNoteColors.canceled -= m_Wrapper.m_NoteObjectsActionsCallbackInterface.OnInvertNoteColors;
@@ -3758,9 +3440,6 @@ public class @CMInput : IInputActionCollection, IDisposable
             m_Wrapper.m_NoteObjectsActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @UpdateNoteDirection.started += instance.OnUpdateNoteDirection;
-                @UpdateNoteDirection.performed += instance.OnUpdateNoteDirection;
-                @UpdateNoteDirection.canceled += instance.OnUpdateNoteDirection;
                 @InvertNoteColors.started += instance.OnInvertNoteColors;
                 @InvertNoteColors.performed += instance.OnInvertNoteColors;
                 @InvertNoteColors.canceled += instance.OnInvertNoteColors;
@@ -3771,6 +3450,80 @@ public class @CMInput : IInputActionCollection, IDisposable
         }
     }
     public NoteObjectsActions @NoteObjects => new NoteObjectsActions(this);
+
+    // BPM Change Objects
+    private readonly InputActionMap m_BPMChangeObjects;
+    private IBPMChangeObjectsActions m_BPMChangeObjectsActionsCallbackInterface;
+    private readonly InputAction m_BPMChangeObjects_ReplaceBPM;
+    private readonly InputAction m_BPMChangeObjects_TweakBPMValue;
+    public struct BPMChangeObjectsActions
+    {
+        private @CMInput m_Wrapper;
+        public BPMChangeObjectsActions(@CMInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ReplaceBPM => m_Wrapper.m_BPMChangeObjects_ReplaceBPM;
+        public InputAction @TweakBPMValue => m_Wrapper.m_BPMChangeObjects_TweakBPMValue;
+        public InputActionMap Get() { return m_Wrapper.m_BPMChangeObjects; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(BPMChangeObjectsActions set) { return set.Get(); }
+        public void SetCallbacks(IBPMChangeObjectsActions instance)
+        {
+            if (m_Wrapper.m_BPMChangeObjectsActionsCallbackInterface != null)
+            {
+                @ReplaceBPM.started -= m_Wrapper.m_BPMChangeObjectsActionsCallbackInterface.OnReplaceBPM;
+                @ReplaceBPM.performed -= m_Wrapper.m_BPMChangeObjectsActionsCallbackInterface.OnReplaceBPM;
+                @ReplaceBPM.canceled -= m_Wrapper.m_BPMChangeObjectsActionsCallbackInterface.OnReplaceBPM;
+                @TweakBPMValue.started -= m_Wrapper.m_BPMChangeObjectsActionsCallbackInterface.OnTweakBPMValue;
+                @TweakBPMValue.performed -= m_Wrapper.m_BPMChangeObjectsActionsCallbackInterface.OnTweakBPMValue;
+                @TweakBPMValue.canceled -= m_Wrapper.m_BPMChangeObjectsActionsCallbackInterface.OnTweakBPMValue;
+            }
+            m_Wrapper.m_BPMChangeObjectsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ReplaceBPM.started += instance.OnReplaceBPM;
+                @ReplaceBPM.performed += instance.OnReplaceBPM;
+                @ReplaceBPM.canceled += instance.OnReplaceBPM;
+                @TweakBPMValue.started += instance.OnTweakBPMValue;
+                @TweakBPMValue.performed += instance.OnTweakBPMValue;
+                @TweakBPMValue.canceled += instance.OnTweakBPMValue;
+            }
+        }
+    }
+    public BPMChangeObjectsActions @BPMChangeObjects => new BPMChangeObjectsActions(this);
+
+    // Box Select
+    private readonly InputActionMap m_BoxSelect;
+    private IBoxSelectActions m_BoxSelectActionsCallbackInterface;
+    private readonly InputAction m_BoxSelect_ActivateBoxSelect;
+    public struct BoxSelectActions
+    {
+        private @CMInput m_Wrapper;
+        public BoxSelectActions(@CMInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ActivateBoxSelect => m_Wrapper.m_BoxSelect_ActivateBoxSelect;
+        public InputActionMap Get() { return m_Wrapper.m_BoxSelect; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(BoxSelectActions set) { return set.Get(); }
+        public void SetCallbacks(IBoxSelectActions instance)
+        {
+            if (m_Wrapper.m_BoxSelectActionsCallbackInterface != null)
+            {
+                @ActivateBoxSelect.started -= m_Wrapper.m_BoxSelectActionsCallbackInterface.OnActivateBoxSelect;
+                @ActivateBoxSelect.performed -= m_Wrapper.m_BoxSelectActionsCallbackInterface.OnActivateBoxSelect;
+                @ActivateBoxSelect.canceled -= m_Wrapper.m_BoxSelectActionsCallbackInterface.OnActivateBoxSelect;
+            }
+            m_Wrapper.m_BoxSelectActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ActivateBoxSelect.started += instance.OnActivateBoxSelect;
+                @ActivateBoxSelect.performed += instance.OnActivateBoxSelect;
+                @ActivateBoxSelect.canceled += instance.OnActivateBoxSelect;
+            }
+        }
+    }
+    public BoxSelectActions @BoxSelect => new BoxSelectActions(this);
 
     // BPM Tapper
     private readonly InputActionMap m_BPMTapper;
@@ -3838,99 +3591,74 @@ public class @CMInput : IInputActionCollection, IDisposable
     }
     public PauseMenuActions @PauseMenu => new PauseMenuActions(this);
 
-    // Selecting
-    private readonly InputActionMap m_Selecting;
-    private ISelectingActions m_SelectingActionsCallbackInterface;
-    private readonly InputAction m_Selecting_DeselectAll;
-    public struct SelectingActions
+    // Selection
+    private readonly InputActionMap m_Selection;
+    private ISelectionActions m_SelectionActionsCallbackInterface;
+    private readonly InputAction m_Selection_DeselectAll;
+    private readonly InputAction m_Selection_DeleteObjects;
+    private readonly InputAction m_Selection_Cut;
+    private readonly InputAction m_Selection_Paste;
+    private readonly InputAction m_Selection_Copy;
+    private readonly InputAction m_Selection_OverwritePaste;
+    private readonly InputAction m_Selection_ShiftingMovement;
+    private readonly InputAction m_Selection_ActivateShiftinTime;
+    private readonly InputAction m_Selection_ActivateShiftinPlace;
+    public struct SelectionActions
     {
         private @CMInput m_Wrapper;
-        public SelectingActions(@CMInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @DeselectAll => m_Wrapper.m_Selecting_DeselectAll;
-        public InputActionMap Get() { return m_Wrapper.m_Selecting; }
+        public SelectionActions(@CMInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @DeselectAll => m_Wrapper.m_Selection_DeselectAll;
+        public InputAction @DeleteObjects => m_Wrapper.m_Selection_DeleteObjects;
+        public InputAction @Cut => m_Wrapper.m_Selection_Cut;
+        public InputAction @Paste => m_Wrapper.m_Selection_Paste;
+        public InputAction @Copy => m_Wrapper.m_Selection_Copy;
+        public InputAction @OverwritePaste => m_Wrapper.m_Selection_OverwritePaste;
+        public InputAction @ShiftingMovement => m_Wrapper.m_Selection_ShiftingMovement;
+        public InputAction @ActivateShiftinTime => m_Wrapper.m_Selection_ActivateShiftinTime;
+        public InputAction @ActivateShiftinPlace => m_Wrapper.m_Selection_ActivateShiftinPlace;
+        public InputActionMap Get() { return m_Wrapper.m_Selection; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(SelectingActions set) { return set.Get(); }
-        public void SetCallbacks(ISelectingActions instance)
+        public static implicit operator InputActionMap(SelectionActions set) { return set.Get(); }
+        public void SetCallbacks(ISelectionActions instance)
         {
-            if (m_Wrapper.m_SelectingActionsCallbackInterface != null)
+            if (m_Wrapper.m_SelectionActionsCallbackInterface != null)
             {
-                @DeselectAll.started -= m_Wrapper.m_SelectingActionsCallbackInterface.OnDeselectAll;
-                @DeselectAll.performed -= m_Wrapper.m_SelectingActionsCallbackInterface.OnDeselectAll;
-                @DeselectAll.canceled -= m_Wrapper.m_SelectingActionsCallbackInterface.OnDeselectAll;
+                @DeselectAll.started -= m_Wrapper.m_SelectionActionsCallbackInterface.OnDeselectAll;
+                @DeselectAll.performed -= m_Wrapper.m_SelectionActionsCallbackInterface.OnDeselectAll;
+                @DeselectAll.canceled -= m_Wrapper.m_SelectionActionsCallbackInterface.OnDeselectAll;
+                @DeleteObjects.started -= m_Wrapper.m_SelectionActionsCallbackInterface.OnDeleteObjects;
+                @DeleteObjects.performed -= m_Wrapper.m_SelectionActionsCallbackInterface.OnDeleteObjects;
+                @DeleteObjects.canceled -= m_Wrapper.m_SelectionActionsCallbackInterface.OnDeleteObjects;
+                @Cut.started -= m_Wrapper.m_SelectionActionsCallbackInterface.OnCut;
+                @Cut.performed -= m_Wrapper.m_SelectionActionsCallbackInterface.OnCut;
+                @Cut.canceled -= m_Wrapper.m_SelectionActionsCallbackInterface.OnCut;
+                @Paste.started -= m_Wrapper.m_SelectionActionsCallbackInterface.OnPaste;
+                @Paste.performed -= m_Wrapper.m_SelectionActionsCallbackInterface.OnPaste;
+                @Paste.canceled -= m_Wrapper.m_SelectionActionsCallbackInterface.OnPaste;
+                @Copy.started -= m_Wrapper.m_SelectionActionsCallbackInterface.OnCopy;
+                @Copy.performed -= m_Wrapper.m_SelectionActionsCallbackInterface.OnCopy;
+                @Copy.canceled -= m_Wrapper.m_SelectionActionsCallbackInterface.OnCopy;
+                @OverwritePaste.started -= m_Wrapper.m_SelectionActionsCallbackInterface.OnOverwritePaste;
+                @OverwritePaste.performed -= m_Wrapper.m_SelectionActionsCallbackInterface.OnOverwritePaste;
+                @OverwritePaste.canceled -= m_Wrapper.m_SelectionActionsCallbackInterface.OnOverwritePaste;
+                @ShiftingMovement.started -= m_Wrapper.m_SelectionActionsCallbackInterface.OnShiftingMovement;
+                @ShiftingMovement.performed -= m_Wrapper.m_SelectionActionsCallbackInterface.OnShiftingMovement;
+                @ShiftingMovement.canceled -= m_Wrapper.m_SelectionActionsCallbackInterface.OnShiftingMovement;
+                @ActivateShiftinTime.started -= m_Wrapper.m_SelectionActionsCallbackInterface.OnActivateShiftinTime;
+                @ActivateShiftinTime.performed -= m_Wrapper.m_SelectionActionsCallbackInterface.OnActivateShiftinTime;
+                @ActivateShiftinTime.canceled -= m_Wrapper.m_SelectionActionsCallbackInterface.OnActivateShiftinTime;
+                @ActivateShiftinPlace.started -= m_Wrapper.m_SelectionActionsCallbackInterface.OnActivateShiftinPlace;
+                @ActivateShiftinPlace.performed -= m_Wrapper.m_SelectionActionsCallbackInterface.OnActivateShiftinPlace;
+                @ActivateShiftinPlace.canceled -= m_Wrapper.m_SelectionActionsCallbackInterface.OnActivateShiftinPlace;
             }
-            m_Wrapper.m_SelectingActionsCallbackInterface = instance;
+            m_Wrapper.m_SelectionActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @DeselectAll.started += instance.OnDeselectAll;
                 @DeselectAll.performed += instance.OnDeselectAll;
                 @DeselectAll.canceled += instance.OnDeselectAll;
-            }
-        }
-    }
-    public SelectingActions @Selecting => new SelectingActions(this);
-
-    // Modifying Selection
-    private readonly InputActionMap m_ModifyingSelection;
-    private IModifyingSelectionActions m_ModifyingSelectionActionsCallbackInterface;
-    private readonly InputAction m_ModifyingSelection_DeleteObjects;
-    private readonly InputAction m_ModifyingSelection_Cut;
-    private readonly InputAction m_ModifyingSelection_Paste;
-    private readonly InputAction m_ModifyingSelection_Copy;
-    private readonly InputAction m_ModifyingSelection_OverwritePaste;
-    private readonly InputAction m_ModifyingSelection_ShiftingMovement;
-    private readonly InputAction m_ModifyingSelection_ActivateShiftinTime;
-    private readonly InputAction m_ModifyingSelection_ActivateShiftinPlace;
-    public struct ModifyingSelectionActions
-    {
-        private @CMInput m_Wrapper;
-        public ModifyingSelectionActions(@CMInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @DeleteObjects => m_Wrapper.m_ModifyingSelection_DeleteObjects;
-        public InputAction @Cut => m_Wrapper.m_ModifyingSelection_Cut;
-        public InputAction @Paste => m_Wrapper.m_ModifyingSelection_Paste;
-        public InputAction @Copy => m_Wrapper.m_ModifyingSelection_Copy;
-        public InputAction @OverwritePaste => m_Wrapper.m_ModifyingSelection_OverwritePaste;
-        public InputAction @ShiftingMovement => m_Wrapper.m_ModifyingSelection_ShiftingMovement;
-        public InputAction @ActivateShiftinTime => m_Wrapper.m_ModifyingSelection_ActivateShiftinTime;
-        public InputAction @ActivateShiftinPlace => m_Wrapper.m_ModifyingSelection_ActivateShiftinPlace;
-        public InputActionMap Get() { return m_Wrapper.m_ModifyingSelection; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(ModifyingSelectionActions set) { return set.Get(); }
-        public void SetCallbacks(IModifyingSelectionActions instance)
-        {
-            if (m_Wrapper.m_ModifyingSelectionActionsCallbackInterface != null)
-            {
-                @DeleteObjects.started -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnDeleteObjects;
-                @DeleteObjects.performed -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnDeleteObjects;
-                @DeleteObjects.canceled -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnDeleteObjects;
-                @Cut.started -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnCut;
-                @Cut.performed -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnCut;
-                @Cut.canceled -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnCut;
-                @Paste.started -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnPaste;
-                @Paste.performed -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnPaste;
-                @Paste.canceled -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnPaste;
-                @Copy.started -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnCopy;
-                @Copy.performed -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnCopy;
-                @Copy.canceled -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnCopy;
-                @OverwritePaste.started -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnOverwritePaste;
-                @OverwritePaste.performed -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnOverwritePaste;
-                @OverwritePaste.canceled -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnOverwritePaste;
-                @ShiftingMovement.started -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnShiftingMovement;
-                @ShiftingMovement.performed -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnShiftingMovement;
-                @ShiftingMovement.canceled -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnShiftingMovement;
-                @ActivateShiftinTime.started -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnActivateShiftinTime;
-                @ActivateShiftinTime.performed -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnActivateShiftinTime;
-                @ActivateShiftinTime.canceled -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnActivateShiftinTime;
-                @ActivateShiftinPlace.started -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnActivateShiftinPlace;
-                @ActivateShiftinPlace.performed -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnActivateShiftinPlace;
-                @ActivateShiftinPlace.canceled -= m_Wrapper.m_ModifyingSelectionActionsCallbackInterface.OnActivateShiftinPlace;
-            }
-            m_Wrapper.m_ModifyingSelectionActionsCallbackInterface = instance;
-            if (instance != null)
-            {
                 @DeleteObjects.started += instance.OnDeleteObjects;
                 @DeleteObjects.performed += instance.OnDeleteObjects;
                 @DeleteObjects.canceled += instance.OnDeleteObjects;
@@ -3958,7 +3686,7 @@ public class @CMInput : IInputActionCollection, IDisposable
             }
         }
     }
-    public ModifyingSelectionActions @ModifyingSelection => new ModifyingSelectionActions(this);
+    public SelectionActions @Selection => new SelectionActions(this);
 
     // UI Mode
     private readonly InputActionMap m_UIMode;
@@ -4034,80 +3762,6 @@ public class @CMInput : IInputActionCollection, IDisposable
     }
     public SongSpeedActions @SongSpeed => new SongSpeedActions(this);
 
-    // Cancel Placement
-    private readonly InputActionMap m_CancelPlacement;
-    private ICancelPlacementActions m_CancelPlacementActionsCallbackInterface;
-    private readonly InputAction m_CancelPlacement_CancelPlacement;
-    public struct CancelPlacementActions
-    {
-        private @CMInput m_Wrapper;
-        public CancelPlacementActions(@CMInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @CancelPlacement => m_Wrapper.m_CancelPlacement_CancelPlacement;
-        public InputActionMap Get() { return m_Wrapper.m_CancelPlacement; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(CancelPlacementActions set) { return set.Get(); }
-        public void SetCallbacks(ICancelPlacementActions instance)
-        {
-            if (m_Wrapper.m_CancelPlacementActionsCallbackInterface != null)
-            {
-                @CancelPlacement.started -= m_Wrapper.m_CancelPlacementActionsCallbackInterface.OnCancelPlacement;
-                @CancelPlacement.performed -= m_Wrapper.m_CancelPlacementActionsCallbackInterface.OnCancelPlacement;
-                @CancelPlacement.canceled -= m_Wrapper.m_CancelPlacementActionsCallbackInterface.OnCancelPlacement;
-            }
-            m_Wrapper.m_CancelPlacementActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @CancelPlacement.started += instance.OnCancelPlacement;
-                @CancelPlacement.performed += instance.OnCancelPlacement;
-                @CancelPlacement.canceled += instance.OnCancelPlacement;
-            }
-        }
-    }
-    public CancelPlacementActions @CancelPlacement => new CancelPlacementActions(this);
-
-    // BPM Change Objects
-    private readonly InputActionMap m_BPMChangeObjects;
-    private IBPMChangeObjectsActions m_BPMChangeObjectsActionsCallbackInterface;
-    private readonly InputAction m_BPMChangeObjects_ReplaceBPM;
-    private readonly InputAction m_BPMChangeObjects_TweakBPMValue;
-    public struct BPMChangeObjectsActions
-    {
-        private @CMInput m_Wrapper;
-        public BPMChangeObjectsActions(@CMInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @ReplaceBPM => m_Wrapper.m_BPMChangeObjects_ReplaceBPM;
-        public InputAction @TweakBPMValue => m_Wrapper.m_BPMChangeObjects_TweakBPMValue;
-        public InputActionMap Get() { return m_Wrapper.m_BPMChangeObjects; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(BPMChangeObjectsActions set) { return set.Get(); }
-        public void SetCallbacks(IBPMChangeObjectsActions instance)
-        {
-            if (m_Wrapper.m_BPMChangeObjectsActionsCallbackInterface != null)
-            {
-                @ReplaceBPM.started -= m_Wrapper.m_BPMChangeObjectsActionsCallbackInterface.OnReplaceBPM;
-                @ReplaceBPM.performed -= m_Wrapper.m_BPMChangeObjectsActionsCallbackInterface.OnReplaceBPM;
-                @ReplaceBPM.canceled -= m_Wrapper.m_BPMChangeObjectsActionsCallbackInterface.OnReplaceBPM;
-                @TweakBPMValue.started -= m_Wrapper.m_BPMChangeObjectsActionsCallbackInterface.OnTweakBPMValue;
-                @TweakBPMValue.performed -= m_Wrapper.m_BPMChangeObjectsActionsCallbackInterface.OnTweakBPMValue;
-                @TweakBPMValue.canceled -= m_Wrapper.m_BPMChangeObjectsActionsCallbackInterface.OnTweakBPMValue;
-            }
-            m_Wrapper.m_BPMChangeObjectsActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @ReplaceBPM.started += instance.OnReplaceBPM;
-                @ReplaceBPM.performed += instance.OnReplaceBPM;
-                @ReplaceBPM.canceled += instance.OnReplaceBPM;
-                @TweakBPMValue.started += instance.OnTweakBPMValue;
-                @TweakBPMValue.performed += instance.OnTweakBPMValue;
-                @TweakBPMValue.canceled += instance.OnTweakBPMValue;
-            }
-        }
-    }
-    public BPMChangeObjectsActions @BPMChangeObjects => new BPMChangeObjectsActions(this);
-
     // MenusExtended
     private readonly InputActionMap m_MenusExtended;
     private IMenusExtendedActions m_MenusExtendedActionsCallbackInterface;
@@ -4181,39 +3835,6 @@ public class @CMInput : IInputActionCollection, IDisposable
         }
     }
     public DebugActions @Debug => new DebugActions(this);
-
-    // Box Select
-    private readonly InputActionMap m_BoxSelect;
-    private IBoxSelectActions m_BoxSelectActionsCallbackInterface;
-    private readonly InputAction m_BoxSelect_ActivateBoxSelect;
-    public struct BoxSelectActions
-    {
-        private @CMInput m_Wrapper;
-        public BoxSelectActions(@CMInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @ActivateBoxSelect => m_Wrapper.m_BoxSelect_ActivateBoxSelect;
-        public InputActionMap Get() { return m_Wrapper.m_BoxSelect; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(BoxSelectActions set) { return set.Get(); }
-        public void SetCallbacks(IBoxSelectActions instance)
-        {
-            if (m_Wrapper.m_BoxSelectActionsCallbackInterface != null)
-            {
-                @ActivateBoxSelect.started -= m_Wrapper.m_BoxSelectActionsCallbackInterface.OnActivateBoxSelect;
-                @ActivateBoxSelect.performed -= m_Wrapper.m_BoxSelectActionsCallbackInterface.OnActivateBoxSelect;
-                @ActivateBoxSelect.canceled -= m_Wrapper.m_BoxSelectActionsCallbackInterface.OnActivateBoxSelect;
-            }
-            m_Wrapper.m_BoxSelectActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @ActivateBoxSelect.started += instance.OnActivateBoxSelect;
-                @ActivateBoxSelect.performed += instance.OnActivateBoxSelect;
-                @ActivateBoxSelect.canceled += instance.OnActivateBoxSelect;
-            }
-        }
-    }
-    public BoxSelectActions @BoxSelect => new BoxSelectActions(this);
 
     // Audio
     private readonly InputActionMap m_Audio;
@@ -4291,6 +3912,7 @@ public class @CMInput : IInputActionCollection, IDisposable
         void OnInitiateClickandDrag(InputAction.CallbackContext context);
         void OnInitiateClickandDragatTime(InputAction.CallbackContext context);
         void OnMousePositionUpdate(InputAction.CallbackContext context);
+        void OnCancelPlacement(InputAction.CallbackContext context);
     }
     public interface INotePlacementActions
     {
@@ -4298,17 +3920,6 @@ public class @CMInput : IInputActionCollection, IDisposable
         void OnLeftNote(InputAction.CallbackContext context);
         void OnDownNote(InputAction.CallbackContext context);
         void OnRightNote(InputAction.CallbackContext context);
-    }
-    public interface IEventPlacementActions
-    {
-        void OnRotation15Degrees(InputAction.CallbackContext context);
-        void OnRotation30Degrees(InputAction.CallbackContext context);
-        void OnRotation45Degrees(InputAction.CallbackContext context);
-        void OnRotation60Degrees(InputAction.CallbackContext context);
-        void OnNegativeRotationModifier(InputAction.CallbackContext context);
-        void OnRotateInPlaceLeft(InputAction.CallbackContext context);
-        void OnRotateInPlaceRight(InputAction.CallbackContext context);
-        void OnRotateInPlaceModifier(InputAction.CallbackContext context);
     }
     public interface IWorkflowsActions
     {
@@ -4363,9 +3974,17 @@ public class @CMInput : IInputActionCollection, IDisposable
     }
     public interface INoteObjectsActions
     {
-        void OnUpdateNoteDirection(InputAction.CallbackContext context);
         void OnInvertNoteColors(InputAction.CallbackContext context);
         void OnQuickDirectionModifier(InputAction.CallbackContext context);
+    }
+    public interface IBPMChangeObjectsActions
+    {
+        void OnReplaceBPM(InputAction.CallbackContext context);
+        void OnTweakBPMValue(InputAction.CallbackContext context);
+    }
+    public interface IBoxSelectActions
+    {
+        void OnActivateBoxSelect(InputAction.CallbackContext context);
     }
     public interface IBPMTapperActions
     {
@@ -4375,12 +3994,9 @@ public class @CMInput : IInputActionCollection, IDisposable
     {
         void OnPauseEditor(InputAction.CallbackContext context);
     }
-    public interface ISelectingActions
+    public interface ISelectionActions
     {
         void OnDeselectAll(InputAction.CallbackContext context);
-    }
-    public interface IModifyingSelectionActions
-    {
         void OnDeleteObjects(InputAction.CallbackContext context);
         void OnCut(InputAction.CallbackContext context);
         void OnPaste(InputAction.CallbackContext context);
@@ -4399,15 +4015,6 @@ public class @CMInput : IInputActionCollection, IDisposable
         void OnDecreaseSongSpeed(InputAction.CallbackContext context);
         void OnIncreaseSongSpeed(InputAction.CallbackContext context);
     }
-    public interface ICancelPlacementActions
-    {
-        void OnCancelPlacement(InputAction.CallbackContext context);
-    }
-    public interface IBPMChangeObjectsActions
-    {
-        void OnReplaceBPM(InputAction.CallbackContext context);
-        void OnTweakBPMValue(InputAction.CallbackContext context);
-    }
     public interface IMenusExtendedActions
     {
         void OnTab(InputAction.CallbackContext context);
@@ -4416,10 +4023,6 @@ public class @CMInput : IInputActionCollection, IDisposable
     public interface IDebugActions
     {
         void OnToggleDebugConsole(InputAction.CallbackContext context);
-    }
-    public interface IBoxSelectActions
-    {
-        void OnActivateBoxSelect(InputAction.CallbackContext context);
     }
     public interface IAudioActions
     {

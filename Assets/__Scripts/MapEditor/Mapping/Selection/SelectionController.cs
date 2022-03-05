@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 /// <summary>
 ///     Big boi master class for everything Selection.
 /// </summary>
-public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMInput.IModifyingSelectionActions
+public class SelectionController : MonoBehaviour, CMInput.ISelectionActions
 {
     public static HashSet<BeatmapObject> SelectedObjects = new HashSet<BeatmapObject>();
     public static HashSet<BeatmapObject> CopiedObjects = new HashSet<BeatmapObject>();

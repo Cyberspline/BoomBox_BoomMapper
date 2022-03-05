@@ -41,10 +41,6 @@ MonoBehaviour:
     m_Address: PersistentUI Shared Data
     m_ReadOnly: 1
     m_SerializedLabels: []
-  - m_GUID: bf1f1381b5de9c449a6d9b276b62b271
-    m_Address: Contributors Shared Data
-    m_ReadOnly: 1
-    m_SerializedLabels: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: be3f562163bab164eadc484f377f1007, type: 2}
   m_SchemaSet:

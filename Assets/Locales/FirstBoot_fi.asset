@@ -39,23 +39,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6
-    m_Localized: "Kansioita \"Beat Saber_Data\" ja \"CustomLevels\" ei l\xF6ytynyt
-      valitsemastasi sijainnista!"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7
-    m_Localized: "Kansiota \"CustomWIPLevels\" ei l\xF6ytynyt valitsemastasi sijainnista!"
+    m_Localized: No "BoomBox_Data" or "Maps" folder found at chosen location!
     m_Metadata:
       m_Items: []
   - m_Id: 8
-    m_Localized: "{0}\n\nHaluatko, ett\xE4 ChroMapper luo puuttuvat kansiot?"
+    m_Localized: '{0}
+
+
+      Would you like BoomMapper to generate the missing folders?'
     m_Metadata:
       m_Items: []
   - m_Id: 9
-    m_Localized: "Sinun ei tarvitse k\xE4ytt\xE4\xE4 aitoa Beat Saber-asennusta -
-      voit yksinkertaisesti j\xE4ljitell\xE4 sit\xE4. T\xE4m\xE4n kansion on sis\xE4llett\xE4v\xE4
-      seuraavat alihakemistot:\n/ Beat Saber_Data / CustomLevels /\n/ Beat Saber_Data
-      / CustomWIPLevels /"
+    m_Localized: You do not need a true BoomBox installation. Just select any location
+      and BoomMapper will ask you to generate any missing folders.
     m_Metadata:
       m_Items: []
   - m_Id: 10

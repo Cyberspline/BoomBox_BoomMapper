@@ -37,7 +37,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5
-    m_Localized: Beat Saber-asennus
+    m_Localized: BoomBox Installation
     m_Metadata:
       m_Items: []
   - m_Id: 6
@@ -60,48 +60,8 @@ MonoBehaviour:
     m_Localized: Editorin Skaala
     m_Metadata:
       m_Items: []
-  - m_Id: 11
-    m_Localized: Tarkka Editorin Skaala
-    m_Metadata:
-      m_Items: []
-  - m_Id: 12
-    m_Localized: 360/90 Kierto
-    m_Metadata:
-      m_Items: []
-  - m_Id: 13
-    m_Localized: "\xC4l\xE4 Aseta 0:n Pituisia Seini\xE4"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 15
-    m_Localized: Tarkka Asettaminen
-    m_Metadata:
-      m_Items: []
-  - m_Id: 16
-    m_Localized: "Vaihtoehtoinen Hypersein\xE4n Ko'on Laskeminen"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 17
-    m_Localized: Menneiden Nuottien Ruudukko
-    m_Metadata:
-      m_Items: []
   - m_Id: 18
     m_Localized: Kappaleen Nopeus
-    m_Metadata:
-      m_Items: []
-  - m_Id: 19
-    m_Localized: "Kaistojen M\xE4\xE4r\xE4"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 20
-    m_Localized: Hiiren Asetukset
-    m_Metadata:
-      m_Items: []
-  - m_Id: 21
-    m_Localized: Laatikkovalinta
-    m_Metadata:
-      m_Items: []
-  - m_Id: 22
-    m_Localized: Korosta Sijoitetut Nuotit
     m_Metadata:
       m_Items: []
   - m_Id: 23
@@ -110,10 +70,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 24
     m_Localized: Lataa Nuotit
-    m_Metadata:
-      m_Items: []
-  - m_Id: 25
-    m_Localized: Lataa Eventit
     m_Metadata:
       m_Items: []
   - m_Id: 26
@@ -152,10 +108,6 @@ MonoBehaviour:
     m_Localized: Sinisen Nuotin Hitsound
     m_Metadata:
       m_Items: []
-  - m_Id: 35
-    m_Localized: Pommin Hitsound
-    m_Metadata:
-      m_Items: []
   - m_Id: 36
     m_Localized: Hitsoundit
     m_Metadata:
@@ -164,40 +116,8 @@ MonoBehaviour:
     m_Localized: Editori
     m_Metadata:
       m_Items: []
-  - m_Id: 38
-    m_Localized: Waveformi
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39
-    m_Localized: Emuloi Chroma
-    m_Metadata:
-      m_Items: []
-  - m_Id: 40
-    m_Localized: RGB-Valaistus
-    m_Metadata:
-      m_Items: []
-  - m_Id: 41
-    m_Localized: "Ymp\xE4rist\xF6n Heijastukset"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 42
-    m_Localized: "V\xE4rj\xE4\xE4 Feikit Sein\xE4t"
-    m_Metadata:
-      m_Items: []
   - m_Id: 43
     m_Localized: Mittaa Rivirenderointi Kaikesta
-    m_Metadata:
-      m_Items: []
-  - m_Id: 44
-    m_Localized: Korkealaatuinen Hehku
-    m_Metadata:
-      m_Items: []
-  - m_Id: 45
-    m_Localized: Visualisoi Chroman Gradientit
-    m_Metadata:
-      m_Items: []
-  - m_Id: 46
-    m_Localized: Yksinkertaiset Palikat
     m_Metadata:
       m_Items: []
   - m_Id: 47
@@ -218,18 +138,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 52
     m_Localized: Ulkoasu
-    m_Metadata:
-      m_Items: []
-  - m_Id: 53
-    m_Localized: "Waveformi seuraa Ty\xF6nkulkua"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 54
-    m_Localized: "Ota K\xE4ytt\xF6\xF6n Node-editori"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 55
-    m_Localized: "Node-editorin Pikan\xE4pp\xE4in"
     m_Metadata:
       m_Items: []
   - m_Id: 56
@@ -292,17 +200,17 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 68
-    m_Localized: 'ChroMapper supports the ability for developers to create and share
+    m_Localized: 'BoomMapper supports the ability for developers to create and share
       plugins.
 
 
-      ChroMapper developers will not be held liable for any damage
+      BoomMapper developers will not be held liable for any damage
       caused by loaded plugins. It is up to the user to decide which plugins they
       want to install.
 
 
       We recommend finding plugins made by trustworthy developers.
-      For example, look for ChroMapper plugins that are open source, where its internal
+      For example, look for BoomMapper plugins that are open source, where its internal
       source code is available for all to look through and make their own informed
       decisions.'
     m_Metadata:
@@ -325,33 +233,8 @@ MonoBehaviour:
     m_Localized: Kokeelliset Asetukset
     m_Metadata:
       m_Items: []
-  - m_Id: 72
-    m_Localized: Time Value Decimal Precision
-    m_Metadata:
-      m_Items: []
-  - m_Id: 73
-    m_Localized: '{TextValue} Desimaalien Paikka/Paikat'
-    m_Metadata:
-      m_Items:
-      - id: 0
-  - m_Id: 74
-    m_Localized: 'How many decimal places to round "_time" values for every map object
-      when saving to disk.
-
-      Lower precision means more room for timing errors,
-      however can save space on larger complexity maps.'
-    m_Metadata:
-      m_Items: []
   - m_Id: 75
     m_Localized: "Lis\xE4osien Kehitt\xE4j\xE4opas"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 80
-    m_Localized: "Pit\xE4isik\xF6 esteet ladata?"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 81
-    m_Localized: Muuta menneiden nuottien ruuudukon kokoa.
     m_Metadata:
       m_Items: []
   - m_Id: 82
@@ -365,35 +248,12 @@ MonoBehaviour:
     m_Localized: Change how often Auto Save will trigger.
     m_Metadata:
       m_Items: []
-  - m_Id: 84
-    m_Localized: Highlight the most recently placed notes magenta.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 85
-    m_Localized: "Editorin Skaala m\xE4\xE4r\xE4ytyy mapin tiedoista, kuten sen NJS:st\xE4
-      ja BPM:st\xE4.\nT\xE4t\xE4 suositellaan vain mapin esikatselua varten. T\xE4m\xE4
-      toiminto ohittaa Editorin Skaala-asetuksen"
-    m_Metadata:
-      m_Items: []
   - m_Id: 86
     m_Localized: "K\xE4\xE4nn\xE4 hiiren vierityssuunta muuttaaksesi tarkkuutta."
     m_Metadata:
       m_Items: []
-  - m_Id: 87
-    m_Localized: Should we load map events?
-    m_Metadata:
-      m_Items: []
-  - m_Id: 88
-    m_Localized: "Ei niin hieno ja korkeamman kontrastin palikkarender\xF6inti"
-    m_Metadata:
-      m_Items: []
   - m_Id: 89
     m_Localized: "5 tahdin m\xE4\xE4r\xE4 n\xE4ytett\xE4v\xE4n\xE4 mappia muokatessa."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 90
-    m_Localized: Rotates map objects and the editor to better visualize a 360 degree
-      level.
     m_Metadata:
       m_Items: []
   - m_Id: 91
@@ -409,7 +269,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 94
-    m_Localized: How far notes and events will spawn.
+    m_Localized: How far notes will spawn.
     m_Metadata:
       m_Items: []
   - m_Id: 95
@@ -420,16 +280,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 96
-    m_Localized: "Ottaa k\xE4ytt\xF6\xF6n Discord RPC:n ChroMapperiin."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 97
-    m_Localized: "Ota \"half jump\" huomioon, kun lataat hyperseini\xE4 (negatiivisen
-      pituuden seini\xE4). Vaatii editorin uudelleenk\xE4ynnistyksen."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 98
-    m_Localized: "Tekee mahdottomaksi asettaa seini\xE4 joiden pituus on 0."
+    m_Localized: Toggles Discord RPC for BoomMapper.
     m_Metadata:
       m_Items: []
   - m_Id: 99
@@ -444,92 +295,29 @@ MonoBehaviour:
     m_Localized: Kuinka nopeasti kappaleen tulisi soida?
     m_Metadata:
       m_Items: []
-  - m_Id: 102
-    m_Localized: Toggles Bombs dinging when they pass.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 103
-    m_Localized: When holding Shift while placing walls or notes, an extended grid
-      will appear with snapping disabled.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 104
-    m_Localized: Toggles reflections caused by lights and objects.
-    m_Metadata:
-      m_Items: []
   - m_Id: 105
     m_Localized: Makes Measure Line texts appear on top of <i>everything</i>. Can
       cause some jankiness when looking through a note.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 106
-    m_Localized: Each event with a Chroma 2.0 gradient attached will generate a preview
-      on the 3D grid.
     m_Metadata:
       m_Items: []
   - m_Id: 107
     m_Localized: Show song waveform
     m_Metadata:
       m_Items: []
-  - m_Id: 108
-    m_Localized: "Sen sijaan, ett\xE4 valitsisit, paina N:\xE4\xE4 avataksesi koodieditorin."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 109
-    m_Localized: Change how many lanes your map uses.
-    m_Metadata:
-      m_Items: []
   - m_Id: 110
     m_Localized: Make the transition to the Escape menu instant.
     m_Metadata:
       m_Items: []
-  - m_Id: 111
-    m_Localized: Renders the Bloom effect at full or half resolution. We recommend
-      keeping it at full resolution.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 112
-    m_Localized: Enables or disables Chroma features, such as Ring Propagation
-    m_Metadata:
-      m_Items: []
-  - m_Id: 113
-    m_Localized: 'Toggles Dark Theme.
-
-      (Does not affect Options Menu)'
-    m_Metadata:
-      m_Items: []
   - m_Id: 114
-    m_Localized: How far notes and events will despawn.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 115
-    m_Localized: Enable Node Editor. Try selecting an object!
-    m_Metadata:
-      m_Items: []
-  - m_Id: 116
-    m_Localized: Enables or disables Chroma RGB lighting
+    m_Localized: How far notes will despawn.
     m_Metadata:
       m_Items: []
   - m_Id: 117
     m_Localized: Change Field of View of the camera
     m_Metadata:
       m_Items: []
-  - m_Id: 118
-    m_Localized: Color negative width and negative duration walls differently than
-      standard walls.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 119
-    m_Localized: Allow the Waveform to switch sides when toggling workspaces.
-    m_Metadata:
-      m_Items: []
   - m_Id: 120
     m_Localized: Change how fast the camera moves.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 121
-    m_Localized: Use Ctrl-Click to draw a box and select rather than painting your
-      selection.
     m_Metadata:
       m_Items: []
   - m_Id: 122
@@ -541,7 +329,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 124
-    m_Localized: Beat Saber-asennuskansiosi sijainti.
+    m_Localized: Location of your BoomBox installation.
     m_Metadata:
       m_Items: []
   - m_Id: 125
@@ -571,8 +359,7 @@ MonoBehaviour:
   - m_Id: 131
     m_Localized: "Lis\xE4osat"
     m_Metadata:
-      m_Items:
-      - id: 0
+      m_Items: []
   - m_Id: 132
     m_Localized: Kokeellinen
     m_Metadata:
@@ -581,11 +368,6 @@ MonoBehaviour:
     m_Localized: "Tekij\xE4t"
     m_Metadata:
       m_Items: []
-  - m_Id: 134
-    m_Localized: '{TextValue}'
-    m_Metadata:
-      m_Items:
-      - id: 0
   - m_Id: 135
     m_Localized: '{TextValue}'
     m_Metadata:
@@ -626,14 +408,6 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - id: 0
-  - m_Id: 143
-    m_Localized: "N\xE4yt\xE4 K\xE4\xE4nt\xF6"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 144
-    m_Localized: "Kiinnit\xE4 kierton\xE4ytt\xF6 asentoon 0-360."
-    m_Metadata:
-      m_Items: []
   - m_Id: 145
     m_Localized: Kieli
     m_Metadata:
@@ -647,8 +421,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 148
-    m_Localized: "ChroMapper t\xE4ytyy ehk\xE4 k\xE4ynnistet\xE4\xE4 uudelleen, jotta
-      muutokset tulevat voimaan."
+    m_Localized: BoomMapper may need to be restarted for the changes to take affect.
     m_Metadata:
       m_Items: []
   - m_Id: 149
@@ -659,19 +432,6 @@ MonoBehaviour:
     m_Localized: "Lis\xE4\xE4 kontrastia viivojen ja niiden taustan v\xE4lill\xE4."
     m_Metadata:
       m_Items: []
-  - m_Id: 151
-    m_Localized: "Ota K\xE4ytt\xF6\xF6n Mukautetut Eventit"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 152
-    m_Localized: "Mahdollistaa mukautettujen eventtien k\xE4yt\xF6n mapeissa"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 153
-    m_Localized: '{TextValue}'
-    m_Metadata:
-      m_Items:
-      - id: 0
   - m_Id: 154
     m_Localized: "K\xE4ytt\xF6liittym\xE4n Koko"
     m_Metadata:
@@ -685,14 +445,6 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - id: 0
-  - m_Id: 157
-    m_Localized: Event Models
-    m_Metadata:
-      m_Items: []
-  - m_Id: 158
-    m_Localized: Change lighting event models.
-    m_Metadata:
-      m_Items: []
   - m_Id: 159
     m_Localized: Julkaisukanava
     m_Metadata:
@@ -720,22 +472,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 165
     m_Localized: "N\xE4ytt\xE4\xE4 hyv\xE4lt\xE4!"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 166
-    m_Localized: Koodieditorin Tekstin Koko
-    m_Metadata:
-      m_Items: []
-  - m_Id: 167
-    m_Localized: "Pienenn\xE4 tekstikokoa, jotta n\xE4et enemm\xE4n JSON:ia n\xE4yt\xF6ll\xE4"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 168
-    m_Localized: Koodieditorin koko
-    m_Metadata:
-      m_Items: []
-  - m_Id: 169
-    m_Localized: "Kuinka suurena koodieditorin pit\xE4isi n\xE4ky\xE4"
     m_Metadata:
       m_Items: []
   - m_Id: 170
@@ -784,10 +520,6 @@ MonoBehaviour:
     m_Localized: Show Notes Per Second in Counters+
     m_Metadata:
       m_Items: []
-  - m_Id: 4756105506816
-    m_Localized: Show Swings Per Second in Counters+
-    m_Metadata:
-      m_Items: []
   - m_Id: 4923839918080
     m_Localized: Show Red/Blue Note Ratio in Counters+
     m_Metadata:
@@ -796,20 +528,12 @@ MonoBehaviour:
     m_Localized: Show Obstacle count in Counters+
     m_Metadata:
       m_Items: []
-  - m_Id: 5433380745216
-    m_Localized: Show Event count in Counters+
-    m_Metadata:
-      m_Items: []
   - m_Id: 5576540729344
     m_Localized: Show BPM Change count in Counters+
     m_Metadata:
       m_Items: []
   - m_Id: 5797878345728
     m_Localized: Show Current BPM in Counters+
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6094344335360
-    m_Localized: "N\xE4yt\xE4 K\xE4tetty Aika Editorissa Counters+:ssa"
     m_Metadata:
       m_Items: []
   - m_Id: 7740667375616
@@ -824,10 +548,6 @@ MonoBehaviour:
     m_Localized: "N\xE4yt\xE4 NPS"
     m_Metadata:
       m_Items: []
-  - m_Id: 8262946304000
-    m_Localized: "N\xE4yt\xE4 SPS"
-    m_Metadata:
-      m_Items: []
   - m_Id: 8468374925312
     m_Localized: "N\xE4yt\xE4 Punaisen/Sinisen Suhde"
     m_Metadata:
@@ -836,28 +556,12 @@ MonoBehaviour:
     m_Localized: "N\xE4yt\xE4 Seinien M\xE4\xE4r\xE4"
     m_Metadata:
       m_Items: []
-  - m_Id: 8904158916608
-    m_Localized: "N\xE4yt\xE4 Valoeventtien M\xE4\xE4r\xE4"
-    m_Metadata:
-      m_Items: []
   - m_Id: 9070869917696
     m_Localized: "N\xE4yt\xE4 BPM-Muutosten M\xE4\xE4r\xE4"
     m_Metadata:
       m_Items: []
   - m_Id: 9291620331520
     m_Localized: "N\xE4yt\xE4 Nykyinen BPM"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9443374444544
-    m_Localized: "N\xE4yt\xE4 K\xE4ytetty Aika Mappaamisessa"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1564790530682880
-    m_Localized: "N\xE4yt\xE4 Pommien M\xE4\xE4r\xE4 Counters+:ssa"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1565145339441152
-    m_Localized: "N\xE4yt\xE4 Pommien M\xE4\xE4r\xE4"
     m_Metadata:
       m_Items: []
   - m_Id: 1062316191744
@@ -896,7 +600,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1664599280979968
-    m_Localized: "S\xE4\xE4d\xE4 enimm\xE4iskuvanopeutta, jolla CM toimii."
+    m_Localized: Tweak the maximum framerate that BoomMapper will run at.
     m_Metadata:
       m_Items: []
   - m_Id: 1894945813565440
@@ -904,23 +608,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1894950121115648
-    m_Localized: "Lukitse ChroMapperin kuvataajuus n\xE4yt\xF6n virkistystaajuuteen."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4089437985878016
-    m_Localized: "Muuttaa editorin mittakaavan riippumattomaksi kartan BPM:st\xE4"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4090246341505024
-    m_Localized: BPM Independent Editor Scale
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9689541752557568
-    m_Localized: Visualize Chroma event alpha using the height of the event
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9689824679333888
-    m_Localized: Visualize Chroma Alpha
+    m_Localized: Lock BoomMapper's framerate to the refresh rate of your display.
     m_Metadata:
       m_Items: []
   - m_Id: 16675690602758144
@@ -931,9 +619,21 @@ MonoBehaviour:
     m_Localized: Anti-Aliasing
     m_Metadata:
       m_Items: []
+  - m_Id: 76977035641683968
+    m_Localized: Auto Save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76977092520640512
+    m_Localized: Regularly create backups of the currently open map.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76978036666859520
+    m_Localized: Waveform
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 010000000000000042000000000000004900000000000000830000000000000086000000000000008700000000000000880000000000000089000000000000008a000000000000008b000000000000008c000000000000008d000000000000008e0000000000000099000000000000009c00000000000000ad0000000000000000b07a73ae0400000000b21e87040000
+        m_Entries: 01000000000000004200000000000000490000000000000086000000000000008700000000000000880000000000000089000000000000008a000000000000008b000000000000008c000000000000008d000000000000008e0000000000000099000000000000009c00000000000000ad0000000000000000b07a73ae0400000000b21e87040000

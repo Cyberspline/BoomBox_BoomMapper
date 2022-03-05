@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMInput.IPlacementControllersActions,
-    CMInput.ICancelPlacementActions where TBo : BeatmapObject
+public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMInput.IPlacementControllersActions
+    where TBo : BeatmapObject
     where TBoc : BeatmapObjectContainer
     where TBocc : BeatmapObjectContainerCollection
 {

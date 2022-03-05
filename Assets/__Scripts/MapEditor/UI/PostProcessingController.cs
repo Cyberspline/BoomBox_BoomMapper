@@ -1,16 +1,11 @@
 ﻿using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.UI;
 
 public class PostProcessingController : MonoBehaviour
 {
     public Volume PostProcess;
-    [SerializeField] private Slider intensitySlider;
-    [SerializeField] private TextMeshProUGUI intensityLabel;
-    [SerializeField] private Toggle chromaticAberration;
 
     private void Start()
     {

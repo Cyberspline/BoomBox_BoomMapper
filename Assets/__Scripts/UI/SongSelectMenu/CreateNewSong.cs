@@ -14,12 +14,12 @@ public class CreateNewSong : MonoBehaviour
     {
         if (res is null) return;
 
-        var song = new BoomBoxPack(res)
+        var song = new BoomBoxCustomPack(res)
         {
             TimeCreated = DateTime.Now.ToUniversalTime().ToString("o")
         };
 
-        if (list.Songs.Any(x => Path.GetFullPath(x.Directory).Equals(
+        if (list.Songs.Any(x => x is BoomBoxCustomPack customPack && Path.GetFullPath(customPack.Directory).Equals(
             Path.GetFullPath(Path.Combine(Settings.Instance.CustomSongsFolder, song.CleanSongName)),
             StringComparison.CurrentCultureIgnoreCase
         )))

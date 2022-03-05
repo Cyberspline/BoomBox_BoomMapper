@@ -500,7 +500,7 @@ public class PersistentUI : MonoBehaviour
         var textBox = dialogBox
             .AddComponent<TextBoxComponent>()
             .WithInitialValue(() => defaultText)
-            .WithNoLabelText<TextBoxComponent, string>();
+            .WithNoLabel();
 
         var cancelButton = dialogBox
             .AddFooterButton(() => result?.Invoke(null),

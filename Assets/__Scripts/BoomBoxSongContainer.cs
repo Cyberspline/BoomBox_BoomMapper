@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BoomBoxSongContainer : MonoBehaviour
 {
-    public BoomBoxPack Pack;
+    public BoomBoxCustomPack Pack;
     public BoomBoxMap Map;
     public AudioClip LoadedSong;
 
@@ -15,7 +15,7 @@ public class BoomBoxSongContainer : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void SelectSongForEditing(BoomBoxPack pack)
+    public void SelectSongForEditing(BoomBoxCustomPack pack)
     {
         Pack = pack;
         SceneTransitionManager.Instance.LoadScene("02_SongEditMenu");

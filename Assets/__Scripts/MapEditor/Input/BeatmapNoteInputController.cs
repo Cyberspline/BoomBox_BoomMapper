@@ -9,34 +9,6 @@ public class BeatmapNoteInputController : BeatmapInputController<BeatmapNoteCont
     [FormerlySerializedAs("noteAppearanceSO")] [SerializeField] private NoteAppearanceSO noteAppearanceSo;
     public bool QuickModificationActive;
 
-    private readonly Dictionary<int, int> cutDirectionMovedBackward = new Dictionary<int, int>
-    {
-        {BeatmapNote.NoteCutDirectionAny, BeatmapNote.NoteCutDirectionAny},
-        {BeatmapNote.NoteCutDirectionDownLeft, BeatmapNote.NoteCutDirectionDown},
-        {BeatmapNote.NoteCutDirectionLeft, BeatmapNote.NoteCutDirectionDownLeft},
-        {BeatmapNote.NoteCutDirectionUpLeft, BeatmapNote.NoteCutDirectionLeft},
-        {BeatmapNote.NoteCutDirectionUp, BeatmapNote.NoteCutDirectionUpLeft},
-        {BeatmapNote.NoteCutDirectionUpRight, BeatmapNote.NoteCutDirectionUp},
-        {BeatmapNote.NoteCutDirectionRight, BeatmapNote.NoteCutDirectionUpRight},
-        {BeatmapNote.NoteCutDirectionDownRight, BeatmapNote.NoteCutDirectionRight},
-        {BeatmapNote.NoteCutDirectionDown, BeatmapNote.NoteCutDirectionDownRight},
-        {BeatmapNote.NoteCutDirectionNone, BeatmapNote.NoteCutDirectionNone}
-    };
-
-    private readonly Dictionary<int, int> cutDirectionMovedForward = new Dictionary<int, int>
-    {
-        {BeatmapNote.NoteCutDirectionAny, BeatmapNote.NoteCutDirectionAny},
-        {BeatmapNote.NoteCutDirectionDown, BeatmapNote.NoteCutDirectionDownLeft},
-        {BeatmapNote.NoteCutDirectionDownLeft, BeatmapNote.NoteCutDirectionLeft},
-        {BeatmapNote.NoteCutDirectionLeft, BeatmapNote.NoteCutDirectionUpLeft},
-        {BeatmapNote.NoteCutDirectionUpLeft, BeatmapNote.NoteCutDirectionUp},
-        {BeatmapNote.NoteCutDirectionUp, BeatmapNote.NoteCutDirectionUpRight},
-        {BeatmapNote.NoteCutDirectionUpRight, BeatmapNote.NoteCutDirectionRight},
-        {BeatmapNote.NoteCutDirectionRight, BeatmapNote.NoteCutDirectionDownRight},
-        {BeatmapNote.NoteCutDirectionDownRight, BeatmapNote.NoteCutDirectionDown},
-        {BeatmapNote.NoteCutDirectionNone, BeatmapNote.NoteCutDirectionNone}
-    };
-
     //Do some shit later lmao
     public void OnInvertNoteColors(InputAction.CallbackContext context)
     {
@@ -53,16 +25,6 @@ public class BeatmapNoteInputController : BeatmapInputController<BeatmapNoteCont
     public void OnQuickDirectionModifier(InputAction.CallbackContext context) =>
         QuickModificationActive = context.performed;
 
-    public void OnUpdateNoteDirection(InputAction.CallbackContext context)
-    {
-        if (CustomStandaloneInputModule.IsPointerOverGameObject<GraphicRaycaster>(-1, true)) return;
-        if (!context.performed) return;
-
-        var shiftForward = context.ReadValue<float>() > 0;
-        RaycastFirstObject(out var note);
-        if (note != null) UpdateNoteDirection(note, shiftForward);
-    }
-
     public void InvertNote(BeatmapNoteContainer note)
     {
         var original = BeatmapObject.GenerateCopy(note.ObjectData);
@@ -71,15 +33,6 @@ public class BeatmapNoteInputController : BeatmapInputController<BeatmapNoteCont
             : BeatmapNote.HandRight;
         note.MapNoteData.Hand = newHand;
         noteAppearanceSo.SetNoteAppearance(note);
-        BeatmapActionContainer.AddAction(new BeatmapObjectModifiedAction(note.ObjectData, note.ObjectData, original));
-    }
-
-    public void UpdateNoteDirection(BeatmapNoteContainer note, bool shiftForward)
-    {
-        var original = BeatmapObject.GenerateCopy(note.ObjectData);
-        note.MapNoteData.CutDirection =
-            (shiftForward ? cutDirectionMovedForward : cutDirectionMovedBackward)[note.MapNoteData.CutDirection];
-        note.transform.localEulerAngles = BeatmapNoteContainer.Directionalize(note.MapNoteData);
         BeatmapActionContainer.AddAction(new BeatmapObjectModifiedAction(note.ObjectData, note.ObjectData, original));
     }
 }

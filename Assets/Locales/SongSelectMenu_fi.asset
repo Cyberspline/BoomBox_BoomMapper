@@ -36,38 +36,13 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5
-    m_Localized: "Yhteis\xF6n Mapit"
+    m_Localized: Official Songs
     m_Metadata:
       m_Items: []
   - m_Id: 6
-    m_Localized: WIP Mapit
+    m_Localized: Local Packs
     m_Metadata:
       m_Items: []
-  - m_Id: 7
-    m_Localized: MUOKKAA
-    m_Metadata:
-      m_Items: []
-  - m_Id: 8
-    m_Localized: "Ensimm\xE4inen"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9
-    m_Localized: Edellinen
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10
-    m_Localized: Seuraava
-    m_Metadata:
-      m_Items: []
-  - m_Id: 11
-    m_Localized: Viimeinen
-    m_Metadata:
-      m_Items: []
-  - m_Id: 12
-    m_Localized: 'Sivu: {CurrentPage}/{MaxPage}'
-    m_Metadata:
-      m_Items:
-      - id: 0
   - m_Id: 13
     m_Localized: Haku...
     m_Metadata:
@@ -77,48 +52,35 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 16
-    m_Localized: Luo uusi mappi!
+    m_Localized: Create a new BoomBox level!
     m_Metadata:
       m_Items: []
   - m_Id: 17
-    m_Localized: "Et haluaisi tehd\xE4 t\xE4t\xE4, eth\xE4n?"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 18
-    m_Localized: "V\xE4liaikainen Lataaja"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 19
-    m_Localized: "Sy\xF6t\xE4 mapin BeatSaver ID tai suora linkki zip-tiedostoon."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 20
-    m_Localized: 13fe
+    m_Localized: Quit BoomMapper.
     m_Metadata:
       m_Items: []
   - m_Id: 21
-    m_Localized: "Sy\xF6t\xE4 nimi uudelle beatmapille."
+    m_Localized: Please enter the name of the song you wish to map.
     m_Metadata:
       m_Items: []
   - m_Id: 22
-    m_Localized: Uusi Beatmap
+    m_Localized: Song Name
     m_Metadata:
       m_Items: []
   - m_Id: 23
-    m_Localized: "T\xE4ll\xE4 nimell\xE4 on jo beatmap.\n\nSy\xF6t\xE4 nimi uudelle
-      beatmapille."
+    m_Localized: 'There already exists a pack with that name.
+
+
+      Please enter
+      the name of the song.'
     m_Metadata:
       m_Items: []
   - m_Id: 24
-    m_Localized: Muista tallentaa info.dat ennen muokkaamista!
+    m_Localized: Remember to save song information before editing!
     m_Metadata:
       m_Items: []
   - m_Id: 25
     m_Localized: "P\xE4ivitys saatavilla"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 26
-    m_Localized: "Ymp\xE4rist\xF6n Poistaminen"
     m_Metadata:
       m_Items: []
   - m_Id: 27

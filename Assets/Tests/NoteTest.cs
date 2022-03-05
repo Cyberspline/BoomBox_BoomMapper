@@ -72,36 +72,5 @@ namespace Tests
                 CheckNote(notesContainer, 0, 2, BeatmapNote.NoteTypeA, BeatmapNote.LineIndexFarLeft, BeatmapNote.LineLayerBottom, BeatmapNote.NoteCutDirectionLeft);
             }
         }
-
-        [Test]
-        public void UpdateNoteDirection()
-        {
-            BeatmapActionContainer actionContainer = Object.FindObjectOfType<BeatmapActionContainer>();
-            BeatmapObjectContainerCollection containerCollection = BeatmapObjectContainerCollection.GetCollectionForType(BeatmapObject.ObjectType.Note);
-            if (containerCollection is NotesContainer notesContainer)
-            {
-                Transform root = notesContainer.transform.root;
-                NotePlacement notePlacement = root.GetComponentInChildren<NotePlacement>();
-                BeatmapNoteInputController inputController = root.GetComponentInChildren<BeatmapNoteInputController>();
-
-                BeatmapNote noteA = new BeatmapNote(2, BeatmapNote.NoteTypeA, BeatmapNote.LineIndexFarLeft, BeatmapNote.LineLayerBottom, BeatmapNote.NoteCutDirectionLeft);
-
-                notePlacement.queuedData = noteA;
-                notePlacement.RoundedTime = notePlacement.queuedData.Time;
-                notePlacement.ApplyToMap();
-
-                if (notesContainer.LoadedContainers[noteA] is BeatmapNoteContainer containerA)
-                {
-                    inputController.UpdateNoteDirection(containerA, true);
-                }
-
-                CheckNote(notesContainer, 0, 2, BeatmapNote.NoteTypeA, BeatmapNote.LineIndexFarLeft, BeatmapNote.LineLayerBottom, BeatmapNote.NoteCutDirectionUpLeft);
-
-                // Undo direction
-                actionContainer.Undo();
-
-                CheckNote(notesContainer, 0, 2, BeatmapNote.NoteTypeA, BeatmapNote.LineIndexFarLeft, BeatmapNote.LineLayerBottom, BeatmapNote.NoteCutDirectionLeft);
-            }
-        }
     }
 }

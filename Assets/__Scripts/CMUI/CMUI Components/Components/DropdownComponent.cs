@@ -20,7 +20,7 @@ public class DropdownComponent : CMUIComponentWithLabel<int>
     /// </remarks>
     /// <param name="enumerable">List of options</param>
     /// <returns>Itself, for chaining methods.</returns>
-    public DropdownComponent WithOptionsList<T>(IEnumerable<T> enumerable)
+    public DropdownComponent WithOptions<T>(IEnumerable<T> enumerable)
     {
         dropdown.ClearOptions();
         dropdown.AddOptions(enumerable.Select(x => x.ToString()).ToList());
@@ -28,14 +28,54 @@ public class DropdownComponent : CMUIComponentWithLabel<int>
     }
 
     /// <summary>
-    /// Populates the dropdown list with the names of all constants from the provided Enum type.
+    /// Populates the dropdown list with the provided list of <see cref="TMP_Dropdown.OptionData"/>.
     /// </summary>
     /// <typeparam name="T">Enum type</typeparam>
     /// <returns>Itself, for chaining methods</returns>
-    public DropdownComponent WithEnumValues<T>() where T : Enum
+    public DropdownComponent WithOptions(List<TMP_Dropdown.OptionData> optionData)
     {
         dropdown.ClearOptions();
-        dropdown.AddOptions(Enum.GetNames(typeof(T)).ToList());
+        dropdown.AddOptions(optionData);
+        return this;
+    }
+
+    /// <summary>
+    /// Populates the dropdown list with the provided list of sprites.
+    /// </summary>
+    /// <typeparam name="T">Enum type</typeparam>
+    /// <returns>Itself, for chaining methods</returns>
+    public DropdownComponent WithOptions(List<Sprite> sprites)
+    {
+        dropdown.ClearOptions();
+        dropdown.AddOptions(sprites);
+        return this;
+    }
+
+    /// <summary>
+    /// Populates the dropdown list with the names of all constants from the provided Enum type.
+    /// </summary>
+    /// <remarks>
+    /// The <see cref="int"/> value returned by the <see cref="DropdownComponent"/> is the index into the list of names,
+    /// not the enum value assigned to the name.
+    /// </remarks>
+    /// <typeparam name="T">Enum type</typeparam>
+    /// <returns>Itself, for chaining methods</returns>
+    public DropdownComponent WithOptions<T>() where T : Enum
+        => WithOptions(typeof(T));
+
+    /// <summary>
+    /// Populates the dropdown list with the names of all constants from the provided Enum type.
+    /// </summary>
+    /// <remarks>
+    /// The <see cref="int"/> value returned by the <see cref="DropdownComponent"/> is the index into the list of names,
+    /// not the enum value assigned to the name.
+    /// </remarks>
+    /// <typeparam name="T">Enum type</typeparam>
+    /// <returns>Itself, for chaining methods</returns>
+    public DropdownComponent WithOptions(Type enumType)
+    {
+        dropdown.ClearOptions();
+        dropdown.AddOptions(Enum.GetNames(enumType).ToList());
         return this;
     }
 

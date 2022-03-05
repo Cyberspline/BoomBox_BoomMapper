@@ -22,7 +22,7 @@ public class AudioTimeSyncController : MonoBehaviour, CMInput.IPlaybackActions, 
     [SerializeField] private GridRenderingController gridRenderingController;
     [SerializeField] private CustomStandaloneInputModule customStandaloneInputModule;
 
-    [FormerlySerializedAs("song")] [HideInInspector] public BoomBoxPack Pack;
+    [FormerlySerializedAs("song")] [HideInInspector] public BoomBoxCustomPack Pack;
     [HideInInspector] public BoomBoxMap Map;
 
     [SerializeField] private float currentBeat;

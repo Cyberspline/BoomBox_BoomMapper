@@ -45,7 +45,7 @@ public class SongListItem : RecyclingListViewItem, IPointerEnterHandler, IPointe
     private bool ignoreToggle;
     private string previousSearch = "";
 
-    private BoomBoxPack song;
+    private BoomBoxPackBase song;
 
     private SongList songList;
 
@@ -57,8 +57,7 @@ public class SongListItem : RecyclingListViewItem, IPointerEnterHandler, IPointe
         songList = FindObjectOfType<SongList>();
 
         if (songCoreCache != null) return;
-        durationCachePath = Path.Combine(Settings.Instance.BeatSaberInstallation, "UserData", "SongCore",
-            "SongDurationCache.dat");
+        durationCachePath = Path.Combine(Application.persistentDataPath, "SongDurationCache.dat");
         if (!File.Exists(durationCachePath))
         {
             songCoreCache = new JSONObject();
@@ -85,12 +84,25 @@ public class SongListItem : RecyclingListViewItem, IPointerEnterHandler, IPointe
     public void OnPointerClick(PointerEventData eventData)
     {
         if (BoomBoxSongContainer.Instance != null && song != null)
-            BoomBoxSongContainer.Instance.SelectSongForEditing(song);
+        {
+            if (song is BoomBoxCustomPack customPack)
+            {
+                BoomBoxSongContainer.Instance.SelectSongForEditing(customPack);
+            }
+            else if (song is BoomBoxOfficialPack officialPack)
+            {
+                StartCoroutine(OfficialSongDownloader.DownloadOfficialPack(this, officialPack));
+            }
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        rightPanel.SetActive(true);
+        if (song is BoomBoxCustomPack)
+        {
+            rightPanel.SetActive(true);
+        }
+
         bg.color = new Color(0.35f, 0.35f, 0.36f, 1);
     }
 
@@ -110,7 +122,7 @@ public class SongListItem : RecyclingListViewItem, IPointerEnterHandler, IPointe
             : stripped;
     }
 
-    public void AssignSong(BoomBoxPack song, string searchFieldText)
+    public void AssignSong(BoomBoxPackBase song, string searchFieldText)
     {
         if (this.song == song && previousSearch == searchFieldText) return;
 
@@ -123,7 +135,8 @@ public class SongListItem : RecyclingListViewItem, IPointerEnterHandler, IPointe
 
         title.text = songName;
         artist.text = artistName;
-        folder.text = song.Directory;
+
+        folder.text = song is BoomBoxCustomPack customPack ? customPack.Directory : "";
 
         duration.text = "-:--";
         bpm.text = string.Empty;
@@ -139,7 +152,27 @@ public class SongListItem : RecyclingListViewItem, IPointerEnterHandler, IPointe
 
     private IEnumerator LoadImage()
     {
-        var fullPath = Path.Combine(song.Directory, song.ImageFile);
+        UnityWebRequest www;
+        string fullPath;
+
+        if (song is BoomBoxCustomPack customPack)
+        {
+            fullPath = Path.Combine(customPack.Directory, customPack.ImageFile);
+
+            if (!File.Exists(fullPath)) yield break;
+
+            www = UnityWebRequestTexture.GetTexture($"file:///{Uri.EscapeDataString($"{fullPath}")}");
+        }
+        else if (song is BoomBoxOfficialPack officialPack)
+        {
+            fullPath = officialPack.ImageFile;
+
+            www = UnityWebRequestTexture.GetTexture(fullPath);
+        }
+        else
+        {
+            throw new InvalidOperationException("Song is not a supported pack type.");
+        }
 
         if (cache.TryGetValue(fullPath, out var spriteRef) && spriteRef.TryGetTarget(out var existingSprite))
         {
@@ -148,9 +181,7 @@ public class SongListItem : RecyclingListViewItem, IPointerEnterHandler, IPointe
         }
 
         cover.sprite = defaultCover;
-        if (!File.Exists(fullPath)) yield break;
 
-        var www = UnityWebRequestTexture.GetTexture($"file:///{Uri.EscapeDataString($"{fullPath}")}");
         yield return www.SendWebRequest();
 
         // Copying the texture generates mipmaps for better scaling
@@ -213,8 +244,16 @@ public class SongListItem : RecyclingListViewItem, IPointerEnterHandler, IPointe
 
     private IEnumerator LoadDuration()
     {
-        var cacheKey = Path.GetFullPath(song.Directory);
-        var fullPath = Path.Combine(song.Directory, song.AudioFile);
+        if (song is BoomBoxOfficialPack officialPack)
+        {
+            SetDuration(officialPack.SongDuration / 1000);
+            yield break;
+        }
+
+        var customPack = song as BoomBoxCustomPack;
+
+        var cacheKey = Path.GetFullPath(customPack.Directory);
+        var fullPath = Path.Combine(customPack.Directory, song.AudioFile);
 
         if (!File.Exists(fullPath)) yield break;
 

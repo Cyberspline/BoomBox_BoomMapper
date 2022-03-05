@@ -22,7 +22,7 @@ public class DifficultySelect : MonoBehaviour
 
     public BoomBoxMap CurrentDiff => diffs[selected.Name].Map;
 
-    private BoomBoxPack Song => BoomBoxSongContainer.Instance != null ? BoomBoxSongContainer.Instance.Pack : null;
+    private BoomBoxCustomPack Song => BoomBoxSongContainer.Instance != null ? BoomBoxSongContainer.Instance.Pack : null;
 
     /// <summary>
     ///     Load song data and set up listeners on UI elements

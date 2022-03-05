@@ -19,11 +19,11 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 1
-    m_Localized: Sang Info
+    m_Localized: Pack Information
     m_Metadata:
       m_Items: []
   - m_Id: 2
-    m_Localized: "Map sv\xE6rhedsgrader"
+    m_Localized: Map Information
     m_Metadata:
       m_Items: []
   - m_Id: 3
@@ -36,20 +36,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 5
     m_Localized: "Navnet p\xE5 sangen."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6
-    m_Localized: Undernavn
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7
-    m_Localized: Undernavn
-    m_Metadata:
-      m_Items: []
-  - m_Id: 8
-    m_Localized: 'Undertekster eller andre personer, som
-
-      bidrog til sangen.'
     m_Metadata:
       m_Items: []
   - m_Id: 9
@@ -148,28 +134,12 @@ MonoBehaviour:
     m_Localized: Relativ location for lyd filen. (Bedst at beholde som den er.)
     m_Metadata:
       m_Items: []
-  - m_Id: 33
-    m_Localized: Omgivelser
-    m_Metadata:
-      m_Items: []
-  - m_Id: 34
-    m_Localized: Brugerdefineret platform
-    m_Metadata:
-      m_Items: []
   - m_Id: 35
     m_Localized: Gem
     m_Metadata:
       m_Items: []
   - m_Id: 36
     m_Localized: Slet
-    m_Metadata:
-      m_Items: []
-  - m_Id: 37
-    m_Localized: Hvad Omgivelser skal sangen spilles i?
-    m_Metadata:
-      m_Items: []
-  - m_Id: 38
-    m_Localized: "V\xE6lg fra en liste af installerede brugerdefinerede platformer."
     m_Metadata:
       m_Items: []
   - m_Id: 39
@@ -180,50 +150,8 @@ MonoBehaviour:
     m_Localized: Tilbage til sange listen
     m_Metadata:
       m_Items: []
-  - m_Id: 41
-    m_Localized: Halv hoppe-Varighed
-    m_Metadata:
-      m_Items: []
-  - m_Id: 42
-    m_Localized: "Typiske v\xE6rdier \nNem, Normal, Sv\xE6r: 4\nEkspert, Ekspert+:
-      2"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 43
-    m_Localized: Hoppe Afstand
-    m_Metadata:
-      m_Items: []
-  - m_Id: 44
-    m_Localized: "Typiske V\xE6rdier\nEasy, Normal, Hard: 24-36\nExpert: 24-32\nExpert
-      +: 20-28"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 45
-    m_Localized: Node hoppe hastighed
-    m_Metadata:
-      m_Items: []
-  - m_Id: 46
-    m_Localized: 10
-    m_Metadata:
-      m_Items: []
-  - m_Id: 47
-    m_Localized: "Hvor hurtige noder n\xE6rmer sig spilleren"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 48
-    m_Localized: Start takt forskud
-    m_Metadata:
-      m_Items: []
-  - m_Id: 49
-    m_Localized: 0
-    m_Metadata:
-      m_Items: []
-  - m_Id: 50
-    m_Localized: "For\xF8ger afstanden som noder vises fra spilleren"
-    m_Metadata:
-      m_Items: []
   - m_Id: 51
-    m_Localized: Lav en Zip
+    m_Localized: Create .BOM
     m_Metadata:
       m_Items: []
   - m_Id: 52
@@ -234,8 +162,8 @@ MonoBehaviour:
     m_Localized: "\xC5ben Editoren"
     m_Metadata:
       m_Items: []
-  - m_Id: 54
-    m_Localized: Bidragende
+  - m_Id: 30626475569381376
+    m_Localized: A list of tags for the map, separated by a space.
     m_Metadata:
       m_Items: []
   - m_Id: 56
@@ -291,15 +219,12 @@ MonoBehaviour:
       at du vil forlade?"
     m_Metadata:
       m_Items: []
-  - m_Id: 69
-    m_Localized: "ChroMapper er lige nu sat til ikke at indl\xE6se noget som er aktiveret.\nFor
-      at s\xE6tte noget til at loade, g\xE5 ind i Indstillinger og rulle ned til
-      bunden af Mapper indstillinger."
+  - m_Id: 30626380895551488
+    m_Localized: Tags
     m_Metadata:
       m_Items: []
-  - m_Id: 70
-    m_Localized: "ChroMapper er lige nu sat til ikke at indl\xE6se alt.\nFor at aktivere
-      tingene, g\xE5 ind i indstillinger og rul ned til bunden af mapper indstillinger."
+  - m_Id: 30626249097936896
+    m_Localized: Enter a short description for this map.
     m_Metadata:
       m_Items: []
   - m_Id: 71
@@ -318,9 +243,8 @@ MonoBehaviour:
     m_Localized: Lyd Filen eksistere ikke!
     m_Metadata:
       m_Items: []
-  - m_Id: 75
-    m_Localized: "Du har glemt at gemme bidragende, er du sikker p\xE5 at du vil
-      forlade?"
+  - m_Id: 30626154038231040
+    m_Localized: Description
     m_Metadata:
       m_Items: []
   - m_Id: 76
@@ -331,6 +255,22 @@ MonoBehaviour:
   - m_Id: 77
     m_Localized: En anden fil med samme navn eksistere allerede i sangens folder!
       brug den i stedet?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30626696189771776
+    m_Localized: Upload Map
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30857320636940288
+    m_Localized: Creator (that's you!)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30857462203088896
+    m_Localized: Map description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30857533221044224
+    m_Localized: fast fun difficult
     m_Metadata:
       m_Items: []
   references:

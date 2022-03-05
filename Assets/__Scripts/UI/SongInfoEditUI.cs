@@ -40,7 +40,7 @@ public class SongInfoEditUI : MenuBase
     private Coroutine reloadSongDataCoroutine;
     public Action TempSongLoadedEvent;
 
-    private BoomBoxPack Song => BoomBoxSongContainer.Instance.Pack;
+    private BoomBoxCustomPack Song => BoomBoxSongContainer.Instance.Pack;
 
     private void Start()
     {
@@ -90,13 +90,8 @@ public class SongInfoEditUI : MenuBase
         Song.ImageFile = coverImageField.text;
         Song.AudioFile = audioPath.text;
 
-        // TODO: bpm
-        //Song.BeatsPerMinute = GetTextValue(bpmField);
         Song.PreviewTime = GetTextValue(prevStartField) * 1000;
         Song.PreviewDuration = GetTextValue(prevDurField) * 1000;
-
-        // TODO: Switch to biomes
-        //Song.EnvironmentName = GetEnvironmentNameFromID(environmentDropdown.value);
 
         Song.Save();
 
@@ -126,9 +121,6 @@ public class SongInfoEditUI : MenuBase
         coverImageField.text = Song.ImageFile;
         audioPath.text = Song.AudioFile;
 
-        // TODO: Get bpm from a difficulty
-        //bpmField.text = Song.BeatsPerMinute.ToString(CultureInfo.InvariantCulture);
-
         var maps = Song.Maps;
 
         var bpms = maps.Select(x => x.BeginningBPM);
@@ -152,7 +144,7 @@ public class SongInfoEditUI : MenuBase
             var dropdown = dialogBox.AddComponent<DropdownComponent>()
                 // Populate dropdown with formatted strings of difficulty name and BPM
                 // Example: "Master (320 BPM)" and "Expert (128 BPM)"
-                .WithOptionsList(maps.Select(x =>
+                .WithOptions(maps.Select(x =>
                     string.Format("{0} ({1} BPM)", x.DifficultyName, x.TimingPoints.Find(y => y.TimeInMilliseconds == 0))
                     ))
                 // Set default value to the first difficulty

@@ -55,48 +55,8 @@ MonoBehaviour:
     m_Key: map.scale
     m_Metadata:
       m_Items: []
-  - m_Id: 11
-    m_Key: map.scale.accurate
-    m_Metadata:
-      m_Items: []
-  - m_Id: 12
-    m_Key: map.360
-    m_Metadata:
-      m_Items: []
-  - m_Id: 13
-    m_Key: map.zeroduration
-    m_Metadata:
-      m_Items: []
-  - m_Id: 15
-    m_Key: map.precisionplacement
-    m_Metadata:
-      m_Items: []
-  - m_Id: 16
-    m_Key: map.hyperwallalternate
-    m_Metadata:
-      m_Items: []
-  - m_Id: 17
-    m_Key: map.pastgrid
-    m_Metadata:
-      m_Items: []
   - m_Id: 18
     m_Key: map.speed
-    m_Metadata:
-      m_Items: []
-  - m_Id: 19
-    m_Key: map.lanes
-    m_Metadata:
-      m_Items: []
-  - m_Id: 20
-    m_Key: mouse.heading
-    m_Metadata:
-      m_Items: []
-  - m_Id: 21
-    m_Key: mouse.boxselect
-    m_Metadata:
-      m_Items: []
-  - m_Id: 22
-    m_Key: mouse.highlightplaced
     m_Metadata:
       m_Items: []
   - m_Id: 23
@@ -105,10 +65,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 24
     m_Key: loading.notes
-    m_Metadata:
-      m_Items: []
-  - m_Id: 25
-    m_Key: loading.events
     m_Metadata:
       m_Items: []
   - m_Id: 26
@@ -147,10 +103,6 @@ MonoBehaviour:
     m_Key: notesounds.blue
     m_Metadata:
       m_Items: []
-  - m_Id: 35
-    m_Key: notesounds.bomb
-    m_Metadata:
-      m_Items: []
   - m_Id: 36
     m_Key: notesounds.sounds
     m_Metadata:
@@ -159,40 +111,8 @@ MonoBehaviour:
     m_Key: graphics.heading
     m_Metadata:
       m_Items: []
-  - m_Id: 38
-    m_Key: graphics.waveform
-    m_Metadata:
-      m_Items: []
-  - m_Id: 39
-    m_Key: graphics.chroma
-    m_Metadata:
-      m_Items: []
-  - m_Id: 40
-    m_Key: graphics.rgb
-    m_Metadata:
-      m_Items: []
-  - m_Id: 41
-    m_Key: graphics.reflection
-    m_Metadata:
-      m_Items: []
-  - m_Id: 42
-    m_Key: graphics.colorfakewalls
-    m_Metadata:
-      m_Items: []
   - m_Id: 43
     m_Key: graphics.measurelinesontop
-    m_Metadata:
-      m_Items: []
-  - m_Id: 44
-    m_Key: graphics.bloom
-    m_Metadata:
-      m_Items: []
-  - m_Id: 45
-    m_Key: graphics.gradients
-    m_Metadata:
-      m_Items: []
-  - m_Id: 46
-    m_Key: graphics.simpleblocks
     m_Metadata:
       m_Items: []
   - m_Id: 47
@@ -213,18 +133,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 52
     m_Key: visuals.heading
-    m_Metadata:
-      m_Items: []
-  - m_Id: 53
-    m_Key: visuals.waveform
-    m_Metadata:
-      m_Items: []
-  - m_Id: 54
-    m_Key: visuals.nodeeditor
-    m_Metadata:
-      m_Items: []
-  - m_Id: 55
-    m_Key: visuals.nodeeditor.keybind
     m_Metadata:
       m_Items: []
   - m_Id: 56
@@ -287,28 +195,8 @@ MonoBehaviour:
     m_Key: experiment.heading
     m_Metadata:
       m_Items: []
-  - m_Id: 72
-    m_Key: experiment.decimal
-    m_Metadata:
-      m_Items: []
-  - m_Id: 73
-    m_Key: experiment.decimal.info
-    m_Metadata:
-      m_Items: []
-  - m_Id: 74
-    m_Key: experiment.decimal.tooltip
-    m_Metadata:
-      m_Items: []
   - m_Id: 75
     m_Key: plugins.guide
-    m_Metadata:
-      m_Items: []
-  - m_Id: 80
-    m_Key: loading.obstacles.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 81
-    m_Key: map.pastgrid.tooltip
     m_Metadata:
       m_Items: []
   - m_Id: 82
@@ -319,32 +207,12 @@ MonoBehaviour:
     m_Key: misc.autosave.interval.tooltip
     m_Metadata:
       m_Items: []
-  - m_Id: 84
-    m_Key: mouse.highlightplaced.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 85
-    m_Key: map.scale.accurate.tooltip
-    m_Metadata:
-      m_Items: []
   - m_Id: 86
     m_Key: scroll.precision.invert.tooltip
     m_Metadata:
       m_Items: []
-  - m_Id: 87
-    m_Key: loading.events.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 88
-    m_Key: graphics.simpleblocks.tooltip
-    m_Metadata:
-      m_Items: []
   - m_Id: 89
     m_Key: graphics.chunks.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 90
-    m_Key: map.360.tooltip
     m_Metadata:
       m_Items: []
   - m_Id: 91
@@ -371,14 +239,6 @@ MonoBehaviour:
     m_Key: misc.discord.tooltip
     m_Metadata:
       m_Items: []
-  - m_Id: 97
-    m_Key: map.hyperwallalternate.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 98
-    m_Key: map.zeroduration.tooltip
-    m_Metadata:
-      m_Items: []
   - m_Id: 99
     m_Key: map.scale.tooltip
     m_Metadata:
@@ -391,84 +251,28 @@ MonoBehaviour:
     m_Key: map.speed.tooltip
     m_Metadata:
       m_Items: []
-  - m_Id: 102
-    m_Key: notesounds.bomb.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 103
-    m_Key: map.precisionplacement.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 104
-    m_Key: graphics.reflection.tooltip
-    m_Metadata:
-      m_Items: []
   - m_Id: 105
     m_Key: graphics.measurelinesontop.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 106
-    m_Key: graphics.gradients.tooltip
     m_Metadata:
       m_Items: []
   - m_Id: 107
     m_Key: graphics.waveform.tooltip
     m_Metadata:
       m_Items: []
-  - m_Id: 108
-    m_Key: visuals.nodeeditor.keybind.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 109
-    m_Key: map.lanes.tooltip
-    m_Metadata:
-      m_Items: []
   - m_Id: 110
     m_Key: misc.transitions.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 111
-    m_Key: graphics.bloom.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 112
-    m_Key: graphics.chroma.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 113
-    m_Key: misc.dark.tooltip
     m_Metadata:
       m_Items: []
   - m_Id: 114
     m_Key: graphics.despawn.tooltip
     m_Metadata:
       m_Items: []
-  - m_Id: 115
-    m_Key: visuals.nodeeditor.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 116
-    m_Key: graphics.rgb.tooltip
-    m_Metadata:
-      m_Items: []
   - m_Id: 117
     m_Key: graphics.fov.tooltip
     m_Metadata:
       m_Items: []
-  - m_Id: 118
-    m_Key: graphics.colorfakewalls.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 119
-    m_Key: visuals.waveform.tooltip
-    m_Metadata:
-      m_Items: []
   - m_Id: 120
     m_Key: visuals.cameraspeed.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 121
-    m_Key: mouse.boxselect.tooltip
     m_Metadata:
       m_Items: []
   - m_Id: 122
@@ -519,10 +323,6 @@ MonoBehaviour:
     m_Key: tab.credits
     m_Metadata:
       m_Items: []
-  - m_Id: 134
-    m_Key: map.pastgrid.info
-    m_Metadata:
-      m_Items: []
   - m_Id: 135
     m_Key: map.speed.info
     m_Metadata:
@@ -555,14 +355,6 @@ MonoBehaviour:
     m_Key: visuals.cameraspeed.info
     m_Metadata:
       m_Items: []
-  - m_Id: 143
-    m_Key: map.clamp
-    m_Metadata:
-      m_Items: []
-  - m_Id: 144
-    m_Key: map.clamp.tooltip
-    m_Metadata:
-      m_Items: []
   - m_Id: 145
     m_Key: misc.language
     m_Metadata:
@@ -587,18 +379,6 @@ MonoBehaviour:
     m_Key: graphics.highcontrastgrids.tooltip
     m_Metadata:
       m_Items: []
-  - m_Id: 151
-    m_Key: experimental.customevents
-    m_Metadata:
-      m_Items: []
-  - m_Id: 152
-    m_Key: experimental.customevents.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 153
-    m_Key: graphics.postprocessintensity.info
-    m_Metadata:
-      m_Items: []
   - m_Id: 154
     m_Key: general.uiscale
     m_Metadata:
@@ -609,14 +389,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 156
     m_Key: general.uiscale.info
-    m_Metadata:
-      m_Items: []
-  - m_Id: 157
-    m_Key: graphics.eventmodels
-    m_Metadata:
-      m_Items: []
-  - m_Id: 158
-    m_Key: graphics.eventmodels.tooltip
     m_Metadata:
       m_Items: []
   - m_Id: 159
@@ -645,22 +417,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 165
     m_Key: misc.releaseserver.good
-    m_Metadata:
-      m_Items: []
-  - m_Id: 166
-    m_Key: visuals.nodeeditor.textsize
-    m_Metadata:
-      m_Items: []
-  - m_Id: 167
-    m_Key: visuals.nodeeditor.textsize.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 168
-    m_Key: visuals.nodeeditor.size
-    m_Metadata:
-      m_Items: []
-  - m_Id: 169
-    m_Key: visuals.nodeeditor.size.tooltip
     m_Metadata:
       m_Items: []
   - m_Id: 170
@@ -707,10 +463,6 @@ MonoBehaviour:
     m_Key: countersplus.shownps.tooltip
     m_Metadata:
       m_Items: []
-  - m_Id: 4756105506816
-    m_Key: countersplus.showsps.tooltip
-    m_Metadata:
-      m_Items: []
   - m_Id: 4923839918080
     m_Key: countersplus.showredblueratio.tooltip
     m_Metadata:
@@ -719,20 +471,12 @@ MonoBehaviour:
     m_Key: countersplus.showobstacles.tooltip
     m_Metadata:
       m_Items: []
-  - m_Id: 5433380745216
-    m_Key: countersplus.showevents.tooltip
-    m_Metadata:
-      m_Items: []
   - m_Id: 5576540729344
     m_Key: countersplus.showbpmchanges.tooltip
     m_Metadata:
       m_Items: []
   - m_Id: 5797878345728
     m_Key: countersplus.showcurrentbpm.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6094344335360
-    m_Key: countersplus.showtimemapping.tooltip
     m_Metadata:
       m_Items: []
   - m_Id: 7740667375616
@@ -747,10 +491,6 @@ MonoBehaviour:
     m_Key: countersplus.shownps
     m_Metadata:
       m_Items: []
-  - m_Id: 8262946304000
-    m_Key: countersplus.showsps
-    m_Metadata:
-      m_Items: []
   - m_Id: 8468374925312
     m_Key: countersplus.showredblueratio
     m_Metadata:
@@ -759,28 +499,12 @@ MonoBehaviour:
     m_Key: countersplus.showobstacles
     m_Metadata:
       m_Items: []
-  - m_Id: 8904158916608
-    m_Key: countersplus.showevents
-    m_Metadata:
-      m_Items: []
   - m_Id: 9070869917696
     m_Key: countersplus.showbpmchanges
     m_Metadata:
       m_Items: []
   - m_Id: 9291620331520
     m_Key: countersplus.showcurrentbpm
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9443374444544
-    m_Key: countersplus.showtimemapping
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1564790530682880
-    m_Key: countersplus.showbombcount.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1565145339441152
-    m_Key: countersplus.showbombs
     m_Metadata:
       m_Items: []
   - m_Id: 1062316191744
@@ -827,28 +551,24 @@ MonoBehaviour:
     m_Key: misc.vsync.tooltip
     m_Metadata:
       m_Items: []
-  - m_Id: 4089437985878016
-    m_Key: map.scale.independent.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4090246341505024
-    m_Key: map.scale.independent
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9689541752557568
-    m_Key: graphics.alpha.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9689824679333888
-    m_Key: graphics.alpha
-    m_Metadata:
-      m_Items: []
   - m_Id: 16675690602758144
     m_Key: graphics.antialiasing.tooltip
     m_Metadata:
       m_Items: []
   - m_Id: 16676035970138112
     m_Key: graphics.antialiasing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76977035641683968
+    m_Key: misc.autosave
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76977092520640512
+    m_Key: misc.autosave.tooltip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76978036666859520
+    m_Key: graphics.waveform
     m_Metadata:
       m_Items: []
   m_Metadata:

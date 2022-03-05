@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 public class TextBoxComponent : CMUIComponentWithLabel<string>
 {
@@ -35,6 +36,48 @@ public class TextBoxComponent : CMUIComponentWithLabel<string>
     {
         this.onDeselect = onDeselect;
         return this;
+    }
+
+    /// <summary>
+    /// Restricts allowed characters to match certain types of content (such as numbers, email addresses, passwords, etc.)
+    /// </summary>
+    /// <param name="contentType">Content type to apply to this text box.</param>
+    public TextBoxComponent WithContentType(TMP_InputField.ContentType contentType)
+    {
+        inputField.contentType = contentType;
+        return this;
+    }
+
+    /// <summary>
+    /// Configures whether or not this textbox can support multiple lines of text.
+    /// </summary>
+    /// <param name="lineType">Line type to apply to this text box.</param>
+    public TextBoxComponent WithLineType(TMP_InputField.LineType lineType)
+    {
+        inputField.lineType = lineType;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the maximum character length for this textbox.
+    /// </summary>
+    /// <param name="characterLength">Maximum character length.</param>
+    public TextBoxComponent WithMaximumLength(int characterLength)
+    {
+        inputField.characterLimit = characterLength;
+        return this;
+    }
+
+    /// <summary>
+    /// Assigns a localized initial value.
+    /// </summary>
+    /// <param name="table">Table which holds the localized text</param>
+    /// <param name="key">Key for the localized text</param>
+    /// <param name="args">Additional arguments if string formatting is involved.</param>
+    public TextBoxComponent WithInitialValue(string table, string key, params object[] args)
+    {
+        var str = LocalizationSettings.StringDatabase.GetLocalizedString(table, key, args);
+        return this.WithInitialValue(str);
     }
 
     private void Start()

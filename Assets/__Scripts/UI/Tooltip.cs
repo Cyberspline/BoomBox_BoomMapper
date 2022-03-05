@@ -8,7 +8,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [FormerlySerializedAs("tooltip")] public LocalizedString LocalizedTooltip;
 
-    [FormerlySerializedAs("tooltipOverride")] [HideInInspector] public string TooltipOverride;
+    [FormerlySerializedAs("tooltipOverride")] public string TooltipOverride;
 
     [FormerlySerializedAs("advancedTooltip")] public string AdvancedTooltip;
 
