@@ -6,13 +6,7 @@ using UnityEngine;
 
 public abstract class BeatmapObject
 {
-    protected static int DecimalPrecision =>
-#if UNITY_EDITOR
-        6;
-#else
-        Settings.Instance.TimeValueDecimalPrecision;
-#endif
-
+    protected static int DecimalPrecision => 3;
 
     public enum ObjectType
     {
