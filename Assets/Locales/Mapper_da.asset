@@ -191,28 +191,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 99
-    m_Localized: "S\xE5 vil du gerne opdatere nogle dele af dit Map?\n\nKlik p\xE5
-      nedenst\xE5ende muligheder for at opdatere dele af dit Map, du vil opdatere."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 100
-    m_Localized: Noder
-    m_Metadata:
-      m_Items: []
-  - m_Id: 101
-    m_Localized: Handlinger
-    m_Metadata:
-      m_Items: []
-  - m_Id: 102
-    m_Localized: Andre
-    m_Metadata:
-      m_Items: []
-  - m_Id: 103
-    m_Localized: Fuld opdatering
-    m_Metadata:
-      m_Items: []
-  - m_Id: 104
-    m_Localized: Forhindringer
+    m_Localized: 'Are you sure you want to reload the map from disk?
+
+
+      Any
+      unsaved changes will be lost!'
     m_Metadata:
       m_Items: []
   - m_Id: 106
@@ -242,10 +225,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 114
     m_Localized: Auto-gemmer...
-    m_Metadata:
-      m_Items: []
-  - m_Id: 115
-    m_Localized: Annuller
     m_Metadata:
       m_Items: []
   - m_Id: 152

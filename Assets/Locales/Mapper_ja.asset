@@ -192,27 +192,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 99
-    m_Localized: "\u30DE\u30C3\u30D7\u306E\u4E00\u90E8\u3092\u30EA\u30D5\u30EC\u30C3\u30B7\u30E5\u3057\u307E\u3059\u304B\uFF1F\n\n\u30EA\u30D5\u30EC\u30C3\u30B7\u30E5\u3057\u305F\u3044\u30DE\u30C3\u30D7\u306E\u4E00\u90E8\u3092\u66F4\u65B0\u3059\u308B\u306B\u306F\u3001\u4E0B\u306E\u30AA\u30D7\u30B7\u30E7\u30F3\u3092\u30AF\u30EA\u30C3\u30AF\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 100
-    m_Localized: "\u30CE\u30FC\u30C4"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 101
-    m_Localized: "\u30A4\u30D9\u30F3\u30C8"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 102
-    m_Localized: "\u305D\u306E\u4ED6"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 103
-    m_Localized: "\u3059\u3079\u3066\u66F4\u65B0"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 104
-    m_Localized: "\u969C\u5BB3\u7269"
+    m_Localized: 'Are you sure you want to reload the map from disk?
+
+
+      Any
+      unsaved changes will be lost!'
     m_Metadata:
       m_Items: []
   - m_Id: 106
@@ -241,10 +225,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 114
     m_Localized: "\u81EA\u52D5\u4FDD\u5B58\u4E2D\u2026"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 115
-    m_Localized: "\u30AD\u30E3\u30F3\u30BB\u30EB"
     m_Metadata:
       m_Items: []
   - m_Id: 152

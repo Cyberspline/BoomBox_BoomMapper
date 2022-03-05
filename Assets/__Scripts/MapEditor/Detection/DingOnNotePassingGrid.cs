@@ -7,7 +7,7 @@ public class DingOnNotePassingGrid : MonoBehaviour
 {
     public static Dictionary<int, bool> NoteTypeToDing = new Dictionary<int, bool>
     {
-        {BeatmapNote.NoteTypeA, true}, {BeatmapNote.NoteTypeB, true}, {BeatmapNote.NoteTypeBomb, false}
+        {BeatmapNote.NoteTypeA, true}, {BeatmapNote.NoteTypeB, true}
     };
 
     [SerializeField] private AudioTimeSyncController atsc;
@@ -19,7 +19,6 @@ public class DingOnNotePassingGrid : MonoBehaviour
     [SerializeField] private NotesContainer container;
     [SerializeField] private BeatmapObjectCallbackController defaultCallbackController;
     [SerializeField] private BeatmapObjectCallbackController beatSaberCutCallbackController;
-    [SerializeField] private BongoCat bongocat;
     [SerializeField] private GameObject discordPingPrefab;
 
     //debug
@@ -32,9 +31,8 @@ public class DingOnNotePassingGrid : MonoBehaviour
 
     private void Start()
     {
-        NoteTypeToDing[BeatmapNote.NoteTypeA] = Settings.Instance.Ding_Red_Notes;
-        NoteTypeToDing[BeatmapNote.NoteTypeB] = Settings.Instance.Ding_Blue_Notes;
-        NoteTypeToDing[BeatmapNote.NoteTypeBomb] = Settings.Instance.Ding_Bombs;
+        NoteTypeToDing[BeatmapNote.HandLeft] = Settings.Instance.Ding_Red_Notes;
+        NoteTypeToDing[BeatmapNote.HandRight] = Settings.Instance.Ding_Blue_Notes;
 
         beatSaberCutCallbackController.Offset = container.AudioTimeSyncController.GetBeatFromSeconds(0.5f);
         beatSaberCutCallbackController.UseAudioTime = true;
@@ -115,9 +113,6 @@ public class DingOnNotePassingGrid : MonoBehaviour
 
         var soundListId = Settings.Instance.NoteHitSound;
         if (soundListId == (int)HitSounds.Discord) Instantiate(discordPingPrefab, gameObject.transform, true);
-
-        // bongo cat
-        bongocat.TriggerArm(objectData as BeatmapNote, container);
     }
 
     private void PlaySound(bool initial, int index, BeatmapObject objectData)
@@ -132,7 +127,7 @@ public class DingOnNotePassingGrid : MonoBehaviour
         if (time - container.AudioTimeSyncController.CurrentBeat <= -0.5f) return;
 
         //actual ding stuff
-        if (time == lastCheckedTime || !NoteTypeToDing[note.Type]) return;
+        if (time == lastCheckedTime || !NoteTypeToDing[note.Hand]) return;
 
         /*
          * As for why we are not using "initial", it is so notes that are not supposed to ding do not prevent notes at

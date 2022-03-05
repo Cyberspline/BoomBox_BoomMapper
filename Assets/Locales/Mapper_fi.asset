@@ -191,28 +191,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 99
-    m_Localized: "Haluat siis p\xE4ivitt\xE4\xE4 joitain osia mapista?\n\nKlikkaa
-      alla olevia vaihtoehtoja p\xE4ivitt\xE4\xE4ksesi mapin osia."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 100
-    m_Localized: Nuotit
-    m_Metadata:
-      m_Items: []
-  - m_Id: 101
-    m_Localized: Eventit
-    m_Metadata:
-      m_Items: []
-  - m_Id: 102
-    m_Localized: Muut
-    m_Metadata:
-      m_Items: []
-  - m_Id: 103
-    m_Localized: "T\xE4ysi P\xE4ivitys"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 104
-    m_Localized: "Sein\xE4t"
+    m_Localized: 'Are you sure you want to reload the map from disk?
+
+
+      Any
+      unsaved changes will be lost!'
     m_Metadata:
       m_Items: []
   - m_Id: 106
@@ -241,10 +224,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 114
     m_Localized: Automaattitallennus...
-    m_Metadata:
-      m_Items: []
-  - m_Id: 115
-    m_Localized: Peruuta
     m_Metadata:
       m_Items: []
   - m_Id: 152

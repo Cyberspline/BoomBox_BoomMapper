@@ -16,8 +16,6 @@ namespace Tests.Util
                 yield break;
             }
 
-            Settings.Instance.Reminder_Loading360Levels = false;
-
             CMInputCallbackInstaller.TestMode = true;
             yield return SceneManager.LoadSceneAsync("00_FirstBoot", LoadSceneMode.Single);
             PersistentUI.Instance.EnableTransitions = false;

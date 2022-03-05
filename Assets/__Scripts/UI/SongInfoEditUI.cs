@@ -375,26 +375,6 @@ public class SongInfoEditUI : MenuBase
         // If no difficulty is selected or there is a dialog open do nothing
         if (BoomBoxSongContainer.Instance.Map == null || PersistentUI.Instance.DialogBoxIsEnabled) return;
 
-        var a = Settings.Instance.Load_Notes;
-        var b = Settings.Instance.Load_Obstacles;
-        var c = Settings.Instance.Load_Events;
-        var d = Settings.Instance.Load_Others;
-
-        if (!(a || b || c || d))
-        {
-            PersistentUI.Instance.ShowDialogBox(
-                "SongEditMenu", "load.warning",
-                null, PersistentUI.DialogBoxPresetType.Ok);
-            return;
-        }
-
-        if (!(a && b && c && d))
-        {
-            PersistentUI.Instance.ShowDialogBox(
-                "SongEditMenu", "load.warning2",
-                null, PersistentUI.DialogBoxPresetType.Ok);
-        }
-
         CheckForChanges(HandleEditMapButtonPressed);
     }
 

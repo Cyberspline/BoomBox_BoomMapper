@@ -22,20 +22,15 @@ public class EditorScaleController : MonoBehaviour, CMInput.IEditorScaleActions
     private void Start()
     {
         collections = moveableGridTransform.GetComponents<BeatmapObjectContainerCollection>();
-        currentBpm = BeatSaberSongContainer.Instance.Song.BeatsPerMinute;
-        SetAccurateEditorScale(Settings.Instance.NoteJumpSpeedForEditorScale); // seems weird but it does what we need
-        Settings.NotifyBySettingName("EditorScale", UpdateEditorScale);
-        Settings.NotifyBySettingName("EditorScaleBPMIndependent", RecalcEditorScale);
-        Settings.NotifyBySettingName("NoteJumpSpeedForEditorScale", SetAccurateEditorScale);
-        UIMode.UIModeSwitched += UpdateByUIMode;
+        currentBpm = BoomBoxSongContainer.Instance.Map.BeginningBPM;
+        Settings.NotifyBySettingName(nameof(Settings.EditorScale), UpdateEditorScale);
+        Settings.NotifyBySettingName(nameof(Settings.EditorScaleBPMIndependent), RecalcEditorScale);
     }
 
     private void OnDestroy()
     {
-        Settings.ClearSettingNotifications("EditorScale");
-        Settings.ClearSettingNotifications("EditorScaleBPMIndependent");
-        Settings.ClearSettingNotifications("NoteJumpSpeedForEditorScale");
-        UIMode.UIModeSwitched -= UpdateByUIMode;
+        Settings.ClearSettingNotifications(nameof(Settings.EditorScale));
+        Settings.ClearSettingNotifications(nameof(Settings.EditorScaleBPMIndependent));
     }
 
     public void OnDecreaseEditorScale(InputAction.CallbackContext context)
@@ -54,59 +49,15 @@ public class EditorScaleController : MonoBehaviour, CMInput.IEditorScaleActions
 
     public void UpdateEditorScale(object value)
     {
-        if (Settings.Instance.NoteJumpSpeedForEditorScale) return;
-
         var setting = (float)value;
-        if (Settings.Instance.EditorScaleBPMIndependent)
-            EditorScale = setting * baseBpm / currentBpm;
-        else
-            EditorScale = setting;
+        EditorScale = Settings.Instance.EditorScaleBPMIndependent
+            ? setting * baseBpm / currentBpm
+            : setting;
 
         if (previousEditorScale != EditorScale) Apply();
     }
 
     private void RecalcEditorScale(object obj) => UpdateEditorScale(Settings.Instance.EditorScale);
-
-    private void SetAccurateEditorScale(object obj)
-    {
-        var enabled = (bool)obj;
-        if (enabled)
-        {
-            var bps = 60f / currentBpm;
-            var songNoteJumpSpeed = BeatSaberSongContainer.Instance.DifficultyData.NoteJumpMovementSpeed;
-
-            // When doing the math, it turns out that this all cancels out into what you see
-            // We don't know where the hell 5/3 comes from, yay for magic numbers
-            EditorScale = 5 / 3f * songNoteJumpSpeed * bps;
-            Apply();
-        }
-        else
-        {
-            UpdateEditorScale(Settings.Instance.EditorScale);
-        }
-    }
-
-    private void UpdateByUIMode(UIModeType mode)
-    {
-        switch (mode)
-        {
-            case UIModeType.Normal:
-                SetAccurateEditorScale(Settings.Instance.NoteJumpSpeedForEditorScale);
-                break;
-            case UIModeType.HideUI:
-                SetAccurateEditorScale(Settings.Instance.NoteJumpSpeedForEditorScale);
-                break;
-            case UIModeType.HideGrids:
-                SetAccurateEditorScale(Settings.Instance.NoteJumpSpeedForEditorScale);
-                break;
-            case UIModeType.Preview:
-                SetAccurateEditorScale(true);
-                break;
-            case UIModeType.Playing:
-                SetAccurateEditorScale(true);
-                break;
-        }
-    }
 
     private void Apply()
     {

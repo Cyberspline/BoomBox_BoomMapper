@@ -194,28 +194,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 99
-    m_Localized: "S\xE5 vill du uppdatera vissa delar av mappen?\n\nKlicka p\xE5
-      alternativen nedan f\xF6r att uppdatera de delarna av mappen som du vill uppdatera."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 100
-    m_Localized: Block
-    m_Metadata:
-      m_Items: []
-  - m_Id: 101
-    m_Localized: "H\xE4ndelser"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 102
-    m_Localized: "\xD6vrigt"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 103
-    m_Localized: Full uppdatering
-    m_Metadata:
-      m_Items: []
-  - m_Id: 104
-    m_Localized: Hinder
+    m_Localized: 'Are you sure you want to reload the map from disk?
+
+
+      Any
+      unsaved changes will be lost!'
     m_Metadata:
       m_Items: []
   - m_Id: 106
@@ -245,10 +228,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 114
     m_Localized: Sparar automatisk...
-    m_Metadata:
-      m_Items: []
-  - m_Id: 115
-    m_Localized: Avbryt
     m_Metadata:
       m_Items: []
   - m_Id: 144

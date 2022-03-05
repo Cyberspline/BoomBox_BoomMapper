@@ -192,27 +192,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 99
-    m_Localized: "Bitte klicke auf die optionen unten, welche sie aktualisieren m\xF6chten"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 100
-    m_Localized: Noten
-    m_Metadata:
-      m_Items: []
-  - m_Id: 101
-    m_Localized: Events
-    m_Metadata:
-      m_Items: []
-  - m_Id: 102
-    m_Localized: Andere
-    m_Metadata:
-      m_Items: []
-  - m_Id: 103
-    m_Localized: Alles aktualisieren
-    m_Metadata:
-      m_Items: []
-  - m_Id: 104
-    m_Localized: Hindernisse
+    m_Localized: 'Are you sure you want to reload the map from disk?
+
+
+      Any
+      unsaved changes will be lost!'
     m_Metadata:
       m_Items: []
   - m_Id: 106
@@ -242,10 +226,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 114
     m_Localized: Automatisches Speichern ...
-    m_Metadata:
-      m_Items: []
-  - m_Id: 115
-    m_Localized: Abbrechen
     m_Metadata:
       m_Items: []
   - m_Id: 152

@@ -199,30 +199,6 @@ MonoBehaviour:
     m_Key: refreshmap
     m_Metadata:
       m_Items: []
-  - m_Id: 115
-    m_Key: refreshmap.cancel
-    m_Metadata:
-      m_Items: []
-  - m_Id: 101
-    m_Key: refreshmap.events
-    m_Metadata:
-      m_Items: []
-  - m_Id: 103
-    m_Key: refreshmap.full
-    m_Metadata:
-      m_Items: []
-  - m_Id: 100
-    m_Key: refreshmap.notes
-    m_Metadata:
-      m_Items: []
-  - m_Id: 102
-    m_Key: refreshmap.other
-    m_Metadata:
-      m_Items: []
-  - m_Id: 104
-    m_Key: refreshmap.walls
-    m_Metadata:
-      m_Items: []
   - m_Id: 107
     m_Key: save
     m_Metadata:

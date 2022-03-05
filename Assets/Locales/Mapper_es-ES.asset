@@ -192,28 +192,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 99
-    m_Localized: "\xBFDesea actualizar algunas partes del mapa?\n\nPor favor, haga
-      clic en las opciones de abajo para actualizar las partes del mapa que desee."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 100
-    m_Localized: Notas
-    m_Metadata:
-      m_Items: []
-  - m_Id: 101
-    m_Localized: Eventos
-    m_Metadata:
-      m_Items: []
-  - m_Id: 102
-    m_Localized: Otros
-    m_Metadata:
-      m_Items: []
-  - m_Id: 103
-    m_Localized: Actualizar todo
-    m_Metadata:
-      m_Items: []
-  - m_Id: 104
-    m_Localized: "Obst\xE1culos"
+    m_Localized: 'Are you sure you want to reload the map from disk?
+
+
+      Any
+      unsaved changes will be lost!'
     m_Metadata:
       m_Items: []
   - m_Id: 106
@@ -243,10 +226,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 114
     m_Localized: "Guardando autom\xE1ticamente..."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 115
-    m_Localized: Cancelar
     m_Metadata:
       m_Items: []
   - m_Id: 144

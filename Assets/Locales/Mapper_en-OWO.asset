@@ -203,26 +203,6 @@ MonoBehaviour:
       (*^ -^*)'
     m_Metadata:
       m_Items: []
-  - m_Id: 100
-    m_Localized: Nowotes
-    m_Metadata:
-      m_Items: []
-  - m_Id: 101
-    m_Localized: Ewents
-    m_Metadata:
-      m_Items: []
-  - m_Id: 102
-    m_Localized: Others
-    m_Metadata:
-      m_Items: []
-  - m_Id: 103
-    m_Localized: "Fuww Wefwesh \u2299\uFE3F\u2299"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 104
-    m_Localized: Owobstacwes
-    m_Metadata:
-      m_Items: []
   - m_Id: 106
     m_Localized: Awe youw suwe you want to dewete dis bookmawk?
     m_Metadata:
@@ -250,10 +230,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 114
     m_Localized: Awto Savwing... UwU
-    m_Metadata:
-      m_Items: []
-  - m_Id: 115
-    m_Localized: Cancew -n-
     m_Metadata:
       m_Items: []
   - m_Id: 152

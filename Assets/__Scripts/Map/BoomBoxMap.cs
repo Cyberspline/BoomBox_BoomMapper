@@ -134,9 +134,9 @@ public class BoomBoxMap
 
     public void Save()
     {
-        if (string.IsNullOrEmpty(FileInfo.FullName))
+        if (FileInfo == null || string.IsNullOrEmpty(FileInfo.FullName))
         {
-            throw new InvalidOperationException("Map was not created correctly.");
+            throw new InvalidOperationException("Someone forgot to assign FileInfo. Whomst've?");
         }
 
         // Switch to invariant culture so that JSON is serialized properly

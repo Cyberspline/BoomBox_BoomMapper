@@ -73,23 +73,6 @@ public class OptionsController : MenuBase
         group.interactable = false;
     }
 
-    public void ToggleBongo(int bongoId)
-    {
-        Settings.Instance.BongoCat = (bongoId == Settings.Instance.BongoCat) ? -1 : bongoId;
-
-        if (Settings.Instance.BongoCat > -1)
-        {
-            audioUtil.PlayOneShotSound(bongoCatAudioClip);
-            PersistentUI.Instance.DisplayMessage("Bongo cat joins the fight!", PersistentUI.DisplayMessageType.Bottom);
-        }
-        else
-        {
-            PersistentUI.Instance.DisplayMessage("Bongo cat disabled :(", PersistentUI.DisplayMessageType.Bottom);
-        }
-
-        Settings.ManuallyNotifySettingUpdatedEvent(nameof(Settings.BongoCat), Settings.Instance.BongoCat);
-    }
-
     protected override GameObject GetDefault() => gameObject;
 
     public override void OnLeaveMenu(InputAction.CallbackContext context)

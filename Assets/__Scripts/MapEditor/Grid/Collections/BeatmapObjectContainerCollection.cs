@@ -8,7 +8,6 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
     public static readonly int ChunkSize = 5;
 
     public static float Epsilon = 0.001f;
-    public static float TranslucentCull = -0.001f;
 
     private static readonly Dictionary<BeatmapObject.ObjectType, BeatmapObjectContainerCollection> loadedCollections =
         new Dictionary<BeatmapObject.ObjectType, BeatmapObjectContainerCollection>();
@@ -61,13 +60,6 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
         SubscribeToCallbacks();
     }
 
-    private void Start()
-    {
-        UpdateEpsilon(Settings.Instance.TimeValueDecimalPrecision);
-        Settings.NotifyBySettingName("TimeValueDecimalPrecision", UpdateEpsilon);
-        EditorScaleController.EditorScaleChangedEvent += UpdateTranslucentCull;
-    }
-
     internal virtual void LateUpdate()
     {
         if ((AudioTimeSyncController.IsPlaying && !UseChunkLoadingWhenPlaying)
@@ -91,14 +83,6 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
         loadedCollections.Remove(ContainerType);
         UnsubscribeToCallbacks();
     }
-
-    private void UpdateEpsilon(object precision)
-    {
-        Epsilon = 1 / Mathf.Pow(10, (int)precision);
-        UpdateTranslucentCull(EditorScaleController.EditorScale);
-    }
-
-    private void UpdateTranslucentCull(float editorScale) => TranslucentCull = -editorScale * Epsilon;
 
     /// <summary>
     ///     Grab a <see cref="BeatmapObjectContainerCollection" /> whose <see cref="ContainerType" /> matches the given type.

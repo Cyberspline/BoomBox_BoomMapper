@@ -194,31 +194,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 99
-    m_Localized: 'So, you''d like to refresh some parts of the map?
+    m_Localized: 'Are you sure you want to reload the map from disk?
 
 
-      Please
-      click on the options below to refresh parts of the map you want to refresh.'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 100
-    m_Localized: Notes
-    m_Metadata:
-      m_Items: []
-  - m_Id: 101
-    m_Localized: Events
-    m_Metadata:
-      m_Items: []
-  - m_Id: 102
-    m_Localized: Others
-    m_Metadata:
-      m_Items: []
-  - m_Id: 103
-    m_Localized: Full Refresh
-    m_Metadata:
-      m_Items: []
-  - m_Id: 104
-    m_Localized: Obstacles
+      Any
+      unsaved changes will be lost!'
     m_Metadata:
       m_Items: []
   - m_Id: 106
@@ -248,10 +228,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 114
     m_Localized: Auto Saving...
-    m_Metadata:
-      m_Items: []
-  - m_Id: 115
-    m_Localized: "T\xFChista"
     m_Metadata:
       m_Items: []
   - m_Id: 152

@@ -159,7 +159,7 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectionActions
             clearTypes.Add(BeatmapObject.ObjectType.BpmChange);
         }
 
-        var epsilon = 1f / Mathf.Pow(10, Settings.Instance.TimeValueDecimalPrecision);
+        var epsilon = 0.001f;
         foreach (var type in clearTypes)
         {
             var collection = BeatmapObjectContainerCollection.GetCollectionForType(type);
@@ -499,23 +499,14 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectionActions
                 newObjects.Add(type, collection.GrabSortedObjects());
             }
 
-            if (Settings.Instance.Load_Notes)
-            {
-                BoomBoxSongContainer.Instance.Map.Objects =
-                    newObjects[BeatmapObject.ObjectType.Note].Cast<BeatmapNote>().ToList();
-            }
+            BoomBoxSongContainer.Instance.Map.Objects =
+                newObjects[BeatmapObject.ObjectType.Note].Cast<BeatmapNote>().ToList();
 
-            if (Settings.Instance.Load_Obstacles)
-            {
-                BoomBoxSongContainer.Instance.Map.Obstacles =
-                    newObjects[BeatmapObject.ObjectType.Obstacle].Cast<BeatmapObstacle>().ToList();
-            }
+            BoomBoxSongContainer.Instance.Map.Obstacles =
+                newObjects[BeatmapObject.ObjectType.Obstacle].Cast<BeatmapObstacle>().ToList();
 
-            if (Settings.Instance.Load_Others)
-            {
-                BoomBoxSongContainer.Instance.Map.TimingPoints =
-                    newObjects[BeatmapObject.ObjectType.BpmChange].Cast<BeatmapBPMChange>().ToList();
-            }
+            BoomBoxSongContainer.Instance.Map.TimingPoints =
+                newObjects[BeatmapObject.ObjectType.BpmChange].Cast<BeatmapBPMChange>().ToList();
         }
     }
 

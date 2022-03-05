@@ -12,12 +12,9 @@ public class MapLoader : MonoBehaviour
     {
         var map = BoomBoxSongContainer.Instance.Map;
 
-        if (Settings.Instance.Load_Notes) yield return StartCoroutine(LoadObjects(map.Objects));
-        if (Settings.Instance.Load_Obstacles) yield return StartCoroutine(LoadObjects(map.Obstacles));
-        if (Settings.Instance.Load_Others)
-        {
-            yield return StartCoroutine(LoadObjects(map.TimingPoints));
-        }
+        yield return StartCoroutine(LoadObjects(map.Objects));
+        yield return StartCoroutine(LoadObjects(map.Obstacles));
+        yield return StartCoroutine(LoadObjects(map.TimingPoints));
 
         PersistentUI.Instance.LevelLoadSliderLabel.text = "Finishing up...";
         manager.RefreshTracks();

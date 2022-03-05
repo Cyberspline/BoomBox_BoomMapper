@@ -193,32 +193,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 99
-    m_Localized: 'Alors, vous souhaitez actualiser des parties de la map ?
+    m_Localized: 'Are you sure you want to reload the map from disk?
 
 
-      Veuillez
-      cliquer sur les options ci-dessous pour actualiser les parties de la map que
-      vous souhaitez actualiser.'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 100
-    m_Localized: Notes
-    m_Metadata:
-      m_Items: []
-  - m_Id: 101
-    m_Localized: "\xC9v\xE9nements"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 102
-    m_Localized: Autres
-    m_Metadata:
-      m_Items: []
-  - m_Id: 103
-    m_Localized: "Actualisation compl\xE8te"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 104
-    m_Localized: Obstacles
+      Any
+      unsaved changes will be lost!'
     m_Metadata:
       m_Items: []
   - m_Id: 106
@@ -248,10 +227,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 114
     m_Localized: Sauvegarde auto...
-    m_Metadata:
-      m_Items: []
-  - m_Id: 115
-    m_Localized: Annuler
     m_Metadata:
       m_Items: []
   - m_Id: 152

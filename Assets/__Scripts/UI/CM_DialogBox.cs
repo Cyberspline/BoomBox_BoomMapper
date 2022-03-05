@@ -43,7 +43,7 @@ public class CM_DialogBox : MonoBehaviour
             SetupButton(
                 i,
                 buttonText[i],
-                Settings.Instance.DarkTheme || buttonAsset == null ? defaultFont : buttonAsset[i],
+                defaultFont,
                 buttonText.Length > 3 ? 80 : 100
             );
         }

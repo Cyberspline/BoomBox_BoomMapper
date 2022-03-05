@@ -74,7 +74,6 @@ public class FirstBootMenu : MonoBehaviour
         SetFromTextbox();
         if (Settings.ValidateDirectory(ErrorFeedbackWithContinue))
         {
-            SetDefaults();
             FirstBootRequirementsMet();
             return;
         }
@@ -82,38 +81,10 @@ public class FirstBootMenu : MonoBehaviour
         validation.SetValidationState(true);
     }
 
-    public void SetDefaults()
-    {
-        switch (graphicsDropdown.value)
-        {
-            // Performance
-            case 2:
-                Settings.Instance.ChromaticAberration = false;
-                Settings.Instance.SimpleBlocks = true;
-                Settings.Instance.Reflections = false;
-                Settings.Instance.HighQualityBloom = false;
-                break;
-            // Balanced
-            case 1:
-                Settings.Instance.ChromaticAberration = false;
-                Settings.Instance.SimpleBlocks = true;
-                Settings.Instance.Reflections = false;
-                break;
-            // Quality
-            case 0:
-                Settings.Instance.Offset_Spawning = 8;
-                Settings.Instance.Offset_Despawning = 2;
-                Settings.Instance.ChunkDistance = 10;
-                break;
-        }
-    }
-
     public void ErrorFeedback(string s) => DoErrorFeedback(s, false);
 
     public void ErrorFeedbackWithContinue(string s) => DoErrorFeedback(s, true);
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0004:Remove Unnecessary Cast",
-        Justification = "Does not compile with Unity Mono (cringe)")]
     private void DoErrorFeedback(string s, bool continueAfter)
     {
         var arg = LocalizationSettings.StringDatabase.GetLocalizedString("FirstBoot", s);
@@ -131,11 +102,12 @@ public class FirstBootMenu : MonoBehaviour
         if (res == 0)
         {
             Debug.Log("Creating directories that do not exist...");
+
             if (!Directory.Exists(Settings.Instance.BeatSaberInstallation))
                 Directory.CreateDirectory(Settings.Instance.BeatSaberInstallation);
             if (!Directory.Exists(Settings.Instance.CustomSongsFolder))
                 Directory.CreateDirectory(Settings.Instance.CustomSongsFolder);
-            SetDefaults();
+
             FirstBootRequirementsMet();
         }
     }
