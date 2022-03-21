@@ -49,7 +49,11 @@ public abstract class QuickSettings : MonoBehaviour
         {
             case var t when t == typeof(float):
                 component = DialogBox.AddComponent<SliderComponent>()
-                    .WithSliderParams((float)settingArgs[0], (float)settingArgs[1], (float)settingArgs[2]) as CMUIComponent<T>;
+                    .WithSliderParams(
+                        Convert.ToSingle(settingArgs[0]), 
+                        Convert.ToSingle(settingArgs[1]), 
+                        Convert.ToSingle(settingArgs[2])
+                    ) as CMUIComponent<T>;
                 break;
             case var t when t == typeof(string):
                 component = DialogBox.AddComponent<TextBoxComponent>() as CMUIComponent<T>;

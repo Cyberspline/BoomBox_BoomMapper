@@ -50,7 +50,6 @@ MonoBehaviour:
   - {fileID: 6504882839176335681}
   SelectionRenderers:
   - {fileID: 5839049024245972941}
-  BoxCollider: {fileID: 0}
   ObstacleData:
     HasAttachedContainer: 0
     LineIndex: 0
@@ -63,6 +62,10 @@ MonoBehaviour:
     B:
       StartTime: 0
       RadialIndex: 0
+  boomBoxObstacleMaterial: {fileID: 2100000, guid: 602cca8d32f22794d8090c0cf86f1120,
+    type: 2}
+  chroMapperObstacleMaterial: {fileID: 2100000, guid: ed10b4bf10ee79d49a2f63af13875bac,
+    type: 2}
 --- !u!1 &1892633844858192
 GameObject:
   m_ObjectHideFlags: 0

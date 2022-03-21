@@ -164,11 +164,7 @@ public class SongList : MonoBehaviour
 
                 try
                 {
-                    using var memorySream = new MemoryStream(request.downloadHandler.data);
-                    using var textReader = new StreamReader(memorySream);
-                    using var reader = new JsonTextReader(textReader);
-
-                    songListResponse = JsonSerializer.CreateDefault().Deserialize<BoomBoxOfficialSongListResponse>(reader);
+                    songListResponse = JsonConvert.DeserializeObject<BoomBoxOfficialSongListResponse>(request.downloadHandler.text);
 
                     Debug.Log($"Loaded page {page}.");
 

@@ -57,6 +57,7 @@ public class Settings
     public int ReleaseChannel = 0;
     public string ReleaseServer = "https://cm.topc.at";
     public int DSPBufferSize = 10;
+    public bool QuickNoteEditing = false;
     public int AudioLatencyCompensation = 0;
     public int MaximumFPS = 9999;
     public bool VSync = true;
@@ -71,6 +72,9 @@ public class Settings
     public bool OverviewCamera = false;
 
     public int LastSongSortType = (int)SongList.SongSortType.Name;
+
+    public bool SimplifiedObstacles = false;
+    public float ObstacleOpacity = 0.7f;
 
     public static Dictionary<string, FieldInfo> AllFieldInfos = new Dictionary<string, FieldInfo>();
     public static Dictionary<string, object> NonPersistentSettings = new Dictionary<string, object>();

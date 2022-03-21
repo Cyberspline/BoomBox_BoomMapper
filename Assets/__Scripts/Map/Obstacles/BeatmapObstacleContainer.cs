@@ -3,7 +3,15 @@ using UnityEngine.Serialization;
 
 public class BeatmapObstacleContainer : BeatmapObjectContainer
 {
+    private static readonly int boomBoxObstacleOpacity = Shader.PropertyToID("_overallOpacity");
+
+    private static readonly int chroMapperObstacleOpacity = Shader.PropertyToID("_MainAlpha");
+    private static readonly int chroMapperObstacleSize = Shader.PropertyToID("_WorldScale");
+
     [FormerlySerializedAs("obstacleData")] public BeatmapObstacle ObstacleData;
+
+    [SerializeField] private Material boomBoxObstacleMaterial;
+    [SerializeField] private Material chroMapperObstacleMaterial;
 
     public override BeatmapObject ObjectData { get => ObstacleData; set => ObstacleData = (BeatmapObstacle)value; }
 
@@ -14,9 +22,14 @@ public class BeatmapObstacleContainer : BeatmapObjectContainer
         return container;
     }
 
-    public void SetColor(Color color)
+    public void SetAlpha(float alpha)
     {
-        //MaterialPropertyBlock.SetColor(colorTint, color);
+        MaterialPropertyBlock.SetFloat(
+            Settings.Instance.SimplifiedObstacles
+                ? chroMapperObstacleOpacity
+                : boomBoxObstacleOpacity,
+            alpha);
+
         UpdateMaterials();
     }
 
@@ -24,7 +37,7 @@ public class BeatmapObstacleContainer : BeatmapObjectContainer
     {
         transform.localScale = scale;
 
-        //MaterialPropertyBlock.SetVector(shaderScale, scale);
+        MaterialPropertyBlock.SetVector(chroMapperObstacleSize, scale);
         UpdateMaterials();
     }
 
@@ -39,5 +52,17 @@ public class BeatmapObstacleContainer : BeatmapObjectContainer
         SetScale(new Vector3(0.8f, 0.3f, (a - b).magnitude));
 
         UpdateCollisionGroups();
+    }
+
+    internal override void UpdateMaterials()
+    {
+        foreach (var renderer in ModelRenderers)
+        {
+            renderer.sharedMaterial = Settings.Instance.SimplifiedObstacles
+                ? chroMapperObstacleMaterial
+                : boomBoxObstacleMaterial;
+
+            renderer.SetPropertyBlock(MaterialPropertyBlock);
+        }
     }
 }

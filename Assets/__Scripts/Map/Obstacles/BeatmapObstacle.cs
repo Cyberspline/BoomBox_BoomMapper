@@ -25,6 +25,7 @@ public class BeatmapObstacle : BeatmapObject, IBeatmapObjectBounds
     [JsonProperty()]
     public Point B;
 
+    [JsonIgnore]
     public override float TimeInMilliseconds
     {
         get => Mathf.Min(A.StartTime, B.StartTime);

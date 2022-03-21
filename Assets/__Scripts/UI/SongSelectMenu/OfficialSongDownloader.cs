@@ -14,7 +14,7 @@ public class OfficialSongDownloader
     {
         yield return item.StartCoroutine(BoomBoxAPI.AuthenticateUser());
 
-        var subDirectoryName = $"pack - {officialPack.SongId} - {officialPack.SongTitle}";
+        var subDirectoryName = $"pack - {BoomBoxAPI.UserId} - {officialPack.SongTitle}";
 
         // Sanitize the directory name
         var cleanSubDirectoryName = Path.GetInvalidPathChars()

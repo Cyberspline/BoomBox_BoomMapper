@@ -17,8 +17,7 @@ public abstract class BeatmapObjectContainer : MonoBehaviour
     [FormerlySerializedAs("colliders")] [SerializeField] protected List<IntersectionCollider> Colliders;
     [FormerlySerializedAs("selectionRenderers")] [SerializeField] protected List<Renderer> SelectionRenderers = new List<Renderer>();
 
-    private readonly List<Renderer> modelRenderers = new List<Renderer>();
-    internal bool selectionStateChanged;
+    protected readonly List<Renderer> ModelRenderers = new List<Renderer>();
 
     public bool OutlineVisible
     {
@@ -46,7 +45,7 @@ public abstract class BeatmapObjectContainer : MonoBehaviour
         if (MaterialPropertyBlock == null)
         {
             MaterialPropertyBlock = new MaterialPropertyBlock();
-            modelRenderers.AddRange(GetComponentsInChildren<Renderer>(true).Where(x => !(x is SpriteRenderer)));
+            ModelRenderers.AddRange(GetComponentsInChildren<Renderer>(true).Where(x => !(x is SpriteRenderer)));
         }
     }
 
@@ -57,7 +56,7 @@ public abstract class BeatmapObjectContainer : MonoBehaviour
 
     internal virtual void UpdateMaterials()
     {
-        foreach (var renderer in modelRenderers) renderer.SetPropertyBlock(MaterialPropertyBlock);
+        foreach (var renderer in ModelRenderers) renderer.SetPropertyBlock(MaterialPropertyBlock);
     }
 
     public void SetRotation(float rotation)

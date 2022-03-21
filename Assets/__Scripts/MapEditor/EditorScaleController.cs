@@ -25,6 +25,7 @@ public class EditorScaleController : MonoBehaviour, CMInput.IEditorScaleActions
         currentBpm = BoomBoxSongContainer.Instance.Map.BeginningBPM;
         Settings.NotifyBySettingName(nameof(Settings.EditorScale), UpdateEditorScale);
         Settings.NotifyBySettingName(nameof(Settings.EditorScaleBPMIndependent), RecalcEditorScale);
+        UpdateEditorScale(Settings.Instance.EditorScale);
     }
 
     private void OnDestroy()

@@ -1,0 +1,572 @@
+﻿{
+  "difficulty_name": "Testing Editor v2 Uploading Please Delete",
+  "description": "Hello Cam and HardCPP",
+  "tag": [
+    {
+      "tag_name": "hi"
+    },
+    {
+      "tag_name": "everyone"
+    },
+    {
+      "tag_name": "please"
+    },
+    {
+      "tag_name": "yell"
+    },
+    {
+      "tag_name": "at"
+    },
+    {
+      "tag_name": "cam"
+    },
+    {
+      "tag_name": "to"
+    },
+    {
+      "tag_name": "delete"
+    },
+    {
+      "tag_name": "this"
+    }
+  ],
+  "bbox_objects": [
+    {
+      "Hand": 1,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 6,
+      "StartTime": 375.0
+    },
+    {
+      "Hand": 2,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 0,
+      "StartTime": 375.0
+    },
+    {
+      "Hand": 1,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 3,
+      "StartTime": 875.0
+    },
+    {
+      "Hand": 2,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 1,
+      "StartTime": 1750.0
+    },
+    {
+      "Hand": 1,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 3,
+      "StartTime": 2250.0
+    },
+    {
+      "Hand": 1,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 6,
+      "StartTime": 3125.0
+    },
+    {
+      "Hand": 2,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 0,
+      "StartTime": 3125.0
+    },
+    {
+      "Hand": 1,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 3,
+      "StartTime": 3625.0
+    },
+    {
+      "Hand": 2,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 1,
+      "StartTime": 4500.0
+    },
+    {
+      "Hand": 1,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 3,
+      "StartTime": 5000.0
+    },
+    {
+      "Hand": 2,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 2,
+      "StartTime": 11500.0
+    },
+    {
+      "Hand": 1,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 1,
+      "StartTime": 12125.0
+    },
+    {
+      "Hand": 2,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 3,
+      "StartTime": 12875.0
+    },
+    {
+      "Hand": 1,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 3,
+      "StartTime": 13375.0
+    },
+    {
+      "Hand": 2,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 1,
+      "StartTime": 22250.0
+    },
+    {
+      "Hand": 1,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 3,
+      "StartTime": 22250.0
+    },
+    {
+      "Hand": 2,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 8,
+      "StartTime": 22625.0
+    },
+    {
+      "Hand": 1,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 6,
+      "StartTime": 22625.0
+    },
+    {
+      "Hand": 1,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 3,
+      "StartTime": 23000.0
+    },
+    {
+      "Hand": 2,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 1,
+      "StartTime": 23000.0
+    },
+    {
+      "Hand": 2,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 1,
+      "StartTime": 23625.0
+    },
+    {
+      "Hand": 1,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 3,
+      "StartTime": 23625.0
+    },
+    {
+      "Hand": 1,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 6,
+      "StartTime": 24000.0
+    },
+    {
+      "Hand": 2,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 8,
+      "StartTime": 24000.0
+    },
+    {
+      "Hand": 1,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 3,
+      "StartTime": 24375.0
+    },
+    {
+      "Hand": 2,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 1,
+      "StartTime": 24375.0
+    },
+    {
+      "Hand": 2,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 1,
+      "StartTime": 25000.0
+    },
+    {
+      "Hand": 1,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 3,
+      "StartTime": 25000.0
+    },
+    {
+      "Hand": 2,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 8,
+      "StartTime": 25375.0
+    },
+    {
+      "Hand": 1,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 6,
+      "StartTime": 25375.0
+    },
+    {
+      "Hand": 1,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 3,
+      "StartTime": 25750.0
+    },
+    {
+      "Hand": 2,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 1,
+      "StartTime": 25750.0
+    },
+    {
+      "Hand": 1,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 3,
+      "StartTime": 26500.0
+    },
+    {
+      "Hand": 2,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 1,
+      "StartTime": 26500.0
+    },
+    {
+      "Hand": 1,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 6,
+      "StartTime": 26875.0
+    },
+    {
+      "Hand": 2,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 8,
+      "StartTime": 26875.0
+    },
+    {
+      "Hand": 2,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 1,
+      "StartTime": 27250.0
+    },
+    {
+      "Hand": 1,
+      "Type": 1,
+      "OrbitalType": 1,
+      "RadialIndex": 3,
+      "StartTime": 27250.0
+    }
+  ],
+  "obstacles": [
+    {
+      "A": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 8500.0,
+        "OrbitalType": 2,
+        "RadialIndex": 7
+      },
+      "B": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 8500.0,
+        "OrbitalType": 2,
+        "RadialIndex": 1
+      }
+    },
+    {
+      "A": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 8500.0,
+        "OrbitalType": 2,
+        "RadialIndex": 2
+      },
+      "B": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 8500.0,
+        "OrbitalType": 2,
+        "RadialIndex": 0
+      }
+    },
+    {
+      "A": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 8500.0,
+        "OrbitalType": 2,
+        "RadialIndex": 6
+      },
+      "B": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 8500.0,
+        "OrbitalType": 2,
+        "RadialIndex": 8
+      }
+    },
+    {
+      "A": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 9000.0,
+        "OrbitalType": 2,
+        "RadialIndex": 20
+      },
+      "B": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 9000.0,
+        "OrbitalType": 2,
+        "RadialIndex": 13
+      }
+    },
+    {
+      "A": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 9000.0,
+        "OrbitalType": 2,
+        "RadialIndex": 4
+      },
+      "B": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 9000.0,
+        "OrbitalType": 2,
+        "RadialIndex": 10
+      }
+    },
+    {
+      "A": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 9000.0,
+        "OrbitalType": 2,
+        "RadialIndex": 0
+      },
+      "B": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 9000.0,
+        "OrbitalType": 2,
+        "RadialIndex": 8
+      }
+    },
+    {
+      "A": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 10000.0,
+        "OrbitalType": 2,
+        "RadialIndex": 13
+      },
+      "B": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 10000.0,
+        "OrbitalType": 2,
+        "RadialIndex": 20
+      }
+    },
+    {
+      "A": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 10000.0,
+        "OrbitalType": 2,
+        "RadialIndex": 20
+      },
+      "B": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 10000.0,
+        "OrbitalType": 2,
+        "RadialIndex": 8
+      }
+    },
+    {
+      "A": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 10000.0,
+        "OrbitalType": 2,
+        "RadialIndex": 8
+      },
+      "B": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 10000.0,
+        "OrbitalType": 2,
+        "RadialIndex": 0
+      }
+    },
+    {
+      "A": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 10500.0,
+        "OrbitalType": 2,
+        "RadialIndex": 1
+      },
+      "B": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 10500.0,
+        "OrbitalType": 2,
+        "RadialIndex": 7
+      }
+    },
+    {
+      "A": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 10500.0,
+        "OrbitalType": 2,
+        "RadialIndex": 10
+      },
+      "B": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 10500.0,
+        "OrbitalType": 2,
+        "RadialIndex": 13
+      }
+    },
+    {
+      "A": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 10500.0,
+        "OrbitalType": 2,
+        "RadialIndex": 20
+      },
+      "B": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 10500.0,
+        "OrbitalType": 2,
+        "RadialIndex": 10
+      }
+    },
+    {
+      "A": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 11000.0,
+        "OrbitalType": 2,
+        "RadialIndex": 11
+      },
+      "B": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 11000.0,
+        "OrbitalType": 2,
+        "RadialIndex": 2
+      }
+    },
+    {
+      "A": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 11000.0,
+        "OrbitalType": 2,
+        "RadialIndex": 6
+      },
+      "B": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 11000.0,
+        "OrbitalType": 2,
+        "RadialIndex": 9
+      }
+    },
+    {
+      "A": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 11000.0,
+        "OrbitalType": 2,
+        "RadialIndex": 4
+      },
+      "B": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 11000.0,
+        "OrbitalType": 2,
+        "RadialIndex": 11
+      }
+    },
+    {
+      "A": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 11000.0,
+        "OrbitalType": 2,
+        "RadialIndex": 9
+      },
+      "B": {
+        "Hand": 0,
+        "Type": 6,
+        "StartTime": 11000.0,
+        "OrbitalType": 2,
+        "RadialIndex": 4
+      }
+    }
+  ],
+  "timing_points": [
+    {
+      "Bpm": 175.0,
+      "Offset": 0.0
+    }
+  ],
+  "bookmarks": [],
+  "song": 275,
+  "common_bpm": 175.0,
+  "length": 27250.0,
+  "map_style": 1,
+  "is_active": true,
+  "map_status": 1
+}

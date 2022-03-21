@@ -17,6 +17,8 @@ public class BoomBoxAPI
     private static readonly string header_token_auth = "Wpauthorization";
     private static readonly string header_auth = "Authorization";
 
+    public static string UserId = null;
+
     private static string token;
     private static DateTime expiry;
 
@@ -66,11 +68,7 @@ public class BoomBoxAPI
             yield break;
         }
 
-        using var memorySream = new MemoryStream(authenticateRequest.downloadHandler.data);
-        using var textReader = new StreamReader(memorySream);
-        using var reader = new JsonTextReader(textReader);
-
-        var authResponse = JsonSerializer.CreateDefault().Deserialize<AuthResponse>(reader);
+        var authResponse = JsonConvert.DeserializeObject<AuthResponse>(authenticateRequest.downloadHandler.text);
 
         if (authResponse == null)
         {
@@ -84,16 +82,17 @@ public class BoomBoxAPI
 
         token = authResponse.Token;
         expiry = authResponse.Expiry;
+        UserId = authResponse.UserId;
     }
 
-    public static UnityWebRequest CreateAuthenticatedRequest(string endpoint)
+    public static UnityWebRequest CreateAuthenticatedRequest(string endpoint, string method = "GET")
     {
         if (!IsAuthenticated)
         {
             throw new InvalidOperationException("User must be authenticated.");
         }
 
-        var webRequest = new UnityWebRequest($"{api}/{endpoint}", "GET", new DownloadHandlerBuffer(), null);
+        var webRequest = new UnityWebRequest($"{api}/{endpoint}", method, new DownloadHandlerBuffer(), null);
 
         webRequest.SetRequestHeader(header_auth, $"Token {token}");
 
@@ -106,10 +105,10 @@ public class BoomBoxAPI
         public string Token;
 
         [JsonProperty("user_id")]
-        public uint UserId;
+        public string UserId;
 
         [JsonProperty("steamid")]
-        public uint SteamId;
+        public string SteamId;
 
         [JsonProperty("username")]
         public string UsernameOrEmail;

@@ -43,7 +43,6 @@ public class BeatmapInputController<T> : MonoBehaviour, CMInput.IBeatmapObjectsA
                 if (!SelectionController.IsObjectSelected(obj.ObjectData))
                 {
                     SelectionController.Select(obj.ObjectData, true);
-                    obj.selectionStateChanged = true;
                 }
             }
         }
@@ -85,12 +84,10 @@ public class BeatmapInputController<T> : MonoBehaviour, CMInput.IBeatmapObjectsA
             else if (SelectionController.IsObjectSelected(obj))
             {
                 SelectionController.Deselect(obj);
-                firstObject.selectionStateChanged = true;
             }
             else if (!SelectionController.IsObjectSelected(obj))
             {
                 SelectionController.Select(obj, true);
-                firstObject.selectionStateChanged = true;
             }
         }
     }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using UnityEngine;
 
 /// <summary>
 /// The backend structure of a BoomBox map.
@@ -23,11 +24,29 @@ public class BoomBoxMapAPI
     [JsonProperty("obstacles")]
     public readonly List<BeatmapObstacle> Obstacles;
 
+    [JsonProperty("timing_points")]
+    public readonly List<BeatmapBPMChange> TimingPoints;
+
+    [JsonProperty("bookmarks")]
+    public readonly List<BeatmapBookmark> Bookmarks;
+
     [JsonProperty("song")]
     public readonly int SongId;
 
     [JsonProperty("common_bpm")]
     public readonly float CommonBpm;
+
+    [JsonProperty("length")]
+    public readonly float Length;
+
+    [JsonProperty("map_style")]
+    public readonly int MapStyle = 1;
+
+    [JsonProperty("is_active")]
+    public readonly bool IsActive = true;
+
+    [JsonProperty("map_status")]
+    public readonly int MapStatus = 1;
 
     public BoomBoxMapAPI(BoomBoxPackBase pack, BoomBoxMap map)
     {
@@ -40,7 +59,7 @@ public class BoomBoxMapAPI
         Description = map.Description;
 
         Tags = map.Tags
-            .Split(' ')
+            .Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
             .Select(tag => new Tag(tag))
             .ToList();
 
@@ -48,9 +67,18 @@ public class BoomBoxMapAPI
 
         Obstacles = map.Obstacles;
 
+        TimingPoints = map.TimingPoints;
+
+        Bookmarks = map.Bookmarks;
+
         SongId = pack.SongId.Value;
 
         CommonBpm = map.BeginningBPM;
+
+        Length = Mathf.Max(
+            Objects.Max(it => it.TimeInMilliseconds),
+            Obstacles.Max(it => it.TimeInMilliseconds)
+            );
     }
 
     public class Tag

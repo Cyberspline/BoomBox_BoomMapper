@@ -11,10 +11,17 @@ public class ObstaclesContainer : BeatmapObjectContainerCollection
     internal override void SubscribeToCallbacks()
     {
         Shader.SetGlobalFloat("_OutsideAlpha", 1f);
+        Settings.NotifyBySettingName(nameof(Settings.SimplifiedObstacles), (_) => RefreshPool(true));
+        Settings.NotifyBySettingName(nameof(Settings.ObstacleOpacity), (_) => RefreshPool(true));
         AudioTimeSyncController.PlayToggle += OnPlayToggle;
     }
 
-    internal override void UnsubscribeToCallbacks() => AudioTimeSyncController.PlayToggle -= OnPlayToggle;
+    internal override void UnsubscribeToCallbacks()
+    {
+        Settings.ClearSettingNotifications(nameof(Settings.SimplifiedObstacles));
+        Settings.ClearSettingNotifications(nameof(Settings.ObstacleOpacity));
+        AudioTimeSyncController.PlayToggle -= OnPlayToggle;
+    }
 
     private void OnPlayToggle(bool playing) => Shader.SetGlobalFloat("_OutsideAlpha", playing ? 0 : 1);
 
@@ -30,7 +37,11 @@ public class ObstaclesContainer : BeatmapObjectContainerCollection
 
     protected override void UpdateContainerData(BeatmapObjectContainer con, BeatmapObject obj)
     {
+        var obstacle = con as BeatmapObstacleContainer;
+
         var track = tracksManager.GetTrackAtTime(obj.Time);
         track.AttachContainer(con);
+
+        obstacle.SetAlpha(Settings.Instance.ObstacleOpacity);
     }
 }

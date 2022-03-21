@@ -30,12 +30,19 @@ public class BoomBoxMapUploadController : MonoBehaviour
         var apiMap = new BoomBoxMapAPI(BoomBoxSongContainer.Instance.Pack, difficultySelect.CurrentDiff);
 
         // Create our stream and serialize the API map into JSON
-        using var stringWriter = new StringWriter();
-        JsonSerializer.CreateDefault().Serialize(stringWriter, apiMap);
+        var jsonString = JsonConvert.SerializeObject(apiMap, Formatting.Indented);
 
         // Create our request and assign an upload handler
-        var request = BoomBoxAPI.CreateAuthenticatedRequest(BoomBoxAPI.UploadMapEndpoint);
-        request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(stringWriter.ToString()));
+        var request = BoomBoxAPI.CreateAuthenticatedRequest(BoomBoxAPI.UploadMapEndpoint, "POST");
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        File.WriteAllText("out.txt", jsonString, Encoding.UTF8);
+
+        var handler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(jsonString));
+        handler.contentType = "application/json";
+
+        request.uploadHandler = handler;
+        request.downloadHandler = new DownloadHandlerBuffer();
 
         // Make a fancy dialog box to show progress
         var dialogBox = PersistentUI.Instance.CreateNewDialogBox()
@@ -56,6 +63,8 @@ public class BoomBoxMapUploadController : MonoBehaviour
             progressBar.UpdateProgressBar(request.uploadProgress);
             yield return null;
         }
+
+        File.WriteAllBytes("response.txt", request.downloadHandler.data);
 
         // Uploading is complete, close our dialog box
         dialogBox.Close();
