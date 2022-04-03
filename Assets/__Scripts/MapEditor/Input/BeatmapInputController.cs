@@ -53,7 +53,7 @@ public class BeatmapInputController<T> : MonoBehaviour, CMInput.IBeatmapObjectsA
         if (DeleteToolController.IsActive && context.performed) OnQuickDelete(context);
     }
 
-    public void OnQuickDelete(InputAction.CallbackContext context)
+    public virtual void OnQuickDelete(InputAction.CallbackContext context)
     {
         if (CustomStandaloneInputModule.IsPointerOverGameObject<GraphicRaycaster>(-1, true))
             return; //Returns if the mouse is on top of UI
