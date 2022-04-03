@@ -40,12 +40,9 @@ public class PersistentUI : MonoBehaviour
 
     [Header("Dialog Box")]
     [SerializeField] private DialogBox newDialogBoxPrefab;
-    [SerializeField] private CM_DialogBox dialogBox;
     [SerializeField] private TMP_FontAsset greenFont;
     [SerializeField] private TMP_FontAsset redFont;
     [SerializeField] private TMP_FontAsset goldFont;
-
-    [Header("Input Box")] [SerializeField] private CM_InputBox inputBox;
 
     [FormerlySerializedAs("DialogBox_Loading")] public bool DialogBoxLoading;
 
@@ -69,10 +66,6 @@ public class PersistentUI : MonoBehaviour
 
     public static PersistentUI Instance { get; private set; }
 
-    public bool DialogBoxIsEnabled => dialogBox.IsEnabled || DialogBoxLoading;
-
-    public bool InputBoxIsEnabled => inputBox.IsEnabled;
-
     private void Awake()
     {
         if (Instance != null)
@@ -84,11 +77,6 @@ public class PersistentUI : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         Instance = this;
     }
-
-    [Header("Color Input Box")]
-    [SerializeField] private CM_ColorInputBox colorInputBox;
-
-    public bool ColorInputBox_IsEnabled => colorInputBox.IsEnabled;
 
     private void Start()
     {
@@ -261,13 +249,6 @@ public class PersistentUI : MonoBehaviour
     #endregion
 
     #region loading
-
-    public static void UpdateBackground(BeatSaberSong song)
-    {
-        if (Instance.editorLoadingBackground.gameObject.activeSelf == false)
-            Instance.editorLoadingBackground.gameObject.SetActive(true);
-        Instance.editorLoadingBackground.sprite = Instance.editorImageList.GetBgSprite(song);
-    }
 
     public Coroutine FadeInLoadingScreen()
     {

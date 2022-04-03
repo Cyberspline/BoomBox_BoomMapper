@@ -5,7 +5,7 @@ public class BeatmapBPMChangeInputController : BeatmapInputController<BeatmapBPM
 {
     public void OnReplaceBPM(InputAction.CallbackContext context)
     {
-        if (context.performed && !PersistentUI.Instance.InputBoxIsEnabled)
+        if (context.performed)
         {
             RaycastFirstObject(out var containerToEdit);
             if (containerToEdit != null)

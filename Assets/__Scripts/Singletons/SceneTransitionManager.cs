@@ -59,19 +59,6 @@ public class SceneTransitionManager : MonoBehaviour
         if (IsLoading) externalRoutines.Enqueue(routine);
     }
 
-    private IEnumerator CancelSongLoadingRoutine()
-    {
-        while (IsLoading)
-        {
-            yield return new WaitForEndOfFrame();
-            if (Input.GetKey(KeyCode.Escape) && !PersistentUI.Instance.DialogBoxIsEnabled)
-            {
-                PersistentUI.Instance.ShowDialogBox("PersistentUI", "songloading",
-                    HandleCancelSongLoading, PersistentUI.DialogBoxPresetType.YesNo);
-            }
-        }
-    }
-
     private void HandleCancelSongLoading(int res)
     {
         if (res == 0)
@@ -87,14 +74,11 @@ public class SceneTransitionManager : MonoBehaviour
     private IEnumerator SceneTransition(string scene)
     {
         yield return PersistentUI.Instance.FadeInLoadingScreen();
+        // Run any external routines before scene load
         yield return StartCoroutine(RunExternalRoutines());
-        //foreach (IEnumerator routine in routines) yield return StartCoroutine(routine);
         yield return SceneManager.LoadSceneAsync(scene);
-        if (scene.StartsWith("03")) StartCoroutine(CancelSongLoadingRoutine());
-        //yield return new WaitForSeconds(1f);
-        yield return
-            StartCoroutine(
-                RunExternalRoutines()); //We need to do this a second time in case any classes registered a routine to run on scene start.
+        // We need to do this a second time in case any classes registered a routine to run on scene start.
+        yield return StartCoroutine(RunExternalRoutines());
         darkThemeSo.DarkThemeifyUI();
         OptionsController.IsActive = false;
         PersistentUI.Instance.LevelLoadSlider.gameObject.SetActive(false);

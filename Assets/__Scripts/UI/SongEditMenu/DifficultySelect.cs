@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using static BeatSaberSong;
 
 public class DifficultySelect : MonoBehaviour
 {
@@ -14,7 +13,6 @@ public class DifficultySelect : MonoBehaviour
 
     private readonly HashSet<DifficultyRow> rows = new HashSet<DifficultyRow>();
     private CopySource copySource;
-    private DifficultyBeatmapSet currentCharacteristic;
     private Dictionary<string, DifficultySettings> diffs = new Dictionary<string, DifficultySettings>();
 
     private bool loading;
@@ -282,7 +280,14 @@ public class DifficultySelect : MonoBehaviour
                     map.Obstacles = fromDiff.Map.Obstacles.ToList();
                     map.TimingPoints = fromDiff.Map.TimingPoints.ToList();
                     map.LocalVersion = fromDiff.Map.LocalVersion;
+
+                    row.NameInput.text = map.DifficultyName;
                 }
+            }
+            else
+            {
+                // TODO: Localize
+                row.NameInput.text = "New Difficulty";
             }
 
             Song.Maps.Add(map);
@@ -321,8 +326,7 @@ public class DifficultySelect : MonoBehaviour
         if (fileToDelete.Exists) FileOperationAPIWrapper.MoveToRecycleBin(fileToDelete.FullName);
 
         // Remove status effects if present
-        if (copySource != null && row == copySource.Obj &&
-            currentCharacteristic == copySource.Characteristic)
+        if (copySource != null && row == copySource.Obj)
         {
             CancelCopy();
         }
@@ -346,17 +350,17 @@ public class DifficultySelect : MonoBehaviour
     private void SetCopySource(DifficultyRow row)
     {
         // If we copied from the current characteristic remove the highlight
-        if (copySource != null && currentCharacteristic == copySource.Characteristic)
+        if (copySource != null)
             copySource.Obj.CopyImage.color = Color.white;
 
         // Clicking twice on the same source removes it
-        if (copySource != null && copySource.Obj == row && currentCharacteristic == copySource.Characteristic)
+        if (copySource != null && copySource.Obj == row)
         {
             CancelCopy();
             return;
         }
 
-        copySource = new CopySource(diffs[row.Name], currentCharacteristic, row);
+        copySource = new CopySource(diffs[row.Name], row);
         SetPasteMode(true);
         row.CopyImage.color = copyColor;
     }
@@ -366,8 +370,9 @@ public class DifficultySelect : MonoBehaviour
     /// </summary>
     public void CancelCopy()
     {
-        if (copySource != null && currentCharacteristic == copySource.Characteristic)
+        if (copySource != null)
             copySource.Obj.CopyImage.color = Color.white;
+
         copySource = null;
         SetPasteMode(false);
     }
@@ -389,7 +394,7 @@ public class DifficultySelect : MonoBehaviour
 
             // Highlight the copy source if it's here
             row.CopyImage.color =
-                copySource != null && currentCharacteristic == copySource.Characteristic && copySource.Obj == row
+                copySource != null && copySource.Obj == row
                     ? copyColor
                     : Color.white;
 

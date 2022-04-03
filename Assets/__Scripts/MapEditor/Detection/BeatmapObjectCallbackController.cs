@@ -4,7 +4,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-//Name and idea totally not stolen directly from Beat Saber
 public class BeatmapObjectCallbackController : MonoBehaviour
 {
     private static readonly int notesToLookAhead = 25;

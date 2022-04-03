@@ -4,15 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 public class BoxSelectionPlacementController : PlacementController<BeatmapNote, BeatmapNoteContainer, NotesContainer>,
     CMInput.IBoxSelectActions
 {
-    [FormerlySerializedAs("customCollection")] public CustomEventsContainer CustomCollection;
-    [FormerlySerializedAs("eventsContainer")] public EventsContainer EventsContainer;
-    [FormerlySerializedAs("labels")] public CreateEventTypeLabels Labels;
-
     private readonly HashSet<BeatmapObject> selected = new HashSet<BeatmapObject>();
 
     private readonly List<BeatmapObject.ObjectType> selectedTypes = new List<BeatmapObject.ObjectType>();
@@ -80,10 +75,8 @@ public class BoxSelectionPlacementController : PlacementController<BeatmapNote, 
         {
             Bounds = default;
             selectedTypes.Clear();
-            TestForType<EventPlacement>(hit, BeatmapObject.ObjectType.Event);
             TestForType<NotePlacement>(hit, BeatmapObject.ObjectType.Note);
             TestForType<ObstaclePlacement>(hit, BeatmapObject.ObjectType.Obstacle);
-            TestForType<CustomEventPlacement>(hit, BeatmapObject.ObjectType.CustomEvent);
             TestForType<BPMChangePlacement>(hit, BeatmapObject.ObjectType.BpmChange);
 
             instantiatedContainer.transform.localScale = Vector3.right + Vector3.up;

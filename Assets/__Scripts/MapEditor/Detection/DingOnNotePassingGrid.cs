@@ -11,18 +11,11 @@ public class DingOnNotePassingGrid : MonoBehaviour
     };
 
     [SerializeField] private AudioTimeSyncController atsc;
-    [SerializeField] private AudioSource source;
     [SerializeField] private SoundList[] soundLists;
-    [FormerlySerializedAs("DensityCheckOffset")] [SerializeField] private int densityCheckOffset = 2;
     [FormerlySerializedAs("ThresholdInNoteTime")] [SerializeField] private float thresholdInNoteTime = 0.25f;
     [SerializeField] private AudioUtil audioUtil;
     [SerializeField] private NotesContainer container;
     [SerializeField] private BeatmapObjectCallbackController defaultCallbackController;
-    [SerializeField] private BeatmapObjectCallbackController beatSaberCutCallbackController;
-    [SerializeField] private GameObject discordPingPrefab;
-
-    //debug
-    [SerializeField] private float difference;
 
     private float lastCheckedTime;
 
@@ -34,11 +27,6 @@ public class DingOnNotePassingGrid : MonoBehaviour
         NoteTypeToDing[BeatmapNote.HandLeft] = Settings.Instance.Ding_Red_Notes;
         NoteTypeToDing[BeatmapNote.HandRight] = Settings.Instance.Ding_Blue_Notes;
 
-        beatSaberCutCallbackController.Offset = container.AudioTimeSyncController.GetBeatFromSeconds(0.5f);
-        beatSaberCutCallbackController.UseAudioTime = true;
-
-        UpdateHitSoundType(Settings.Instance.NoteHitSound);
-
         atsc.PlayToggle += OnPlayToggle;
     }
 
@@ -47,22 +35,18 @@ public class DingOnNotePassingGrid : MonoBehaviour
         Settings.NotifyBySettingName("Ding_Red_Notes", UpdateRedNoteDing);
         Settings.NotifyBySettingName("Ding_Blue_Notes", UpdateBlueNoteDing);
         Settings.NotifyBySettingName("Ding_Bombs", UpdateBombDing);
-        Settings.NotifyBySettingName("NoteHitSound", UpdateHitSoundType);
         Settings.NotifyBySettingName("SongSpeed", UpdateSongSpeed);
 
-        beatSaberCutCallbackController.NotePassedThreshold += PlaySound;
-        defaultCallbackController.NotePassedThreshold += TriggerBongoCat;
+        defaultCallbackController.NotePassedThreshold += PlaySound;
     }
 
     private void OnDisable()
     {
-        beatSaberCutCallbackController.NotePassedThreshold -= PlaySound;
-        defaultCallbackController.NotePassedThreshold -= TriggerBongoCat;
+        defaultCallbackController.NotePassedThreshold -= PlaySound;
 
         Settings.ClearSettingNotifications("Ding_Red_Notes");
         Settings.ClearSettingNotifications("Ding_Blue_Notes");
         Settings.ClearSettingNotifications("Ding_Bombs");
-        Settings.ClearSettingNotifications("NoteHitSound");
         Settings.ClearSettingNotifications("SongSpeed");
     }
 
@@ -81,7 +65,7 @@ public class DingOnNotePassingGrid : MonoBehaviour
         if (playing)
         {
             var now = atsc.CurrentSongBeats;
-            var notes = container.GetBetween(now, now + beatSaberCutCallbackController.Offset);
+            var notes = container.GetBetween(now, now + 0.5f);
 
             // Schedule notes between now and threshold
             foreach (var n in notes) PlaySound(false, 0, n);
@@ -93,27 +77,6 @@ public class DingOnNotePassingGrid : MonoBehaviour
     private void UpdateBlueNoteDing(object obj) => NoteTypeToDing[BeatmapNote.NoteTypeB] = (bool)obj;
 
     private void UpdateBombDing(object obj) => NoteTypeToDing[BeatmapNote.NoteTypeBomb] = (bool)obj;
-
-    private void UpdateHitSoundType(object obj)
-    {
-        var soundID = (int)obj;
-        var isBeatSaberCutSound = soundID == (int)HitSounds.Slice;
-
-        if (isBeatSaberCutSound)
-            offset = 0.18f;
-        else
-            offset = 0;
-    }
-
-    private void TriggerBongoCat(bool initial, int index, BeatmapObject objectData)
-    {
-        // Filter notes that are too far behind the current beat
-        // (Commonly occurs when Unity freezes for some unrelated fucking reason)
-        if (objectData.Time - container.AudioTimeSyncController.CurrentBeat <= -0.5f) return;
-
-        var soundListId = Settings.Instance.NoteHitSound;
-        if (soundListId == (int)HitSounds.Discord) Instantiate(discordPingPrefab, gameObject.transform, true);
-    }
 
     private void PlaySound(bool initial, int index, BeatmapObject objectData)
     {

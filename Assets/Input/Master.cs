@@ -745,90 +745,6 @@ public class @CMInput : IInputActionCollection, IDisposable
             ]
         },
         {
-            ""name"": ""Note Placement"",
-            ""id"": ""55b78d3d-8ced-467c-a88f-d5cf50532d2e"",
-            ""actions"": [
-                {
-                    ""name"": ""Up Note"",
-                    ""type"": ""Button"",
-                    ""id"": ""16488a28-3686-46ed-9637-285b7e5a9e72"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Left Note"",
-                    ""type"": ""Button"",
-                    ""id"": ""ea80fd88-1337-4dbd-a7a9-9f1bdd9ecae4"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Down Note"",
-                    ""type"": ""Button"",
-                    ""id"": ""91d9fcf9-57ed-4bfa-a024-bd388f56a3f2"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Right Note"",
-                    ""type"": ""Button"",
-                    ""id"": ""e63abaea-687c-486a-aee9-133901bc362c"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """"
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""752ce1da-9d61-4779-b6ed-75d0d214292a"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Down Note"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e8e63a70-7c85-4205-8648-1b10ca6aa84b"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Up Note"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d8232af9-72c8-46d6-bb23-023443cbf276"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Left Note"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a24d5b1b-8b2b-4978-84e8-1257904d2017"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Right Note"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
             ""name"": ""Workflows"",
             ""id"": ""62377dd3-26a7-4161-ab65-7a5042f0dfc0"",
             ""actions"": [
@@ -1911,9 +1827,9 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""interactions"": ""Press""
                 },
                 {
-                    ""name"": ""Activate Shift in Place"",
+                    ""name"": ""Rotate Selection"",
                     ""type"": ""Button"",
-                    ""id"": ""b2cb2cac-5832-474b-a652-497dd6f3e167"",
+                    ""id"": ""8c73d497-930e-4e62-a3d1-754783ee7711"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
@@ -2097,17 +2013,6 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""a07ec705-330a-4539-b6c3-42eb63fe6fc6"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Activate Shift in Place"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
                     ""name"": ""Keyboard"",
                     ""id"": ""9c22b812-71a8-4961-ab13-212454782e02"",
                     ""path"": ""2DVector"",
@@ -2192,6 +2097,39 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""ChroMapper Default"",
                     ""action"": ""Deselect All"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard"",
+                    ""id"": ""09f4b6c6-54a8-4e6c-bfa9-30506bd50a20"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate Selection"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""17ce93ef-9538-43e3-9c2f-036f52bc40cd"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Rotate Selection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""140990cf-8d5b-482d-a5d0-72294b21a142"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Rotate Selection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -2455,12 +2393,6 @@ public class @CMInput : IInputActionCollection, IDisposable
         m_PlacementControllers_InitiateClickandDragatTime = m_PlacementControllers.FindAction("Initiate Click and Drag at Time", throwIfNotFound: true);
         m_PlacementControllers_MousePositionUpdate = m_PlacementControllers.FindAction("+Mouse Position Update", throwIfNotFound: true);
         m_PlacementControllers_CancelPlacement = m_PlacementControllers.FindAction("Cancel Placement", throwIfNotFound: true);
-        // Note Placement
-        m_NotePlacement = asset.FindActionMap("Note Placement", throwIfNotFound: true);
-        m_NotePlacement_UpNote = m_NotePlacement.FindAction("Up Note", throwIfNotFound: true);
-        m_NotePlacement_LeftNote = m_NotePlacement.FindAction("Left Note", throwIfNotFound: true);
-        m_NotePlacement_DownNote = m_NotePlacement.FindAction("Down Note", throwIfNotFound: true);
-        m_NotePlacement_RightNote = m_NotePlacement.FindAction("Right Note", throwIfNotFound: true);
         // Workflows
         m_Workflows = asset.FindActionMap("Workflows", throwIfNotFound: true);
         m_Workflows_ToggleNoteColor = m_Workflows.FindAction("Toggle Note Color", throwIfNotFound: true);
@@ -2531,7 +2463,7 @@ public class @CMInput : IInputActionCollection, IDisposable
         m_Selection_OverwritePaste = m_Selection.FindAction("Overwrite Paste", throwIfNotFound: true);
         m_Selection_ShiftingMovement = m_Selection.FindAction("Shifting Movement", throwIfNotFound: true);
         m_Selection_ActivateShiftinTime = m_Selection.FindAction("Activate Shift in Time", throwIfNotFound: true);
-        m_Selection_ActivateShiftinPlace = m_Selection.FindAction("Activate Shift in Place", throwIfNotFound: true);
+        m_Selection_RotateSelection = m_Selection.FindAction("Rotate Selection", throwIfNotFound: true);
         // UI Mode
         m_UIMode = asset.FindActionMap("UI Mode", throwIfNotFound: true);
         m_UIMode_ToggleUIMode = m_UIMode.FindAction("Toggle UI Mode", throwIfNotFound: true);
@@ -2886,63 +2818,6 @@ public class @CMInput : IInputActionCollection, IDisposable
         }
     }
     public PlacementControllersActions @PlacementControllers => new PlacementControllersActions(this);
-
-    // Note Placement
-    private readonly InputActionMap m_NotePlacement;
-    private INotePlacementActions m_NotePlacementActionsCallbackInterface;
-    private readonly InputAction m_NotePlacement_UpNote;
-    private readonly InputAction m_NotePlacement_LeftNote;
-    private readonly InputAction m_NotePlacement_DownNote;
-    private readonly InputAction m_NotePlacement_RightNote;
-    public struct NotePlacementActions
-    {
-        private @CMInput m_Wrapper;
-        public NotePlacementActions(@CMInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @UpNote => m_Wrapper.m_NotePlacement_UpNote;
-        public InputAction @LeftNote => m_Wrapper.m_NotePlacement_LeftNote;
-        public InputAction @DownNote => m_Wrapper.m_NotePlacement_DownNote;
-        public InputAction @RightNote => m_Wrapper.m_NotePlacement_RightNote;
-        public InputActionMap Get() { return m_Wrapper.m_NotePlacement; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(NotePlacementActions set) { return set.Get(); }
-        public void SetCallbacks(INotePlacementActions instance)
-        {
-            if (m_Wrapper.m_NotePlacementActionsCallbackInterface != null)
-            {
-                @UpNote.started -= m_Wrapper.m_NotePlacementActionsCallbackInterface.OnUpNote;
-                @UpNote.performed -= m_Wrapper.m_NotePlacementActionsCallbackInterface.OnUpNote;
-                @UpNote.canceled -= m_Wrapper.m_NotePlacementActionsCallbackInterface.OnUpNote;
-                @LeftNote.started -= m_Wrapper.m_NotePlacementActionsCallbackInterface.OnLeftNote;
-                @LeftNote.performed -= m_Wrapper.m_NotePlacementActionsCallbackInterface.OnLeftNote;
-                @LeftNote.canceled -= m_Wrapper.m_NotePlacementActionsCallbackInterface.OnLeftNote;
-                @DownNote.started -= m_Wrapper.m_NotePlacementActionsCallbackInterface.OnDownNote;
-                @DownNote.performed -= m_Wrapper.m_NotePlacementActionsCallbackInterface.OnDownNote;
-                @DownNote.canceled -= m_Wrapper.m_NotePlacementActionsCallbackInterface.OnDownNote;
-                @RightNote.started -= m_Wrapper.m_NotePlacementActionsCallbackInterface.OnRightNote;
-                @RightNote.performed -= m_Wrapper.m_NotePlacementActionsCallbackInterface.OnRightNote;
-                @RightNote.canceled -= m_Wrapper.m_NotePlacementActionsCallbackInterface.OnRightNote;
-            }
-            m_Wrapper.m_NotePlacementActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @UpNote.started += instance.OnUpNote;
-                @UpNote.performed += instance.OnUpNote;
-                @UpNote.canceled += instance.OnUpNote;
-                @LeftNote.started += instance.OnLeftNote;
-                @LeftNote.performed += instance.OnLeftNote;
-                @LeftNote.canceled += instance.OnLeftNote;
-                @DownNote.started += instance.OnDownNote;
-                @DownNote.performed += instance.OnDownNote;
-                @DownNote.canceled += instance.OnDownNote;
-                @RightNote.started += instance.OnRightNote;
-                @RightNote.performed += instance.OnRightNote;
-                @RightNote.canceled += instance.OnRightNote;
-            }
-        }
-    }
-    public NotePlacementActions @NotePlacement => new NotePlacementActions(this);
 
     // Workflows
     private readonly InputActionMap m_Workflows;
@@ -3552,7 +3427,7 @@ public class @CMInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Selection_OverwritePaste;
     private readonly InputAction m_Selection_ShiftingMovement;
     private readonly InputAction m_Selection_ActivateShiftinTime;
-    private readonly InputAction m_Selection_ActivateShiftinPlace;
+    private readonly InputAction m_Selection_RotateSelection;
     public struct SelectionActions
     {
         private @CMInput m_Wrapper;
@@ -3565,7 +3440,7 @@ public class @CMInput : IInputActionCollection, IDisposable
         public InputAction @OverwritePaste => m_Wrapper.m_Selection_OverwritePaste;
         public InputAction @ShiftingMovement => m_Wrapper.m_Selection_ShiftingMovement;
         public InputAction @ActivateShiftinTime => m_Wrapper.m_Selection_ActivateShiftinTime;
-        public InputAction @ActivateShiftinPlace => m_Wrapper.m_Selection_ActivateShiftinPlace;
+        public InputAction @RotateSelection => m_Wrapper.m_Selection_RotateSelection;
         public InputActionMap Get() { return m_Wrapper.m_Selection; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -3599,9 +3474,9 @@ public class @CMInput : IInputActionCollection, IDisposable
                 @ActivateShiftinTime.started -= m_Wrapper.m_SelectionActionsCallbackInterface.OnActivateShiftinTime;
                 @ActivateShiftinTime.performed -= m_Wrapper.m_SelectionActionsCallbackInterface.OnActivateShiftinTime;
                 @ActivateShiftinTime.canceled -= m_Wrapper.m_SelectionActionsCallbackInterface.OnActivateShiftinTime;
-                @ActivateShiftinPlace.started -= m_Wrapper.m_SelectionActionsCallbackInterface.OnActivateShiftinPlace;
-                @ActivateShiftinPlace.performed -= m_Wrapper.m_SelectionActionsCallbackInterface.OnActivateShiftinPlace;
-                @ActivateShiftinPlace.canceled -= m_Wrapper.m_SelectionActionsCallbackInterface.OnActivateShiftinPlace;
+                @RotateSelection.started -= m_Wrapper.m_SelectionActionsCallbackInterface.OnRotateSelection;
+                @RotateSelection.performed -= m_Wrapper.m_SelectionActionsCallbackInterface.OnRotateSelection;
+                @RotateSelection.canceled -= m_Wrapper.m_SelectionActionsCallbackInterface.OnRotateSelection;
             }
             m_Wrapper.m_SelectionActionsCallbackInterface = instance;
             if (instance != null)
@@ -3630,9 +3505,9 @@ public class @CMInput : IInputActionCollection, IDisposable
                 @ActivateShiftinTime.started += instance.OnActivateShiftinTime;
                 @ActivateShiftinTime.performed += instance.OnActivateShiftinTime;
                 @ActivateShiftinTime.canceled += instance.OnActivateShiftinTime;
-                @ActivateShiftinPlace.started += instance.OnActivateShiftinPlace;
-                @ActivateShiftinPlace.performed += instance.OnActivateShiftinPlace;
-                @ActivateShiftinPlace.canceled += instance.OnActivateShiftinPlace;
+                @RotateSelection.started += instance.OnRotateSelection;
+                @RotateSelection.performed += instance.OnRotateSelection;
+                @RotateSelection.canceled += instance.OnRotateSelection;
             }
         }
     }
@@ -3863,13 +3738,6 @@ public class @CMInput : IInputActionCollection, IDisposable
         void OnMousePositionUpdate(InputAction.CallbackContext context);
         void OnCancelPlacement(InputAction.CallbackContext context);
     }
-    public interface INotePlacementActions
-    {
-        void OnUpNote(InputAction.CallbackContext context);
-        void OnLeftNote(InputAction.CallbackContext context);
-        void OnDownNote(InputAction.CallbackContext context);
-        void OnRightNote(InputAction.CallbackContext context);
-    }
     public interface IWorkflowsActions
     {
         void OnToggleNoteColor(InputAction.CallbackContext context);
@@ -3953,7 +3821,7 @@ public class @CMInput : IInputActionCollection, IDisposable
         void OnOverwritePaste(InputAction.CallbackContext context);
         void OnShiftingMovement(InputAction.CallbackContext context);
         void OnActivateShiftinTime(InputAction.CallbackContext context);
-        void OnActivateShiftinPlace(InputAction.CallbackContext context);
+        void OnRotateSelection(InputAction.CallbackContext context);
     }
     public interface IUIModeActions
     {

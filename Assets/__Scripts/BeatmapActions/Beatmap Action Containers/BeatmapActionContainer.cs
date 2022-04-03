@@ -6,9 +6,7 @@ using UnityEngine.InputSystem;
 public class BeatmapActionContainer : MonoBehaviour, CMInput.IActionsActions
 {
     private static BeatmapActionContainer instance;
-    [SerializeField] private GameObject moveableGridTransform;
     [SerializeField] private SelectionController selection;
-    [SerializeField] private NodeEditorController nodeEditor;
     [SerializeField] private TracksManager tracksManager;
     private readonly List<BeatmapAction> beatmapActions = new List<BeatmapAction>();
 
@@ -82,14 +80,12 @@ public class BeatmapActionContainer : MonoBehaviour, CMInput.IActionsActions
 
     public class BeatmapActionParams
     {
-        public NodeEditorController NodeEditor;
         public SelectionController Selection;
         public TracksManager TracksManager;
 
         public BeatmapActionParams(BeatmapActionContainer container)
         {
             Selection = container.selection;
-            NodeEditor = container.nodeEditor;
             TracksManager = container.tracksManager;
         }
     }

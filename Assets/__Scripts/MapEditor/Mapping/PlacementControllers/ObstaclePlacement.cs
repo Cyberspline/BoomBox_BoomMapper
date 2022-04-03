@@ -4,7 +4,6 @@ using UnityEngine.Serialization;
 
 public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObstacleContainer, ObstaclesContainer>
 {
-    [FormerlySerializedAs("obstacleAppearanceSO")] [SerializeField] private ObstacleAppearanceSO obstacleAppearanceSo;
     [SerializeField] private GameObject placementAreaPrefab;
     [SerializeField] private RadialIndexTable radialIndexTable;
 
@@ -26,6 +25,8 @@ public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObs
         {
             var dot = Instantiate(placementAreaPrefab, radialIndexTable.GetObstaclePlacement(i),
                 Quaternion.identity, ParentTrack);
+
+            dot.name = "Radial Index " + i;
 
             var radialIndexContainer = dot.AddComponent<PlacementRadialIndexContainer>();
             radialIndexContainer.RadialIndex = i;

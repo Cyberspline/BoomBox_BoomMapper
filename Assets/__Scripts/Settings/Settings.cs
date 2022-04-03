@@ -70,6 +70,7 @@ public class Settings
     public string LastLoadedDiff = "";
 
     public bool OverviewCamera = false;
+    public bool CameraRotateAroundGrid = true;
 
     public int LastSongSortType = (int)SongList.SongSortType.Name;
 

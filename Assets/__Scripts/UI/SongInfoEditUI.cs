@@ -6,7 +6,6 @@ using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using SimpleJSON;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -52,18 +51,6 @@ public class SongInfoEditUI : MenuBase
 
         LoadFromSong();
     }
-
-    // TODO: Remove
-    [Obsolete]
-    public static int GetDirectionalEnvironmentIDFromString(string platforms) => -1;
-
-    // TODO: Remove
-    [Obsolete]
-    public static int GetEnvironmentIDFromString(string environment) => -1;
-
-    // TODO: Remove
-    [Obsolete]
-    public static string GetEnvironmentNameFromID(int id) => null;
 
     /// <summary>
     ///     Default object to select when pressing Tab and nothing is selected
@@ -339,7 +326,6 @@ public class SongInfoEditUI : MenuBase
         Debug.Log($"Opening song directory ({path}) with Linux...");
         Process.Start("xdg-open", path);
 #else
-        Debug.Log("What is this, some UNIX bullshit?");
         PersistentUI.Instance.ShowDialogBox(
             "Unrecognized OS!\n\nIf you happen to know this OS and would like to contribute," +
             " please contact me on Discord: Caeden117#0117", null, PersistentUI.DialogBoxPresetType.Ok);
@@ -349,13 +335,7 @@ public class SongInfoEditUI : MenuBase
     /// <summary>
     ///     Return the the song list scene, if the user has unsaved changes ask first
     /// </summary>
-    public void ReturnToSongList()
-    {
-        // Do nothing if a dialog is open
-        if (PersistentUI.Instance.DialogBoxIsEnabled) return;
-
-        CheckForChanges(HandleReturnToSongList);
-    }
+    public void ReturnToSongList() => CheckForChanges(HandleReturnToSongList);
 
     /// <summary>
     ///     Return the the song list scene
@@ -372,8 +352,8 @@ public class SongInfoEditUI : MenuBase
     /// </summary>
     public void EditMapButtonPressed()
     {
-        // If no difficulty is selected or there is a dialog open do nothing
-        if (BoomBoxSongContainer.Instance.Map == null || PersistentUI.Instance.DialogBoxIsEnabled) return;
+        // If no difficulty is selected do nothing
+        if (BoomBoxSongContainer.Instance.Map == null) return;
 
         CheckForChanges(HandleEditMapButtonPressed);
     }

@@ -68,14 +68,22 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectionActions
         if (!context.performed) return;
         var movement = context.ReadValue<Vector2>();
 
-        if (shiftInPlace) ShiftSelection(Mathf.RoundToInt(movement.x), Mathf.RoundToInt(movement.y));
-
         if (shiftInTime) MoveSelection(movement.y * (1f / atsc.GridMeasureSnapping));
     }
 
-    public void OnActivateShiftinTime(InputAction.CallbackContext context) => shiftInTime = context.performed;
+    public void OnRotateSelection(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        var movement = context.ReadValue<float>();
 
-    public void OnActivateShiftinPlace(InputAction.CallbackContext context) => shiftInPlace = context.performed;
+        var direction = movement > 0
+            ? 1
+            : -1;
+
+        RotateSelection(direction);
+    }
+
+    public void OnActivateShiftinTime(InputAction.CallbackContext context) => shiftInTime = context.performed;
 
     public void OnDeselectAll(InputAction.CallbackContext context)
     {
@@ -461,18 +469,29 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectionActions
         BeatmapObjectContainerCollection.RefreshAllPools();
     }
 
-    // TODO: Come up with a good algo for shifting boombox objects
-    public void ShiftSelection(int leftRight, int upDown)
+    public void RotateSelection(int direction)
     {
+        var radialTable = RadialIndexTable.Instance;
+
         var allActions = SelectedObjects.AsParallel().Select(data =>
         {
             var original = BeatmapObject.GenerateCopy(data);
 
             if (data is BeatmapNote note)
             {
+                note.RadialIndex = direction > 0
+                    ? radialTable.GetRightNoteRadialIndex(note.RadialIndex)
+                    : radialTable.GetLeftNoteRadialIndex(note.RadialIndex);
             }
             else if (data is BeatmapObstacle obstacle)
             {
+                obstacle.A.RadialIndex = direction > 0
+                    ? radialTable.GetRightObstacleRadialIndex(obstacle.A.RadialIndex)
+                    : radialTable.GetLeftObstacleRadialIndex(obstacle.A.RadialIndex);
+
+                obstacle.B.RadialIndex = direction > 0
+                    ? radialTable.GetRightObstacleRadialIndex(obstacle.B.RadialIndex)
+                    : radialTable.GetLeftObstacleRadialIndex(obstacle.B.RadialIndex);
             }
 
             return new BeatmapObjectModifiedAction(data, data, original, "", true);

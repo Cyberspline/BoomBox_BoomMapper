@@ -8,6 +8,4 @@ public class ImageList : ScriptableObject
     public Sprite DarkSprite;
 
     public Sprite GetRandomSprite() => DarkSprite;
-
-    public Sprite GetBgSprite(BeatSaberSong song) => DarkSprite;
 }

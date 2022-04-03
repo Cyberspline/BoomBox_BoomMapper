@@ -5,9 +5,6 @@ public class GraphicsQuickSettings : QuickSettings
     {
         DialogBox.WithTitle("Mapper", "quicksettings.graphics");
 
-        // TODO: Remove
-        DialogBox.AddComponent<TextComponent>().WithInitialValue("It's a little empty, let me know what should go here.");
-
         AddSetting<bool>(nameof(Settings.OverviewCamera), "Overview Camera");
 
         AddSetting<bool>(nameof(Settings.SimplifiedObstacles), "Simplified Obstacles");

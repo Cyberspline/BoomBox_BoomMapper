@@ -42,14 +42,14 @@ public class MirrorSelection : MonoBehaviour
             var original = BeatmapObject.GenerateCopy(con);
             if (con is BeatmapObstacle obstacle && moveNotes)
             {
-                obstacle.A.RadialIndex = RadialIndexTable.Instance.GetMirroredObstacleRadialIndex(obstacle.A.RadialIndex);
-                obstacle.B.RadialIndex = RadialIndexTable.Instance.GetMirroredObstacleRadialIndex(obstacle.B.RadialIndex);
+                obstacle.A.RadialIndex = RadialIndexTable.Instance.GetHorizontallyMirroredObstacleRadialIndex(obstacle.A.RadialIndex);
+                obstacle.B.RadialIndex = RadialIndexTable.Instance.GetHorizontallyMirroredObstacleRadialIndex(obstacle.B.RadialIndex);
             }
             else if (con is BeatmapNote note)
             {
                 if (moveNotes)
                 {
-                    note.RadialIndex = RadialIndexTable.Instance.GetMirroredNoteRadialIndex(note.RadialIndex);
+                    note.RadialIndex = RadialIndexTable.Instance.GetHorizontallyMirroredNoteRadialIndex(note.RadialIndex);
                 }
 
                 //flip colors

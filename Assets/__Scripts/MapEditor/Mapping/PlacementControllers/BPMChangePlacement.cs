@@ -24,19 +24,14 @@ public class BPMChangePlacement : PlacementController<BeatmapBPMChange, BeatmapB
     {
         if (objectContainerCollection.LoadedObjects.Count >= BPMChangesContainer.MaxBpmChangesInShader)
         {
-            if (!PersistentUI.Instance.DialogBoxIsEnabled)
-            {
-                PersistentUI.Instance.ShowDialogBox(
-                    "Mapper", "maxbpm",
-                    null,
-                    PersistentUI.DialogBoxPresetType.Ok, new object[] { BPMChangesContainer.MaxBpmChangesInShader - 1 });
-            }
+            PersistentUI.Instance.ShowDialogBox("Mapper", "maxbpm", null,
+                PersistentUI.DialogBoxPresetType.Ok, new object[] { BPMChangesContainer.MaxBpmChangesInShader - 1 });
 
             return;
         }
 
-        var lastBpm = objectContainerCollection.FindLastBpm(RoundedTime, false)?.Bpm ??
-                      BeatSaberSongContainer.Instance.Song.BeatsPerMinute;
+        var lastBpm = objectContainerCollection.FindLastBpm(RoundedTime, false)?.Bpm
+            ?? BoomBoxSongContainer.Instance.Map.BeginningBPM;
         PersistentUI.Instance.ShowInputBox("Mapper", "bpm.dialog", AttemptPlaceBpmChange,
             "", lastBpm.ToString());
     }
@@ -53,8 +48,8 @@ public class BPMChangePlacement : PlacementController<BeatmapBPMChange, BeatmapB
         }
         else
         {
-            var lastBpm = objectContainerCollection.FindLastBpm(RoundedTime, false)?.Bpm ??
-                          BeatSaberSongContainer.Instance.Song.BeatsPerMinute;
+            var lastBpm = objectContainerCollection.FindLastBpm(RoundedTime, false)?.Bpm
+                ?? BoomBoxSongContainer.Instance.Map.BeginningBPM;
             PersistentUI.Instance.ShowInputBox("Mapper", "bpm.dialog.invalid",
                 AttemptPlaceBpmChange, "", lastBpm.ToString());
         }

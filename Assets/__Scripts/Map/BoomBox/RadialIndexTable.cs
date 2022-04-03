@@ -17,8 +17,10 @@ public class RadialIndexTable : ScriptableObject
     [SerializeField] private List<Vector2> notePlacements = new List<Vector2>();
     [SerializeField] private List<Vector2> noteDirections = new List<Vector2>();
     [SerializeField] private List<float> noteInwardRotation = new List<float>();
+    [SerializeField] private List<int> noteRotatedIndices = new List<int>();
     [Header("Obstacles")]
     [SerializeField] private List<Vector2> obstaclePlacements = new List<Vector2>();
+    [SerializeField] private List<int> obstacleRotatedIndices = new List<int>();
 
     public int NotePlacements => notePlacements.Count;
 
@@ -56,7 +58,7 @@ public class RadialIndexTable : ScriptableObject
     /// <returns>Position of the obstacle point.</returns>
     public Vector2 GetObstaclePlacement(int radialIndex) => (obstaclePlacements[radialIndex] * globalScale) + globalOffset;
 
-    public int GetMirroredNoteRadialIndex(int radialIndex)
+    public int GetHorizontallyMirroredNoteRadialIndex(int radialIndex)
     {
         if (!mirroredNotePlacementIndices.TryGetValue(radialIndex, out var mirroredRadialIndex))
         {
@@ -72,7 +74,7 @@ public class RadialIndexTable : ScriptableObject
         return mirroredRadialIndex;
     }
 
-    public int GetMirroredObstacleRadialIndex(int radialIndex)
+    public int GetHorizontallyMirroredObstacleRadialIndex(int radialIndex)
     {
         if (!mirroredObstaclePlacementIndices.TryGetValue(radialIndex, out var mirroredRadialIndex))
         {
@@ -87,6 +89,16 @@ public class RadialIndexTable : ScriptableObject
 
         return mirroredRadialIndex;
     }
+
+    // Gets radial index to the right of given radial index
+    public int GetRightNoteRadialIndex(int radialIndex) => noteRotatedIndices[radialIndex];
+
+    public int GetRightObstacleRadialIndex(int radialIndex) => obstacleRotatedIndices[radialIndex];
+
+    // Gets radial index to the left of given radial index
+    public int GetLeftNoteRadialIndex(int radialIndex) => noteRotatedIndices.IndexOf(radialIndex);
+
+    public int GetLeftObstacleRadialIndex(int radialIndex) => obstacleRotatedIndices.IndexOf(radialIndex);
 
     private void OnEnable() => Instance = this;
 }

@@ -732,90 +732,6 @@
             ]
         },
         {
-            "name": "Note Placement",
-            "id": "55b78d3d-8ced-467c-a88f-d5cf50532d2e",
-            "actions": [
-                {
-                    "name": "Up Note",
-                    "type": "Button",
-                    "id": "16488a28-3686-46ed-9637-285b7e5a9e72",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Left Note",
-                    "type": "Button",
-                    "id": "ea80fd88-1337-4dbd-a7a9-9f1bdd9ecae4",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Down Note",
-                    "type": "Button",
-                    "id": "91d9fcf9-57ed-4bfa-a024-bd388f56a3f2",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Right Note",
-                    "type": "Button",
-                    "id": "e63abaea-687c-486a-aee9-133901bc362c",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "752ce1da-9d61-4779-b6ed-75d0d214292a",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ChroMapper Default",
-                    "action": "Down Note",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e8e63a70-7c85-4205-8648-1b10ca6aa84b",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ChroMapper Default",
-                    "action": "Up Note",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d8232af9-72c8-46d6-bb23-023443cbf276",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ChroMapper Default",
-                    "action": "Left Note",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a24d5b1b-8b2b-4978-84e8-1257904d2017",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ChroMapper Default",
-                    "action": "Right Note",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
             "name": "Workflows",
             "id": "62377dd3-26a7-4161-ab65-7a5042f0dfc0",
             "actions": [
@@ -1898,9 +1814,9 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "Activate Shift in Place",
+                    "name": "Rotate Selection",
                     "type": "Button",
-                    "id": "b2cb2cac-5832-474b-a652-497dd6f3e167",
+                    "id": "8c73d497-930e-4e62-a3d1-754783ee7711",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
@@ -2084,17 +2000,6 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "a07ec705-330a-4539-b6c3-42eb63fe6fc6",
-                    "path": "<Keyboard>/ctrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ChroMapper Default",
-                    "action": "Activate Shift in Place",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "Keyboard",
                     "id": "9c22b812-71a8-4961-ab13-212454782e02",
                     "path": "2DVector",
@@ -2179,6 +2084,39 @@
                     "processors": "",
                     "groups": "ChroMapper Default",
                     "action": "Deselect All",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Keyboard",
+                    "id": "09f4b6c6-54a8-4e6c-bfa9-30506bd50a20",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate Selection",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "17ce93ef-9538-43e3-9c2f-036f52bc40cd",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Rotate Selection",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "140990cf-8d5b-482d-a5d0-72294b21a142",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Rotate Selection",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

@@ -20,7 +20,6 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
     [FormerlySerializedAs("atsc")] [SerializeField] protected AudioTimeSyncController Atsc;
     [SerializeField] private CustomStandaloneInputModule customStandaloneInputModule;
     [FormerlySerializedAs("tracksManager")] [SerializeField] protected TracksManager TracksManager;
-    [FormerlySerializedAs("gridRotation")] [SerializeField] protected RotationCallbackController GridRotation;
     [FormerlySerializedAs("gridChild")] [SerializeField] protected GridChild GridChild;
     [SerializeField] private Transform noteGridTransform;
 
@@ -100,7 +99,7 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
         IsOnPlacement = hit.GameObject.GetComponentInParent(GetType()) != null ||
             (hit.GameObject.TryGetComponent<PlacementRadialIndexContainer>(out var pric) && pric.Owner == this);
 
-        if (PauseManager.IsPaused || PersistentUI.Instance.DialogBoxIsEnabled) return;
+        if (PauseManager.IsPaused) return;
 
         if ((!IsValid && ((!IsDraggingObject && !IsDraggingObjectAtTime) || !IsActive)) || !IsOnPlacement)
         {
@@ -171,8 +170,7 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
         }
 
         if (!IsDraggingObject && !IsDraggingObjectAtTime && IsOnPlacement && instantiatedContainer != null && IsValid
-            && !PersistentUI.Instance.DialogBoxIsEnabled &&
-            queuedData?.Time >= 0 && !applicationFocusChanged && instantiatedContainer.gameObject.activeSelf)
+            && queuedData?.Time >= 0 && !applicationFocusChanged && instantiatedContainer.gameObject.activeSelf)
         {
             ApplyToMap();
         }
