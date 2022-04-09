@@ -72,8 +72,4 @@ public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsAction
         if (!context.performed) return;
         mirror.Mirror(false);
     }
-
-    public void OnUpdateSwingArcVisualizer(InputAction.CallbackContext context)
-    {
-    }
 }

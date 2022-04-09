@@ -233,7 +233,7 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectionActions
                 SelectedObjects.Add(beatmapObject);
                 if (collection.LoadedContainers.TryGetValue(beatmapObject, out var container))
                     container.SetOutlineColor(instance.selectedColor);
-                if (addActionEvent) ObjectWasSelectedEvent.Invoke(beatmapObject);
+                if (addActionEvent) ObjectWasSelectedEvent?.Invoke(beatmapObject);
             });
         if (addActionEvent)
             SelectionChangedEvent?.Invoke();
