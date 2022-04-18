@@ -22,12 +22,6 @@ public abstract class BeatmapObject
     public abstract ObjectType BeatmapType { get; set; }
 
     /// <summary>
-    ///     Whether or not there exists a <see cref="BeatmapObjectContainer" /> that contains this data.
-    /// </summary>
-    [JsonIgnore]
-    public bool HasAttachedContainer = false;
-
-    /// <summary>
     /// Time, in beats, where this object is located.
     /// </summary>
     [JsonIgnore]
@@ -87,23 +81,12 @@ public abstract class BeatmapObject
     /// <param name="other">Other object to check if they're conflicting.</param>
     /// <returns>Whether or not they are conflicting with each other.</returns>
     public virtual bool IsConflictingWith(BeatmapObject other, bool deletion = false)
-    {
-        if (Mathf.Abs(Time - other.Time) < BeatmapObjectContainerCollection.Epsilon)
-            return IsConflictingWithObjectAtSameTime(other, deletion);
-        return false;
-    }
+        => Mathf.Abs(Time - other.Time) < BeatmapObjectContainerCollection.Epsilon
+            && IsConflictingWithObjectAtSameTime(other, deletion);
 
     public override string ToString() => ConvertToJson().ToString();
 
     public virtual void Apply(BeatmapObject originalData) => TimeInMilliseconds = originalData.TimeInMilliseconds;
-
-    public JSONNode GetOrCreateCustomData()
-    {
-        if (CustomData == null)
-            CustomData = new JSONObject();
-
-        return CustomData;
-    }
 
     // With how often this will get called, I think inlining will be necessary.
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
