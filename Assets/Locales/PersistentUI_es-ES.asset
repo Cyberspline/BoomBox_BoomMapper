@@ -35,17 +35,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5
-    m_Localized: "ChroMapper ha detectado que tu archivo de datos ha sido marcado
-      como s\xF3lo lectura.\n\nPor favor elimina el indicador de s\xF3lo lectura
-      y prueba de nuevo, o sigue usando el \xFAltimo editor de la familia EditSaber.\n\nMarcar
-      tu archivo de datos como s\xF3lo lectura para prevenir que MM o CM lo sobreescriban
-      es extremadamente est\xFApido, deshazlo o ll\xE9vate tu mapa a otra parte."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6
-    m_Localized: "El mapeo 360 es relativamente nuevo y puede hacer f\xE1cilmente
-      que el mapa sea injugable si no se prueba.\n\nPor el amor de todo lo sagrado,
-      haz que t\xFA y otras personas prueben tu mapa con frecuencia."
+    m_Localized: 'BoomMapper has detected that your map has been marked as read-only.
+
+
+      To
+      continue editing this map, please remove the read-only marker.'
     m_Metadata:
       m_Items: []
   - m_Id: 7
@@ -57,14 +51,21 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 9
-    m_Localized: "Algunos ajustes de ChroMapper fallaron al cargarse.\n\nSi este
-      cuadro de di\xE1logo sigue mostrandose cuando inicie ChroMapper, intente borrar
-      su fichero de configuraci\xF3n ubicado en:\n{0}/ChroMapperSettings.json"
+    m_Localized: 'Some BoomMapper settings failed to load.
+
+
+      If this dialog
+      box keeps showing up when launching ChroMapper, try deleting your Configuration
+      file located in:
+
+      {0}/ChroMapperSettings.json'
     m_Metadata:
       m_Items: []
   - m_Id: 10
-    m_Localized: "Discord RPC ha encontrado un error: {0}.\nDiscord RPC ser\xE1 desactivado
-      hasta que reinicie ChroMapper."
+    m_Localized: 'Discord RPC has encountered an error: {0}.
+
+      Discord RPC will
+      be disabled until BoomMapper is restarted.'
     m_Metadata:
       m_Items: []
   - m_Id: 11

@@ -19,11 +19,11 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 1
-    m_Localized: "\uACE1 \uC815\uBCF4"
+    m_Localized: Pack Information
     m_Metadata:
       m_Items: []
   - m_Id: 2
-    m_Localized: "\uB9F5 \uB09C\uC774\uB3C4"
+    m_Localized: Map Information
     m_Metadata:
       m_Items: []
   - m_Id: 3
@@ -36,19 +36,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 5
     m_Localized: "\uACE1\uC758 \uC81C\uBAA9\uC785\uB2C8\uB2E4."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6
-    m_Localized: "\uACE1 \uBD80\uC81C"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7
-    m_Localized: "\uACE1 \uBD80\uC81C"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 8
-    m_Localized: "\uBD80\uC81C\uBAA9 \uD639\uC740 \uB178\uB798\uC5D0 \uAE30\uC5EC\uD55C
-      \uB2E4\uB978 \uC0AC\uB78C\uC758 \uC774\uB984\uC785\uB2C8\uB2E4."
     m_Metadata:
       m_Items: []
   - m_Id: 9
@@ -151,29 +138,12 @@ MonoBehaviour:
       \uB450\uB294 \uAC83\uC744 \uCD94\uCC9C\uB4DC\uB9BD\uB2C8\uB2E4.)"
     m_Metadata:
       m_Items: []
-  - m_Id: 33
-    m_Localized: "\uD658\uACBD"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 34
-    m_Localized: "\uCEE4\uC2A4\uD140 \uD50C\uB7AB\uD3FC"
-    m_Metadata:
-      m_Items: []
   - m_Id: 35
     m_Localized: "\uC800\uC7A5"
     m_Metadata:
       m_Items: []
   - m_Id: 36
     m_Localized: "\uC0AD\uC81C"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 37
-    m_Localized: "\uC5B4\uB5A4 \uD658\uACBD\uC5D0\uC11C \uB178\uB798\uAC00 \uC7AC\uC0DD\uB418\uB098\uC694?"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 38
-    m_Localized: "\uC124\uCE58\uB41C \uCEE4\uC2A4\uD140 \uD50C\uB7AB\uD3FC \uBAA9\uB85D
-      \uC911\uC5D0\uC11C \uC120\uD0DD\uD558\uC2ED\uC2DC\uC624."
     m_Metadata:
       m_Items: []
   - m_Id: 39
@@ -184,52 +154,8 @@ MonoBehaviour:
     m_Localized: "\uACE1 \uBAA9\uB85D\uC73C\uB85C \uB3CC\uC544\uAC00\uAE30"
     m_Metadata:
       m_Items: []
-  - m_Id: 41
-    m_Localized: "\uD558\uD504 \uC810\uD504 \uC9C0\uC18D \uC2DC\uAC04"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 42
-    m_Localized: "\uC77C\uBC18\uC801\uC778 \uAC12\n\uC26C\uC6C0, \uBCF4\uD1B5, \uC5B4\uB824\uC6C0:
-      4\n\uC804\uBB38\uAC00, \uC804\uBB38\uAC00+: 2"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 43
-    m_Localized: "\uC810\uD504 \uB514\uC2A4\uD134\uC2A4"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 44
-    m_Localized: "\uC77C\uBC18\uC801\uC778 \uAC12\n\uC26C\uC6C0, \uBCF4\uD1B5, \uC5B4\uB824\uC6C0:
-      24-36\n\uC804\uBB38\uAC00: 24-32\n\uC804\uBB38\uAC00+: 20-28"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 45
-    m_Localized: "\uB178\uD2B8 \uC810\uD504 \uC2A4\uD53C\uB4DC"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 46
-    m_Localized: 10
-    m_Metadata:
-      m_Items: []
-  - m_Id: 47
-    m_Localized: "\uB178\uD2B8\uAC00 \uD50C\uB808\uC774\uC5B4\uC5D0\uAC8C \uC811\uADFC\uD558\uB294
-      \uC18D\uB3C4"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 48
-    m_Localized: "\uC2DC\uC791 \uC2DC\uAC04 \uC624\uD504\uC14B"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 49
-    m_Localized: 0
-    m_Metadata:
-      m_Items: []
-  - m_Id: 50
-    m_Localized: "\uD50C\uB808\uC774\uC5B4\uB85C\uBD80\uD130 \uB178\uD2B8\uAC00 \uB098\uD0C0\uB098\uB294
-      \uAC70\uB9AC\uB97C \uB298\uB9BD\uB2C8\uB2E4"
-    m_Metadata:
-      m_Items: []
   - m_Id: 51
-    m_Localized: "Zip \uD30C\uC77C \uC0DD\uC131"
+    m_Localized: Create .BOM
     m_Metadata:
       m_Items: []
   - m_Id: 52
@@ -240,8 +166,8 @@ MonoBehaviour:
     m_Localized: "\uD3B8\uC9D1\uAE30 \uC5F4\uAE30"
     m_Metadata:
       m_Items: []
-  - m_Id: 54
-    m_Localized: "\uAE30\uC5EC\uC790"
+  - m_Id: 30626475569381376
+    m_Localized: A list of tags for the map, separated by a space.
     m_Metadata:
       m_Items: []
   - m_Id: 56
@@ -310,18 +236,12 @@ MonoBehaviour:
       \uC788\uC2B5\uB2C8\uB2E4. \uC815\uB9D0 \uB098\uAC00\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
     m_Metadata:
       m_Items: []
-  - m_Id: 69
-    m_Localized: "ChroMapper\uC5D0\uC11C \uC5B4\uB290 \uAC83\uB3C4 \uB85C\uB4DC\uD558\uC9C0
-      \uC54A\uB3C4\uB85D \uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.\n\uBB34\uC5B8\uAC00\uB97C
-      \uB85C\uB4DC\uD558\uB824\uBA74, \uC124\uC815 \uD558\uB2E8\uC758 \uB9E4\uD37C
-      \uC124\uC815\uC744 \uBCC0\uACBD\uD574\uC8FC\uC138\uC694."
+  - m_Id: 30626380895551488
+    m_Localized: Tags
     m_Metadata:
       m_Items: []
-  - m_Id: 70
-    m_Localized: "ChroMapper\uC5D0\uC11C \uBAA8\uB4E0 \uAC83\uC744 \uB85C\uB4DC\uD558\uC9C0
-      \uC54A\uB3C4\uB85D \uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.\n\uB2E4\uC2DC \uC624\uBE0C\uC81D\uD2B8\uB97C
-      \uD65C\uC131\uD654\uD558\uB824\uBA74, \uC124\uC815 \uD558\uB2E8\uC758 \uB9E4\uD37C
-      \uC124\uC815\uC744 \uBCC0\uACBD\uD574\uC8FC\uC138\uC694."
+  - m_Id: 30626249097936896
+    m_Localized: Enter a short description for this map.
     m_Metadata:
       m_Items: []
   - m_Id: 71
@@ -342,9 +262,8 @@ MonoBehaviour:
       \uC54A\uC2B5\uB2C8\uB2E4!"
     m_Metadata:
       m_Items: []
-  - m_Id: 75
-    m_Localized: "\uC800\uC7A5\uB418\uC9C0 \uC54A\uC740 \uAE30\uC5EC\uC790 \uBCC0\uACBD
-      \uC0AC\uD56D\uC774 \uC788\uC2B5\uB2C8\uB2E4. \uC815\uB9D0 \uB098\uAC00\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
+  - m_Id: 30626154038231040
+    m_Localized: Description
     m_Metadata:
       m_Items: []
   - m_Id: 76
@@ -357,6 +276,22 @@ MonoBehaviour:
     m_Localized: "\uAC19\uC740 \uC774\uB984\uC758 \uB2E4\uB978 \uD30C\uC77C\uC774
       \uC774\uBBF8 \uB178\uB798 \uD3F4\uB354\uC5D0 \uC788\uC2B5\uB2C8\uB2E4! \uB300\uC2E0
       \uC0AC\uC6A9\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30626696189771776
+    m_Localized: Upload Map
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30857320636940288
+    m_Localized: Creator (that's you!)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30857462203088896
+    m_Localized: Map description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30857533221044224
+    m_Localized: fast fun difficult
     m_Metadata:
       m_Items: []
   references:

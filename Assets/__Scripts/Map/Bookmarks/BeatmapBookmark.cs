@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using SimpleJSON;
 using UnityEngine;
 using Random = System.Random;
@@ -7,8 +8,20 @@ public class BeatmapBookmark : BeatmapObject
 {
     private static readonly Random rand = new Random();
 
+    [JsonProperty("Message")]
     public string Name = "Invalid Bookmark";
+
+    [JsonProperty]
+    public const int SnappingBeatDivType = 4;
+
+    [JsonProperty("Offset")]
+    public override float TimeInMilliseconds { get; set; }
+
+    [JsonIgnore]
     public Color Color;
+
+    public BeatmapBookmark()
+        => Color = Color.HSVToRGB((float)rand.NextDouble(), 0.75f, 1);
 
     public BeatmapBookmark(JSONNode node)
     {

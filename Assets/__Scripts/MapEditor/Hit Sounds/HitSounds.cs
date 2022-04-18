@@ -1,7 +1,6 @@
 ﻿public enum HitSounds
 {
     Tick = 0,
-    Slice = 1,
     Quack = 2,
     Meow = 3,
     Rawr = 4,

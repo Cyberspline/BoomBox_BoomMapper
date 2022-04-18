@@ -19,11 +19,11 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 1
-    m_Localized: Infos du morceau
+    m_Localized: Pack Information
     m_Metadata:
       m_Items: []
   - m_Id: 2
-    m_Localized: "Difficult\xE9s de la map"
+    m_Localized: Map Information
     m_Metadata:
       m_Items: []
   - m_Id: 3
@@ -36,18 +36,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 5
     m_Localized: Titre du morceau.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6
-    m_Localized: Sous-titre
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7
-    m_Localized: Sous-titre
-    m_Metadata:
-      m_Items: []
-  - m_Id: 8
-    m_Localized: "Sous-titre, ou toute autre personne qui a contribu\xE9 au morceau."
     m_Metadata:
       m_Items: []
   - m_Id: 9
@@ -146,28 +134,12 @@ MonoBehaviour:
     m_Localized: Chemin relatif du fichier audio (mieux de ne pas modifier)
     m_Metadata:
       m_Items: []
-  - m_Id: 33
-    m_Localized: Environnement
-    m_Metadata:
-      m_Items: []
-  - m_Id: 34
-    m_Localized: "Plateforme personnalis\xE9e"
-    m_Metadata:
-      m_Items: []
   - m_Id: 35
     m_Localized: Sauver
     m_Metadata:
       m_Items: []
   - m_Id: 36
     m_Localized: Supprimer
-    m_Metadata:
-      m_Items: []
-  - m_Id: 37
-    m_Localized: "Dans quel environnement la map sera-t-elle jou\xE9e ?"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 38
-    m_Localized: "S\xE9lectionnez parmi une liste de plateformes custom install\xE9es."
     m_Metadata:
       m_Items: []
   - m_Id: 39
@@ -178,60 +150,8 @@ MonoBehaviour:
     m_Localized: "Retour \xE0 la liste des morceaux"
     m_Metadata:
       m_Items: []
-  - m_Id: 41
-    m_Localized: "Dur\xE9e de demi-saut"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 42
-    m_Localized: 'Valeurs typiques
-
-      Facile, Normal, Difficile : 4
-
-      Expert,
-      Expert+ : 2'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 43
-    m_Localized: Distance de saut
-    m_Metadata:
-      m_Items: []
-  - m_Id: 44
-    m_Localized: 'Valeurs Typiques
-
-      Facile, Normal, Difficile : 24-36
-
-      Expert
-      : 24-32
-
-      Expert+ : 20-28'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 45
-    m_Localized: Vitesse de saut des notes
-    m_Metadata:
-      m_Items: []
-  - m_Id: 46
-    m_Localized: 10
-    m_Metadata:
-      m_Items: []
-  - m_Id: 47
-    m_Localized: "\xC0 quelle vitesse les notes s'approchent du joueur"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 48
-    m_Localized: Offset de saut des notes
-    m_Metadata:
-      m_Items: []
-  - m_Id: 49
-    m_Localized: 0
-    m_Metadata:
-      m_Items: []
-  - m_Id: 50
-    m_Localized: Augmente la distance d'apparition des notes au joueur
-    m_Metadata:
-      m_Items: []
   - m_Id: 51
-    m_Localized: "Cr\xE9er Zip"
+    m_Localized: Create .BOM
     m_Metadata:
       m_Items: []
   - m_Id: 52
@@ -242,8 +162,8 @@ MonoBehaviour:
     m_Localized: "Ouvrir l'\xE9diteur"
     m_Metadata:
       m_Items: []
-  - m_Id: 54
-    m_Localized: Contributeurs
+  - m_Id: 30626475569381376
+    m_Localized: A list of tags for the map, separated by a space.
     m_Metadata:
       m_Items: []
   - m_Id: 56
@@ -300,16 +220,12 @@ MonoBehaviour:
       s\xFBr de vouloir quitter ?"
     m_Metadata:
       m_Items: []
-  - m_Id: 69
-    m_Localized: "ChroMapper est actuellement configur\xE9 pour ne rien charger.\nPour
-      choisir quelque-chose \xE0 charger, visitez les param\xE8tres et faites d\xE9filer
-      jusqu'au bas des param\xE8tres de mapping."
+  - m_Id: 30626380895551488
+    m_Localized: Tags
     m_Metadata:
       m_Items: []
-  - m_Id: 70
-    m_Localized: "ChroMapper est actuellement configur\xE9 pour ne pas tout charger.\nPour
-      r\xE9activer des \xE9l\xE9ments, visitez les param\xE8tres et faites d\xE9filer
-      jusqu'au bas des param\xE8tres de mapping."
+  - m_Id: 30626249097936896
+    m_Localized: Enter a short description for this map.
     m_Metadata:
       m_Items: []
   - m_Id: 71
@@ -328,9 +244,8 @@ MonoBehaviour:
     m_Localized: Le fichier audio n'existe pas !
     m_Metadata:
       m_Items: []
-  - m_Id: 75
-    m_Localized: "Vous avez des modifications des contributeurs non enregistr\xE9es,
-      \xEAtes-vous s\xFBr de vouloir quitter?"
+  - m_Id: 30626154038231040
+    m_Localized: Description
     m_Metadata:
       m_Items: []
   - m_Id: 76
@@ -341,6 +256,22 @@ MonoBehaviour:
   - m_Id: 77
     m_Localized: "Un autre fichier portant ce nom existe d\xE9j\xE0 dans le dossier
       du morceau ! L'utiliser \xE0 la place?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30626696189771776
+    m_Localized: Upload Map
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30857320636940288
+    m_Localized: Creator (that's you!)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30857462203088896
+    m_Localized: Map description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30857533221044224
+    m_Localized: fast fun difficult
     m_Metadata:
       m_Items: []
   references:

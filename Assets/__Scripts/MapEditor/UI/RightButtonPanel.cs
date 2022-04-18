@@ -10,7 +10,7 @@ public class RightButtonPanel : MonoBehaviour
     private void Awake()
     {
         rectTransform = transform as RectTransform;
-        rectTransform.anchoredPosition = new Vector2(rectTransform.sizeDelta.x, rectTransform.anchoredPosition.y);
+        //rectTransform.anchoredPosition = new Vector2(rectTransform.sizeDelta.x, rectTransform.anchoredPosition.y);
     }
 
     public void TogglePanel()

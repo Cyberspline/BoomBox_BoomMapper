@@ -35,10 +35,6 @@ MonoBehaviour:
     m_Key: readonly
     m_Metadata:
       m_Items: []
-  - m_Id: 6
-    m_Key: 360warning
-    m_Metadata:
-      m_Items: []
   - m_Id: 7
     m_Key: ignore
     m_Metadata:

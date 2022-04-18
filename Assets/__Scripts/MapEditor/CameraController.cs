@@ -10,15 +10,10 @@ public class CameraController : MonoBehaviour, CMInput.ICameraActions
 {
     private static CameraController instance;
 
-    [SerializeField] private Vector3[] presetPositions;
-    [SerializeField] private Vector3[] presetRotations;
     [SerializeField] private float movementSpeed;
     [SerializeField] private float mouseSensitivity;
     [SerializeField] private Transform noteGridTransform;
-    [FormerlySerializedAs("_uiMode")] [SerializeField] private UIMode uiMode;
     [SerializeField] private CustomStandaloneInputModule customStandaloneInputModule;
-
-    [FormerlySerializedAs("_rotationCallbackController")] public RotationCallbackController RotationCallbackController;
 
     [FormerlySerializedAs("camera")] public Camera Camera;
 
@@ -32,13 +27,10 @@ public class CameraController : MonoBehaviour, CMInput.ICameraActions
 
     private readonly Type[] actionMapsDisabledWhileMoving =
     {
-        typeof(CMInput.IPlacementControllersActions), typeof(CMInput.INotePlacementActions),
-        typeof(CMInput.IEventPlacementActions), typeof(CMInput.ISavingActions), typeof(CMInput.ITimelineActions),
-        typeof(CMInput.IPlatformSoloLightGroupActions), typeof(CMInput.IPlaybackActions),
+        typeof(CMInput.IPlacementControllersActions),
+        typeof(CMInput.ISavingActions), typeof(CMInput.ITimelineActions), typeof(CMInput.IPlaybackActions),
         typeof(CMInput.IBeatmapObjectsActions), typeof(CMInput.INoteObjectsActions),
-        typeof(CMInput.IEventObjectsActions), typeof(CMInput.IObstacleObjectsActions),
-        typeof(CMInput.ICustomEventsContainerActions), typeof(CMInput.IBPMTapperActions),
-        typeof(CMInput.IEventUIActions), typeof(CMInput.IUIModeActions)
+        typeof(CMInput.IBPMTapperActions), typeof(CMInput.IUIModeActions)
     };
 
     private Vector2 savedMousePos = Vector2.zero;
@@ -72,7 +64,6 @@ public class CameraController : MonoBehaviour, CMInput.ICameraActions
         UpdateAA(Settings.Instance.CameraAA);
         Settings.NotifyBySettingName(nameof(Settings.CameraAA), UpdateAA);
         OnLocation(0);
-        LockedOntoNoteGrid = true;
     }
 
     private void Update()
@@ -106,14 +97,7 @@ public class CameraController : MonoBehaviour, CMInput.ICameraActions
             movementSpeed = Settings.Instance.Camera_MovementSpeed;
             mouseSensitivity = Settings.Instance.Camera_MouseSensitivity;
 
-            var movementSpeedInFrame = movementSpeed * Time.deltaTime;
-
-            var sideTranslation = movementSpeedInFrame * new Vector3(x, 0, z);
-            transform.Translate(sideTranslation);
-            // Y translation should always be in World space
-            transform.Translate(movementSpeedInFrame * y * Vector3.up, Space.World);
-
-            // We want to force it to never rotate Z
+            // We want to force camera to never rotate Z
             var eulerAngles = transform.eulerAngles;
             var ex = eulerAngles.x;
             ex = ex > 180 ? ex - 360 : ex;
@@ -121,6 +105,34 @@ public class CameraController : MonoBehaviour, CMInput.ICameraActions
             eulerAngles.y += mouseX;
             eulerAngles.z = 0;
             transform.eulerAngles = eulerAngles;
+
+            var movementSpeedInFrame = movementSpeed * Time.deltaTime;
+
+            // Old BoomBox Editor behavior - Camera rotates around the center of the mapping grid
+            if (Settings.Instance.CameraRotateAroundGrid)
+            {
+                // Calculate grid center
+                var radialIndexTable = RadialIndexTable.Instance;
+                var gridCenter = (radialIndexTable.GetNotePlacement(2) + radialIndexTable.GetNotePlacement(7)) / 2;
+
+                // Distance between grid center and camera should be consistent
+                var cameraDistance = Vector3.Distance(transform.localPosition, gridCenter);
+                
+                // However we want to allow the user to change the distance by using the Z axis (forward/back)
+                cameraDistance += movementSpeedInFrame * -z;
+
+                // We already have the desired rotation (and forward axis) of the camera
+                // We can use basic vector math to find out the correct position without using RotateAround and LookAt
+                transform.localPosition = (-cameraDistance * transform.forward) + (Vector3)gridCenter;
+            }
+            // MMA2 / ChroMapper behavior - Camera freely rotates/moves
+            else
+            {
+                var sideTranslation = movementSpeedInFrame * new Vector3(x, 0, z);
+                transform.Translate(sideTranslation);
+                // Y translation should always be in World space
+                transform.Translate(movementSpeedInFrame * y * Vector3.up, Space.World);
+            }
         }
         else
         {
@@ -214,12 +226,6 @@ public class CameraController : MonoBehaviour, CMInput.ICameraActions
             CMInputCallbackInstaller.ClearDisabledActionMaps(typeof(CameraController), actionMapsDisabledWhileMoving);
     }
 
-    public void OnAttachtoNoteGrid(CallbackContext context)
-    {
-        if (RotationCallbackController.IsActive && context.performed && noteGridTransform.gameObject.activeInHierarchy)
-            LockedOntoNoteGrid = !LockedOntoNoteGrid;
-    }
-
     public void OnToggleFullscreen(CallbackContext context)
     {
         if (!Application.isEditor && context.performed) Screen.fullScreen = !Screen.fullScreen;
@@ -261,6 +267,21 @@ public class CameraController : MonoBehaviour, CMInput.ICameraActions
         else if (Settings.Instance.SavedPositions[id] != null)
         {
             transform.SetPositionAndRotation(Settings.Instance.SavedPositions[id].Position, Settings.Instance.SavedPositions[id].Rotation);
+        }
+
+        // We need to re-rotate camera around the grid
+        if (Settings.Instance.CameraRotateAroundGrid)
+        {
+            // Calculate grid center
+            var radialIndexTable = RadialIndexTable.Instance;
+            var gridCenter = (radialIndexTable.GetNotePlacement(2) + radialIndexTable.GetNotePlacement(7)) / 2;
+
+            // Distance between grid center and camera should be consistent
+            var cameraDistance = Vector3.Distance(transform.localPosition, gridCenter);
+
+            // We already have the desired rotation (and forward axis) of the camera
+            // We can use basic vector math to find out the correct position without using RotateAround and LookAt
+            transform.localPosition = (-cameraDistance * transform.forward) + (Vector3)gridCenter;
         }
     }
 }

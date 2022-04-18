@@ -19,11 +19,11 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 1
-    m_Localized: Song Infwo
+    m_Localized: Pack Information
     m_Metadata:
       m_Items: []
   - m_Id: 2
-    m_Localized: Map Difficuwtees
+    m_Localized: Map Information
     m_Metadata:
       m_Items: []
   - m_Id: 3
@@ -36,20 +36,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 5
     m_Localized: naem of song
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6
-    m_Localized: sub nam
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7
-    m_Localized: sub nam
-    m_Metadata:
-      m_Items: []
-  - m_Id: 8
-    m_Localized: 'Subtitwes, ow any othew pewson who
-
-      contwiboot to song.'
     m_Metadata:
       m_Items: []
   - m_Id: 9
@@ -152,28 +138,12 @@ MonoBehaviour:
       (nu, dont touch)'
     m_Metadata:
       m_Items: []
-  - m_Id: 33
-    m_Localized: enviwonment
-    m_Metadata:
-      m_Items: []
-  - m_Id: 34
-    m_Localized: custom pwatfowm (how dose dis wowk)
-    m_Metadata:
-      m_Items: []
   - m_Id: 35
     m_Localized: Swave 'w'
     m_Metadata:
       m_Items: []
   - m_Id: 36
     m_Localized: "Dwelete ;\u2014;"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 37
-    m_Localized: Wut enviwonment wiww the song pway in?
-    m_Metadata:
-      m_Items: []
-  - m_Id: 38
-    m_Localized: sewect fwom wist of instuwd coostom pwatfowms
     m_Metadata:
       m_Items: []
   - m_Id: 39
@@ -184,59 +154,8 @@ MonoBehaviour:
     m_Localized: Go bak to shong wist
     m_Metadata:
       m_Items: []
-  - m_Id: 41
-    m_Localized: hawf of jump duwation
-    m_Metadata:
-      m_Items: []
-  - m_Id: 42
-    m_Localized: 'twypicaw vawues
-
-      EZ, nowmaw, hawd: 4
-
-      Expuwt, e+:2'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 43
-    m_Localized: Jumpppppppp
-    m_Metadata:
-      m_Items: []
-  - m_Id: 44
-    m_Localized: 'twypicaw vawues
-
-      EZ, nowmaw, hawd: 24-36
-
-      Expuwt: 24-32
-
-      e+:
-      20-28'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 45
-    m_Localized: Jumping SPEEEEEED
-    m_Metadata:
-      m_Items: []
-  - m_Id: 46
-    m_Localized: 69 :)
-    m_Metadata:
-      m_Items: []
-  - m_Id: 47
-    m_Localized: how much brrrrrrrrr note has
-    m_Metadata:
-      m_Items: []
-  - m_Id: 48
-    m_Localized: Stawt beet offset
-    m_Metadata:
-      m_Items: []
-  - m_Id: 49
-    m_Localized: nu, don't touch this
-    m_Metadata:
-      m_Items: []
-  - m_Id: 50
-    m_Localized: incweases distans that nwotes appeaw fwom pwayew
-    m_Metadata:
-      m_Items: []
   - m_Id: 51
-    m_Localized: Cweate Zip
+    m_Localized: Create .BOM
     m_Metadata:
       m_Items: []
   - m_Id: 52
@@ -247,8 +166,8 @@ MonoBehaviour:
     m_Localized: Open editw
     m_Metadata:
       m_Items: []
-  - m_Id: 54
-    m_Localized: contwibootow
+  - m_Id: 30626475569381376
+    m_Localized: A list of tags for the map, separated by a space.
     m_Metadata:
       m_Items: []
   - m_Id: 56
@@ -310,18 +229,12 @@ MonoBehaviour:
     m_Localized: You have unsaved difficulties, are you sure you want to leave?
     m_Metadata:
       m_Items: []
-  - m_Id: 69
-    m_Localized: 'ChroMapper is currently set to not load anything enabled.
-
-      To
-      set something to load, visit Options and scroll to the bottom of mapper settings.'
+  - m_Id: 30626380895551488
+    m_Localized: Tags
     m_Metadata:
       m_Items: []
-  - m_Id: 70
-    m_Localized: 'ChroMapper is currently set to not load everything.
-
-      To re-enable
-      items, visit Options and scroll to the bottom of mapper settings.'
+  - m_Id: 30626249097936896
+    m_Localized: Enter a short description for this map.
     m_Metadata:
       m_Items: []
   - m_Id: 71
@@ -340,9 +253,8 @@ MonoBehaviour:
     m_Localized: "That fowdew dwoesnt exwist! (\u2716\u256D\u256E\u2716)"
     m_Metadata:
       m_Items: []
-  - m_Id: 75
-    m_Localized: "u has unswaved contwibutow changes (\u201E\u0CA1\u03C9\u0CA1\u201E),
-      want to weave?"
+  - m_Id: 30626154038231040
+    m_Localized: Description
     m_Metadata:
       m_Items: []
   - m_Id: 76
@@ -353,6 +265,22 @@ MonoBehaviour:
   - m_Id: 77
     m_Localized: Another file with that name already exists in the song folder! Use
       it instead?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30626696189771776
+    m_Localized: Upload Map
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30857320636940288
+    m_Localized: Creator (that's you!)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30857462203088896
+    m_Localized: Map description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30857533221044224
+    m_Localized: fast fun difficult
     m_Metadata:
       m_Items: []
   references:

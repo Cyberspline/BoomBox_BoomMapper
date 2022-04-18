@@ -35,18 +35,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5
-    m_Localized: "ChroMapper a d\xE9tect\xE9 que votre fichier d'infos a \xE9t\xE9
-      marqu\xE9 en lecture seule.\n\nVeuillez supprimer le marqueur de lecture seule
-      et r\xE9essayer, ou continuer \xE0 utiliser le dernier \xE9diteur de la famille
-      EditSaber.\n\nMarquer votre fichier d'infos en lecture seule pour emp\xEAcher
-      MM ou CM de l'\xE9craser est extr\xEAmement stupide, alors annulez \xE7a ou
-      faites votre map ailleurs."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6
-    m_Localized: "Le mapping 360 est relativement nouveau et peut facilement rendre
-      la carte injouable si elle n'est pas test\xE9e.\n\nPour l'amour de tout ce
-      qui est sacr\xE9, testez ou faites tester votre map fr\xE9quemment."
+    m_Localized: 'BoomMapper has detected that your map has been marked as read-only.
+
+
+      To
+      continue editing this map, please remove the read-only marker.'
     m_Metadata:
       m_Items: []
   - m_Id: 7
@@ -59,14 +52,21 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 9
-    m_Localized: "Certains param\xE8tres de ChroMapper n'ont pas pu \xEAtre charg\xE9s.\n\nSi
-      cette bo\xEEte de dialogue continue de s'afficher lors du lancement de ChroMapper,
-      essayez de supprimer votre fichier de configuration situ\xE9 dans:\n{0}/ChroMapperSettings.json"
+    m_Localized: 'Some BoomMapper settings failed to load.
+
+
+      If this dialog
+      box keeps showing up when launching ChroMapper, try deleting your Configuration
+      file located in:
+
+      {0}/ChroMapperSettings.json'
     m_Metadata:
       m_Items: []
   - m_Id: 10
-    m_Localized: "Discord RPC a rencontr\xE9 une erreur: {0}.\nDiscord RPC sera d\xE9sactiv\xE9
-      jusqu'\xE0 ce que ChroMapper soit red\xE9marr\xE9."
+    m_Localized: 'Discord RPC has encountered an error: {0}.
+
+      Discord RPC will
+      be disabled until BoomMapper is restarted.'
     m_Metadata:
       m_Items: []
   - m_Id: 11

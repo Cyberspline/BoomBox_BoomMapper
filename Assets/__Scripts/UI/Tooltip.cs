@@ -8,7 +8,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [FormerlySerializedAs("tooltip")] public LocalizedString LocalizedTooltip;
 
-    [FormerlySerializedAs("tooltipOverride")] [HideInInspector] public string TooltipOverride;
+    [FormerlySerializedAs("tooltipOverride")] public string TooltipOverride;
 
     [FormerlySerializedAs("advancedTooltip")] public string AdvancedTooltip;
 
@@ -40,7 +40,11 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private IEnumerator TooltipRoutine(float timeToWait)
     {
         var tooltipTextResult = TooltipOverride;
-        if (string.IsNullOrEmpty(TooltipOverride)) tooltipTextResult = LocalizedTooltip.GetLocalizedString();
+        
+        if (string.IsNullOrEmpty(TooltipOverride) && LocalizedTooltip != null && !LocalizedTooltip.IsEmpty)
+        {
+            tooltipTextResult = LocalizedTooltip.GetLocalizedString();
+        }
 
         PersistentUI.Instance.SetTooltip(tooltipTextResult, AdvancedTooltip);
         yield return new WaitForSeconds(timeToWait);

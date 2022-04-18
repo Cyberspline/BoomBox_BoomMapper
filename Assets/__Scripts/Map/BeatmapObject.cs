@@ -1,16 +1,12 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
 using SimpleJSON;
 using UnityEngine;
 
 public abstract class BeatmapObject
 {
-    protected static int DecimalPrecision =>
-#if UNITY_EDITOR
-        6;
-#else
-        Settings.Instance.TimeValueDecimalPrecision;
-#endif
-
+    protected static int DecimalPrecision => 3;
 
     public enum ObjectType
     {
@@ -22,21 +18,29 @@ public abstract class BeatmapObject
         BpmChange
     }
 
+    [JsonIgnore]
     public abstract ObjectType BeatmapType { get; set; }
 
     /// <summary>
-    ///     Whether or not there exists a <see cref="BeatmapObjectContainer" /> that contains this data.
+    /// Time, in beats, where this object is located.
     /// </summary>
-    public bool HasAttachedContainer = false;
+    [JsonIgnore]
+    public float Time
+    {
+        get => GetBeatsFromMilliseconds(TimeInMilliseconds);
+        set => TimeInMilliseconds = GetMillisceondsFromBeats(value);
+    }
 
     /// <summary>
-    ///     Time, in beats, where this object is located.
+    /// Time, in milliseconds, where this object is located.
+    /// In JSON, this is either called "Offset" or "StartTime", depending on the data structure.
     /// </summary>
-    public float Time;
+    public abstract float TimeInMilliseconds { get; set; }
 
     /// <summary>
     ///     An expandable <see cref="JSONNode" /> that stores data for Beat Saber mods to use.
     /// </summary>
+    [JsonIgnore, Obsolete]
     public JSONNode CustomData;
 
     public abstract JSONNode ConvertToJson();
@@ -52,28 +56,17 @@ public abstract class BeatmapObject
     public static T GenerateCopy<T>(T originalData) where T : BeatmapObject
     {
         if (originalData is null) throw new ArgumentException("originalData is null.");
-        T objectData;
-        switch (originalData)
-        {
-            case MapEvent evt:
-                var ev = new MapEvent(evt.Time, evt.Type, evt.Value, originalData.CustomData?.Clone())
-                {
-                    LightGradient = evt.LightGradient?.Clone()
-                };
-                objectData = ev as T;
-                break;
-            case BeatmapNote note:
-                objectData = new BeatmapNote(note.Time, note.LineIndex, note.LineLayer, note.Type,
-                    note.CutDirection, originalData.CustomData?.Clone()) as T;
-                break;
-            default:
-                objectData =
-                    Activator.CreateInstance(originalData.GetType(), new object[] { originalData.ConvertToJson() }) as T;
-                objectData.CustomData = originalData.CustomData?.Clone();
-                break;
-        }
 
-        return objectData;
+        using var textWriter = new System.IO.StringWriter();
+        using var jsonWriter = new JsonTextWriter(textWriter);
+
+        var json = JsonSerializer.CreateDefault();
+        json.Serialize(jsonWriter, originalData);
+
+        using var textReader = new System.IO.StringReader(textWriter.ToString());
+        using var jsonReader = new JsonTextReader(textReader);
+
+        return json.Deserialize(jsonReader, originalData.GetType()) as T;
     }
 
     protected JSONNode RetrieveRequiredNode(JSONNode node, string key)
@@ -88,33 +81,20 @@ public abstract class BeatmapObject
     /// <param name="other">Other object to check if they're conflicting.</param>
     /// <returns>Whether or not they are conflicting with each other.</returns>
     public virtual bool IsConflictingWith(BeatmapObject other, bool deletion = false)
-    {
-        if (Mathf.Abs(Time - other.Time) < BeatmapObjectContainerCollection.Epsilon)
-            return IsConflictingWithObjectAtSameTime(other, deletion);
-        return false;
-    }
+        => Mathf.Abs(Time - other.Time) < BeatmapObjectContainerCollection.Epsilon
+            && IsConflictingWithObjectAtSameTime(other, deletion);
 
     public override string ToString() => ConvertToJson().ToString();
 
-    /*public override bool Equals(object obj) // We do not need Equals anymore since IsConflictingWith exists
-    {
-        if (obj is BeatmapObject other)
-        {
-            return ConvertToJSON().ToString() == other.ConvertToJSON().ToString();
-        }
-        return false;
-    }*/
-    public virtual void Apply(BeatmapObject originalData)
-    {
-        Time = originalData.Time;
-        CustomData = originalData.CustomData?.Clone();
-    }
+    public virtual void Apply(BeatmapObject originalData) => TimeInMilliseconds = originalData.TimeInMilliseconds;
 
-    public JSONNode GetOrCreateCustomData()
-    {
-        if (CustomData == null)
-            CustomData = new JSONObject();
+    // With how often this will get called, I think inlining will be necessary.
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    protected float GetBeatsFromMilliseconds(float milliseconds)
+        => BoomBoxSongContainer.Instance.Map.BeginningBPM / 60 * milliseconds / 1000;
 
-        return CustomData;
-    }
+    // With how often this will get called, I think inlining will be necessary.
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    protected float GetMillisceondsFromBeats(float beats)
+        => 60 / BoomBoxSongContainer.Instance.Map.BeginningBPM * beats * 1000;
 }

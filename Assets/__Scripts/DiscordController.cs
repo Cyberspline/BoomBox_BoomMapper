@@ -28,7 +28,6 @@ public class DiscordController : MonoBehaviour
                 ActivityManager = Discord.GetActivityManager();
                 ActivityManager.ClearActivity(res => { });
                 SceneManager.activeSceneChanged += SceneUpdated;
-                LoadInitialMap.PlatformLoadedEvent += LoadPlatform;
             }
             else
             {
@@ -61,29 +60,9 @@ public class DiscordController : MonoBehaviour
     private void OnDestroy()
     {
         SceneManager.activeSceneChanged -= SceneUpdated;
-        LoadInitialMap.PlatformLoadedEvent -= LoadPlatform;
     }
 
     private void OnApplicationQuit() => Discord?.Dispose();
-
-    private void LoadPlatform(PlatformDescriptor platform)
-    {
-        var platformDiscordID = platform.gameObject.name
-            .Replace("(Clone)", "")
-            .Replace(" ", "")
-            .ToLowerInvariant()
-            .Trim();
-
-        activity.Assets.LargeImage = platformDiscordID;
-
-        var jsonEnvironmentName = BeatSaberSongContainer.Instance.Song.EnvironmentName;
-
-        var platformName = SongInfoEditUI.VanillaEnvironments
-            .Find(x => x.JsonName == jsonEnvironmentName)?.HumanName ?? jsonEnvironmentName;
-        activity.Assets.LargeText = platformName;
-
-        UpdatePresence();
-    }
 
     private void SceneUpdated(Scene from, Scene to)
     {
@@ -95,24 +74,22 @@ public class DiscordController : MonoBehaviour
         switch (to.name)
         {
             case "00_FirstBoot":
-                details = "Selecting install folder...";
-                break;
+                return;
             case "01_SongSelectMenu":
                 details = "Viewing song list.";
                 break;
             case "02_SongEditMenu":
-                details = BeatSaberSongContainer.Instance.Song.SongName;
+                details = BoomBoxSongContainer.Instance.Pack.SongTitle;
                 state = "Viewing song info.";
                 break;
             case "03_Mapper":
-                var songContainer = BeatSaberSongContainer.Instance;
+                var songContainer = BoomBoxSongContainer.Instance;
 
-                var song = songContainer.Song;
-                var diff = songContainer.DifficultyData;
-                var beatmapSet = diff.ParentBeatmapSet;
+                var song = songContainer.Pack;
+                var diff = songContainer.Map;
 
-                details = $"Editing {song.SongName}";
-                state = $"{beatmapSet.BeatmapCharacteristicName} {diff.Difficulty}";
+                details = $"Editing {song.SongTitle}";
+                state = $"{diff.DifficultyName}";
                 break;
             case "04_Options":
                 details = "Editing ChroMapper options";

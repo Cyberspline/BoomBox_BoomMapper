@@ -14,12 +14,13 @@ public class CreateNewSong : MonoBehaviour
     {
         if (res is null) return;
 
-        var song = new BeatSaberSong(list.WipLevels, res);
+        var song = new BoomBoxCustomPack(res)
+        {
+            TimeCreated = DateTime.Now.ToUniversalTime().ToString("o")
+        };
 
-        if (list.Songs.Any(x => Path.GetFullPath(x.Directory).Equals(
-            Path.GetFullPath(Path.Combine(
-                list.WipLevels ? Settings.Instance.CustomWIPSongsFolder : Settings.Instance.CustomSongsFolder,
-                song.CleanSongName)),
+        if (list.Songs.Any(x => x is BoomBoxCustomPack customPack && Path.GetFullPath(customPack.Directory).Equals(
+            Path.GetFullPath(Path.Combine(Settings.Instance.CustomSongsFolder, song.CleanSongName)),
             StringComparison.CurrentCultureIgnoreCase
         )))
         {
@@ -28,9 +29,8 @@ public class CreateNewSong : MonoBehaviour
             return;
         }
 
-        var standardSet = new BeatSaberSong.DifficultyBeatmapSet();
-        song.DifficultyBeatmapSets.Add(standardSet);
-        BeatSaberSongContainer.Instance.SelectSongForEditing(song);
+        BoomBoxSongContainer.Instance.SelectSongForEditing(song);
+
         PersistentUI.Instance.DisplayMessage("SongSelectMenu", "newmap.message",
             PersistentUI.DisplayMessageType.Bottom);
     }

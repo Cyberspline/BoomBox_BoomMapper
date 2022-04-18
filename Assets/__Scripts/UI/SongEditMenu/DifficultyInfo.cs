@@ -3,33 +3,72 @@ using UnityEngine;
 
 public class DifficultyInfo : MonoBehaviour
 {
-    [SerializeField] private TMP_InputField bpmField;
+    [SerializeField] private TMP_InputField creator;
+    [SerializeField] private TMP_InputField description;
+    [SerializeField] private TMP_InputField tags;
+    [SerializeField] private TMP_Dropdown style;
+    [SerializeField] private TMP_Dropdown biome;
 
-    [SerializeField] private TMP_InputField halfJumpDurationField;
-    [SerializeField] private TMP_InputField jumpDistanceField;
+    private BoomBoxMap selectedMap;
+    private DifficultySelect select;
+    private DifficultySettings settings;
 
-    [SerializeField] private TMP_InputField njsField;
-    [SerializeField] private TMP_InputField songBeatOffsetField;
-
-    public void Start()
+    public void SelectMap(DifficultySelect select, DifficultySettings settings)
     {
-        njsField.onValueChanged.AddListener(v => UpdateValues());
-        songBeatOffsetField.onValueChanged.AddListener(v => UpdateValues());
-        bpmField.onValueChanged.AddListener(v => UpdateValues());
+        // Turn on/off all fields if map is null
+        creator.interactable =
+            description.interactable =
+            tags.interactable =
+            style.interactable =
+            biome.interactable =
+            settings != null;
+
+        if (settings == null) return;
+
+        this.select = select;
+        this.settings = settings;
+        selectedMap = settings.Map;
+
+        creator.SetTextWithoutNotify(selectedMap.Creator);
+        description.SetTextWithoutNotify(selectedMap.Description);
+        tags.SetTextWithoutNotify(selectedMap.Tags);
+        style.SetValueWithoutNotify(selectedMap.MapStyle);
+        biome.SetValueWithoutNotify(selectedMap.BiomeType);
+
+        creator.onEndEdit.AddListener((_) => select.UpdateDifficultySettings());
+        description.onEndEdit.AddListener((_) => select.UpdateDifficultySettings());
+        tags.onEndEdit.AddListener((_) => select.UpdateDifficultySettings());
+        style.onValueChanged.AddListener((_) => select.UpdateDifficultySettings());
+        biome.onValueChanged.AddListener((_) => select.UpdateDifficultySettings());
     }
 
-    private void UpdateValues()
+    public void UpdateCreator(string creator)
     {
-        float.TryParse(bpmField.text, out var bpm);
-        float.TryParse(njsField.text, out var songNoteJumpSpeed);
-        float.TryParse(songBeatOffsetField.text, out var songStartBeatOffset);
+        settings.Creator = creator;
+        select.UpdateDifficultySettings();
+    }
 
-        var halfJumpDuration = SpawnParameterHelper.CalculateHalfJumpDuration(songNoteJumpSpeed, songStartBeatOffset, bpm);
+    public void UpdateDescription(string description)
+    {
+        settings.Description = description;
+        select.UpdateDifficultySettings();
+    }
 
-        var num = 60 / bpm;
-        var jumpDistance = songNoteJumpSpeed * num * halfJumpDuration * 2;
+    public void UpdateTags(string tags)
+    {
+        settings.Tags = tags;
+        select.UpdateDifficultySettings();
+    }
 
-        halfJumpDurationField.text = halfJumpDuration.ToString();
-        jumpDistanceField.text = jumpDistance.ToString("0.00");
+    public void UpdateStyle(int style)
+    {
+        settings.MapStyle = style;
+        select.UpdateDifficultySettings();
+    }
+
+    public void UpdateBiome(int biome)
+    {
+        settings.BiomeType = biome;
+        select.UpdateDifficultySettings();
     }
 }

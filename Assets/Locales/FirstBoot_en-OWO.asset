@@ -39,27 +39,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6
-    m_Localized: "Nwo \"Beat Saber_Data\" ow \"CustomLevels\" fowdew was fwound at
-      chwosen wocation! (\u2716\u256D\u256E\u2716)"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7
-    m_Localized: "Nwo \"CustomWIPLevels\" fowdew was fwound at chwosen wocation!
-      (\u2716\u256D\u256E\u2716)"
+    m_Localized: No "BoomBox_Data" or "Maps" folder found at chosen location!
     m_Metadata:
       m_Items: []
   - m_Id: 8
-    m_Localized: "Would you wike cowomappew to genewate the missing fowderw? \u02DA\u11BA\u02DA"
+    m_Localized: '{0}
+
+
+      Would you like BoomMapper to generate the missing folders?'
     m_Metadata:
       m_Items: []
   - m_Id: 9
-    m_Localized: 'You do nwot need to uwse a weal Bweat Sabew instawwation - youw
-      cwan emuwate one! That fowdew nweeds to have these subdiwectowies:
-
-      /Beat
-      Saber_Data/CustomLevels/
-
-      /Beat Saber_Data/CustomWIPLevels/'
+    m_Localized: You do not need a true BoomBox installation. Just select any location
+      and BoomMapper will ask you to generate any missing folders.
     m_Metadata:
       m_Items: []
   - m_Id: 10

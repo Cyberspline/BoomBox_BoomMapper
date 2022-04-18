@@ -19,42 +19,30 @@ public class PersistentUI : MonoBehaviour
         Center
     }
 
-    [SerializeField] private Localization localization;
-
-    [Header("Loading")] [SerializeField] private CanvasGroup loadingCanvasGroup;
-
-    [SerializeField] private TMP_Text loadingTip;
-
-    [SerializeField] private Image editorLoadingBackground;
-
-    [SerializeField] private ImageList editorImageList;
-
     public Slider LevelLoadSlider;
     public TextMeshProUGUI LevelLoadSliderLabel;
 
+    [Header("Only here to load ScriptableObjects")]
+    [SerializeField] private ScriptableObject[] sos;
+    [SerializeField] private Localization localization;
+    [Header("Loading")] [SerializeField] private CanvasGroup loadingCanvasGroup;
+    [SerializeField] private TMP_Text loadingTip;
+    [SerializeField] private Image editorLoadingBackground;
+    [SerializeField] private ImageList editorImageList;
+
     [SerializeField] private AnimationCurve fadeInCurve;
-
     [SerializeField] private AnimationCurve fadeOutCurve;
-
     [SerializeField] private Text tooltipText;
-
     [SerializeField] private GameObject tooltipObject;
-
     [SerializeField] private RectTransform tooltipPanelRect;
-
     [SerializeField] private Vector3 tooltipOffset;
-
     [SerializeField] private HorizontalLayoutGroup tooltipLayout;
 
     [Header("Dialog Box")]
-    [SerializeField]
-    private CM_DialogBox dialogBox;
-
+    [SerializeField] private DialogBox newDialogBoxPrefab;
     [SerializeField] private TMP_FontAsset greenFont;
     [SerializeField] private TMP_FontAsset redFont;
     [SerializeField] private TMP_FontAsset goldFont;
-
-    [Header("Input Box")] [SerializeField] private CM_InputBox inputBox;
 
     [FormerlySerializedAs("DialogBox_Loading")] public bool DialogBoxLoading;
 
@@ -78,10 +66,6 @@ public class PersistentUI : MonoBehaviour
 
     public static PersistentUI Instance { get; private set; }
 
-    public bool DialogBoxIsEnabled => dialogBox.IsEnabled || DialogBoxLoading;
-
-    public bool InputBoxIsEnabled => inputBox.IsEnabled;
-
     private void Awake()
     {
         if (Instance != null)
@@ -94,11 +78,6 @@ public class PersistentUI : MonoBehaviour
         Instance = this;
     }
 
-    [Header("Color Input Box")]
-    [SerializeField] private CM_ColorInputBox colorInputBox;
-
-    public bool ColorInputBox_IsEnabled => colorInputBox.IsEnabled;
-
     private void Start()
     {
         CMInputCallbackInstaller.PersistentObject(transform);
@@ -106,8 +85,6 @@ public class PersistentUI : MonoBehaviour
 
         UpdateDSPBufferSize();
         AudioListener.volume = Settings.Instance.Volume;
-
-        RequirementCheck.Setup();
 
         centerDisplay.Host = this;
         bottomDisplay.Host = this;
@@ -273,13 +250,6 @@ public class PersistentUI : MonoBehaviour
 
     #region loading
 
-    public static void UpdateBackground(BeatSaberSong song)
-    {
-        if (Instance.editorLoadingBackground.gameObject.activeSelf == false)
-            Instance.editorLoadingBackground.gameObject.SetActive(true);
-        Instance.editorLoadingBackground.sprite = Instance.editorImageList.GetBgSprite(song);
-    }
-
     public Coroutine FadeInLoadingScreen()
     {
         loadingTip.text = localization.GetRandomLoadingMessage();
@@ -371,6 +341,12 @@ public class PersistentUI : MonoBehaviour
     #region Dialog and Input Box
 
     /// <summary>
+    /// Creates a new Dialog Box powered by CMUI.
+    /// </summary>
+    /// <returns>The newly instantiated <see cref="DialogBox"/>.</returns>
+    public DialogBox CreateNewDialogBox() => Instantiate(newDialogBoxPrefab, transform);
+
+    /// <summary>
     ///     Show a dialog box created automatically with a preset selection of common uses.
     /// </summary>
     /// <param name="message">Message to display.</param>
@@ -446,13 +422,32 @@ public class PersistentUI : MonoBehaviour
         TMP_FontAsset b0A = null, TMP_FontAsset b1A = null, TMP_FontAsset b2A = null)
     {
         Debug.LogWarning($"Dialog box not localized '{message}'");
-        dialogBox.SetParams(message, result, new[] { b0, b1, b2 }, new[] { b0A, b1A, b2A });
+        DoShowDialogBox(message, result, new[] { b0, b1, b2 }, new[] { b0A, b1A, b2A });
     }
 
-    private void DoShowDialogBox(string message, Action<int> result, List<string> buttonText,
+    private void DoShowDialogBox(string message, Action<int> result, IList<string> buttonText,
         TMP_FontAsset[] ba)
     {
-        dialogBox.SetParams(message, result, buttonText.ToArray(), ba);
+        //dialogBox.SetParams(message, result, buttonText.ToArray(), ba);
+        var dialogBox = CreateNewDialogBox().WithNoTitle();
+
+        var title = dialogBox.AddComponent<TextComponent>().WithInitialValue(() => message);
+
+        foreach (var text in buttonText)
+        {
+            var i = buttonText.IndexOf(text);
+
+            var button = dialogBox.AddFooterButton(() => result?.Invoke(i), text);
+        
+            if (i < ba.Length && ba[i].material.shaderKeywords.Contains("GLOW_ON"))
+            {
+                var color = ba[i].material.GetColor("_GlowColor");
+                button.WithBackgroundColor(color.Multiply(color.a).WithAlpha(1).WithSatuation(0.5f));
+            }
+        }
+
+        dialogBox.Open();
+
         DialogBoxLoading = false;
     }
 
@@ -460,7 +455,7 @@ public class PersistentUI : MonoBehaviour
     public void ShowInputBox(string message, Action<string> result, string defaultText = "")
     {
         Debug.LogWarning($"Input box not localized '{message}'");
-        inputBox.SetParams(message, result, defaultText);
+        DoShowInputBox(message, result, defaultText);
     }
 
     public void ShowInputBox(string table, string key, Action<string> result, string defaultTextKey = "",
@@ -474,7 +469,29 @@ public class PersistentUI : MonoBehaviour
             defaultTextStr = defaultText;
         }
 
-        inputBox.SetParams(message, result, defaultTextStr);
+        DoShowInputBox(message, result, defaultTextStr);
+    }
+
+    private void DoShowInputBox(string message, Action<string> result, string defaultText)
+    {
+        var dialogBox = CreateNewDialogBox().WithNoTitle();
+
+        var title = dialogBox.AddComponent<TextComponent>().WithInitialValue(() => message);
+
+        var textBox = dialogBox
+            .AddComponent<TextBoxComponent>()
+            .WithInitialValue(() => defaultText)
+            .WithNoLabel();
+
+        var cancelButton = dialogBox
+            .AddFooterButton(() => result?.Invoke(null),
+                LocalizationSettings.StringDatabase.GetLocalizedString(nameof(PersistentUI), "cancel"));
+
+        var submitButton = dialogBox
+            .AddFooterButton(() => result?.Invoke(textBox.Value),
+                LocalizationSettings.StringDatabase.GetLocalizedString(nameof(PersistentUI), "submit"));
+
+        dialogBox.Open();
     }
 
 
@@ -488,10 +505,32 @@ public class PersistentUI : MonoBehaviour
             defaultTextStr = defaultText;
         }
 
-        colorInputBox.SetParams(message, result, selctedColor, defaultTextStr);
+        DoShowColorInputBox(message, result, selctedColor);
     }
 
-    public void ShowColorInputBox(string table, string key, Action<Color?> result, string defaultTextKey = "", string defaultDefault = "") => ShowColorInputBox(table, key, result, Color.red, defaultTextKey, defaultDefault);
+    public void ShowColorInputBox(string table, string key, Action<Color?> result, string defaultTextKey = "", string defaultDefault = "")
+        => ShowColorInputBox(table, key, result, Color.red, defaultTextKey, defaultDefault);
+
+    private void DoShowColorInputBox(string message, Action<Color?> result, Color defaultColor)
+    {
+        var dialogBox = CreateNewDialogBox().WithNoTitle();
+
+        var title = dialogBox.AddComponent<TextComponent>().WithInitialValue(() => message);
+
+        var colorPicker = dialogBox
+            .AddComponent<ColorPickerComponent>()
+            .WithInitialValue(() => defaultColor);
+
+        var cancelButton = dialogBox
+            .AddFooterButton(() => result?.Invoke(null),
+                LocalizationSettings.StringDatabase.GetLocalizedString(nameof(PersistentUI), "cancel"));
+
+        var submitButton = dialogBox
+            .AddFooterButton(() => result?.Invoke(colorPicker.Value),
+                LocalizationSettings.StringDatabase.GetLocalizedString(nameof(PersistentUI), "submit"));
+
+        dialogBox.Open();
+    }
 
     public enum DialogBoxPresetType
     {

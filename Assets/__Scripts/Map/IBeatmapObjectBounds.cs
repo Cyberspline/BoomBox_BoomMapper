@@ -2,5 +2,5 @@
 
 public interface IBeatmapObjectBounds
 {
-    Vector2 GetCenter();
+    Vector2 GetPoint();
 }

@@ -6,9 +6,7 @@ using UnityEngine.InputSystem;
 public class BeatmapActionContainer : MonoBehaviour, CMInput.IActionsActions
 {
     private static BeatmapActionContainer instance;
-    [SerializeField] private GameObject moveableGridTransform;
     [SerializeField] private SelectionController selection;
-    [SerializeField] private NodeEditorController nodeEditor;
     [SerializeField] private TracksManager tracksManager;
     private readonly List<BeatmapAction> beatmapActions = new List<BeatmapAction>();
 
@@ -51,7 +49,6 @@ public class BeatmapActionContainer : MonoBehaviour, CMInput.IActionsActions
         var param = new BeatmapActionParams(this);
         lastActive.Undo(param);
         lastActive.Active = false;
-        nodeEditor.ObjectWasSelected();
     }
 
     public void Redo()
@@ -69,7 +66,6 @@ public class BeatmapActionContainer : MonoBehaviour, CMInput.IActionsActions
         var param = new BeatmapActionParams(this);
         action.Redo(param);
         action.Active = true;
-        nodeEditor.ObjectWasSelected();
     }
 
     public void OnUndo(InputAction.CallbackContext context)
@@ -84,14 +80,12 @@ public class BeatmapActionContainer : MonoBehaviour, CMInput.IActionsActions
 
     public class BeatmapActionParams
     {
-        public NodeEditorController NodeEditor;
         public SelectionController Selection;
         public TracksManager TracksManager;
 
         public BeatmapActionParams(BeatmapActionContainer container)
         {
             Selection = container.selection;
-            NodeEditor = container.nodeEditor;
             TracksManager = container.tracksManager;
         }
     }

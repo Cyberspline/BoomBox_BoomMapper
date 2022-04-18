@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 
 public class ObstaclesContainer : BeatmapObjectContainerCollection
 {
     [SerializeField] private GameObject obstaclePrefab;
-    [FormerlySerializedAs("obstacleAppearanceSO")] [SerializeField] private ObstacleAppearanceSO obstacleAppearanceSo;
     [SerializeField] private TracksManager tracksManager;
     [SerializeField] private CountersPlusController countersPlus;
 
@@ -12,35 +10,38 @@ public class ObstaclesContainer : BeatmapObjectContainerCollection
 
     internal override void SubscribeToCallbacks()
     {
-        Shader.SetGlobalFloat("_OutsideAlpha", 0.25f);
+        Shader.SetGlobalFloat("_OutsideAlpha", 1f);
+        Settings.NotifyBySettingName(nameof(Settings.SimplifiedObstacles), (_) => RefreshPool(true));
+        Settings.NotifyBySettingName(nameof(Settings.ObstacleOpacity), (_) => RefreshPool(true));
         AudioTimeSyncController.PlayToggle += OnPlayToggle;
     }
 
-    internal override void UnsubscribeToCallbacks() => AudioTimeSyncController.PlayToggle -= OnPlayToggle;
+    internal override void UnsubscribeToCallbacks()
+    {
+        Settings.ClearSettingNotifications(nameof(Settings.SimplifiedObstacles));
+        Settings.ClearSettingNotifications(nameof(Settings.ObstacleOpacity));
+        AudioTimeSyncController.PlayToggle -= OnPlayToggle;
+    }
 
-    private void OnPlayToggle(bool playing) => Shader.SetGlobalFloat("_OutsideAlpha", playing ? 0 : 0.25f);
-
-    public void UpdateColor(Color obstacle) => obstacleAppearanceSo.DefaultObstacleColor = obstacle;
+    private void OnPlayToggle(bool playing) => Shader.SetGlobalFloat("_OutsideAlpha", playing ? 0 : 1);
 
 
-    protected override void OnObjectSpawned(BeatmapObject _) =>
-        countersPlus.UpdateStatistic(CountersPlusStatistic.Obstacles);
+    protected override void OnObjectSpawned(BeatmapObject _)
+        => countersPlus.UpdateStatistic(CountersPlusStatistic.Obstacles);
 
-    protected override void OnObjectDelete(BeatmapObject _) =>
-        countersPlus.UpdateStatistic(CountersPlusStatistic.Obstacles);
+    protected override void OnObjectDelete(BeatmapObject _)
+        => countersPlus.UpdateStatistic(CountersPlusStatistic.Obstacles);
 
-    public override BeatmapObjectContainer CreateContainer() =>
-        BeatmapObstacleContainer.SpawnObstacle(null, tracksManager, ref obstaclePrefab);
+    public override BeatmapObjectContainer CreateContainer()
+        => BeatmapObstacleContainer.SpawnObstacle(null, tracksManager, ref obstaclePrefab);
 
     protected override void UpdateContainerData(BeatmapObjectContainer con, BeatmapObject obj)
     {
         var obstacle = con as BeatmapObstacleContainer;
-        if (!obstacle.IsRotatedByNoodleExtensions)
-        {
-            var track = tracksManager.GetTrackAtTime(obj.Time);
-            track.AttachContainer(con);
-        }
 
-        obstacleAppearanceSo.SetObstacleAppearance(obstacle);
+        var track = tracksManager.GetTrackAtTime(obj.Time);
+        track.AttachContainer(con);
+
+        obstacle.SetAlpha(Settings.Instance.ObstacleOpacity);
     }
 }

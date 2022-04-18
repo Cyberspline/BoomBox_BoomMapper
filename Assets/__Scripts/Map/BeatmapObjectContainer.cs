@@ -12,15 +12,12 @@ public abstract class BeatmapObjectContainer : MonoBehaviour
     internal static readonly int rotation = Shader.PropertyToID("_Rotation");
     internal static readonly int outline = Shader.PropertyToID("_Outline");
     internal static readonly int outlineColor = Shader.PropertyToID("_OutlineColor");
+
     [FormerlySerializedAs("dragging")] public bool Dragging;
-
     [FormerlySerializedAs("colliders")] [SerializeField] protected List<IntersectionCollider> Colliders;
-
     [FormerlySerializedAs("selectionRenderers")] [SerializeField] protected List<Renderer> SelectionRenderers = new List<Renderer>();
 
-    [FormerlySerializedAs("boxCollider")] [SerializeField] protected BoxCollider BoxCollider;
-    private readonly List<Renderer> modelRenderers = new List<Renderer>();
-    internal bool selectionStateChanged;
+    protected readonly List<Renderer> ModelRenderers = new List<Renderer>();
 
     public bool OutlineVisible
     {
@@ -48,7 +45,7 @@ public abstract class BeatmapObjectContainer : MonoBehaviour
         if (MaterialPropertyBlock == null)
         {
             MaterialPropertyBlock = new MaterialPropertyBlock();
-            modelRenderers.AddRange(GetComponentsInChildren<Renderer>(true).Where(x => !(x is SpriteRenderer)));
+            ModelRenderers.AddRange(GetComponentsInChildren<Renderer>(true).Where(x => !(x is SpriteRenderer)));
         }
     }
 
@@ -57,15 +54,9 @@ public abstract class BeatmapObjectContainer : MonoBehaviour
         if (active != gameObject.activeSelf) gameObject.SetActive(active);
     }
 
-    internal void SafeSetBoxCollider(bool con)
-    {
-        if (BoxCollider == null) return;
-        if (con != BoxCollider.isTrigger) BoxCollider.isTrigger = con;
-    }
-
     internal virtual void UpdateMaterials()
     {
-        foreach (var renderer in modelRenderers) renderer.SetPropertyBlock(MaterialPropertyBlock);
+        foreach (var renderer in ModelRenderers) renderer.SetPropertyBlock(MaterialPropertyBlock);
     }
 
     public void SetRotation(float rotation)

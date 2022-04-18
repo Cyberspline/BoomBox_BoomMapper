@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
   m_Name: SongSelectMenu Shared Data
   m_EditorClassIdentifier: 
-  m_NextAvailableId: 30
   m_TableCollectionName: SongSelectMenu
   m_TableCollectionNameGuidString: 95d340fdffc264d469407a049a1fb729
   m_Entries:
@@ -40,30 +39,6 @@ MonoBehaviour:
     m_Key: wip
     m_Metadata:
       m_Items: []
-  - m_Id: 7
-    m_Key: edit
-    m_Metadata:
-      m_Items: []
-  - m_Id: 8
-    m_Key: first
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9
-    m_Key: previous
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10
-    m_Key: next
-    m_Metadata:
-      m_Items: []
-  - m_Id: 11
-    m_Key: last
-    m_Metadata:
-      m_Items: []
-  - m_Id: 12
-    m_Key: page
-    m_Metadata:
-      m_Items: []
   - m_Id: 13
     m_Key: search.placeholder
     m_Metadata:
@@ -78,18 +53,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 17
     m_Key: quit.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 18
-    m_Key: temploader
-    m_Metadata:
-      m_Items: []
-  - m_Id: 19
-    m_Key: temploader.dialog
-    m_Metadata:
-      m_Items: []
-  - m_Id: 20
-    m_Key: temploader.dialog.default
     m_Metadata:
       m_Items: []
   - m_Id: 21
@@ -112,10 +75,6 @@ MonoBehaviour:
     m_Key: update
     m_Metadata:
       m_Items: []
-  - m_Id: 26
-    m_Key: envremoval.tooltip
-    m_Metadata:
-      m_Items: []
   - m_Id: 27
     m_Key: list.sort.name
     m_Metadata:
@@ -130,5 +89,12 @@ MonoBehaviour:
       m_Items: []
   m_Metadata:
     m_Items: []
+  m_KeyGenerator:
+    id: 0
   references:
     version: 1
+    00000000:
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1646459776443

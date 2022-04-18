@@ -1,235 +1,85 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using SimpleJSON;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContainer, NotesContainer>,
-    CMInput.INotePlacementActions
+public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContainer, NotesContainer>
 {
-    private const int upKey = 0;
-    private const int leftKey = 1;
-    private const int downKey = 2;
-    private const int rightKey = 3;
-
-    // Chroma Color Stuff
-    public static readonly string ChromaColorKey = "PlaceChromaObjects";
     [FormerlySerializedAs("noteAppearanceSO")] [SerializeField] private NoteAppearanceSO noteAppearanceSo;
     [SerializeField] private DeleteToolController deleteToolController;
-    [SerializeField] private PrecisionPlacementGridController precisionPlacement;
-    [SerializeField] private LaserSpeedController laserSpeedController;
-    [SerializeField] private BeatmapNoteInputController beatmapNoteInputController;
-    [SerializeField] private ColorPicker colorPicker;
-    [SerializeField] private ToggleColourDropdown dropdown;
-
-    // TODO: Perhaps move this into Settings as a user-configurable option
-    private readonly float
-        diagonalStickMAXTime = 0.3f; // This controls the maximum time that a note will stay a diagonal
-
-    // REVIEW: Perhaps partner with Obama to turn this list of bools
-    // into some binary shifting goodness
-    private readonly List<bool> heldKeys = new List<bool> { false, false, false, false };
-
-    private bool diagonal;
-    private bool flagDirectionsUpdate;
-
-    // Chroma Color Check
-    public static bool CanPlaceChromaObjects
-    {
-        get
-        {
-            if (Settings.NonPersistentSettings.ContainsKey(ChromaColorKey))
-                return (bool)Settings.NonPersistentSettings[ChromaColorKey];
-            return false;
-        }
-    }
-
-    public override bool IsValid
-    {
-        get
-        {
-            if (Settings.Instance.PrecisionPlacementGrid)
-                return base.IsValid || (UsePrecisionPlacement && IsActive && !NodeEditorController.IsActive);
-            return base.IsValid;
-        }
-    }
+    [SerializeField] private BeatmapNoteContainer placementAreaPrefab;
+    [SerializeField] private RadialIndexTable radialIndexTable;
 
     public override int PlacementXMin => base.PlacementXMax * -1;
 
-    private void LateUpdate()
+    internal override void Start()
     {
-        if (flagDirectionsUpdate)
+        var cachedNote = new BeatmapNote();
+
+        for (var i = 0; i < radialIndexTable.NotePlacements; i++)
         {
-            HandleDirectionValues();
-            flagDirectionsUpdate = false;
+            cachedNote.RadialIndex = i;
+
+            var note = Instantiate(placementAreaPrefab,
+                radialIndexTable.GetNotePlacement(i), Quaternion.Euler(BeatmapNoteContainer.Directionalize(cachedNote)),
+                ParentTrack);
+
+            // Ensure our intersection collider is on the right layer for placement
+            var collider = note.GetComponent<IntersectionCollider>();
+            Intersections.UnregisterColliderFromGroups(collider);
+            collider.CollisionLayer = note.gameObject.layer = 11;
+            Intersections.RegisterColliderToGroups(collider);
+
+            note.Setup();
+
+            note.SetColor(Color.gray);
+            note.SetAlpha(0.3f, true);
+
+            var radialIndexContainer = note.gameObject.AddComponent<PlacementRadialIndexContainer>();
+            radialIndexContainer.RadialIndex = i;
+            radialIndexContainer.Owner = this;
         }
-    }
 
-    //TODO perhaps make a helper function to deal with the context.performed and context.canceled checks
-    public void OnDownNote(InputAction.CallbackContext context) => HandleKeyUpdate(context, downKey);
-
-    public void OnLeftNote(InputAction.CallbackContext context) => HandleKeyUpdate(context, leftKey);
-
-    public void OnUpNote(InputAction.CallbackContext context) => HandleKeyUpdate(context, upKey);
-
-    public void OnRightNote(InputAction.CallbackContext context) => HandleKeyUpdate(context, rightKey);
-
-    public void OnDotNote(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
-        deleteToolController.UpdateDeletion(false);
-        UpdateCut(BeatmapNote.NoteCutDirectionAny);
-    }
-
-    public void OnUpLeftNote(InputAction.CallbackContext context)
-    {
-        if (context.performed && !laserSpeedController.Activated)
-            UpdateCut(BeatmapNote.NoteCutDirectionUpLeft);
-    }
-
-    public void OnUpRightNote(InputAction.CallbackContext context)
-    {
-        if (context.performed && !laserSpeedController.Activated)
-            UpdateCut(BeatmapNote.NoteCutDirectionUpRight);
-    }
-
-    public void OnDownRightNote(InputAction.CallbackContext context)
-    {
-        if (context.performed && !laserSpeedController.Activated)
-            UpdateCut(BeatmapNote.NoteCutDirectionDownRight);
-    }
-
-    public void OnDownLeftNote(InputAction.CallbackContext context)
-    {
-        if (context.performed && !laserSpeedController.Activated)
-            UpdateCut(BeatmapNote.NoteCutDirectionDownLeft);
-    }
-
-    // Toggle Chroma Color Function
-    public void PlaceChromaObjects(bool v)
-    {
-        if (Settings.NonPersistentSettings.ContainsKey(ChromaColorKey))
-            Settings.NonPersistentSettings[ChromaColorKey] = v;
-        else
-            Settings.NonPersistentSettings.Add(ChromaColorKey, v);
+        base.Start();
     }
 
     public override BeatmapAction GenerateAction(BeatmapObject spawned, IEnumerable<BeatmapObject> container) =>
         new BeatmapObjectPlacementAction(spawned, container, "Placed a note.");
 
     public override BeatmapNote GenerateOriginalData() =>
-        new BeatmapNote(0, 0, 0, BeatmapNote.NoteTypeA, BeatmapNote.NoteCutDirectionDown);
+        new BeatmapNote(0, 0, 0, 1, BeatmapNote.NoteCutDirectionDown);
 
     public override void OnPhysicsRaycast(Intersections.IntersectionHit hit, Vector3 _)
     {
-        var roundedHit = ParentTrack.InverseTransformPoint(hit.Point);
-        roundedHit = new Vector3(roundedHit.x, roundedHit.y, RoundedTime * EditorScaleController.EditorScale);
-
-        // Check if Chroma Color notes button is active and apply _color
-        if (CanPlaceChromaObjects && dropdown.Visible)
+        if (hit.GameObject.TryGetComponent<PlacementRadialIndexContainer>(out var radialIndexContainer))
         {
-            // Doing the same a Chroma 2.0 events but with notes insted
-            queuedData.GetOrCreateCustomData()["_color"] = colorPicker.CurrentColor;
+            UpdateRadialIndex(radialIndexContainer.RadialIndex);
         }
         else
         {
-            // If not remove _color
-            if (queuedData.CustomData != null && queuedData.CustomData.HasKey("_color"))
-            {
-                queuedData.CustomData.Remove("_color");
-
-                if (queuedData.CustomData.Count <= 0) //Set customData to null if there is no customData to store
-                    queuedData.CustomData = null;
-            }
+            SendMessage("ColliderExit");
         }
-
-        if (UsePrecisionPlacement)
-        {
-            queuedData.LineIndex = queuedData.LineLayer = 0;
-
-            instantiatedContainer.transform.localPosition = roundedHit;
-
-            var position = new JSONArray(); //We do some manual array stuff to get rounding decimals to work.
-            position[0] = Math.Round(roundedHit.x - 0.5f, 3);
-            position[1] = Math.Round(roundedHit.y - 0.5f, 3);
-            queuedData.GetOrCreateCustomData()["_position"] = position;
-
-            precisionPlacement.TogglePrecisionPlacement(true);
-            precisionPlacement.UpdateMousePosition(hit.Point);
-        }
-        else
-        {
-            precisionPlacement.TogglePrecisionPlacement(false);
-            if (queuedData.CustomData != null && queuedData.CustomData.HasKey("_position"))
-            {
-                queuedData.CustomData.Remove("_position"); //Remove NE position since we are no longer working with it.
-
-                if (queuedData.CustomData.Count <= 0) //Set customData to null if there is no customData to store
-                    queuedData.CustomData = null;
-            }
-
-            queuedData.LineIndex = Mathf.RoundToInt(instantiatedContainer.transform.localPosition.x + 1.5f);
-            queuedData.LineLayer = Mathf.RoundToInt(instantiatedContainer.transform.localPosition.y - 0.5f);
-        }
-
-        UpdateAppearance();
     }
 
-    public void UpdateCut(int value)
+    public void UpdateRadialIndex(int radialIndex)
     {
-        queuedData.CutDirection = value;
-        if (DraggedObjectContainer != null && DraggedObjectContainer.MapNoteData != null)
-        {
-            DraggedObjectContainer.MapNoteData.CutDirection = value;
-            noteAppearanceSo.SetNoteAppearance(DraggedObjectContainer);
-        }
-        else if (beatmapNoteInputController.QuickModificationActive && Settings.Instance.QuickNoteEditing)
-        {
-            var note = ObjectUnderCursor();
-            if (note != null && note.ObjectData is BeatmapNote noteData)
-            {
-                var newData = BeatmapObject.GenerateCopy(noteData);
-                newData.CutDirection = value;
+        queuedData.RadialIndex = radialIndex;
 
-                BeatmapActionContainer.AddAction(
-                    new BeatmapObjectModifiedAction(newData, noteData, noteData, "Quick edit"), true);
-            }
-        }
+        if (instantiatedContainer == null) return;
+
+        instantiatedContainer.UpdateGridPosition();
+        instantiatedContainer.transform.localEulerAngles = BeatmapNoteContainer.Directionalize(queuedData);
 
         UpdateAppearance();
     }
 
     public void UpdateType(int type)
     {
-        queuedData.Type = type;
+        // dirty conversion from beat saber to boombox types
+        queuedData.Hand = type + 1;
         UpdateAppearance();
-    }
-
-    public void ChangeChromaToggle(bool isChromaToggleNote)
-    {
-        if (isChromaToggleNote)
-        {
-            var data = new BeatmapChromaNote(queuedData) { BombRotation = BeatmapChromaNote.Alternate };
-            queuedData = data;
-        }
-        else if (queuedData is BeatmapChromaNote data)
-        {
-            queuedData = data.ConvertToNote();
-        }
-
-        UpdateAppearance();
-    }
-
-    public void UpdateChromaValue(int chromaNoteValue)
-    {
-        if (queuedData is BeatmapChromaNote chroma)
-        {
-            chroma.BombRotation = chromaNoteValue;
-            UpdateAppearance();
-        }
     }
 
     private void UpdateAppearance()
@@ -245,77 +95,9 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
     public override void TransferQueuedToDraggedObject(ref BeatmapNote dragged, BeatmapNote queued)
     {
         dragged.Time = queued.Time;
-        dragged.LineIndex = queued.LineIndex;
-        dragged.LineLayer = queued.LineLayer;
-        dragged.CutDirection = queued.CutDirection;
+        dragged.RadialIndex = queued.RadialIndex;
         if (DraggedObjectContainer != null)
             DraggedObjectContainer.transform.localEulerAngles = BeatmapNoteContainer.Directionalize(dragged);
         noteAppearanceSo.SetNoteAppearance(DraggedObjectContainer);
-    }
-
-    internal override void RefreshVisuals()
-    {
-        base.RefreshVisuals();
-        instantiatedContainer.SetArcVisible(false);
-    }
-
-    private void HandleKeyUpdate(InputAction.CallbackContext context, int id)
-    {
-        if (context.performed ^ heldKeys[id]) flagDirectionsUpdate = true;
-        heldKeys[id] = context.performed;
-    }
-
-    private void HandleDirectionValues()
-    {
-        deleteToolController.UpdateDeletion(false);
-
-        var upNote = heldKeys[upKey];
-        var downNote = heldKeys[downKey];
-        var leftNote = heldKeys[leftKey];
-        var rightNote = heldKeys[rightKey];
-        var previousDiagonalState = diagonal;
-
-        var handleUpDownNotes = upNote ^ downNote; // XOR: True if the values are different, false if the same
-        var handleLeftRightNotes = leftNote ^ rightNote;
-
-        diagonal = handleUpDownNotes && handleLeftRightNotes;
-
-        if (previousDiagonalState && diagonal == false)
-        {
-            StartCoroutine(CheckForDiagonalUpdate());
-            return;
-        }
-
-        if (handleUpDownNotes && !handleLeftRightNotes) // We handle simple up/down notes
-        {
-            if (upNote) UpdateCut(BeatmapNote.NoteCutDirectionUp);
-            else UpdateCut(BeatmapNote.NoteCutDirectionDown);
-        }
-        else if (!handleUpDownNotes && handleLeftRightNotes) // We handle simple left/right notes
-        {
-            if (leftNote) UpdateCut(BeatmapNote.NoteCutDirectionLeft);
-            else UpdateCut(BeatmapNote.NoteCutDirectionRight);
-        }
-        else if (diagonal) //We need to do a diagonal
-        {
-            if (leftNote)
-            {
-                if (upNote) UpdateCut(BeatmapNote.NoteCutDirectionUpLeft);
-                else UpdateCut(BeatmapNote.NoteCutDirectionDownLeft);
-            }
-            else
-            {
-                if (upNote) UpdateCut(BeatmapNote.NoteCutDirectionUpRight);
-                else UpdateCut(BeatmapNote.NoteCutDirectionDownRight);
-            }
-        }
-    }
-
-    private IEnumerator CheckForDiagonalUpdate()
-    {
-        var previousHeldKeys = new List<bool>(heldKeys);
-        yield return new WaitForSeconds(diagonalStickMAXTime);
-        // Weird way of saying "Are the keys being held right now the same as before"
-        if (!previousHeldKeys.Except(heldKeys).Any()) flagDirectionsUpdate = true;
     }
 }

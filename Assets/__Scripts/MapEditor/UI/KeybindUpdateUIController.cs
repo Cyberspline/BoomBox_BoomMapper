@@ -2,11 +2,9 @@
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsActions, CMInput.IEventUIActions
+public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsActions
 {
-    [SerializeField] private PlacementModeController placeMode;
-    [SerializeField] private LightingModeController lightMode;
-    [SerializeField] private EventPlacement eventPlacement;
+    [SerializeField] private DeleteToolController deleteToolController;
     [SerializeField] private PrecisionStepDisplayController stepController;
     [SerializeField] private RightButtonPanel rightButtonPanel;
 
@@ -15,44 +13,6 @@ public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsAction
     [SerializeField] private ColorTypeController colorType;
     [SerializeField] private Toggle redToggle;
     [SerializeField] private Toggle blueToggle;
-    [SerializeField] private GameObject precisionRotationContainer;
-
-    private void Awake() => UpdatePrecisionRotationGameObjectState();
-
-    public void OnTypeOn(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
-        placeMode.SetMode(PlacementModeController.PlacementMode.Note);
-        lightMode.SetMode(LightingModeController.LightingMode.ON);
-    }
-
-    public void OnTypeFlash(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
-        placeMode.SetMode(PlacementModeController.PlacementMode.Note);
-        lightMode.SetMode(LightingModeController.LightingMode.Flash);
-    }
-
-    public void OnTypeOff(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
-        placeMode.SetMode(PlacementModeController.PlacementMode.Note);
-        lightMode.SetMode(LightingModeController.LightingMode.Off);
-    }
-
-    public void OnTypeFade(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
-        placeMode.SetMode(PlacementModeController.PlacementMode.Note);
-        lightMode.SetMode(LightingModeController.LightingMode.Fade);
-    }
-
-    public void OnTogglePrecisionRotation(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
-        eventPlacement.PlacePrecisionRotation = !eventPlacement.PlacePrecisionRotation;
-        UpdatePrecisionRotationGameObjectState();
-    }
 
     public void OnSwapCursorInterval(InputAction.CallbackContext context)
     {
@@ -66,46 +26,33 @@ public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsAction
         rightButtonPanel.TogglePanel();
     }
 
-    public void OnPlaceBlueNoteorEvent(InputAction.CallbackContext context)
+    public void OnPlaceBlueNote(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         blueToggle.onValueChanged.Invoke(true);
-        placeMode.SetMode(PlacementModeController.PlacementMode.Note);
+        deleteToolController.UpdateDeletion(false);
     }
 
-    public void OnPlaceRedNoteorEvent(InputAction.CallbackContext context)
+    public void OnPlaceRedNote(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         redToggle.onValueChanged.Invoke(true);
-        placeMode.SetMode(PlacementModeController.PlacementMode.Note);
+        deleteToolController.UpdateDeletion(false);
     }
 
-    public void OnToggleNoteorEvent(InputAction.CallbackContext context)
+    public void OnToggleNoteColor(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         if (colorType.LeftSelectedEnabled())
             blueToggle.onValueChanged.Invoke(true);
         else
             redToggle.onValueChanged.Invoke(true);
-        lightMode.UpdateValue();
-    }
-
-    public void OnPlaceBomb(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
-        placeMode.SetMode(PlacementModeController.PlacementMode.Bomb);
-    }
-
-    public void OnPlaceObstacle(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
-        placeMode.SetMode(PlacementModeController.PlacementMode.Wall);
     }
 
     public void OnToggleDeleteTool(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        placeMode.SetMode(PlacementModeController.PlacementMode.Delete);
+        deleteToolController.UpdateDeletion(true);
     }
 
     public void OnMirror(InputAction.CallbackContext context)
@@ -125,19 +72,4 @@ public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsAction
         if (!context.performed) return;
         mirror.Mirror(false);
     }
-
-    public void OnUpdateSwingArcVisualizer(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
-        (BeatmapObjectContainerCollection.GetCollectionForType(BeatmapObject.ObjectType.Note) as NotesContainer)
-            .UpdateSwingArcVisualizer();
-    }
-
-    public void UpdatePrecisionRotation(string res)
-    {
-        if (int.TryParse(res, out var value)) eventPlacement.PrecisionRotationValue = value;
-    }
-
-    private void UpdatePrecisionRotationGameObjectState() =>
-        precisionRotationContainer.SetActive(eventPlacement.PlacePrecisionRotation);
 }

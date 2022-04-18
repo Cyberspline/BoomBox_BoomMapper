@@ -8,11 +8,10 @@ public class MeasureLinesController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI measureLinePrefab;
     [SerializeField] private AudioTimeSyncController atsc;
     [SerializeField] private RectTransform parent;
-    [SerializeField] private Transform noteGrid;
     [SerializeField] private Transform frontNoteGridScaling;
-    [SerializeField] private Transform measureLineGrid;
     [SerializeField] private BPMChangesContainer bpmChangesContainer;
     [SerializeField] private GridChild measureLinesGridChild;
+
     private readonly List<(float, TextMeshProUGUI)> measureTextsByBeat = new List<(float, TextMeshProUGUI)>();
     private readonly Dictionary<float, bool> previousEnabledByBeat = new Dictionary<float, bool>();
 
@@ -51,10 +50,10 @@ public class MeasureLinesController : MonoBehaviour
         previousEnabledByBeat.Clear();
 
         var rawBeatsInSong =
-            Mathf.FloorToInt(atsc.GetBeatFromSeconds(BeatSaberSongContainer.Instance.LoadedSong.length));
+            Mathf.FloorToInt(atsc.GetBeatFromSeconds(BoomBoxSongContainer.Instance.LoadedSong.length));
         float jsonBeat = 0;
         var modifiedBeats = 0;
-        var songBpm = BeatSaberSongContainer.Instance.Song.BeatsPerMinute;
+        var songBpm = BoomBoxSongContainer.Instance.Map.BeginningBPM;
 
         var allBpmChanges = new List<BeatmapBPMChange> { new BeatmapBPMChange(songBpm, 0) };
         allBpmChanges.AddRange(bpmChangesContainer.LoadedObjects.Cast<BeatmapBPMChange>());

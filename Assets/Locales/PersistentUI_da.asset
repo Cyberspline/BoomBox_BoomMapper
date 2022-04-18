@@ -35,17 +35,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5
-    m_Localized: "ChroMapper har registreret, at din infofil er blevet markeret som
-      skrivebeskyttet.\n\nFjern den skrivebeskyttede mark\xF8r, og pr\xF8v igen,
-      eller forts\xE6t med at bruge den seneste editor fra EditSaber Family\n\nMarkering
-      af din infofil som skrivebeskyttet for at forhindre MM eller CM i at overskrive
-      den er ekstremt dumt, s\xE5 fortryd den, eller tag dit Map et andet sted."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6
-    m_Localized: "360 mapping er relativt nyt og kan nemt g\xF8re mappen umuligt
-      at spille hvis det ikke bliver testede.\n\nFor alles skyld, hav dig selv og
-      Andre playteste Map Tit."
+    m_Localized: 'BoomMapper has detected that your map has been marked as read-only.
+
+
+      To
+      continue editing this map, please remove the read-only marker.'
     m_Metadata:
       m_Items: []
   - m_Id: 7
@@ -57,14 +51,21 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 9
-    m_Localized: "Nogle ChroMapper-indstillinger kunne ikke indl\xE6ses.\n\nHvis
-      denne dialog boks forts\xE6tter med at vises, n\xE5r du starter ChroMapper,
-      kan du pr\xF8ve at slette din konfigurationsfil placeret i:\n{0}/ChroMapperSettings.json"
+    m_Localized: 'Some BoomMapper settings failed to load.
+
+
+      If this dialog
+      box keeps showing up when launching ChroMapper, try deleting your Configuration
+      file located in:
+
+      {0}/ChroMapperSettings.json'
     m_Metadata:
       m_Items: []
   - m_Id: 10
-    m_Localized: "Discord RPC har ramt en fejl {0}.\nDiscord RPC vil v\xE6re ubrugelig
-      indtil Chromapper er blevet genstartet."
+    m_Localized: 'Discord RPC has encountered an error: {0}.
+
+      Discord RPC will
+      be disabled until BoomMapper is restarted.'
     m_Metadata:
       m_Items: []
   - m_Id: 11

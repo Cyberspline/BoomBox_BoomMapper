@@ -27,11 +27,6 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-PT
-  - m_GUID: a1b2a80d039a1294fb15e297b29b0654
-    m_Address: Contributors_en-PT
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en-PT
   - m_GUID: 3495623fced9ed142b10be736fc03e89
     m_Address: PersistentUI_en-PT
     m_ReadOnly: 1

@@ -26,7 +26,7 @@ public class AutoSaveController : MonoBehaviour, CMInput.ISavingActions
         autoSaveToggle.isOn = Settings.Instance.AutoSave;
         t = 0;
 
-        var autoSavesDir = Path.Combine(BeatSaberSongContainer.Instance.Song.Directory, "autosaves");
+        var autoSavesDir = Path.Combine(BoomBoxSongContainer.Instance.Pack.Directory, "autosaves");
         if (Directory.Exists(autoSavesDir))
         {
             foreach (var dir in Directory.EnumerateDirectories(autoSavesDir))
@@ -67,55 +67,58 @@ public class AutoSaveController : MonoBehaviour, CMInput.ISavingActions
             PersistentUI.DisplayMessageType.Bottom);
         notification.SkipFade = true;
         notification.WaitTime = 5.0f;
-        SelectionController.RefreshMap(); //Make sure our map is up to date.
-        savingThread = new Thread(
-            () => //I could very well move this to its own function but I need access to the "auto" variable.
+
+        SelectionController.RefreshMap();
+        
+        savingThread = new Thread(() =>
+        {
+            // I need this on a separate thread to not block the main game thread
+            Thread.CurrentThread.IsBackground = true;
+            
+            // Fixes weird shit regarding how people write numbers (20,35 VS 20.35), causing issues in JSON
+            // This should be thread-wide, but I have this set throughout just in case it isnt.
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+            
+            // Original pack/map location to revert after an autosave
+            var originalMap = BoomBoxSongContainer.Instance.Map.FileInfo;
+            var originalSong = BoomBoxSongContainer.Instance.Pack.Directory;
+
+            try
             {
-                Thread.CurrentThread.IsBackground = true; //Making sure this does not interfere with game thread
-                //Fixes weird shit regarding how people write numbers (20,35 VS 20.35), causing issues in JSON
-                //This should be thread-wide, but I have this set throughout just in case it isnt.
-                Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
-                //Saving Map Data
-                var originalMap = BeatSaberSongContainer.Instance.Map.DirectoryAndFile;
-                var originalSong = BeatSaberSongContainer.Instance.Song.Directory;
+                // Create new autosave directory and save
                 if (auto)
                 {
                     var autoSaveDir = Path.Combine(originalSong, "autosaves", $"{DateTime.Now:dd-MM-yyyy_HH-mm-ss}");
 
-                    Debug.Log($"Auto saved to: {autoSaveDir}");
                     //We need to create the autosave directory before we can save the .dat difficulty into it.
                     Directory.CreateDirectory(autoSaveDir);
-                    BeatSaberSongContainer.Instance.Map.DirectoryAndFile = Path.Combine(autoSaveDir,
-                        BeatSaberSongContainer.Instance.DifficultyData.BeatmapFilename);
-                    BeatSaberSongContainer.Instance.Song.Directory = autoSaveDir;
+                    BoomBoxSongContainer.Instance.Map.FileInfo = new FileInfo(
+                        Path.Combine(autoSaveDir, BoomBoxSongContainer.Instance.Map.FileInfo.Name));
+                    BoomBoxSongContainer.Instance.Pack.Directory = autoSaveDir;
 
                     var newDirectoryInfo = new DirectoryInfo(autoSaveDir);
                     currentAutoSaves.Add(newDirectoryInfo);
                     CleanAutosaves();
                 }
 
-                BeatSaberSongContainer.Instance.Map.Save();
-                BeatSaberSongContainer.Instance.Map.DirectoryAndFile = originalMap;
+                BoomBoxSongContainer.Instance.Map.Save();
+                BoomBoxSongContainer.Instance.Pack.Save();
+                Debug.Log($"Auto saved to: {BoomBoxSongContainer.Instance.Pack.Directory}");
+            }
+            catch(Exception ex)
+            {
+                Debug.LogError("Error while saving autosave (don't worry, progress wasn't lost)");
+                Debug.LogException(ex);
+            }
 
-                var set = BeatSaberSongContainer.Instance.DifficultyData.ParentBeatmapSet; //Grab our set
-                BeatSaberSongContainer.Instance.Song.DifficultyBeatmapSets.Remove(set); //Yeet it out
-                var data = BeatSaberSongContainer.Instance.DifficultyData; //Grab our diff data
-                set.DifficultyBeatmaps.Remove(data); //Yeet out our difficulty data
-                if (BeatSaberSongContainer.Instance.DifficultyData.CustomData ==
-                    null) //if for some reason this be null, make new customdata
-                {
-                    BeatSaberSongContainer.Instance.DifficultyData.CustomData = new JSONObject();
-                }
+            // Revert directory if it was changed by autosave
+            // Done outside the try/catch loop to successfully recover from a failed autosave
+            BoomBoxSongContainer.Instance.Pack.Directory = originalSong;
+            BoomBoxSongContainer.Instance.Map.FileInfo = originalMap;
 
-                set.DifficultyBeatmaps.Add(BeatSaberSongContainer.Instance
-                    .DifficultyData); //Add back our difficulty data
-                BeatSaberSongContainer.Instance.Song.DifficultyBeatmapSets.Add(set); //Add back our difficulty set
-                BeatSaberSongContainer.Instance.Song.SaveSong(); //Save
-                BeatSaberSongContainer.Instance.Song.Directory =
-                    originalSong; //Revert directory if it was changed by autosave
-                notification.SkipDisplay = true;
-            });
+            notification.SkipDisplay = true;
+        });
 
         savingThread.Start();
     }
@@ -130,6 +133,15 @@ public class AutoSaveController : MonoBehaviour, CMInput.ISavingActions
         currentAutoSaves = ordered.Take(maximumAutosaveCount).ToList();
 
         foreach (var directoryInfo in ordered.Skip(maximumAutosaveCount))
-            Directory.Delete(directoryInfo.FullName, true);
+        {
+            try
+            {
+                Directory.Delete(directoryInfo.FullName, true);
+            }
+            catch(Exception ex)
+            {
+                Debug.LogError($"Failed to delete autosave {directoryInfo.Name}: {ex.Message}");
+            }
+        }
     }
 }

@@ -19,11 +19,11 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 1
-    m_Localized: Kappaleen Tiedot
+    m_Localized: Pack Information
     m_Metadata:
       m_Items: []
   - m_Id: 2
-    m_Localized: Mapin Vaikeusasteet
+    m_Localized: Map Information
     m_Metadata:
       m_Items: []
   - m_Id: 3
@@ -36,18 +36,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 5
     m_Localized: Kappaleen nimi.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6
-    m_Localized: Alanimi
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7
-    m_Localized: Alanimi
-    m_Metadata:
-      m_Items: []
-  - m_Id: 8
-    m_Localized: "Tekstitys tai muu henkil\xF6, joka on\nosallistunut kappaleeseen."
     m_Metadata:
       m_Items: []
   - m_Id: 9
@@ -148,28 +136,12 @@ MonoBehaviour:
       se nyt on.)"
     m_Metadata:
       m_Items: []
-  - m_Id: 33
-    m_Localized: "Ymp\xE4rist\xF6"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 34
-    m_Localized: Mukautettu Alusta
-    m_Metadata:
-      m_Items: []
   - m_Id: 35
     m_Localized: Tallenna
     m_Metadata:
       m_Items: []
   - m_Id: 36
     m_Localized: Poista
-    m_Metadata:
-      m_Items: []
-  - m_Id: 37
-    m_Localized: "Miss\xE4 ymp\xE4rist\xF6ss\xE4 mappi on?"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 38
-    m_Localized: Valitse asennettujen mukautettujen alustojen luettelosta.
     m_Metadata:
       m_Items: []
   - m_Id: 39
@@ -180,60 +152,8 @@ MonoBehaviour:
     m_Localized: Takaisin luetteloon
     m_Metadata:
       m_Items: []
-  - m_Id: 41
-    m_Localized: Half Jump Duration
-    m_Metadata:
-      m_Items: []
-  - m_Id: 42
-    m_Localized: 'Tyypilliset arvot
-
-      Easy, Normal, Hard: 4
-
-      Expert, Expert+:
-      2'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 43
-    m_Localized: "Hyppyet\xE4isyys"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 44
-    m_Localized: 'Tyypilliset arvot
-
-      Easy, Normal, Hard: 24-36
-
-      Expert:
-      24-32
-
-      Expert+: 20-28'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 45
-    m_Localized: Nuotin Hyppynopeus
-    m_Metadata:
-      m_Items: []
-  - m_Id: 46
-    m_Localized: 69
-    m_Metadata:
-      m_Items: []
-  - m_Id: 47
-    m_Localized: "Kuinka nopeasti nuotit tulevat pelaajaa p\xE4in"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 48
-    m_Localized: Start Beat Offset
-    m_Metadata:
-      m_Items: []
-  - m_Id: 49
-    m_Localized: 0
-    m_Metadata:
-      m_Items: []
-  - m_Id: 50
-    m_Localized: "Lis\xE4\xE4 nuottien ilmestymiset\xE4isyytt\xE4 pelaajasta"
-    m_Metadata:
-      m_Items: []
   - m_Id: 51
-    m_Localized: Luo Zip
+    m_Localized: Create .BOM
     m_Metadata:
       m_Items: []
   - m_Id: 52
@@ -244,8 +164,8 @@ MonoBehaviour:
     m_Localized: Avaa Editori
     m_Metadata:
       m_Items: []
-  - m_Id: 54
-    m_Localized: Osallistujat
+  - m_Id: 30626475569381376
+    m_Localized: A list of tags for the map, separated by a space.
     m_Metadata:
       m_Items: []
   - m_Id: 56
@@ -299,16 +219,12 @@ MonoBehaviour:
     m_Localized: Sinulla on tallentamattomia vaikeusasteita. Haluatko varmasti poistua?
     m_Metadata:
       m_Items: []
-  - m_Id: 69
-    m_Localized: "ChroMapper on t\xE4ll\xE4 hetkell\xE4 asetettu lataamasta mit\xE4\xE4n.\nJos
-      haluat, ett\xE4 jotain ladataan, siirry Asetuksiin ja vierit\xE4 editoriasetusten
-      alaosaan."
+  - m_Id: 30626380895551488
+    m_Localized: Tags
     m_Metadata:
       m_Items: []
-  - m_Id: 70
-    m_Localized: "ChroMapper on t\xE4ll\xE4 hetkell\xE4 asetettu lataamasta kaikkea.\nOta
-      kohteet uudelleen k\xE4ytt\xF6\xF6n siirtym\xE4ll\xE4 Asetukset-kohtaan ja
-      vierit\xE4 editoriasetusten alaosaan."
+  - m_Id: 30626249097936896
+    m_Localized: Enter a short description for this map.
     m_Metadata:
       m_Items: []
   - m_Id: 71
@@ -327,8 +243,8 @@ MonoBehaviour:
     m_Localized: "\xC4\xE4nitiedostoa ei l\xF6ydy!"
     m_Metadata:
       m_Items: []
-  - m_Id: 75
-    m_Localized: Sinulla on tallentamattomia muutoksia osallistujissa. Haluatko poistua?
+  - m_Id: 30626154038231040
+    m_Localized: Description
     m_Metadata:
       m_Items: []
   - m_Id: 76
@@ -339,6 +255,22 @@ MonoBehaviour:
   - m_Id: 77
     m_Localized: "Toinen samanniminen tiedosto on jo olemassa kappalekansiossa! K\xE4ytet\xE4\xE4nk\xF6
       sit\xE4 t\xE4m\xE4n sijaan?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30626696189771776
+    m_Localized: Upload Map
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30857320636940288
+    m_Localized: Creator (that's you!)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30857462203088896
+    m_Localized: Map description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30857533221044224
+    m_Localized: fast fun difficult
     m_Metadata:
       m_Items: []
   references:

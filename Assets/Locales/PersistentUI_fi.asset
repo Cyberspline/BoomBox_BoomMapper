@@ -35,17 +35,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5
-    m_Localized: "ChroMapper on havainnut, ett\xE4 infotiedostosi on merkitty vain
-      luku-tyyppiseksi.\n\nPoista vain luku-tyyppinen merkki ja yrit\xE4 uudelleen
-      tai jatka uusimman editorin k\xE4ytt\xE4mist\xE4 EditSaber-perheest\xE4.\n\nInfotiedoston
-      merkitseminen vain luku-tyyppiseksi est\xE4\xE4 MM- tai CM-tiedostoa kirjoittamasta
-      siihen ja se on eritt\xE4in tyhm\xE4\xE4, joten peruuta se tai vie mappisi
-      muualle."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6
-    m_Localized: "360-mappaus on suhteellisen uutta ja helposti tekee mapista mahdottoman,
-      jos se j\xE4\xE4 testaamatta.\n\nKaikella rakkaudella, testaa mappia usein."
+    m_Localized: 'BoomMapper has detected that your map has been marked as read-only.
+
+
+      To
+      continue editing this map, please remove the read-only marker.'
     m_Metadata:
       m_Items: []
   - m_Id: 7
@@ -57,14 +51,21 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 9
-    m_Localized: "Joidenkin asetusten lataus ep\xE4onnistui.\n\nJos t\xE4m\xE4 ikkuna
-      ilmestyy jatkuvasti avatessasi ChroMapperin, koita poistaa config-tiedostosi
-      sijainnissa:\n{0}/ChroMapperSettings.json"
+    m_Localized: 'Some BoomMapper settings failed to load.
+
+
+      If this dialog
+      box keeps showing up when launching ChroMapper, try deleting your Configuration
+      file located in:
+
+      {0}/ChroMapperSettings.json'
     m_Metadata:
       m_Items: []
   - m_Id: 10
-    m_Localized: "Discord RPC on havainnut virheen: {0}.\nDiscord RPC on pois k\xE4yt\xF6st\xE4,
-      kunnes ChroMapper k\xE4ynnistet\xE4\xE4n uudelleen."
+    m_Localized: 'Discord RPC has encountered an error: {0}.
+
+      Discord RPC will
+      be disabled until BoomMapper is restarted.'
     m_Metadata:
       m_Items: []
   - m_Id: 11

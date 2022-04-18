@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMInput.IPlacementControllersActions,
-    CMInput.ICancelPlacementActions where TBo : BeatmapObject
+public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMInput.IPlacementControllersActions
+    where TBo : BeatmapObject
     where TBoc : BeatmapObjectContainer
     where TBocc : BeatmapObjectContainerCollection
 {
@@ -17,16 +17,14 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
     [FormerlySerializedAs("interfaceGridParent")] [SerializeField] protected Transform InterfaceGridParent;
     [SerializeField] protected bool AssignTo360Tracks;
     [SerializeField] private BeatmapObject.ObjectType objectDataType;
-    [SerializeField] private bool startingActiveState;
     [FormerlySerializedAs("atsc")] [SerializeField] protected AudioTimeSyncController Atsc;
     [SerializeField] private CustomStandaloneInputModule customStandaloneInputModule;
     [FormerlySerializedAs("tracksManager")] [SerializeField] protected TracksManager TracksManager;
-    [FormerlySerializedAs("gridRotation")] [SerializeField] protected RotationCallbackController GridRotation;
     [FormerlySerializedAs("gridChild")] [SerializeField] protected GridChild GridChild;
     [SerializeField] private Transform noteGridTransform;
 
     [FormerlySerializedAs("bounds")] public Bounds Bounds;
-    public bool IsActive;
+    public bool IsActive = true;
 
     private bool applicationFocus;
     private bool applicationFocusChanged;
@@ -50,10 +48,13 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
 
     [HideInInspector] internal virtual float RoundedTime { get; set; }
 
-    public virtual bool IsValid => !Input.GetMouseButton(1) && !SongTimelineController.IsHovering && IsActive &&
-                                   !BoxSelectionPlacementController.IsSelecting && applicationFocus &&
-                                   !SceneTransitionManager.IsLoading && KeybindsController.IsMouseInWindow &&
-                                   !DeleteToolController.IsActive && !NodeEditorController.IsActive;
+    public virtual bool IsValid => IsActive
+        && !customStandaloneInputModule.IsPointerOverGameObject<GraphicRaycaster>(-1, true)
+        && !BoxSelectionPlacementController.IsSelecting
+        && applicationFocus
+        && !SceneTransitionManager.IsLoading
+        && KeybindsController.IsMouseInWindow
+        && !DeleteToolController.IsActive;
 
     public virtual int PlacementXMin => 0;
 
@@ -62,7 +63,6 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
     internal virtual void Start()
     {
         queuedData = GenerateOriginalData();
-        IsActive = startingActiveState;
         MainCamera = Camera.main;
     }
 
@@ -88,14 +88,16 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
         var gridsHit = Intersections.RaycastAll(ray, 11);
         IsOnPlacement = false;
 
-        foreach (var objectHit in gridsHit)
+        if (!gridsHit.Any())
         {
-            if (!IsOnPlacement && objectHit.GameObject.GetComponentInParent(GetType()) != null)
-            {
-                IsOnPlacement = true;
-                break;
-            }
+            ColliderExit();
+            return;
         }
+
+        var hit = gridsHit.OrderBy(i => i.Distance).FirstOrDefault();
+
+        IsOnPlacement = hit.GameObject.GetComponentInParent(GetType()) != null ||
+            (hit.GameObject.TryGetComponent<PlacementRadialIndexContainer>(out var pric) && pric.Owner == this);
 
         if (PauseManager.IsPaused) return;
 
@@ -111,62 +113,43 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
 
         objectData = queuedData;
 
-        if (gridsHit.Any())
+        // Cache the transform because its a tiny bit expensive
+        var hitTransform = hit.GameObject.transform;
+
+        CalculateTimes(hit, out var roundedHit, out var roundedTime);
+        RoundedTime = roundedTime;
+        var placementZ = RoundedTime * EditorScaleController.EditorScale;
+        Update360Tracks();
+
+        //this mess of localposition and position assignments are to align the shits up with the grid
+        //and to hopefully not cause IndexOutOfRangeExceptions
+        instantiatedContainer.transform.localPosition =
+            ParentTrack.InverseTransformPoint(hit.Point); //fuck transformedpoint we're doing it ourselves
+
+        var localMax = ParentTrack.InverseTransformPoint(hit.Bounds.max);
+        var localMin = ParentTrack.InverseTransformPoint(hit.Bounds.min);
+        float farRightPoint = PlacementXMax;
+        float farLeftPoint = PlacementXMin;
+        var farTopPoint = localMax.y;
+        var farBottomPoint = localMin.y;
+
+        roundedHit = new Vector3(Mathf.Ceil(roundedHit.x), Mathf.Ceil(roundedHit.y), placementZ);
+        instantiatedContainer.transform.localPosition = roundedHit - new Vector3(0.5f, 1f, 0);
+        var x = instantiatedContainer.transform.localPosition.x; //Clamp values to prevent exceptions
+        var y = instantiatedContainer.transform.localPosition.y;
+        instantiatedContainer.transform.localPosition = new Vector3(
+            Mathf.Clamp(x, farLeftPoint + 0.5f, farRightPoint - 0.5f),
+            Mathf.Round(Mathf.Clamp(y, farBottomPoint, farTopPoint - 1)) + 0.5f,
+            instantiatedContainer.transform.localPosition.z);
+
+        OnPhysicsRaycast(hit, roundedHit);
+        queuedData.Time = RoundedTime;
+
+        if ((IsDraggingObject || IsDraggingObjectAtTime) && queuedData != null)
         {
-            var hit = gridsHit.OrderBy(i => i.Distance).First();
-
-            var hitTransform =
-                hit.GameObject.transform; //Make a reference to the transform instead of calling hit.transform a lot
-            if (!hitTransform.IsChildOf(transform) || PersistentUI.Instance.DialogBoxIsEnabled)
-            {
-                ColliderExit();
-                return;
-            }
-
-            if (customStandaloneInputModule.IsPointerOverGameObject<GraphicRaycaster>(-1, true)) return;
-            if (BeatmapObjectContainerCollection.TrackFilterID != null && !objectContainerCollection.IgnoreTrackFilter)
-                queuedData.GetOrCreateCustomData()["track"] = BeatmapObjectContainerCollection.TrackFilterID;
-            else
-                queuedData?.CustomData?.Remove("track");
-
-            CalculateTimes(hit, out var roundedHit, out var roundedTime);
-            RoundedTime = roundedTime;
-            var placementZ = RoundedTime * EditorScaleController.EditorScale;
-            Update360Tracks();
-
-            //this mess of localposition and position assignments are to align the shits up with the grid
-            //and to hopefully not cause IndexOutOfRangeExceptions
-            instantiatedContainer.transform.localPosition =
-                ParentTrack.InverseTransformPoint(hit.Point); //fuck transformedpoint we're doing it ourselves
-
-            var localMax = ParentTrack.InverseTransformPoint(hit.Bounds.max);
-            var localMin = ParentTrack.InverseTransformPoint(hit.Bounds.min);
-            float farRightPoint = PlacementXMax;
-            float farLeftPoint = PlacementXMin;
-            var farTopPoint = localMax.y;
-            var farBottomPoint = localMin.y;
-
-            roundedHit = new Vector3(Mathf.Ceil(roundedHit.x), Mathf.Ceil(roundedHit.y), placementZ);
-            instantiatedContainer.transform.localPosition = roundedHit - new Vector3(0.5f, 1f, 0);
-            var x = instantiatedContainer.transform.localPosition.x; //Clamp values to prevent exceptions
-            var y = instantiatedContainer.transform.localPosition.y;
-            instantiatedContainer.transform.localPosition = new Vector3(
-                Mathf.Clamp(x, farLeftPoint + 0.5f, farRightPoint - 0.5f),
-                Mathf.Round(Mathf.Clamp(y, farBottomPoint, farTopPoint - 1)) + 0.5f,
-                instantiatedContainer.transform.localPosition.z);
-
-            OnPhysicsRaycast(hit, roundedHit);
-            queuedData.Time = RoundedTime;
-            if ((IsDraggingObject || IsDraggingObjectAtTime) && queuedData != null)
-            {
-                TransferQueuedToDraggedObject(ref draggedObjectData, BeatmapObject.GenerateCopy(queuedData));
-                DraggedObjectContainer.ObjectData.Time = placementZ / EditorScaleController.EditorScale;
-                if (DraggedObjectContainer != null) DraggedObjectContainer.UpdateGridPosition();
-            }
-        }
-        else
-        {
-            ColliderExit();
+            TransferQueuedToDraggedObject(ref draggedObjectData, BeatmapObject.GenerateCopy(queuedData));
+            draggedObjectData.Time = queuedData.Time;
+            if (DraggedObjectContainer != null) DraggedObjectContainer.UpdateGridPosition();
         }
     }
 
@@ -187,8 +170,7 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
         }
 
         if (!IsDraggingObject && !IsDraggingObjectAtTime && IsOnPlacement && instantiatedContainer != null && IsValid
-            && !PersistentUI.Instance.DialogBoxIsEnabled &&
-            queuedData?.Time >= 0 && !applicationFocusChanged && instantiatedContainer.gameObject.activeSelf)
+            && queuedData?.Time >= 0 && !applicationFocusChanged && instantiatedContainer.gameObject.activeSelf)
         {
             ApplyToMap();
         }
@@ -247,16 +229,15 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
     public virtual void OnMousePositionUpdate(InputAction.CallbackContext context) =>
         MousePosition = Mouse.current.position.ReadValue();
 
-    public void OnPrecisionPlacementToggle(InputAction.CallbackContext context) =>
-        UsePrecisionPlacement = context.performed && Settings.Instance.PrecisionPlacementGrid;
-
     protected virtual bool TestForType<T>(Intersections.IntersectionHit hit, BeatmapObject.ObjectType type)
         where T : MonoBehaviour
     {
         var placementObj = hit.GameObject.GetComponentInParent<T>();
         if (placementObj != null)
         {
-            var boundLocal = placementObj.GetComponentsInChildren<Renderer>().FirstOrDefault(it => it.name == "Grid X")
+            var boundLocal = placementObj.GetComponentsInChildren<Renderer>(true)
+                .Where(it => it.name == "Grid X")
+                .First()
                 .bounds;
 
             // Transform the bounds into the pseudo-world space we use for selection

@@ -8,7 +8,6 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
     public static readonly int ChunkSize = 5;
 
     public static float Epsilon = 0.001f;
-    public static float TranslucentCull = -0.001f;
 
     private static readonly Dictionary<BeatmapObject.ObjectType, BeatmapObjectContainerCollection> loadedCollections =
         new Dictionary<BeatmapObject.ObjectType, BeatmapObjectContainerCollection>();
@@ -61,13 +60,6 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
         SubscribeToCallbacks();
     }
 
-    private void Start()
-    {
-        UpdateEpsilon(Settings.Instance.TimeValueDecimalPrecision);
-        Settings.NotifyBySettingName("TimeValueDecimalPrecision", UpdateEpsilon);
-        EditorScaleController.EditorScaleChangedEvent += UpdateTranslucentCull;
-    }
-
     internal virtual void LateUpdate()
     {
         if ((AudioTimeSyncController.IsPlaying && !UseChunkLoadingWhenPlaying)
@@ -91,14 +83,6 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
         loadedCollections.Remove(ContainerType);
         UnsubscribeToCallbacks();
     }
-
-    private void UpdateEpsilon(object precision)
-    {
-        Epsilon = 1 / Mathf.Pow(10, (int)precision);
-        UpdateTranslucentCull(EditorScaleController.EditorScale);
-    }
-
-    private void UpdateTranslucentCull(float editorScale) => TranslucentCull = -editorScale * Epsilon;
 
     /// <summary>
     ///     Grab a <see cref="BeatmapObjectContainerCollection" /> whose <see cref="ContainerType" /> matches the given type.
@@ -181,27 +165,24 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
     /// <param name="forceRefresh">All currently active containers will be recycled, even if they shouldn't be.</param>
     public void RefreshPool(float lowerBound, float upperBound, bool forceRefresh = false)
     {
-        foreach (var obj in UnsortedObjects)
-        //for (int i = 0; i < LoadedObjects.Count; i++)
+        // this is actually faster for some reason
+        for (var i = 0; i < UnsortedObjects.Count; i++)
         {
-            if (forceRefresh) RecycleContainer(obj);
-            if (obj.Time >= lowerBound && obj.Time <= upperBound)
-            {
-                if (!obj.HasAttachedContainer) CreateContainerFromPool(obj);
-            }
-            else if (obj.HasAttachedContainer)
-            {
-                if (obj is BeatmapObstacle obs && obs.Time < lowerBound &&
-                    obs.Time + obs.Duration >= lowerBound)
-                {
-                    continue;
-                }
+            var obj = UnsortedObjects[i];
 
+            if (forceRefresh)
+            {
                 RecycleContainer(obj);
             }
-
-            if (obj is BeatmapObstacle obst && obst.Time < lowerBound && obst.Time + obst.Duration >= lowerBound)
+            
+            if (obj.Time >= lowerBound && obj.Time <= upperBound)
+            {
                 CreateContainerFromPool(obj);
+            }
+            else if (!forceRefresh)
+            {
+                RecycleContainer(obj);
+            }
         }
     }
 
@@ -211,7 +192,7 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
     /// <param name="obj">Object to store within the container.</param>
     protected void CreateContainerFromPool(BeatmapObject obj)
     {
-        if (obj.HasAttachedContainer) return;
+        if (LoadedContainers.ContainsKey(obj)) return;
         //Debug.Log($"Creating container with hash code {obj.GetHashCode()}");
         if (!pooledContainers.Any()) CreateNewObject();
         var dequeued = pooledContainers.Dequeue();
@@ -223,7 +204,6 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
         dequeued.OutlineVisible = SelectionController.IsObjectSelected(obj);
         PluginLoader.BroadcastEvent<ObjectLoadedAttribute, BeatmapObjectContainer>(dequeued);
         LoadedContainers.Add(obj, dequeued);
-        obj.HasAttachedContainer = true;
         OnContainerSpawn(dequeued, obj);
     }
 
@@ -234,16 +214,16 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
     /// <param name="obj">Object whose container will be recycled.</param>
     protected void RecycleContainer(BeatmapObject obj)
     {
-        if (!obj.HasAttachedContainer) return;
-        //Debug.Log($"Recycling container with hash code {obj.GetHashCode()}");
-        var container = LoadedContainers[obj];
-        container.ObjectData = null;
-        container.SafeSetActive(false);
-        //container.transform.SetParent(PoolTransform);
-        LoadedContainers.Remove(obj);
-        pooledContainers.Enqueue(container);
-        OnContainerDespawn(container, obj);
-        obj.HasAttachedContainer = false;
+        if (LoadedContainers.TryGetValue(obj, out var container))
+        {
+            //Debug.Log($"Recycling container with hash code {obj.GetHashCode()}");
+            container.ObjectData = null;
+            container.SafeSetActive(false);
+            //container.transform.SetParent(PoolTransform);
+            LoadedContainers.Remove(obj);
+            pooledContainers.Enqueue(container);
+            OnContainerDespawn(container, obj);
+        }
     }
 
     private void CreateNewObject()

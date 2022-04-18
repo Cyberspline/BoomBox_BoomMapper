@@ -39,29 +39,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6
-    m_Localized: No "Beat Saber_Data" or "CustomLevels" folder was found at chosen
-      location!
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7
-    m_Localized: No "CustomWIPLevels" folder was found at chosen location!
+    m_Localized: No "BoomBox_Data" or "Maps" folder found at chosen location!
     m_Metadata:
       m_Items: []
   - m_Id: 8
     m_Localized: '{0}
 
 
-      Would you like ChroMapper to generate the missing folders?'
+      Would you like BoomMapper to generate the missing folders?'
     m_Metadata:
       m_Items: []
   - m_Id: 9
-    m_Localized: 'You do not need to use a true Beat Saber installation - you could
-      simply emulate one. That folder needs to contain the following subdirectories:
-
-      /Beat
-      Saber_Data/CustomLevels/
-
-      /Beat Saber_Data/CustomWIPLevels/'
+    m_Localized: You do not need a true BoomBox installation. Just select any location
+      and BoomMapper will ask you to generate any missing folders.
     m_Metadata:
       m_Items: []
   - m_Id: 10

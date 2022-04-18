@@ -48,7 +48,7 @@ public class LogLineUI : MonoBehaviour
 
     private static string GenerateSystemInfo()
     {
-        return "APP: ChroMapper " + Application.version + ", Unity " + Application.unityVersion + " (" + Environment.CommandLine + ")\n" +
+        return $"APP: {Application.productName} {Application.version}, Unity {Application.unityVersion} ({Environment.CommandLine})\n" +
                "CPU: " + SystemInfo.processorType + " (" + SystemInfo.processorCount + " cores)\n" +
                "GPU: " + SystemInfo.graphicsDeviceName + "\n" +
                "RAM: " + SystemInfo.systemMemorySize + " MB\n" +

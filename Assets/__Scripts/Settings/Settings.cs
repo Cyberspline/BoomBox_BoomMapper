@@ -14,7 +14,7 @@ public class Settings
     public static Settings Instance => instance ??= Load();
 
     public string BeatSaberInstallation = "";
-    public string CustomSongsFolder => Path.Combine(BeatSaberInstallation, "Beat Saber_Data", "CustomLevels");
+    public string CustomSongsFolder => Path.Combine(BeatSaberInstallation, "BoomBox_Data", "Maps");
     public string CustomWIPSongsFolder => Path.Combine(BeatSaberInstallation, "Beat Saber_Data", "CustomWIPLevels");
     public string CustomPlatformsFolder => Path.Combine(BeatSaberInstallation, "CustomPlatforms");
 
@@ -23,36 +23,20 @@ public class Settings
     public bool EditorScaleBPMIndependent = false;
     public int ChunkDistance = 5;
     public int AutoSaveInterval = 5;
-    public bool InvertNoteControls = false; // Hidden setting, does nothing
     public int Waveform = 1;
     public CountersPlusSettings CountersPlus = new CountersPlusSettings();
-    public bool PickColorFromChromaEvents = false;
-    public bool PlaceChromaColor = false;
-    public bool PlaceOnlyChromaEvents = false; // Hidden setting, does nothing
-    public bool BongoBoye = false;
-    public int BongoCat = -1;
     public bool AutoSave = true;
     public float Volume = 1;
     public float MetronomeVolume = 0;
     public float SongVolume = 1;
-    public bool NodeEditor_Enabled = true;
-    public bool NodeEditor_UseKeybind = true;
-    public float PostProcessingIntensity = 0.1f;
-    public bool DarkTheme = true;
     public bool BoxSelect = true;
-    public bool DontPlacePerfectZeroDurationWalls = true;
     public float Camera_MovementSpeed = 15;
     public float Camera_MouseSensitivity = 2;
-    public bool EmulateChromaLite = true; //To get Chroma RGB lights
-    public bool EmulateChromaAdvanced = true; //Ring propagation and other advanced chroma features
-    public bool RotateTrack = true; // 360/90 mode
-    public bool HighlightLastPlacedNotes = false; // Hidden setting, does nothing
     public bool InvertPrecisionScroll = false;
-    public bool Reminder_Loading360Levels = true;
     public bool Reminder_SettingsFailed = true;
     public bool AdvancedShit = false;
     public bool InstantEscapeMenuTransitions = false;
-    public bool ChromaticAberration = true;
+    public bool ChromaticAberration = false;
     public int Offset_Spawning = 4;
     public int Offset_Despawning = 1;
     public int NoteHitSound = 0;
@@ -60,36 +44,16 @@ public class Settings
     public float PastNotesGridScale = 0.5f;
     public float CameraFOV = 60f;
     public int CameraAA = 0;
-    public bool WaveformWorkflow = true;
-    public bool Load_Events = true;
-    public bool Load_Notes = true;
-    public bool Load_Obstacles = true;
-    public bool Load_Others = true;
-    public bool ShowMoreAccurateFastWalls = false;
-    public int TimeValueDecimalPrecision = 3;
     public bool Ding_Red_Notes = true;
     public bool Ding_Blue_Notes = true;
-    public bool Ding_Bombs = false;
     public bool MeasureLinesShowOnTop = false;
-    public bool Reflections = true;
-    public bool HighQualityBloom = true;
-    public bool ColorFakeWalls = true;
     public bool InvertScrollTime = false;
-    public bool PrecisionPlacementGrid = false;
-    public bool NoteJumpSpeedForEditorScale = false;
-    public bool VisualizeChromaGradients = true;
-    public bool VisualizeChromaAlpha = true;
-    public bool SimpleBlocks = false;
     public bool HelpfulLoadingMessages = false;
-    public bool Reset360DisplayOnCompleteTurn = true;
     public string Language = "en";
     public bool HighContrastGrids = false;
-    public float GridTransparency = 0f;
+    public float GridTransparency = 0.75f;
     public float UIScale = 1;
     public CameraPosition[] SavedPositions = new CameraPosition[8];
-    public bool Reminder_UnsupportedEditorOffset = true;
-    public bool PyramidEventModels = false;
-    public EventModelType EventModel = EventModelType.Block;
     public int ReleaseChannel = 0;
     public string ReleaseServer = "https://cm.topc.at";
     public int DSPBufferSize = 10;
@@ -98,9 +62,6 @@ public class Settings
     public int MaximumFPS = 9999;
     public bool VSync = true;
 
-    public int NodeEditorTextSize = 10;
-    public int NodeEditorSize = 10;
-
     public int CursorPrecisionA = 1;
     public int CursorPrecisionB = 1;
 
@@ -108,7 +69,13 @@ public class Settings
     public string LastLoadedChar = "";
     public string LastLoadedDiff = "";
 
+    public bool OverviewCamera = false;
+    public bool CameraRotateAroundGrid = true;
+
     public int LastSongSortType = (int)SongList.SongSortType.Name;
+
+    public bool SimplifiedObstacles = false;
+    public float ObstacleOpacity = 0.7f;
 
     public static Dictionary<string, FieldInfo> AllFieldInfos = new Dictionary<string, FieldInfo>();
     public static Dictionary<string, object> NonPersistentSettings = new Dictionary<string, object>();
@@ -129,7 +96,7 @@ public class Settings
         var infos = type.GetMembers(BindingFlags.Public | BindingFlags.Instance);
 
         // Use default settings if config does not exist
-        if (!File.Exists(Application.persistentDataPath + "/ChroMapperSettings.json"))
+        if (!File.Exists(Application.persistentDataPath + "/BoomMapperSettings.json"))
         {
             foreach (var info in infos)
             {
@@ -139,7 +106,7 @@ public class Settings
             return settings;
         }
 
-        using (var reader = new StreamReader(Application.persistentDataPath + "/ChroMapperSettings.json"))
+        using (var reader = new StreamReader(Application.persistentDataPath + "/BoomMapperSettings.json"))
         {
             var mainNode = JSON.Parse(reader.ReadToEnd());
 
@@ -209,9 +176,7 @@ public class Settings
         }
 
         JSONNumber.CapNumbersToDecimals = true;
-        JSONNumber.DecimalPrecision = settings.TimeValueDecimalPrecision;
-
-        settings.UpdateOldSettings();
+        JSONNumber.DecimalPrecision = 3;
 
         return settings;
     }
@@ -225,21 +190,6 @@ public class Settings
     }
 
     private void HandleFailedReminder(int res) => Reminder_SettingsFailed = res == 0;
-
-    private void UpdateOldSettings()  //Put code in here to transfer any settings that are fundamentally changed and require conversion from an old setting to a new setting
-    {
-        if (PyramidEventModels)
-        {
-            EventModel = EventModelType.Pyramid;
-            PyramidEventModels = false;
-        }
-
-        if (BongoBoye)
-        {
-            BongoCat = 0;
-            BongoBoye = false;
-        }
-    }
 
     public void Save()
     {
@@ -285,7 +235,7 @@ public class Settings
             }
         }
 
-        using (var writer = new StreamWriter(Application.persistentDataPath + "/ChroMapperSettings.json", false))
+        using (var writer = new StreamWriter(Application.persistentDataPath + "/BoomMapperSettings.json", false))
             writer.Write(mainNode.ToString(2));
     }
 
@@ -357,11 +307,6 @@ public class Settings
         if (!Directory.Exists(Instance.CustomSongsFolder))
         {
             errorFeedback?.Invoke("validate.nofolders");
-            return false;
-        }
-        if (!Directory.Exists(Instance.CustomWIPSongsFolder))
-        {
-            errorFeedback?.Invoke("validate.nowip");
             return false;
         }
         return true;

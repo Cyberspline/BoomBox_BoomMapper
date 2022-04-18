@@ -35,17 +35,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5
-    m_Localized: "CowoMappew has detected dat your info fiwe has been mawked as wead-ownwy.
-      \u0449\uFF08\uFF9F\u0414\uFF9F\u0449\uFF09\n\nPwease wemowve da wead-onwy mawkew
-      and twy again, ow keep using da watest editow fwom da EditSaber famiwy.\n\nMawking
-      youw infow fiwe wead-onwy to pwevent MM owe CM fwom overwiting it is extwemely
-      dumb, so undo it ow take youw mwap somewhewe ewse. (\uFE36\uFE39\uFE3A)"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6
-    m_Localized: "360 Mwapping is wewativewy new and can easiwy make da map unpwayabwe
-      if weft untested.\n\nFow da wove of aww dat is fuwwy, have youwsef and othars
-      pwaytest youw mwap fwequentwy. (\u25E0\uFE4F\u25E0\u273F)"
+    m_Localized: 'BoomMapper has detected that your map has been marked as read-only.
+
+
+      To
+      continue editing this map, please remove the read-only marker.'
     m_Metadata:
       m_Items: []
   - m_Id: 7
@@ -57,14 +51,21 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 9
-    m_Localized: "Some CowoMappew setting faiwed to woad  \u2716\u203F\u2716\n\nIf
-      dis diawogue bwox kweeps showoing up when waunching CowoMappew, twy deweting
-      youw Configuwation fiwe wocated in:\n{0}/ChroMapperSettings.json"
+    m_Localized: 'Some BoomMapper settings failed to load.
+
+
+      If this dialog
+      box keeps showing up when launching ChroMapper, try deleting your Configuration
+      file located in:
+
+      {0}/ChroMapperSettings.json'
     m_Metadata:
       m_Items: []
   - m_Id: 10
-    m_Localized: "Discowod RPC has encountwed an ewwow (*\xB4\u0434\uFF40*)! : {0}.\nDiscowod
-      RPC wiww be disabewed untiw CowoMappew is westawted."
+    m_Localized: 'Discord RPC has encountered an error: {0}.
+
+      Discord RPC will
+      be disabled until BoomMapper is restarted.'
     m_Metadata:
       m_Items: []
   - m_Id: 11

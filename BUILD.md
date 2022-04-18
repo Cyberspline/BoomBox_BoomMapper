@@ -1,14 +1,14 @@
 # Build guide
 
-ChroMapper is developed with Unity **2021.1.15f1** in C#.
+BoomMapper is developed with Unity **2021.1.15f1** in C#.
 
-This GitHub repository comes with the assets and scripts you need to easily open it up in Unity, no dependency bullshit required.
+This GitHub repository comes with the assets and scripts you need to easily open it up in Unity.
 
 ## Development Environment Setup
 * Clone the project from GitHub to your local work folder.
 * Download and install [Unity Hub](https://unity3d.com/get-unity/download).
 * Activate your license within Unity Hub. Most people should be eligible for a free Personal license.
-* Install the Unity version (mentioned in the header of this page) from within Unity Hub in the "Installs" section. The project might not be using the latest release; in this case, you should consult the "download archive" (from within Unity Hub). The installer will take care of the required dependencies as well.
+* Use the [download archive](https://unity3d.com/get-unity/download/archive) to find and install BoomMapper's version of Unity (listed above) with Unity Hub.
 * Add the project in the "Projects" section. Select your main folder you cloned from GitHub.
 * Open the project. The Unity editor should launch, and the project dependencies should download automatically.
 
@@ -27,4 +27,4 @@ The project uses the master / development branch setup.
 * Additionally, there might be some feature or bugfix branches.
 
 ## Contributing
-Please follow the [Contributing guidelines](CONTRIBUTING.md) as you are making contributions to ChroMapper.
+Please follow the [Contributing guidelines](CONTRIBUTING.md) as you are making contributions to BoomMapper.

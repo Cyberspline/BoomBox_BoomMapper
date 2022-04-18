@@ -8,7 +8,6 @@ public class CountersPlusController : MonoBehaviour
 {
     [SerializeField] private NotesContainer notes;
     [SerializeField] private ObstaclesContainer obstacles;
-    [SerializeField] private EventsContainer events;
     [SerializeField] private BPMChangesContainer bpm;
     [SerializeField] private AudioSource cameraAudioSource;
     [SerializeField] private AudioTimeSyncController atsc;
@@ -20,15 +19,11 @@ public class CountersPlusController : MonoBehaviour
     [SerializeField] private LocalizeStringEvent notesPSMesh;
     [SerializeField] private LocalizeStringEvent[] extraNoteStrings;
     [SerializeField] private LocalizeStringEvent obstacleString;
-    [SerializeField] private LocalizeStringEvent eventString;
     [SerializeField] private LocalizeStringEvent bpmString;
     [FormerlySerializedAs("currentBPMString")] [SerializeField] private LocalizeStringEvent currentBpmString;
     [SerializeField] private LocalizeStringEvent selectionString;
-    [SerializeField] private LocalizeStringEvent timeMappingString;
 
     private float lastBpm;
-
-    private SwingsPerSecond swingsPerSecond;
 
 #pragma warning disable IDE1006 // Naming Styles
     ///// Localization /////
@@ -65,16 +60,12 @@ public class CountersPlusController : MonoBehaviour
 
     public int ObstacleCount => obstacles.LoadedObjects.Count;
 
-    public int EventCount => events.LoadedObjects.Count;
-
     public int BPMCount => bpm.LoadedObjects.Count;
 
     public int SelectedCount => SelectionController.SelectedObjects.Count;
 
-    public float OverallSPS => swingsPerSecond.Total.Overall;
-
     public float CurrentBPM
-        => bpm.FindLastBpm(atsc.CurrentBeat)?.Bpm ?? BeatSaberSongContainer.Instance.Song.BeatsPerMinute;
+        => bpm.FindLastBpm(atsc.CurrentBeat)?.Bpm ?? BoomBoxSongContainer.Instance.Map.BeginningBPM;
 
     public float RedBlueRatio
     {
@@ -89,12 +80,13 @@ public class CountersPlusController : MonoBehaviour
     }
 #pragma warning restore IDE1006 // Naming Styles
 
+    // I'm going to be doing some bit shift gaming, don't mind me
+    private CountersPlusStatistic stringRefreshQueue = CountersPlusStatistic.Invalid;
+
     private void Start()
     {
         Settings.NotifyBySettingName("CountersPlus", UpdateCountersVisibility);
         UpdateCountersVisibility(Settings.Instance.CountersPlus);
-
-        swingsPerSecond = new SwingsPerSecond(notes, obstacles);
 
         LoadInitialMap.LevelLoadedEvent += LevelLoadedEvent;
         SelectionController.SelectionChangedEvent += SelectionChangedEvent;
@@ -102,23 +94,31 @@ public class CountersPlusController : MonoBehaviour
 
     private void Update() // i do want to update this every single frame
     {
-        if (Application.isFocused)
-        {
-            BeatSaberSongContainer.Instance.Map.Time += Time.deltaTime / 60; // only tick while application is focused
-
-            var timeMapping = BeatSaberSongContainer.Instance.Map.Time;
-            seconds = Mathf.Abs(Mathf.FloorToInt(timeMapping * 60 % 60));
-            minutes = Mathf.FloorToInt(timeMapping % 60);
-            hours = Mathf.FloorToInt(timeMapping / 60);
-
-            timeMappingString.StringReference.RefreshString();
-        }
-
         var currentBpm = CurrentBPM;
         if (lastBpm != currentBpm)
         {
             currentBpmString.StringReference.RefreshString();
             lastBpm = currentBpm;
+        }
+
+        // Might be a bit unreadable but I'm essentially checking if a bit is set corresponding to a specific statistic.
+        // If the bit is set (non-zero), it would update that particular statistic.
+        // This essentially ensures that each statistic can only be refreshed once per frame.
+        if (stringRefreshQueue > 0)
+        {
+            if ((stringRefreshQueue & CountersPlusStatistic.Notes) != 0)
+                UpdateNoteStats();
+
+            if ((stringRefreshQueue & CountersPlusStatistic.Obstacles) != 0)
+                obstacleString.StringReference.RefreshString();
+
+            if ((stringRefreshQueue & CountersPlusStatistic.BpmChanges) != 0)
+                bpmString.StringReference.RefreshString();
+
+            if ((stringRefreshQueue & CountersPlusStatistic.Selection) != 0)
+                UpdateSelectionStats();
+
+            stringRefreshQueue = 0;
         }
     }
 
@@ -134,21 +134,8 @@ public class CountersPlusController : MonoBehaviour
         if (!Settings.Instance.CountersPlus["enabled"])
             return;
 
-        switch (stat)
-        {
-            case CountersPlusStatistic.Notes:
-                UpdateNoteStats();
-                break;
-            case CountersPlusStatistic.Obstacles:
-                obstacleString.StringReference.RefreshString();
-                break;
-            case CountersPlusStatistic.Events:
-                eventString.StringReference.RefreshString();
-                break;
-            case CountersPlusStatistic.BpmChanges:
-                bpmString.StringReference.RefreshString();
-                break;
-        }
+        // Bit shift stat into queue
+        stringRefreshQueue |= stat;
     }
 
     private void LevelLoadedEvent()
@@ -158,7 +145,7 @@ public class CountersPlusController : MonoBehaviour
             UpdateStatistic((CountersPlusStatistic)enumValue);
     }
 
-    private void SelectionChangedEvent() => UpdateSelectionStats();
+    private void SelectionChangedEvent() => UpdateStatistic(CountersPlusStatistic.Selection);
 
     private void UpdateNoteStats()
     {
@@ -175,8 +162,6 @@ public class CountersPlusController : MonoBehaviour
 
         notesMesh.StringReference.RefreshString();
         notesPSMesh.StringReference.RefreshString();
-
-        swingsPerSecond.Update();
 
         foreach (var str in extraNoteStrings) str.StringReference.RefreshString();
     }

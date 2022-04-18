@@ -35,18 +35,6 @@ MonoBehaviour:
     m_Key: songname.tooltip
     m_Metadata:
       m_Items: []
-  - m_Id: 6
-    m_Key: subname
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7
-    m_Key: subname.placeholder
-    m_Metadata:
-      m_Items: []
-  - m_Id: 8
-    m_Key: subname.tooltip
-    m_Metadata:
-      m_Items: []
   - m_Id: 9
     m_Key: artist
     m_Metadata:
@@ -143,14 +131,6 @@ MonoBehaviour:
     m_Key: audioFile.tooltip
     m_Metadata:
       m_Items: []
-  - m_Id: 33
-    m_Key: environment
-    m_Metadata:
-      m_Items: []
-  - m_Id: 34
-    m_Key: platform
-    m_Metadata:
-      m_Items: []
   - m_Id: 35
     m_Key: save
     m_Metadata:
@@ -159,60 +139,12 @@ MonoBehaviour:
     m_Key: delete
     m_Metadata:
       m_Items: []
-  - m_Id: 37
-    m_Key: environment.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 38
-    m_Key: platform.tooltip
-    m_Metadata:
-      m_Items: []
   - m_Id: 39
     m_Key: undo.tooltip
     m_Metadata:
       m_Items: []
   - m_Id: 40
     m_Key: back.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 41
-    m_Key: hjd
-    m_Metadata:
-      m_Items: []
-  - m_Id: 42
-    m_Key: hjd.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 43
-    m_Key: jumpDistance
-    m_Metadata:
-      m_Items: []
-  - m_Id: 44
-    m_Key: jumpDistance.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 45
-    m_Key: njs
-    m_Metadata:
-      m_Items: []
-  - m_Id: 46
-    m_Key: njs.placeholder
-    m_Metadata:
-      m_Items: []
-  - m_Id: 47
-    m_Key: njs.tooltip
-    m_Metadata:
-      m_Items: []
-  - m_Id: 48
-    m_Key: jumpOffset
-    m_Metadata:
-      m_Items: []
-  - m_Id: 49
-    m_Key: jumpOffset.placeholder
-    m_Metadata:
-      m_Items: []
-  - m_Id: 50
-    m_Key: jumpOffset.tooltip
     m_Metadata:
       m_Items: []
   - m_Id: 51
@@ -225,10 +157,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 53
     m_Key: editor
-    m_Metadata:
-      m_Items: []
-  - m_Id: 54
-    m_Key: contributors
     m_Metadata:
       m_Items: []
   - m_Id: 56
@@ -279,14 +207,6 @@ MonoBehaviour:
     m_Key: unsaveddiff.warning
     m_Metadata:
       m_Items: []
-  - m_Id: 69
-    m_Key: load.warning
-    m_Metadata:
-      m_Items: []
-  - m_Id: 70
-    m_Key: load.warning2
-    m_Metadata:
-      m_Items: []
   - m_Id: 71
     m_Key: saved
     m_Metadata:
@@ -303,16 +223,44 @@ MonoBehaviour:
     m_Key: load.error.audio3
     m_Metadata:
       m_Items: []
-  - m_Id: 75
-    m_Key: unsavedcontributor.warning
-    m_Metadata:
-      m_Items: []
   - m_Id: 76
     m_Key: files.badpath
     m_Metadata:
       m_Items: []
   - m_Id: 77
     m_Key: files.conflict
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30626154038231040
+    m_Key: description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30626249097936896
+    m_Key: description.tooltip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30626380895551488
+    m_Key: tags
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30626475569381376
+    m_Key: tags.tooltip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30626696189771776
+    m_Key: upload
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30857320636940288
+    m_Key: creator.placeholde
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30857462203088896
+    m_Key: description.placeholder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30857533221044224
+    m_Key: tags.placeholder
     m_Metadata:
       m_Items: []
   m_Metadata:

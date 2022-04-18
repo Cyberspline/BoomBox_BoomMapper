@@ -39,28 +39,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6
-    m_Localized: There's no "Beat Saber_Data" or "CustomLevels" dock at that harbor!
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7
-    m_Localized: There's no "CustomWIPLevels" dock at that harbor!
+    m_Localized: No "BoomBox_Data" or "Maps" folder found at chosen location!
     m_Metadata:
       m_Items: []
   - m_Id: 8
     m_Localized: '{0}
 
 
-      Would ye like ChroMapper to construct the missing docks?'
+      Would you like BoomMapper to generate the missing folders?'
     m_Metadata:
       m_Items: []
   - m_Id: 9
-    m_Localized: 'Ye not need a true Beat Saber harbor - the crew can make do with
-      another one. This other harbor needs to have following docks:
-
-      /Beat
-      Saber_Data/CustomLevels/
-
-      /Beat Saber_Data/CustomWIPLevels/'
+    m_Localized: You do not need a true BoomBox installation. Just select any location
+      and BoomMapper will ask you to generate any missing folders.
     m_Metadata:
       m_Items: []
   - m_Id: 10

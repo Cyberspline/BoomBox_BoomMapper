@@ -8,7 +8,7 @@ public class Track : MonoBehaviour
     public Vector3 RotationValue = Vector3.zero;
 
     public Action TimeChanged;
-    private readonly Vector3 rotationPoint = LoadInitialMap.PlatformOffset;
+    private readonly Vector3 rotationPoint = new Vector3(0, -0.5f, -1.5f);
 
     public void AssignRotationValue(Vector3 rotation)
     {

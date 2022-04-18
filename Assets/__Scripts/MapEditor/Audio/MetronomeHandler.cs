@@ -27,7 +27,7 @@ public class MetronomeHandler : MonoBehaviour
         metronomeUIAnimator = metronomeUI.GetComponent<Animator>();
         Settings.NotifyBySettingName("SongSpeed", UpdateSongSpeed);
 
-        lastBpm = atsc.Song.BeatsPerMinute;
+        lastBpm = atsc.Map.BeginningBPM;
         atsc.PlayToggle += OnPlayToggle;
     }
 
@@ -46,14 +46,13 @@ public class MetronomeHandler : MonoBehaviour
         metronomeVolume = Settings.Instance.MetronomeVolume;
         if (metronomeVolume != 0f && atsc.IsPlaying && !atsc.StopScheduled)
         {
-            var collection =
-                BeatmapObjectContainerCollection.GetCollectionForType<BPMChangesContainer>(
+            var collection = BeatmapObjectContainerCollection.GetCollectionForType<BPMChangesContainer>(
                     BeatmapObject.ObjectType.BpmChange);
             var toCheck = collection.FindLastBpm(atsc.CurrentSongBeats);
             if (lastBpmChange != toCheck)
             {
                 lastBpmChange = toCheck;
-                lastBpm = lastBpmChange?.Bpm ?? atsc.Song.BeatsPerMinute;
+                lastBpm = lastBpmChange?.Bpm ?? atsc.Map.BeginningBPM;
                 audioUtil.PlayOneShotSound(CowBell ? cowbellSound : metronomeSound, Settings.Instance.MetronomeVolume);
                 RunAnimation();
                 beatProgress = 0;
@@ -99,15 +98,17 @@ public class MetronomeHandler : MonoBehaviour
         if (playing)
         {
             RunAnimation();
-            var collection =
-                BeatmapObjectContainerCollection.GetCollectionForType<BPMChangesContainer>(
+
+            var collection = BeatmapObjectContainerCollection.GetCollectionForType<BPMChangesContainer>(
                     BeatmapObject.ObjectType.BpmChange);
+
             lastBpmChange = collection.FindLastBpm(atsc.CurrentSongBeats);
-            lastBpm = lastBpmChange?.Bpm ?? atsc.Song.BeatsPerMinute;
+            lastBpm = lastBpmChange?.Bpm ?? atsc.Map.BeginningBPM;
+
             if (lastBpmChange != null)
             {
                 var differenceInSongBpm = atsc.CurrentSongBeats - lastBpmChange.Time;
-                var differenceInLastBpm = differenceInSongBpm * lastBpmChange.Bpm / atsc.Song.BeatsPerMinute;
+                var differenceInLastBpm = differenceInSongBpm * lastBpmChange.Bpm / atsc.Map.BeginningBPM;
                 beatProgress = differenceInLastBpm % 1;
             }
             else

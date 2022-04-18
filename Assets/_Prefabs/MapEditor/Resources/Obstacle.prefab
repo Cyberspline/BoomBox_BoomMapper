@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1446077081186018}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 3.5, z: 1}
   m_Children:
   - {fileID: 4605649909771998}
@@ -50,15 +50,22 @@ MonoBehaviour:
   - {fileID: 6504882839176335681}
   SelectionRenderers:
   - {fileID: 5839049024245972941}
-  BoxCollider: {fileID: 0}
-  manager: {fileID: 0}
   ObstacleData:
     HasAttachedContainer: 0
-    Time: 0
     LineIndex: 0
     Type: 0
     Duration: 0
     Width: 0
+    A:
+      StartTime: 0
+      RadialIndex: 0
+    B:
+      StartTime: 0
+      RadialIndex: 0
+  boomBoxObstacleMaterial: {fileID: 2100000, guid: 602cca8d32f22794d8090c0cf86f1120,
+    type: 2}
+  chroMapperObstacleMaterial: {fileID: 2100000, guid: ed10b4bf10ee79d49a2f63af13875bac,
+    type: 2}
 --- !u!1 &1892633844858192
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,8 +93,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892633844858192}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.5, z: 0.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 0.17, z: 1}
   m_Children: []
   m_Father: {fileID: 4030547136489714}
   m_RootOrder: 0
@@ -120,7 +127,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ed10b4bf10ee79d49a2f63af13875bac, type: 2}
+  - {fileID: 2100000, guid: 602cca8d32f22794d8090c0cf86f1120, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -157,7 +164,7 @@ MonoBehaviour:
   Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   BoundsRenderer: {fileID: 23076231249640560}
   Center: {x: 0, y: 0, z: 0}
-  Size: {x: 2, y: 2, z: 2}
+  Size: {x: 1, y: 1, z: 1}
   MeshTriangles: 0000000002000000030000000000000003000000010000000800000004000000050000000800000005000000090000000a00000006000000070000000a000000070000000b0000000c0000000d0000000e0000000c0000000e0000000f000000100000001100000012000000100000001200000013000000140000001500000016000000140000001600000017000000
   MeshVertices:
   - {x: 1, y: -1, z: 1}
@@ -212,7 +219,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4707194605395507812}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.5}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4030547136489714}

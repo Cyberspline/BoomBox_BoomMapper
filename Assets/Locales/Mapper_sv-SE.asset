@@ -44,11 +44,6 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - id: 0
-  - m_Id: 6
-    m_Localized: 'Events: {EventCount}'
-    m_Metadata:
-      m_Items:
-      - id: 0
   - m_Id: 7
     m_Localized: "TPM-\xE4ndringar: {BPMCount}"
     m_Metadata:
@@ -64,14 +59,6 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - id: 0
-  - m_Id: 10
-    m_Localized: Avsluta
-    m_Metadata:
-      m_Items: []
-  - m_Id: 11
-    m_Localized: "Sparka omkull bordet och l\xE4mna utan att spara!"
-    m_Metadata:
-      m_Items: []
   - m_Id: 12
     m_Localized: Spara och avsluta
     m_Metadata:
@@ -88,49 +75,6 @@ MonoBehaviour:
     m_Localized: "\xD6ppna menyn f\xF6r inst\xE4llningar"
     m_Metadata:
       m_Items: []
-  - m_Id: 16
-    m_Localized: Autospara
-    m_Metadata:
-      m_Items: []
-  - m_Id: 17
-    m_Localized: 'Spara tidigt,
-
-
-      spara ofta!'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 18
-    m_Localized: Chromatic Aberration
-    m_Metadata:
-      m_Items: []
-  - m_Id: 19
-    m_Localized: "S\xE4tter ig\xE5ng effekten f\xF6r Kromatisk avvikelse."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 20
-    m_Localized: Ljusshow
-    m_Metadata:
-      m_Items: []
-  - m_Id: 21
-    m_Localized: "D\xF6ljer allt f\xF6rutom plattformen."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 23
-    m_Localized: Efterbehandlingsstyrka
-    m_Metadata:
-      m_Items: []
-  - m_Id: 24
-    m_Localized: "V\xE4lj ljusets intensitet."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 26
-    m_Localized: "Konvertera fr\xE5n \xE4ldre version"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 27
-    m_Localized: Konvertera Chroma 1.X till Chroma 2.0 events
-    m_Metadata:
-      m_Items: []
   - m_Id: 28
     m_Localized: Spara
     m_Metadata:
@@ -142,52 +86,13 @@ MonoBehaviour:
       spara ofta!'
     m_Metadata:
       m_Items:
-      - id: 0
+      - id: 1
   - m_Id: 30
-    m_Localized: Avsluta ChroMapper
+    m_Localized: Close to Desktop
     m_Metadata:
       m_Items: []
   - m_Id: 31
-    m_Localized: "St\xE4ng ner ChroMapper!"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 32
-    m_Localized: "Here at Chroma\xAE we value your eye-cone thingies.\r\n\r\nA recent
-      trend of duochromitis has plagued the VR community this last year, and we've
-      decided to balance the playing field.\r\n\r\nChroma\xAE, and it's big brother
-      ChromaToggle\u2122, can bring you up from your sad, rainbowless life into a
-      world of Pentachrome\u2122 magic. Experience the joy of having up to six different
-      colours of blocks flying towards you at break neck speed! If that's not enough
-      for you, we even offer a cacophony of Technicolour\xA9 lightwaves, to bring
-      your eyes to their knees!\r\n\r\nNow, with something as brilliant and Nobel
-      Peace Price worthy as the Chroma Suite\u2122, specialized software needs to
-      be created to handle these beasts of technological engineering. That's where
-      ChroMapper\xAE comes into play!\r\n\r\nChroMapper\u2122 makes it easy for the
-      everyday Joe to use the power of Chroma\xA9 RGB\u2122 to create lightshows
-      and maps that are far superior to their duochromatic counterparts! Reality
-      Check Through The Skull? Slap some Chroma on that mofo and you've got yourself
-      a map worthy of Cube Community!\r\n\r\nSo, what are you waiting for? Stop living
-      in your sad two-color world and join us enlightened individuals with the power
-      of Chroma\xAE RGB and ChroMapper\u2122!\r\n\r\n=========================================\r\n\r\nWelcome
-      to ChroMapper!\r\n\r\nChroMapper is an in-development, Unity based mapper for
-      Beat Saber which specializes in advanced map creation. Prepare to fill the
-      eyes of yourself and others with powerful lightshows and wall maps that would
-      make everyone flock to your Beat Saver page!\r\n\r\nChroMapper is not perfect;
-      bugs, issues, and other misconveniences can happen. If you encounter some of
-      these, please go to #cm-bug-reports in the ChroMapper discord, or #cm-suggestions
-      if you want to have ideas to add to, or improve, the ChroMapper. Somehow don't
-      have Discord? Use the ChroMapper GitHub repository!\r\n\r\nControls have been
-      relocated to the \"Keybinds\" section in the Settings menu. Please go there
-      to view all the keybinds!"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 33
-    m_Localized: Uppdatera rotationer
-    m_Metadata:
-      m_Items: []
-  - m_Id: 34
-    m_Localized: "Uppdatera objekt och hur de p\xE5verkas av rotation.\n\nKan \xE5tg\xE4rda\n
-      eventuella ol\xF6sta udda fall med rotationsh\xE4ndelser."
+    m_Localized: Exit BoomMapper
     m_Metadata:
       m_Items: []
   - m_Id: 35
@@ -196,10 +101,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 36
     m_Localized: "Bl\xE5tt Block."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 37
-    m_Localized: Bomber.
     m_Metadata:
       m_Items: []
   - m_Id: 38
@@ -211,44 +112,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 40
-    m_Localized: "Spegla allt markerat, likt v\xE4nster-hands-l\xE4ge."
+    m_Localized: Mirror
     m_Metadata:
       m_Items: []
   - m_Id: 41
     m_Localized: "\xC4ndra arbetsfl\xF6det."
     m_Metadata:
       m_Items:
-      - id: 0
+      - id: 2
   - m_Id: 42
     m_Localized: Radera saker.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 43
-    m_Localized: "Ljuset sl\xE4cks."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 44
-    m_Localized: "Ljuset t\xE4nds."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 45
-    m_Localized: "Ljuset kommer dimma till sl\xE4ckt l\xE4ge."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 46
-    m_Localized: "Ljuset blinkar till fr\xE5n sl\xE4ckt l\xE4ge."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 47
-    m_Localized: Laserns Hastighet
-    m_Metadata:
-      m_Items: []
-  - m_Id: 48
-    m_Localized: Strobe Generator
-    m_Metadata:
-      m_Items: []
-  - m_Id: 49
-    m_Localized: "L\xE4gg till lite Chroma RGB till dina lampor."
     m_Metadata:
       m_Items: []
   - m_Id: 50
@@ -303,134 +176,7 @@ MonoBehaviour:
     m_Localized: "{Keybind} F\xF6r att \xE4ndra"
     m_Metadata:
       m_Items:
-      - id: 0
-  - m_Id: 65
-    m_Localized: "Placera Chroma RGB-h\xE4ndelser."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 66
-    m_Localized: "V\xE4lj f\xE4rger fr\xE5n\n\nChroma f\xE4rgade objekt."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 67
-    m_Localized: "M\xE5la markerade objekt"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 68
-    m_Localized: "St\xE4ll in f\xE4rg f\xF6r v\xE4nstra block"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 69
-    m_Localized: "St\xE4ll in f\xE4rg f\xF6r h\xF6gra block"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 70
-    m_Localized: "St\xE4ll in f\xE4rg f\xF6r r\xF6da ljush\xE4ndelser"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 71
-    m_Localized: "St\xE4ll in f\xE4rg f\xF6r bl\xE5 ljush\xE4ndelser"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 72
-    m_Localized: "St\xE4ll in f\xE4rg f\xF6r hinder"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 73
-    m_Localized: "\xC5terst\xE4ll blockf\xE4rger"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 74
-    m_Localized: "\xC5terst\xE4ll ljusf\xE4rger"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 75
-    m_Localized: "\xC5terst\xE4ll hinderf\xE4rg"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 76
-    m_Localized: Vanliga
-    m_Metadata:
-      m_Items: []
-  - m_Id: 77
-    m_Localized: "Genererar vanliga h\xE4ndelser."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 78
-    m_Localized: Chroma
-    m_Metadata:
-      m_Items: []
-  - m_Id: 79
-    m_Localized: "Skapar gradienter mellan chroma f\xE4rger samtidigt som det genereras
-      en strobe."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 80
-    m_Localized: Dynamisk
-    m_Metadata:
-      m_Items: []
-  - m_Id: 81
-    m_Localized: "\xC4ndrar dynamiskt Strobe-typ A n\xE4r en h\xE4ndelse tr\xE4ffas,
-      medans den genererar\n en strobe."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 82
-    m_Localized: "R\xF6da h\xE4ndelser"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 83
-    m_Localized: "Stroben kommer endast att skapa r\xF6da h\xE4ndelser n\xE4r det
-      \xE4r m\xF6jligt."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 84
-    m_Localized: "Bl\xE5 h\xE4ndelser"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 85
-    m_Localized: "Stroben kommer endast att skapa bl\xE5 h\xE4ndelser n\xE4r det
-      \xE4r m\xF6jligt."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 86
-    m_Localized: Flip Colors
-    m_Metadata:
-      m_Items: []
-  - m_Id: 87
-    m_Localized: Strobe will alternate between both colors when able.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 88
-    m_Localized: Strobeintervall
-    m_Metadata:
-      m_Items: []
-  - m_Id: 89
-    m_Localized: "Hur t\xE4t strob/gradienten blir.\nRekommenderade v\xE4rden \xE4r:
-      1/8 och\n 1/16"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 90
-    m_Localized: Strobe kurva
-    m_Metadata:
-      m_Items: []
-  - m_Id: 91
-    m_Localized: "Best\xE4mmer hastighetsf\xF6r\xE4ndringen av stroben.\nF\xF6r h\xF6gre
-      h\xE4ndelset\xE4thet, \xF6ka\n Strobe-intervallen.\n\nF\xF6r mer information,
-      g\xE5 till: https://easings.net/"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 92
-    m_Localized: Generera Strobe
-    m_Metadata:
-      m_Items: []
-  - m_Id: 93
-    m_Localized: "St\xE4ng"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 94
-    m_Localized: Avslutar nodredigeraren.
-    m_Metadata:
-      m_Items: []
+      - id: 3
   - m_Id: 95
     m_Localized: "Ange TPM f\xF6r den h\xE4r TPM-\xE4ndringen."
     m_Metadata:
@@ -448,34 +194,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 99
-    m_Localized: "S\xE5 vill du uppdatera vissa delar av mappen?\n\nKlicka p\xE5
-      alternativen nedan f\xF6r att uppdatera de delarna av mappen som du vill uppdatera."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 100
-    m_Localized: Block
-    m_Metadata:
-      m_Items: []
-  - m_Id: 101
-    m_Localized: "H\xE4ndelser"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 102
-    m_Localized: "\xD6vrigt"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 103
-    m_Localized: Full uppdatering
-    m_Metadata:
-      m_Items: []
-  - m_Id: 104
-    m_Localized: Hinder
-    m_Metadata:
-      m_Items: []
-  - m_Id: 105
-    m_Localized: "Rotationsh\xE4ndelser \xE4r inaktiverade utanf\xF6r 360-graders,
-      90-graders och Lawless.\n\nOm du vill placera dessa h\xE4ndelser, skapa d\xE5
-      sv\xE5righetsniv\xE5er f\xF6r de ovann\xE4mnda egenskaperna."
+    m_Localized: 'Are you sure you want to reload the map from disk?
+
+
+      Any
+      unsaved changes will be lost!'
     m_Metadata:
       m_Items: []
   - m_Id: 106
@@ -487,21 +210,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 108
-    m_Localized: Vill du spara innan du avslutar ChroMapper?
-    m_Metadata:
-      m_Items: []
-  - m_Id: 109
-    m_Localized: "F\xF6r att anv\xE4nda Strobe Generatorn p\xE5 r\xE4tt s\xE4tt,
-      v\xE4lj 2 \xE4ndpunkter av samma h\xE4ndelsetyp."
+    m_Localized: Do you want to save before quiting BoomMapper?
     m_Metadata:
       m_Items: []
   - m_Id: 110
     m_Localized: "P\xE5 grund av Unity shader-begr\xE4nsningar, s\xE5 \xE4r det maximala
       antalet BPM-\xE4ndringar du kan ha {0}."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 111
-    m_Localized: "Nodeditorn \xE4r v\xE4ldigt kraftfull - Var f\xF6rsiktig!"
     m_Metadata:
       m_Items: []
   - m_Id: 112
@@ -516,125 +230,8 @@ MonoBehaviour:
     m_Localized: Sparar automatisk...
     m_Metadata:
       m_Items: []
-  - m_Id: 115
-    m_Localized: Avbryt
-    m_Metadata:
-      m_Items: []
-  - m_Id: 116
-    m_Localized: "Placera Chroma f\xE4rgade objekt"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 117
-    m_Localized: Set boost color for Blue Lighting Events
-    m_Metadata:
-      m_Items: []
-  - m_Id: 118
-    m_Localized: Set boost color for Red Lighting Events
-    m_Metadata:
-      m_Items: []
-  - m_Id: 119
-    m_Localized: Chroma Easing
-    m_Metadata:
-      m_Items: []
-  - m_Id: 120
-    m_Localized: Changes easing for Chroma gradients.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 121
-    m_Localized: Use Red events.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 122
-    m_Localized: Use Blue events.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 123
-    m_Localized: Basic Event Strobe
-    m_Metadata:
-      m_Items: []
-  - m_Id: 124
-    m_Localized: Chroma 2.0 Gradients
-    m_Metadata:
-      m_Items: []
-  - m_Id: 125
-    m_Localized: Precise Laser Speed Interpolation
-    m_Metadata:
-      m_Items: []
-  - m_Id: 126
-    m_Localized: Placement Interval
-    m_Metadata:
-      m_Items: []
-  - m_Id: 127
-    m_Localized: Controls the density of generated events.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 128
-    m_Localized: Laser Speed Easing
-    m_Metadata:
-      m_Items: []
-  - m_Id: 129
-    m_Localized: Controls easing for precise laser speed values.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 130
-    m_Localized: Lock Laser Rotation
-    m_Metadata:
-      m_Items: []
-  - m_Id: 131
-    m_Localized: Prevents laser rotation from randomly changing.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 132
-    m_Localized: Spin Direction
-    m_Metadata:
-      m_Items: []
-  - m_Id: 133
-    m_Localized: Controls which direction the lasers will spin.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 134
-    m_Localized: Clockwise
-    m_Metadata:
-      m_Items: []
-  - m_Id: 135
-    m_Localized: Counter-Clockwise
-    m_Metadata:
-      m_Items: []
-  - m_Id: 136
-    m_Localized: Random
-    m_Metadata:
-      m_Items: []
-  - m_Id: 137
-    m_Localized: Unique Laser Directions
-    m_Metadata:
-      m_Items: []
-  - m_Id: 138
-    m_Localized: Ensures that Left and Right lasers will rotate in opposite directions.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 139
-    m_Localized: Decimal Precision
-    m_Metadata:
-      m_Items: []
-  - m_Id: 140
-    m_Localized: Controls amount of precision for speed values.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 141
-    m_Localized: 'Swings Per Second: {OverallSPS:F2}'
-    m_Metadata:
-      m_Items:
-      - id: 0
-  - m_Id: 143
-    m_Localized: Chroma Step Gradient
-    m_Metadata:
-      m_Items: []
   - m_Id: 144
     m_Localized: Note
-    m_Metadata:
-      m_Items: []
-  - m_Id: 145
-    m_Localized: Bomb
     m_Metadata:
       m_Items: []
   - m_Id: 146
@@ -645,32 +242,8 @@ MonoBehaviour:
     m_Localized: Radera
     m_Metadata:
       m_Items: []
-  - m_Id: 148
-    m_Localized: Fade
-    m_Metadata:
-      m_Items: []
-  - m_Id: 149
-    m_Localized: On
-    m_Metadata:
-      m_Items: []
-  - m_Id: 150
-    m_Localized: Off
-    m_Metadata:
-      m_Items: []
-  - m_Id: 151
-    m_Localized: Flash
-    m_Metadata:
-      m_Items: []
   - m_Id: 152
     m_Localized: Cursor Interval
-    m_Metadata:
-      m_Items: []
-  - m_Id: 153
-    m_Localized: Precision Rotation
-    m_Metadata:
-      m_Items: []
-  - m_Id: 154
-    m_Localized: Swaps what side the spectrogram is on
     m_Metadata:
       m_Items: []
   - m_Id: 155
@@ -681,17 +254,12 @@ MonoBehaviour:
     m_Localized: 'Current BPM: {CurrentBPM:0.###}'
     m_Metadata:
       m_Items:
-      - id: 0
+      - id: 4
   - m_Id: 1123800776704
     m_Localized: 'Red/Blue Ratio: {RedBlueRatio:F2}'
     m_Metadata:
       m_Items:
-      - id: 0
-  - m_Id: 3209883108945920
-    m_Localized: 'Bombs: {BombCount}'
-    m_Metadata:
-      m_Items:
-      - id: 0
+      - id: 5
   - m_Id: 12803634470490112
     m_Localized: Select the new color for this bookmark.
     m_Metadata:
@@ -700,9 +268,45 @@ MonoBehaviour:
     m_Localized: "Markera n\xE5got f\xF6rst!"
     m_Metadata:
       m_Items: []
+  - m_Id: 78620000642465792
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78620058251231232
+    m_Localized: Close the editor without saving.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78638426140246016
+    m_Localized: Metadata Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78638489654591488
+    m_Localized: Graphics Settings
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 290000000000000000b07a265f670b00070000000000000000003fb3360000000600000000000000010000000000000003000000000000000200000000000000040000000000000005000000000000000000bfa7050100008d0000000000000008000000000000001d0000000000000009000000000000004000000000000000
+    00000001:
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 290000000000000000b07a265f670b00070000000000000000003fb3360000000600000000000000010000000000000003000000000000000200000000000000040000000000000005000000000000000000bfa7050100008d0000000000000008000000000000001d0000000000000009000000000000004000000000000000
+    00000002:
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 290000000000000000b07a265f670b00070000000000000000003fb3360000000600000000000000010000000000000003000000000000000200000000000000040000000000000005000000000000000000bfa7050100008d0000000000000008000000000000001d0000000000000009000000000000004000000000000000
+    00000003:
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 290000000000000000b07a265f670b00070000000000000000003fb3360000000600000000000000010000000000000003000000000000000200000000000000040000000000000005000000000000000000bfa7050100008d0000000000000008000000000000001d0000000000000009000000000000004000000000000000
+    00000004:
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 290000000000000000b07a265f670b00070000000000000000003fb3360000000600000000000000010000000000000003000000000000000200000000000000040000000000000005000000000000000000bfa7050100008d0000000000000008000000000000001d0000000000000009000000000000004000000000000000
+    00000005:
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
         m_Entries: 290000000000000000b07a265f670b00070000000000000000003fb3360000000600000000000000010000000000000003000000000000000200000000000000040000000000000005000000000000000000bfa7050100008d0000000000000008000000000000001d0000000000000009000000000000004000000000000000

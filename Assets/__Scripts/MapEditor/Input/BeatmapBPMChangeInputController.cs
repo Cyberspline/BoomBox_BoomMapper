@@ -1,11 +1,37 @@
-﻿using UnityEngine.InputSystem;
+﻿using System.Linq;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class BeatmapBPMChangeInputController : BeatmapInputController<BeatmapBPMChangeContainer>,
     CMInput.IBPMChangeObjectsActions
 {
+    public override void OnQuickDelete(InputAction.CallbackContext context)
+    {
+        if (!context.performed || CustomStandaloneInputModule.IsPointerOverGameObject<GraphicRaycaster>(-1, true))
+            return;
+
+        RaycastFirstObject(out var obj);
+
+        if (obj == null) return;
+
+        var collection = BeatmapObjectContainerCollection.GetCollectionForType<BPMChangesContainer>(BeatmapObject.ObjectType.BpmChange);
+
+        // TODO: Localize
+        if (obj.ObjectData == collection.LoadedObjects.FirstOrDefault())
+        {
+            PersistentUI.Instance.ShowDialogBox(
+                "This BPM Change defines the tempo for the entire map.\nBecause of this, deleting this BPM Change is not allowed.",
+                null, PersistentUI.DialogBoxPresetType.Ok);
+
+            return;
+        }
+
+        if (!obj.Dragging) StartCoroutine(CompleteDelete(obj));
+    }
+
     public void OnReplaceBPM(InputAction.CallbackContext context)
     {
-        if (context.performed && !PersistentUI.Instance.InputBoxIsEnabled)
+        if (context.performed)
         {
             RaycastFirstObject(out var containerToEdit);
             if (containerToEdit != null)

@@ -13,7 +13,6 @@ public class DarkThemeSO : ScriptableObject
 
     public void DarkThemeifyUI()
     {
-        if (!Settings.Instance.DarkTheme) return;
         foreach (var jankCodeMate in Resources.FindObjectsOfTypeAll<TextMeshProUGUI>())
         {
             if (jankCodeMate == null || jankCodeMate.font == null) continue;

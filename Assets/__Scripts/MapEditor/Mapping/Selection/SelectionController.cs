@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 /// <summary>
 ///     Big boi master class for everything Selection.
 /// </summary>
-public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMInput.IModifyingSelectionActions
+public class SelectionController : MonoBehaviour, CMInput.ISelectionActions
 {
     public static HashSet<BeatmapObject> SelectedObjects = new HashSet<BeatmapObject>();
     public static HashSet<BeatmapObject> CopiedObjects = new HashSet<BeatmapObject>();
@@ -20,14 +20,10 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
     private static SelectionController instance;
 
     [SerializeField] private AudioTimeSyncController atsc;
-    [SerializeField] private Material selectionMaterial;
-    [SerializeField] private Transform moveableGridTransform;
     [SerializeField] private Color selectedColor;
     [SerializeField] private Color copiedColor;
     [SerializeField] private TracksManager tracksManager;
-    [SerializeField] private EventPlacement eventPlacement;
 
-    [SerializeField] private CreateEventTypeLabels labels;
     private bool shiftInPlace;
 
     private bool shiftInTime;
@@ -72,14 +68,22 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
         if (!context.performed) return;
         var movement = context.ReadValue<Vector2>();
 
-        if (shiftInPlace) ShiftSelection(Mathf.RoundToInt(movement.x), Mathf.RoundToInt(movement.y));
-
         if (shiftInTime) MoveSelection(movement.y * (1f / atsc.GridMeasureSnapping));
     }
 
-    public void OnActivateShiftinTime(InputAction.CallbackContext context) => shiftInTime = context.performed;
+    public void OnRotateSelection(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        var movement = context.ReadValue<float>();
 
-    public void OnActivateShiftinPlace(InputAction.CallbackContext context) => shiftInPlace = context.performed;
+        var direction = movement > 0
+            ? 1
+            : -1;
+
+        RotateSelection(direction);
+    }
+
+    public void OnActivateShiftinTime(InputAction.CallbackContext context) => shiftInTime = context.performed;
 
     public void OnDeselectAll(InputAction.CallbackContext context)
     {
@@ -154,21 +158,16 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
         {
             clearTypes.AddRange(new[]
             {
-                BeatmapObject.ObjectType.Note, BeatmapObject.ObjectType.Obstacle, BeatmapObject.ObjectType.CustomNote
+                BeatmapObject.ObjectType.Note, BeatmapObject.ObjectType.Obstacle
             });
         }
 
-        if (hasNoteOrObstacle && !hasEvent)
-            clearTypes.Add(BeatmapObject.ObjectType.Event); //for rotation events
-        if (hasEvent)
+        if (hasBpmChange)
         {
-            clearTypes.AddRange(new[]
-            {
-                BeatmapObject.ObjectType.Event, BeatmapObject.ObjectType.CustomEvent, BeatmapObject.ObjectType.BpmChange
-            });
+            clearTypes.Add(BeatmapObject.ObjectType.BpmChange);
         }
 
-        var epsilon = 1f / Mathf.Pow(10, Settings.Instance.TimeValueDecimalPrecision);
+        var epsilon = 0.001f;
         foreach (var type in clearTypes)
         {
             var collection = BeatmapObjectContainerCollection.GetCollectionForType(type);
@@ -177,13 +176,6 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
             foreach (var toCheck in collection.LoadedObjects.Where(x =>
                 x.Time > start - epsilon && x.Time < end + epsilon))
             {
-                if (!hasEvent && toCheck is MapEvent mapEvent &&
-                    !mapEvent
-                        .IsRotationEvent) //Includes only rotation events when neither of the two objects are events
-                {
-                    continue;
-                }
-
                 callback?.Invoke(collection, toCheck);
             }
         }
@@ -241,7 +233,7 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
                 SelectedObjects.Add(beatmapObject);
                 if (collection.LoadedContainers.TryGetValue(beatmapObject, out var container))
                     container.SetOutlineColor(instance.selectedColor);
-                if (addActionEvent) ObjectWasSelectedEvent.Invoke(beatmapObject);
+                if (addActionEvent) ObjectWasSelectedEvent?.Invoke(beatmapObject);
             });
         if (addActionEvent)
             SelectionChangedEvent?.Invoke();
@@ -326,7 +318,7 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
         var bpmChanges =
             BeatmapObjectContainerCollection.GetCollectionForType<BPMChangesContainer>(BeatmapObject.ObjectType.BpmChange);
         var lastBpmChange = bpmChanges.FindLastBpm(atsc.CurrentBeat);
-        copiedBpm = lastBpmChange?.Bpm ?? atsc.Song.BeatsPerMinute;
+        copiedBpm = lastBpmChange?.Bpm ?? atsc.Map.BeginningBPM;
     }
 
     /// <summary>
@@ -445,17 +437,10 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
             if (collection is BPMChangesContainer con) con.RefreshModifiedBeat();
         }
 
-        if (CopiedObjects.Any(x => x is MapEvent e && e.IsRotationEvent)) tracksManager.RefreshTracks();
         if (triggersAction) BeatmapActionContainer.AddAction(new SelectionPastedAction(pasted, totalRemoved));
         SelectionPastedEvent?.Invoke(pasted);
         SelectionChangedEvent?.Invoke();
         RefreshSelectionMaterial(false);
-
-        if (eventPlacement.objectContainerCollection.PropagationEditing != EventsContainer.PropMode.Off)
-        {
-            eventPlacement.objectContainerCollection.PropagationEditing =
-                eventPlacement.objectContainerCollection.PropagationEditing;
-        }
 
         Debug.Log("Pasted!");
     }
@@ -476,12 +461,6 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
 
             if (collection.LoadedContainers.TryGetValue(data, out var con)) con.UpdateGridPosition();
 
-            if (collection is NotesContainer notesContainer)
-            {
-                notesContainer.RefreshSpecialAngles(original, false, false);
-                notesContainer.RefreshSpecialAngles(data, false, false);
-            }
-
             allActions.Add(new BeatmapObjectModifiedAction(data, data, original, "", true));
         }
 
@@ -490,138 +469,29 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
         BeatmapObjectContainerCollection.RefreshAllPools();
     }
 
-    public void ShiftSelection(int leftRight, int upDown)
+    public void RotateSelection(int direction)
     {
+        var radialTable = RadialIndexTable.Instance;
+
         var allActions = SelectedObjects.AsParallel().Select(data =>
         {
             var original = BeatmapObject.GenerateCopy(data);
+
             if (data is BeatmapNote note)
             {
-                if (note.CustomData is null || !note.CustomData.HasKey("_position"))
-                {
-                    if (note.LineIndex >= 1000)
-                    {
-                        note.LineIndex += Mathf.RoundToInt(1f / atsc.GridMeasureSnapping * 1000 * leftRight);
-                        if (note.LineIndex < 1000) note.LineIndex = 1000;
-                    }
-                    else if (note.LineIndex <= -1000)
-                    {
-                        note.LineIndex += Mathf.RoundToInt(1f / atsc.GridMeasureSnapping * 1000 * leftRight);
-                        if (note.LineIndex > -1000) note.LineIndex = -1000;
-                    }
-                    else
-                    {
-                        note.LineIndex += leftRight;
-                    }
-
-                    note.LineLayer += upDown;
-                }
-                else
-                {
-                    if (data.CustomData.HasKey("_position"))
-                    {
-                        data.CustomData["_position"][0] += 1f / atsc.GridMeasureSnapping * leftRight;
-                        data.CustomData["_position"][1] += 1f / atsc.GridMeasureSnapping * upDown;
-                    }
-                }
+                note.RadialIndex = direction > 0
+                    ? radialTable.GetRightNoteRadialIndex(note.RadialIndex)
+                    : radialTable.GetLeftNoteRadialIndex(note.RadialIndex);
             }
             else if (data is BeatmapObstacle obstacle)
             {
-                if (!obstacle.IsNoodleExtensionsWall)
-                {
-                    if (obstacle.LineIndex >= 1000)
-                    {
-                        obstacle.LineIndex += Mathf.RoundToInt(1f / atsc.GridMeasureSnapping * 1000 * leftRight);
-                        if (obstacle.LineIndex < 1000) obstacle.LineIndex = 1000;
-                    }
-                    else if (obstacle.LineIndex <= -1000)
-                    {
-                        obstacle.LineIndex += Mathf.RoundToInt(1f / atsc.GridMeasureSnapping * 1000 * leftRight);
-                        if (obstacle.LineIndex > -1000) obstacle.LineIndex = -1000;
-                    }
-                    else
-                    {
-                        obstacle.LineIndex += leftRight;
-                    }
-                }
-                else
-                {
-                    if (data.CustomData.HasKey("_position"))
-                    {
-                        data.CustomData["_position"][0] += 1f / atsc.GridMeasureSnapping * leftRight;
-                        data.CustomData["_position"][1] += 1f / atsc.GridMeasureSnapping * upDown;
-                    }
-                }
-            }
-            else if (data is MapEvent e)
-            {
-                var events = eventPlacement.objectContainerCollection;
-                if (eventPlacement.objectContainerCollection.PropagationEditing == EventsContainer.PropMode.Light)
-                {
-                    var max = events.platformDescriptor.LightingManagers[events.EventTypeToPropagate].ControllingLights
-                        .Select(x => x.LightID).Max();
+                obstacle.A.RadialIndex = direction > 0
+                    ? radialTable.GetRightObstacleRadialIndex(obstacle.A.RadialIndex)
+                    : radialTable.GetLeftObstacleRadialIndex(obstacle.A.RadialIndex);
 
-                    var curId = e.IsLightIdEvent ? e.LightId[0] : 0;
-                    var newId = Math.Min(curId + leftRight, max);
-                    if (newId < 1)
-                        data.CustomData?.Remove("_lightID");
-                    else
-                        data.GetOrCreateCustomData()["_lightID"] = newId;
-                }
-                else if (eventPlacement.objectContainerCollection.PropagationEditing == EventsContainer.PropMode.Prop)
-                {
-                    var oldId = (e.IsLightIdEvent
-                        ? labels.LightIdsToPropId(events.EventTypeToPropagate, e.LightId)
-                        : null) ?? -1;
-                    var max = events.platformDescriptor.LightingManagers[events.EventTypeToPropagate].LightsGroupedByZ
-                        .Length;
-                    var newId = Math.Min(oldId + leftRight, max - 1);
-
-                    if (newId < 0)
-                    {
-                        data.CustomData?.Remove("_lightID");
-                    }
-                    else
-                    {
-                        data.GetOrCreateCustomData()["_lightID"] =
-                            labels.PropIdToLightIdsJ(events.EventTypeToPropagate, newId);
-                    }
-                }
-                else
-                {
-                    var oldType = e.Type;
-
-                    var modified = labels.EventTypeToLaneId(e.Type);
-
-                    modified += leftRight;
-
-                    if (modified < 0) modified = 0;
-
-                    var laneCount = labels.MaxLaneId();
-
-                    if (modified > laneCount) modified = laneCount;
-
-                    e.Type = labels.LaneIdToEventType(modified);
-
-                    if (e.IsLightIdEvent && !e.CustomData["_lightID"].IsArray)
-                    {
-                        var editorID = labels.LightIDToEditor(oldType, e.LightId[0]);
-                        e.CustomData["_lightID"] = labels.EditorToLightID(e.Type, editorID);
-                    }
-                    else if (e.IsLightIdEvent)
-                    {
-                        e.CustomData["_lightID"] = labels.PropIdToLightIdsJ(e.Type, e.PropId);
-                    }
-
-                    if (e.CustomData != null && e.CustomData.HasKey("_lightID") &&
-                        e.CustomData["_lightID"].IsArray &&
-                        e.CustomData["_lightID"].Count == 0)
-                    {
-                        e.CustomData.Remove("_lightID");
-                    }
-                }
-
-                if (data.CustomData?.Count <= 0) data.CustomData = null;
+                obstacle.B.RadialIndex = direction > 0
+                    ? radialTable.GetRightObstacleRadialIndex(obstacle.B.RadialIndex)
+                    : radialTable.GetLeftObstacleRadialIndex(obstacle.B.RadialIndex);
             }
 
             return new BeatmapObjectModifiedAction(data, data, original, "", true);
@@ -637,7 +507,7 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
     /// </summary>
     public static void RefreshMap()
     {
-        if (BeatSaberSongContainer.Instance.Map != null)
+        if (BoomBoxSongContainer.Instance.Map != null)
         {
             var newObjects = new Dictionary<BeatmapObject.ObjectType, IEnumerable<BeatmapObject>>();
             foreach (int num in Enum.GetValues(typeof(BeatmapObject.ObjectType)))
@@ -648,31 +518,14 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
                 newObjects.Add(type, collection.GrabSortedObjects());
             }
 
-            if (Settings.Instance.Load_Notes)
-            {
-                BeatSaberSongContainer.Instance.Map.Notes =
-                    newObjects[BeatmapObject.ObjectType.Note].Cast<BeatmapNote>().ToList();
-            }
+            BoomBoxSongContainer.Instance.Map.Objects =
+                newObjects[BeatmapObject.ObjectType.Note].Cast<BeatmapNote>().ToList();
 
-            if (Settings.Instance.Load_Obstacles)
-            {
-                BeatSaberSongContainer.Instance.Map.Obstacles =
-                    newObjects[BeatmapObject.ObjectType.Obstacle].Cast<BeatmapObstacle>().ToList();
-            }
+            BoomBoxSongContainer.Instance.Map.Obstacles =
+                newObjects[BeatmapObject.ObjectType.Obstacle].Cast<BeatmapObstacle>().ToList();
 
-            if (Settings.Instance.Load_Events)
-            {
-                BeatSaberSongContainer.Instance.Map.Events =
-                    newObjects[BeatmapObject.ObjectType.Event].Cast<MapEvent>().ToList();
-            }
-
-            if (Settings.Instance.Load_Others)
-            {
-                BeatSaberSongContainer.Instance.Map.BpmChanges =
-                    newObjects[BeatmapObject.ObjectType.BpmChange].Cast<BeatmapBPMChange>().ToList();
-                BeatSaberSongContainer.Instance.Map.CustomEvents = newObjects[BeatmapObject.ObjectType.CustomEvent]
-                    .Cast<BeatmapCustomEvent>().ToList();
-            }
+            BoomBoxSongContainer.Instance.Map.TimingPoints =
+                newObjects[BeatmapObject.ObjectType.BpmChange].Cast<BeatmapBPMChange>().ToList();
         }
     }
 

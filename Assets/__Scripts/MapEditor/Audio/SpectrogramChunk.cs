@@ -41,7 +41,7 @@ public class SpectrogramChunk : MonoBehaviour
         {
             previousEditorScale = EditorScaleController.EditorScale;
             // Beats per centisecond, only needed for the 3d waveform. I don't know why
-            var bpcs = BeatSaberSongContainer.Instance.Song.BeatsPerMinute / (60f * 100);
+            var bpcs = BoomBoxSongContainer.Instance.Map.BeginningBPM / (60f * 100);
             transform.localPosition = new Vector3(0, -0.15f,
                 (chunkID + (waveform.WaveformType == 2 ? bpcs : 0)) *
                 (EditorScaleController.EditorScale * BeatmapObjectContainerCollection.ChunkSize));

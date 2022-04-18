@@ -33,7 +33,7 @@ public class AudioPreviewGenerator : MonoBehaviour
 
     private IEnumerator RefreshVisuals()
     {
-        if (BeatSaberSongContainer.Instance.LoadedSong == null) yield break;
+        if (BoomBoxSongContainer.Instance.LoadedSong == null) yield break;
 
         // Wait for previous run to end
         audioManager.OnDestroy();
@@ -47,7 +47,7 @@ public class AudioPreviewGenerator : MonoBehaviour
         WaveformData = new WaveformData();
 
         audioManager.SetSecondPerChunk(5);
-        audioManager.Begin(false, spectrogramGradient2d, BeatSaberSongContainer.Instance.LoadedSong, WaveformData, null,
+        audioManager.Begin(false, spectrogramGradient2d, BoomBoxSongContainer.Instance.LoadedSong, WaveformData, null,
             5);
 
         while (audioManager.IsAlive())
@@ -91,8 +91,8 @@ public class AudioPreviewGenerator : MonoBehaviour
 
     private void UpdatePreviewSelection()
     {
-        if (BeatSaberSongContainer.Instance.LoadedSong == null) return;
-        var length = BeatSaberSongContainer.Instance.LoadedSong.length;
+        if (BoomBoxSongContainer.Instance.LoadedSong == null) return;
+        var length = BoomBoxSongContainer.Instance.LoadedSong.length;
 
         // oh god look at all this jank
         var size = (transform.parent.parent as RectTransform).sizeDelta.x +
