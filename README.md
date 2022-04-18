@@ -1,4 +1,4 @@
-﻿![This is ChroMapper.](https://github.com/Cyberspline/BoomBox_BoomMapper/blob/boombox/Assets/_Graphics/Textures%20And%20Sprites/ChroMapperTextNew.png)
+﻿![This is BoomMapper.](https://github.com/Cyberspline/BoomBox_BoomMapper/blob/master/Assets/_Graphics/Textures%20And%20Sprites/BoomMapper.png)
 
 [![Crowdin](https://badges.crowdin.net/chromapper/localized.svg)](https://crowdin.com/project/chromapper)
 
@@ -13,8 +13,8 @@ BoomMapper is the new official map editor for BoomBox, built off of [ChroMapper]
 
 ## Changes from ChroMapper
 - Entire program has been converted to use the BoomBox pack/map format.
-- All content related to Beat Saber (including code, assets, and ChroMapper features) have been/will be completely removed.
-- Switch to Newtonsoft.JSON as the primary JSON library over SimpleJSON (for performance and ease of use).
+- All content related to Beat Saber (including code, assets, and ChroMapper features) have been completely removed.
+- Switch to Newtonsoft.JSON as the primary JSON library over SimpleJSON.
 
 # Releases
 BoomMapper is currently in development, so no releases are available right now. Check back later for official releases.
@@ -26,4 +26,4 @@ Localization is TBD.
 BoomMapper is developed with Unity in C#. Please see the [build guide](BUILD.md) for setting up your development environment.
 
 ## License
-The project uses the [GNU GPL v2 license](https://github.com/Caeden117/ChroMapper/blob/master/LICENSE). Please keep that license in mind as you make contributions to ChroMapper.
+The project uses the [GNU GPL v2 license](https://github.com/Cyberspline/BoomBox_BoomMapper/blob/master/LICENSE). Please keep that license in mind as you make contributions to ChroMapper.
