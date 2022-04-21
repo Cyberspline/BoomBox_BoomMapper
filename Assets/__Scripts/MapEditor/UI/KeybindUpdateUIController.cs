@@ -55,10 +55,16 @@ public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsAction
         deleteToolController.UpdateDeletion(true);
     }
 
-    public void OnMirror(InputAction.CallbackContext context)
+    public void OnMirrorHorizontally(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        mirror.Mirror();
+        mirror.Mirror(true, false);
+    }
+
+    public void OnMirrorVertically(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        mirror.Mirror(false, true);
     }
 
     public void OnMirrorinTime(InputAction.CallbackContext context)
@@ -70,6 +76,6 @@ public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsAction
     public void OnMirrorColoursOnly(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        mirror.Mirror(false);
+        mirror.MirrorColors();
     }
 }

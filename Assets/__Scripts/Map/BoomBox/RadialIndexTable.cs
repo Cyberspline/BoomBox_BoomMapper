@@ -26,10 +26,6 @@ public class RadialIndexTable : ScriptableObject
 
     public int ObstaclePlacements => obstaclePlacements.Count;
 
-    private Dictionary<int, int> mirroredNotePlacementIndices = new Dictionary<int, int>();
-
-    private Dictionary<int, int> mirroredObstaclePlacementIndices = new Dictionary<int, int>();
-
     /// <summary>
     /// Gets the 2D position of a note
     /// </summary>
@@ -58,36 +54,33 @@ public class RadialIndexTable : ScriptableObject
     /// <returns>Position of the obstacle point.</returns>
     public Vector2 GetObstaclePlacement(int radialIndex) => (obstaclePlacements[radialIndex] * globalScale) + globalOffset;
 
-    public int GetHorizontallyMirroredNoteRadialIndex(int radialIndex)
+    public int GetMirroredNoteRadialIndex(int radialIndex, bool horizontal, bool vertical)
     {
-        if (!mirroredNotePlacementIndices.TryGetValue(radialIndex, out var mirroredRadialIndex))
+        var position = notePlacements[radialIndex];
+
+        if (horizontal)
         {
-            var position = (GetNotePlacement(radialIndex) / globalScale) - globalOffset;
             position.x *= -1;
-
-            var closest = notePlacements.OrderBy((x) => Vector2.Distance(x, position));
-            mirroredRadialIndex = notePlacements.IndexOf(closest.First());
-
-            mirroredNotePlacementIndices.Add(radialIndex, mirroredRadialIndex);
         }
 
-        return mirroredRadialIndex;
+        if (vertical)
+        {
+            var halfUp = (notePlacements.Min(it => it.y) + notePlacements.Max(it => it.y)) / 2;
+            position.y += (halfUp - position.y) * 2;
+        }
+
+        var closest = notePlacements.OrderBy((x) => Vector2.Distance(x, position));
+        return notePlacements.IndexOf(closest.First());
     }
 
-    public int GetHorizontallyMirroredObstacleRadialIndex(int radialIndex)
+    public int GetMirroredObstacleRadialIndex(int radialIndex, bool horizontal, bool vertical)
     {
-        if (!mirroredObstaclePlacementIndices.TryGetValue(radialIndex, out var mirroredRadialIndex))
-        {
-            var position = (GetObstaclePlacement(radialIndex) / globalScale) - globalOffset;
-            position.x *= -1;
+        var position = obstaclePlacements[radialIndex];
+        position.x *= horizontal ? -1 : 1;
+        position.y *= vertical ? -1 : 1;
 
-            var closest = obstaclePlacements.OrderBy((x) => Vector2.Distance(x, position));
-            mirroredRadialIndex = obstaclePlacements.IndexOf(closest.First());
-
-            mirroredObstaclePlacementIndices.Add(radialIndex, mirroredRadialIndex);
-        }
-
-        return mirroredRadialIndex;
+        var closest = obstaclePlacements.OrderBy((x) => Vector2.Distance(x, position));
+        return obstaclePlacements.IndexOf(closest.First());
     }
 
     // Gets radial index to the right of given radial index

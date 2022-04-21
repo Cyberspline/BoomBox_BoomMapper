@@ -768,9 +768,17 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "Mirror",
+                    "name": "Mirror Horizontally",
                     "type": "Button",
                     "id": "4b2fa447-5ce7-4170-b3db-e1998f0c5bf3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Mirror Vertically",
+                    "type": "Button",
+                    "id": "498f60ef-e707-40fb-b5d5-8b8f20fa37e4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
@@ -841,42 +849,9 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "ChroMapper Default",
-                    "action": "Mirror",
+                    "action": "Mirror Horizontally",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "Button With One Modifier",
-                    "id": "93c0251c-a14c-4d92-b2eb-88904f470ee2",
-                    "path": "ButtonWithOneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Mirror in Time",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "d022688c-78fc-43bd-b272-48548fc225cf",
-                    "path": "<Keyboard>/alt",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Mirror in Time",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "button",
-                    "id": "84103763-6f99-40ad-a71b-e3f98f40f162",
-                    "path": "<Keyboard>/m",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Mirror in Time",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 },
                 {
                     "name": "Button With One Modifier",
@@ -932,6 +907,83 @@
                     "action": "Swap Cursor Interval",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Button With Two Modifiers",
+                    "id": "3f754dba-427a-42e8-95f4-5bf9f47497e7",
+                    "path": "ButtonWithTwoModifiers",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mirror in Time",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier1",
+                    "id": "6e24801c-fd22-4ebd-8837-967b5189b37e",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Mirror in Time",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "modifier2",
+                    "id": "ed7f4706-bb5e-4a24-aa2e-f1c72a7f9c84",
+                    "path": "<Keyboard>/alt",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Mirror in Time",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "eb64901a-7952-46e1-a983-cbc9220435c9",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Mirror in Time",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Button With One Modifier",
+                    "id": "e147ccfb-914d-4db7-b04c-99cae5794a1d",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mirror Vertically",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "8e11b2dc-744d-46ad-ae4a-e4a935f33f77",
+                    "path": "<Keyboard>/alt",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Mirror Vertically",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "f6824464-7e6c-4f89-bcb8-d114ccb5aace",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Mirror Vertically",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },

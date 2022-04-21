@@ -781,9 +781,17 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""interactions"": ""Press""
                 },
                 {
-                    ""name"": ""Mirror"",
+                    ""name"": ""Mirror Horizontally"",
                     ""type"": ""Button"",
                     ""id"": ""4b2fa447-5ce7-4170-b3db-e1998f0c5bf3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Mirror Vertically"",
+                    ""type"": ""Button"",
+                    ""id"": ""498f60ef-e707-40fb-b5d5-8b8f20fa37e4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
@@ -854,42 +862,9 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Mirror"",
+                    ""action"": ""Mirror Horizontally"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Button With One Modifier"",
-                    ""id"": ""93c0251c-a14c-4d92-b2eb-88904f470ee2"",
-                    ""path"": ""ButtonWithOneModifier"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Mirror in Time"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""modifier"",
-                    ""id"": ""d022688c-78fc-43bd-b272-48548fc225cf"",
-                    ""path"": ""<Keyboard>/alt"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Mirror in Time"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""button"",
-                    ""id"": ""84103763-6f99-40ad-a71b-e3f98f40f162"",
-                    ""path"": ""<Keyboard>/m"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Mirror in Time"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""Button With One Modifier"",
@@ -945,6 +920,83 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""action"": ""Swap Cursor Interval"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Button With Two Modifiers"",
+                    ""id"": ""3f754dba-427a-42e8-95f4-5bf9f47497e7"",
+                    ""path"": ""ButtonWithTwoModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mirror in Time"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""6e24801c-fd22-4ebd-8837-967b5189b37e"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Mirror in Time"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""ed7f4706-bb5e-4a24-aa2e-f1c72a7f9c84"",
+                    ""path"": ""<Keyboard>/alt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Mirror in Time"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""eb64901a-7952-46e1-a983-cbc9220435c9"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Mirror in Time"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Button With One Modifier"",
+                    ""id"": ""e147ccfb-914d-4db7-b04c-99cae5794a1d"",
+                    ""path"": ""ButtonWithOneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mirror Vertically"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""8e11b2dc-744d-46ad-ae4a-e4a935f33f77"",
+                    ""path"": ""<Keyboard>/alt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Mirror Vertically"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""f6824464-7e6c-4f89-bcb8-d114ccb5aace"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Mirror Vertically"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -2399,7 +2451,8 @@ public class @CMInput : IInputActionCollection, IDisposable
         m_Workflows_PlaceRedNote = m_Workflows.FindAction("Place Red Note", throwIfNotFound: true);
         m_Workflows_PlaceBlueNote = m_Workflows.FindAction("Place Blue Note", throwIfNotFound: true);
         m_Workflows_ToggleDeleteTool = m_Workflows.FindAction("Toggle Delete Tool", throwIfNotFound: true);
-        m_Workflows_Mirror = m_Workflows.FindAction("Mirror", throwIfNotFound: true);
+        m_Workflows_MirrorHorizontally = m_Workflows.FindAction("Mirror Horizontally", throwIfNotFound: true);
+        m_Workflows_MirrorVertically = m_Workflows.FindAction("Mirror Vertically", throwIfNotFound: true);
         m_Workflows_MirrorinTime = m_Workflows.FindAction("Mirror in Time", throwIfNotFound: true);
         m_Workflows_MirrorColoursOnly = m_Workflows.FindAction("Mirror Colours Only", throwIfNotFound: true);
         m_Workflows_SwapCursorInterval = m_Workflows.FindAction("Swap Cursor Interval", throwIfNotFound: true);
@@ -2826,7 +2879,8 @@ public class @CMInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Workflows_PlaceRedNote;
     private readonly InputAction m_Workflows_PlaceBlueNote;
     private readonly InputAction m_Workflows_ToggleDeleteTool;
-    private readonly InputAction m_Workflows_Mirror;
+    private readonly InputAction m_Workflows_MirrorHorizontally;
+    private readonly InputAction m_Workflows_MirrorVertically;
     private readonly InputAction m_Workflows_MirrorinTime;
     private readonly InputAction m_Workflows_MirrorColoursOnly;
     private readonly InputAction m_Workflows_SwapCursorInterval;
@@ -2838,7 +2892,8 @@ public class @CMInput : IInputActionCollection, IDisposable
         public InputAction @PlaceRedNote => m_Wrapper.m_Workflows_PlaceRedNote;
         public InputAction @PlaceBlueNote => m_Wrapper.m_Workflows_PlaceBlueNote;
         public InputAction @ToggleDeleteTool => m_Wrapper.m_Workflows_ToggleDeleteTool;
-        public InputAction @Mirror => m_Wrapper.m_Workflows_Mirror;
+        public InputAction @MirrorHorizontally => m_Wrapper.m_Workflows_MirrorHorizontally;
+        public InputAction @MirrorVertically => m_Wrapper.m_Workflows_MirrorVertically;
         public InputAction @MirrorinTime => m_Wrapper.m_Workflows_MirrorinTime;
         public InputAction @MirrorColoursOnly => m_Wrapper.m_Workflows_MirrorColoursOnly;
         public InputAction @SwapCursorInterval => m_Wrapper.m_Workflows_SwapCursorInterval;
@@ -2863,9 +2918,12 @@ public class @CMInput : IInputActionCollection, IDisposable
                 @ToggleDeleteTool.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnToggleDeleteTool;
                 @ToggleDeleteTool.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnToggleDeleteTool;
                 @ToggleDeleteTool.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnToggleDeleteTool;
-                @Mirror.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnMirror;
-                @Mirror.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnMirror;
-                @Mirror.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnMirror;
+                @MirrorHorizontally.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnMirrorHorizontally;
+                @MirrorHorizontally.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnMirrorHorizontally;
+                @MirrorHorizontally.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnMirrorHorizontally;
+                @MirrorVertically.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnMirrorVertically;
+                @MirrorVertically.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnMirrorVertically;
+                @MirrorVertically.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnMirrorVertically;
                 @MirrorinTime.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnMirrorinTime;
                 @MirrorinTime.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnMirrorinTime;
                 @MirrorinTime.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnMirrorinTime;
@@ -2891,9 +2949,12 @@ public class @CMInput : IInputActionCollection, IDisposable
                 @ToggleDeleteTool.started += instance.OnToggleDeleteTool;
                 @ToggleDeleteTool.performed += instance.OnToggleDeleteTool;
                 @ToggleDeleteTool.canceled += instance.OnToggleDeleteTool;
-                @Mirror.started += instance.OnMirror;
-                @Mirror.performed += instance.OnMirror;
-                @Mirror.canceled += instance.OnMirror;
+                @MirrorHorizontally.started += instance.OnMirrorHorizontally;
+                @MirrorHorizontally.performed += instance.OnMirrorHorizontally;
+                @MirrorHorizontally.canceled += instance.OnMirrorHorizontally;
+                @MirrorVertically.started += instance.OnMirrorVertically;
+                @MirrorVertically.performed += instance.OnMirrorVertically;
+                @MirrorVertically.canceled += instance.OnMirrorVertically;
                 @MirrorinTime.started += instance.OnMirrorinTime;
                 @MirrorinTime.performed += instance.OnMirrorinTime;
                 @MirrorinTime.canceled += instance.OnMirrorinTime;
@@ -3744,7 +3805,8 @@ public class @CMInput : IInputActionCollection, IDisposable
         void OnPlaceRedNote(InputAction.CallbackContext context);
         void OnPlaceBlueNote(InputAction.CallbackContext context);
         void OnToggleDeleteTool(InputAction.CallbackContext context);
-        void OnMirror(InputAction.CallbackContext context);
+        void OnMirrorHorizontally(InputAction.CallbackContext context);
+        void OnMirrorVertically(InputAction.CallbackContext context);
         void OnMirrorinTime(InputAction.CallbackContext context);
         void OnMirrorColoursOnly(InputAction.CallbackContext context);
         void OnSwapCursorInterval(InputAction.CallbackContext context);

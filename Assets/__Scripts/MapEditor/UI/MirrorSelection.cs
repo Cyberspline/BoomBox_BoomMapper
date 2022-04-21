@@ -8,7 +8,6 @@ public class MirrorSelection : MonoBehaviour
     {
         if (!SelectionController.HasSelectedObjects())
         {
-            PersistentUI.Instance.DisplayMessage("Mapper", "mirror.error", PersistentUI.DisplayMessageType.Bottom);
             return;
         }
 
@@ -28,11 +27,42 @@ public class MirrorSelection : MonoBehaviour
         BeatmapActionContainer.AddAction(actionCollection, true);
     }
 
-    public void Mirror(bool moveNotes = true)
+    public void Mirror(bool horizontal = false, bool vertical = false)
     {
         if (!SelectionController.HasSelectedObjects())
         {
-            PersistentUI.Instance.DisplayMessage("Mapper", "mirror.error", PersistentUI.DisplayMessageType.Bottom);
+            return;
+        }
+
+        var allActions = new List<BeatmapAction>();
+
+        foreach (var con in SelectionController.SelectedObjects)
+        {
+            var original = BeatmapObject.GenerateCopy(con);
+
+            if (con is BeatmapObstacle obstacle)
+            {
+                obstacle.A.RadialIndex = RadialIndexTable.Instance.GetMirroredObstacleRadialIndex(obstacle.A.RadialIndex, horizontal, vertical);
+                obstacle.B.RadialIndex = RadialIndexTable.Instance.GetMirroredObstacleRadialIndex(obstacle.B.RadialIndex, horizontal, vertical);
+            }
+            else if (con is BeatmapNote note)
+            {
+                note.RadialIndex = RadialIndexTable.Instance.GetMirroredNoteRadialIndex(note.RadialIndex, horizontal, vertical);
+            }
+
+            allActions.Add(new BeatmapObjectModifiedAction(con, con, original, "e", true));
+        }
+
+        foreach (var unique in SelectionController.SelectedObjects.DistinctBy(x => x.BeatmapType))
+            BeatmapObjectContainerCollection.GetCollectionForType(unique.BeatmapType).RefreshPool(true);
+        BeatmapActionContainer.AddAction(new ActionCollectionAction(allActions, true, true,
+            "Mirrored a selection of objects."));
+    }
+
+    public void MirrorColors()
+    {
+        if (!SelectionController.HasSelectedObjects())
+        {
             return;
         }
 
@@ -40,18 +70,9 @@ public class MirrorSelection : MonoBehaviour
         foreach (var con in SelectionController.SelectedObjects)
         {
             var original = BeatmapObject.GenerateCopy(con);
-            if (con is BeatmapObstacle obstacle && moveNotes)
-            {
-                obstacle.A.RadialIndex = RadialIndexTable.Instance.GetHorizontallyMirroredObstacleRadialIndex(obstacle.A.RadialIndex);
-                obstacle.B.RadialIndex = RadialIndexTable.Instance.GetHorizontallyMirroredObstacleRadialIndex(obstacle.B.RadialIndex);
-            }
-            else if (con is BeatmapNote note)
-            {
-                if (moveNotes)
-                {
-                    note.RadialIndex = RadialIndexTable.Instance.GetHorizontallyMirroredNoteRadialIndex(note.RadialIndex);
-                }
 
+            if (con is BeatmapNote note)
+            {
                 //flip colors
                 if (note.Hand != BeatmapNote.NoteTypeBomb)
                 {

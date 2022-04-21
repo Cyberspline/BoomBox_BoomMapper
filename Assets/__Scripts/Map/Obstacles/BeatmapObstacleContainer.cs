@@ -58,9 +58,12 @@ public class BeatmapObstacleContainer : BeatmapObjectContainer
     {
         foreach (var renderer in ModelRenderers)
         {
-            renderer.sharedMaterial = Settings.Instance.SimplifiedObstacles
-                ? chroMapperObstacleMaterial
-                : boomBoxObstacleMaterial;
+            if (!SelectionRenderers.Contains(renderer))
+            {
+                renderer.sharedMaterial = Settings.Instance.SimplifiedObstacles
+                    ? chroMapperObstacleMaterial
+                    : boomBoxObstacleMaterial;
+            }
 
             renderer.SetPropertyBlock(MaterialPropertyBlock);
         }

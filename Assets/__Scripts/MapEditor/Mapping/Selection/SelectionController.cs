@@ -195,7 +195,8 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectionActions
         bool addActionEvent = true)
     {
         if (!addsToSelection)
-            DeselectAll(); //This SHOULD deselect every object unless you otherwise specify, but it aint working.
+            DeselectAll();
+
         var collection = BeatmapObjectContainerCollection.GetCollectionForType(obj.BeatmapType);
 
         if (!collection.LoadedObjects.Contains(obj))
@@ -206,7 +207,7 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectionActions
             container.SetOutlineColor(instance.selectedColor);
         if (addActionEvent)
         {
-            ObjectWasSelectedEvent.Invoke(obj);
+            ObjectWasSelectedEvent?.Invoke(obj);
             SelectionChangedEvent?.Invoke();
         }
     }
