@@ -4,13 +4,19 @@ using UnityEngine;
 [RequireComponent(typeof(RectTransform))]
 public class RightButtonPanel : MonoBehaviour
 {
-    private RectTransform rectTransform;
     public bool IsActive { get; private set; }
+
+    [SerializeField] private bool startCollapsed = false;
+    private RectTransform rectTransform;
 
     private void Awake()
     {
         rectTransform = transform as RectTransform;
-        //rectTransform.anchoredPosition = new Vector2(rectTransform.sizeDelta.x, rectTransform.anchoredPosition.y);
+
+        if (startCollapsed)
+        {
+            rectTransform.anchoredPosition = new Vector2(rectTransform.sizeDelta.x, rectTransform.anchoredPosition.y);
+        }
     }
 
     public void TogglePanel()

@@ -281,6 +281,22 @@ MonoBehaviour:
     m_Localized: Graphics Settings
     m_Metadata:
       m_Items: []
+  - m_Id: 95690024620216320
+    m_Localized: Horizontal Mirror
+    m_Metadata:
+      m_Items: []
+  - m_Id: 95690083629879296
+    m_Localized: Vertical Mirror
+    m_Metadata:
+      m_Items: []
+  - m_Id: 95690150763909120
+    m_Localized: Hand Mirror
+    m_Metadata:
+      m_Items: []
+  - m_Id: 95690217671446528
+    m_Localized: Time Mirror
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:

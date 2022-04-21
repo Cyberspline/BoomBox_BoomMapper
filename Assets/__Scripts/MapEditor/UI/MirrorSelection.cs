@@ -27,6 +27,8 @@ public class MirrorSelection : MonoBehaviour
         BeatmapActionContainer.AddAction(actionCollection, true);
     }
 
+    public void Mirror(bool horizontal) => Mirror(horizontal, !horizontal);
+
     public void Mirror(bool horizontal = false, bool vertical = false)
     {
         if (!SelectionController.HasSelectedObjects())
