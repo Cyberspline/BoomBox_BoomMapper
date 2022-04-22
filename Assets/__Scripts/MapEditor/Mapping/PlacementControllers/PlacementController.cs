@@ -236,7 +236,7 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
         if (placementObj != null)
         {
             var boundLocal = placementObj.GetComponentsInChildren<Renderer>(true)
-                .Where(it => it.name == "Grid X")
+                .Where(it => it.name.Contains("Grid"))
                 .First()
                 .bounds;
 
