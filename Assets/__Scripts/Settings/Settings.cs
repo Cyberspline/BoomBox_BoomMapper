@@ -78,6 +78,9 @@ public class Settings
     public bool SimplifiedObstacles = false;
     public float ObstacleOpacity = 0.7f;
 
+    public Color LeftColor = new Color(0.95f, 0.2f, 0.67f);
+    public Color RightColor = new Color(0.12f, 0.81f, 0.95f);
+
     public static Dictionary<string, FieldInfo> AllFieldInfos = new Dictionary<string, FieldInfo>();
     public static Dictionary<string, object> NonPersistentSettings = new Dictionary<string, object>();
 
@@ -151,6 +154,13 @@ public class Settings
                             var parsedEnumValue = Enum.Parse(field.FieldType, nodeValue);
                             field.SetValue(settings, parsedEnumValue);
                         }
+                        else if (field.FieldType == typeof(Color))
+                        {
+                            if (ColorUtility.TryParseHtmlString(nodeValue.Value, out var color))
+                            {
+                                field.SetValue(settings, color);
+                            }
+                        }
                         else if (typeof(IJsonSetting).IsAssignableFrom(field.FieldType))
                         {
                             var elementJSON = (IJsonSetting)Activator.CreateInstance(field.FieldType);
@@ -221,6 +231,10 @@ public class Settings
                     else if (item is IJsonSetting setting)
                     {
                         arr.Add(setting.ToJson());
+                    }
+                    else if (item is Color color)
+                    {
+                        arr.Add($"#{ColorUtility.ToHtmlStringRGB(color)}");
                     }
                     else
                     {

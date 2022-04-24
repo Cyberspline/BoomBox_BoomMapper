@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class GraphicsQuickSettings : QuickSettings
 {
     // TODO: Localize
@@ -9,5 +11,8 @@ public class GraphicsQuickSettings : QuickSettings
 
         AddSetting<bool>(nameof(Settings.SimplifiedObstacles), "Simplified Obstacles");
         AddSetting<float>(nameof(Settings.ObstacleOpacity), "Obstacle Opacity", 0, 1, 0.05f);
+
+        AddSetting<Color>(nameof(Settings.LeftColor), "Left Drum Color");
+        AddSetting<Color>(nameof(Settings.RightColor), "Right Drum Color");
     }
 }

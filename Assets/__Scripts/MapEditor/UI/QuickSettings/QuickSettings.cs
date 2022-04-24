@@ -65,6 +65,10 @@ public abstract class QuickSettings : MonoBehaviour
                 component = DialogBox.AddComponent<DropdownComponent>()
                     .WithOptions(t) as CMUIComponent<T>;
                 break;
+            case var t when t == typeof(Color):
+                component = DialogBox.AddComponent<NestedColorPickerComponent>()
+                    .WithConstantAlpha(1) as CMUIComponent<T>;
+                break;
         }
 
         if (component == null)
