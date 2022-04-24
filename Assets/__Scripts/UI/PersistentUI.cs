@@ -32,7 +32,7 @@ public class PersistentUI : MonoBehaviour
 
     [SerializeField] private AnimationCurve fadeInCurve;
     [SerializeField] private AnimationCurve fadeOutCurve;
-    [SerializeField] private Text tooltipText;
+    [SerializeField] private TMP_Text tooltipText;
     [SerializeField] private GameObject tooltipObject;
     [SerializeField] private RectTransform tooltipPanelRect;
     [SerializeField] private Vector3 tooltipOffset;

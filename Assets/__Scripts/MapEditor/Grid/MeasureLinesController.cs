@@ -72,7 +72,7 @@ public class MeasureLinesController : MonoBehaviour
         }
 
         // Set proper spacing between Notes grid, Measure lines, and Events grid
-        measureLinesGridChild.Size = modifiedBeats > 1000 ? 1 : 0;
+        measureLinesGridChild.Size = modifiedBeats > 1000 ? 2 : 1;
         foreach (var leftovers in existing) Destroy(leftovers.gameObject);
         init = true;
         RefreshVisibility();
