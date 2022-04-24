@@ -24,10 +24,6 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectionActions
     [SerializeField] private Color copiedColor;
     [SerializeField] private TracksManager tracksManager;
 
-    private bool shiftInPlace;
-
-    private bool shiftInTime;
-
     public static Color SelectedColor => instance.selectedColor;
     public static Color CopiedColor => instance.copiedColor;
 
@@ -63,12 +59,16 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectionActions
         if (context.performed) Copy(true);
     }
 
-    public void OnShiftingMovement(InputAction.CallbackContext context)
+    public void OnShiftSelectionForward(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        var movement = context.ReadValue<Vector2>();
+        MoveSelection(1f / atsc.GridMeasureSnapping);
+    }
 
-        if (shiftInTime) MoveSelection(movement.y * (1f / atsc.GridMeasureSnapping));
+    public void OnShiftSelectionBackward(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        MoveSelection(-1f / atsc.GridMeasureSnapping);
     }
 
     public void OnRotateSelection(InputAction.CallbackContext context)
@@ -82,8 +82,6 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectionActions
 
         RotateSelection(direction);
     }
-
-    public void OnActivateShiftinTime(InputAction.CallbackContext context) => shiftInTime = context.performed;
 
     public void OnDeselectAll(InputAction.CallbackContext context)
     {

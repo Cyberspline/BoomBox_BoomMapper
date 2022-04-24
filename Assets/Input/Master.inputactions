@@ -1850,25 +1850,25 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "Shifting Movement",
+                    "name": "Rotate Selection",
                     "type": "Button",
-                    "id": "27818e31-e5a6-4b4d-806a-f8de698ba4ee",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Press"
-                },
-                {
-                    "name": "Activate Shift in Time",
-                    "type": "Button",
-                    "id": "cb168158-3262-4a23-bc37-4217c8213895",
+                    "id": "8c73d497-930e-4e62-a3d1-754783ee7711",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
                 },
                 {
-                    "name": "Rotate Selection",
+                    "name": "Shift Selection Forward",
                     "type": "Button",
-                    "id": "8c73d497-930e-4e62-a3d1-754783ee7711",
+                    "id": "3c016fdf-f227-498d-ad14-217c46c0324d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Shift Selection Backward",
+                    "type": "Button",
+                    "id": "11b9a468-39ee-4327-8ff5-426a8497c47b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
@@ -2041,72 +2041,6 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "ec81f6a1-21c7-4033-8a43-fef8947eeb20",
-                    "path": "<Keyboard>/shift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ChroMapper Default",
-                    "action": "Activate Shift in Time",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "Keyboard",
-                    "id": "9c22b812-71a8-4961-ab13-212454782e02",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ChroMapper Default",
-                    "action": "Shifting Movement",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "dca471d5-701d-4735-92fe-974ad1bf6c91",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ChroMapper Default",
-                    "action": "Shifting Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "fe41e156-034e-45cf-9ad0-7a2e76986029",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ChroMapper Default",
-                    "action": "Shifting Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "b813d17f-c262-4b3c-a28f-072c8647364a",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ChroMapper Default",
-                    "action": "Shifting Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "5de7b57b-9115-406b-add2-c8b5877a39af",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ChroMapper Default",
-                    "action": "Shifting Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "Keyboard",
                     "id": "79c5c421-e970-43e6-953e-444eb99927b1",
                     "path": "ButtonWithOneModifier",
@@ -2169,6 +2103,72 @@
                     "processors": "",
                     "groups": "ChroMapper Default",
                     "action": "Rotate Selection",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Button With One Modifier",
+                    "id": "e8afd1e7-bd4d-4c5a-94cf-06ef54d74fbc",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shift Selection Forward",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "b0500e4d-4e2a-4a4f-a00f-dcc5642652f4",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Shift Selection Forward",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "ab220a66-8d00-4fef-98ce-837744bdf718",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Shift Selection Forward",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Button With One Modifier",
+                    "id": "fd933e86-1ff1-4cca-ac78-9952ba2c8aaa",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shift Selection Backward",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "0606f668-0f66-44b0-94b1-7edca747872b",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Shift Selection Backward",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "21798adb-05df-46ce-9ba3-3199ad766832",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Shift Selection Backward",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

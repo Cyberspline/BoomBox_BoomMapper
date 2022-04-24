@@ -13,7 +13,7 @@ public class SearchableTab : MonoBehaviour
 
     public bool UpdateSearch(string text)
     {
-        var result = sections.Select(it => it.UpdateSearch(text)).ToList().Any(it => it);
+        var result = sections.Where(it => it != null).Select(it => it.UpdateSearch(text)).ToList().Any(it => it);
         tab.SetActive(result);
         LayoutRebuilder.ForceRebuildLayoutImmediate(layoutGroup);
         return result;

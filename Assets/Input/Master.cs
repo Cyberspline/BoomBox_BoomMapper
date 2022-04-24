@@ -1863,25 +1863,25 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""interactions"": ""Press""
                 },
                 {
-                    ""name"": ""Shifting Movement"",
+                    ""name"": ""Rotate Selection"",
                     ""type"": ""Button"",
-                    ""id"": ""27818e31-e5a6-4b4d-806a-f8de698ba4ee"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                },
-                {
-                    ""name"": ""Activate Shift in Time"",
-                    ""type"": ""Button"",
-                    ""id"": ""cb168158-3262-4a23-bc37-4217c8213895"",
+                    ""id"": ""8c73d497-930e-4e62-a3d1-754783ee7711"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
                 },
                 {
-                    ""name"": ""Rotate Selection"",
+                    ""name"": ""Shift Selection Forward"",
                     ""type"": ""Button"",
-                    ""id"": ""8c73d497-930e-4e62-a3d1-754783ee7711"",
+                    ""id"": ""3c016fdf-f227-498d-ad14-217c46c0324d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Shift Selection Backward"",
+                    ""type"": ""Button"",
+                    ""id"": ""11b9a468-39ee-4327-8ff5-426a8497c47b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
@@ -2054,72 +2054,6 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""ec81f6a1-21c7-4033-8a43-fef8947eeb20"",
-                    ""path"": ""<Keyboard>/shift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Activate Shift in Time"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Keyboard"",
-                    ""id"": ""9c22b812-71a8-4961-ab13-212454782e02"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Shifting Movement"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""dca471d5-701d-4735-92fe-974ad1bf6c91"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Shifting Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""fe41e156-034e-45cf-9ad0-7a2e76986029"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Shifting Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""b813d17f-c262-4b3c-a28f-072c8647364a"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Shifting Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""5de7b57b-9115-406b-add2-c8b5877a39af"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Shifting Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": ""Keyboard"",
                     ""id"": ""79c5c421-e970-43e6-953e-444eb99927b1"",
                     ""path"": ""ButtonWithOneModifier"",
@@ -2182,6 +2116,72 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""ChroMapper Default"",
                     ""action"": ""Rotate Selection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Button With One Modifier"",
+                    ""id"": ""e8afd1e7-bd4d-4c5a-94cf-06ef54d74fbc"",
+                    ""path"": ""ButtonWithOneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shift Selection Forward"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""b0500e4d-4e2a-4a4f-a00f-dcc5642652f4"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Shift Selection Forward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""ab220a66-8d00-4fef-98ce-837744bdf718"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Shift Selection Forward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Button With One Modifier"",
+                    ""id"": ""fd933e86-1ff1-4cca-ac78-9952ba2c8aaa"",
+                    ""path"": ""ButtonWithOneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shift Selection Backward"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""0606f668-0f66-44b0-94b1-7edca747872b"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Shift Selection Backward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""21798adb-05df-46ce-9ba3-3199ad766832"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Shift Selection Backward"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -2514,9 +2514,9 @@ public class @CMInput : IInputActionCollection, IDisposable
         m_Selection_Paste = m_Selection.FindAction("Paste", throwIfNotFound: true);
         m_Selection_Copy = m_Selection.FindAction("Copy", throwIfNotFound: true);
         m_Selection_OverwritePaste = m_Selection.FindAction("Overwrite Paste", throwIfNotFound: true);
-        m_Selection_ShiftingMovement = m_Selection.FindAction("Shifting Movement", throwIfNotFound: true);
-        m_Selection_ActivateShiftinTime = m_Selection.FindAction("Activate Shift in Time", throwIfNotFound: true);
         m_Selection_RotateSelection = m_Selection.FindAction("Rotate Selection", throwIfNotFound: true);
+        m_Selection_ShiftSelectionForward = m_Selection.FindAction("Shift Selection Forward", throwIfNotFound: true);
+        m_Selection_ShiftSelectionBackward = m_Selection.FindAction("Shift Selection Backward", throwIfNotFound: true);
         // UI Mode
         m_UIMode = asset.FindActionMap("UI Mode", throwIfNotFound: true);
         m_UIMode_ToggleUIMode = m_UIMode.FindAction("Toggle UI Mode", throwIfNotFound: true);
@@ -3486,9 +3486,9 @@ public class @CMInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Selection_Paste;
     private readonly InputAction m_Selection_Copy;
     private readonly InputAction m_Selection_OverwritePaste;
-    private readonly InputAction m_Selection_ShiftingMovement;
-    private readonly InputAction m_Selection_ActivateShiftinTime;
     private readonly InputAction m_Selection_RotateSelection;
+    private readonly InputAction m_Selection_ShiftSelectionForward;
+    private readonly InputAction m_Selection_ShiftSelectionBackward;
     public struct SelectionActions
     {
         private @CMInput m_Wrapper;
@@ -3499,9 +3499,9 @@ public class @CMInput : IInputActionCollection, IDisposable
         public InputAction @Paste => m_Wrapper.m_Selection_Paste;
         public InputAction @Copy => m_Wrapper.m_Selection_Copy;
         public InputAction @OverwritePaste => m_Wrapper.m_Selection_OverwritePaste;
-        public InputAction @ShiftingMovement => m_Wrapper.m_Selection_ShiftingMovement;
-        public InputAction @ActivateShiftinTime => m_Wrapper.m_Selection_ActivateShiftinTime;
         public InputAction @RotateSelection => m_Wrapper.m_Selection_RotateSelection;
+        public InputAction @ShiftSelectionForward => m_Wrapper.m_Selection_ShiftSelectionForward;
+        public InputAction @ShiftSelectionBackward => m_Wrapper.m_Selection_ShiftSelectionBackward;
         public InputActionMap Get() { return m_Wrapper.m_Selection; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -3529,15 +3529,15 @@ public class @CMInput : IInputActionCollection, IDisposable
                 @OverwritePaste.started -= m_Wrapper.m_SelectionActionsCallbackInterface.OnOverwritePaste;
                 @OverwritePaste.performed -= m_Wrapper.m_SelectionActionsCallbackInterface.OnOverwritePaste;
                 @OverwritePaste.canceled -= m_Wrapper.m_SelectionActionsCallbackInterface.OnOverwritePaste;
-                @ShiftingMovement.started -= m_Wrapper.m_SelectionActionsCallbackInterface.OnShiftingMovement;
-                @ShiftingMovement.performed -= m_Wrapper.m_SelectionActionsCallbackInterface.OnShiftingMovement;
-                @ShiftingMovement.canceled -= m_Wrapper.m_SelectionActionsCallbackInterface.OnShiftingMovement;
-                @ActivateShiftinTime.started -= m_Wrapper.m_SelectionActionsCallbackInterface.OnActivateShiftinTime;
-                @ActivateShiftinTime.performed -= m_Wrapper.m_SelectionActionsCallbackInterface.OnActivateShiftinTime;
-                @ActivateShiftinTime.canceled -= m_Wrapper.m_SelectionActionsCallbackInterface.OnActivateShiftinTime;
                 @RotateSelection.started -= m_Wrapper.m_SelectionActionsCallbackInterface.OnRotateSelection;
                 @RotateSelection.performed -= m_Wrapper.m_SelectionActionsCallbackInterface.OnRotateSelection;
                 @RotateSelection.canceled -= m_Wrapper.m_SelectionActionsCallbackInterface.OnRotateSelection;
+                @ShiftSelectionForward.started -= m_Wrapper.m_SelectionActionsCallbackInterface.OnShiftSelectionForward;
+                @ShiftSelectionForward.performed -= m_Wrapper.m_SelectionActionsCallbackInterface.OnShiftSelectionForward;
+                @ShiftSelectionForward.canceled -= m_Wrapper.m_SelectionActionsCallbackInterface.OnShiftSelectionForward;
+                @ShiftSelectionBackward.started -= m_Wrapper.m_SelectionActionsCallbackInterface.OnShiftSelectionBackward;
+                @ShiftSelectionBackward.performed -= m_Wrapper.m_SelectionActionsCallbackInterface.OnShiftSelectionBackward;
+                @ShiftSelectionBackward.canceled -= m_Wrapper.m_SelectionActionsCallbackInterface.OnShiftSelectionBackward;
             }
             m_Wrapper.m_SelectionActionsCallbackInterface = instance;
             if (instance != null)
@@ -3560,15 +3560,15 @@ public class @CMInput : IInputActionCollection, IDisposable
                 @OverwritePaste.started += instance.OnOverwritePaste;
                 @OverwritePaste.performed += instance.OnOverwritePaste;
                 @OverwritePaste.canceled += instance.OnOverwritePaste;
-                @ShiftingMovement.started += instance.OnShiftingMovement;
-                @ShiftingMovement.performed += instance.OnShiftingMovement;
-                @ShiftingMovement.canceled += instance.OnShiftingMovement;
-                @ActivateShiftinTime.started += instance.OnActivateShiftinTime;
-                @ActivateShiftinTime.performed += instance.OnActivateShiftinTime;
-                @ActivateShiftinTime.canceled += instance.OnActivateShiftinTime;
                 @RotateSelection.started += instance.OnRotateSelection;
                 @RotateSelection.performed += instance.OnRotateSelection;
                 @RotateSelection.canceled += instance.OnRotateSelection;
+                @ShiftSelectionForward.started += instance.OnShiftSelectionForward;
+                @ShiftSelectionForward.performed += instance.OnShiftSelectionForward;
+                @ShiftSelectionForward.canceled += instance.OnShiftSelectionForward;
+                @ShiftSelectionBackward.started += instance.OnShiftSelectionBackward;
+                @ShiftSelectionBackward.performed += instance.OnShiftSelectionBackward;
+                @ShiftSelectionBackward.canceled += instance.OnShiftSelectionBackward;
             }
         }
     }
@@ -3881,9 +3881,9 @@ public class @CMInput : IInputActionCollection, IDisposable
         void OnPaste(InputAction.CallbackContext context);
         void OnCopy(InputAction.CallbackContext context);
         void OnOverwritePaste(InputAction.CallbackContext context);
-        void OnShiftingMovement(InputAction.CallbackContext context);
-        void OnActivateShiftinTime(InputAction.CallbackContext context);
         void OnRotateSelection(InputAction.CallbackContext context);
+        void OnShiftSelectionForward(InputAction.CallbackContext context);
+        void OnShiftSelectionBackward(InputAction.CallbackContext context);
     }
     public interface IUIModeActions
     {
