@@ -122,7 +122,7 @@ public class BoxSelectionPlacementController : PlacementController<BeatmapNote, 
         base.OnMousePositionUpdate(context);
     }
 
-    internal override void ApplyToMap()
+    internal override void PlaceObjectPrimary()
     {
         if (!IsSelecting)
         {

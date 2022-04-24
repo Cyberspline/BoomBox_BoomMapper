@@ -197,7 +197,7 @@
                 {
                     "name": "",
                     "id": "036bf932-8107-4b8f-8851-2333b0cace51",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Mouse>/middleButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "ChroMapper Default",
@@ -589,9 +589,17 @@
             "id": "ad57992b-d8ff-4c39-a762-db68cf7d04db",
             "actions": [
                 {
-                    "name": "Place Object",
+                    "name": "Place Object Primary",
                     "type": "Button",
                     "id": "12ac2167-b8c0-4f4f-aa6e-17a1aacc42ca",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Place Object Secondary",
+                    "type": "Button",
+                    "id": "f3a6dc44-cef0-4a7c-999f-669eb3da0eab",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press"
@@ -670,7 +678,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "ChroMapper Default",
-                    "action": "Place Object",
+                    "action": "Place Object Primary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -726,6 +734,17 @@
                     "processors": "",
                     "groups": "ChroMapper Default",
                     "action": "Cancel Placement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f80f07c9-5718-44b9-841f-c87e374b6190",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Place Object Secondary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1717,33 +1736,6 @@
             ]
         },
         {
-            "name": "Box Select",
-            "id": "ce387cfe-7aed-46ef-ab8b-e0cf196f6a96",
-            "actions": [
-                {
-                    "name": "Activate Box Select",
-                    "type": "Button",
-                    "id": "1bfcb620-0275-4b3e-a89d-2e5d52203c8d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "f6185091-72dd-4efb-ab34-6ea3096834c6",
-                    "path": "<Keyboard>/ctrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ChroMapper Default",
-                    "action": "Activate Box Select",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
             "name": "BPM Tapper",
             "id": "2badd83b-e1b2-41b0-abb2-cb8a4b79e7da",
             "actions": [
@@ -2171,6 +2163,33 @@
                     "action": "Shift Selection Backward",
                     "isComposite": false,
                     "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "Box Select",
+            "id": "ce387cfe-7aed-46ef-ab8b-e0cf196f6a96",
+            "actions": [
+                {
+                    "name": "Activate Box Select",
+                    "type": "Button",
+                    "id": "1bfcb620-0275-4b3e-a89d-2e5d52203c8d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f6185091-72dd-4efb-ab34-6ea3096834c6",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Activate Box Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

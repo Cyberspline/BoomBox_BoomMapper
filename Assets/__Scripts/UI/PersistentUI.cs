@@ -439,7 +439,7 @@ public class PersistentUI : MonoBehaviour
 
             var button = dialogBox.AddFooterButton(() => result?.Invoke(i), text);
         
-            if (i < ba.Length && ba[i].material.shaderKeywords.Contains("GLOW_ON"))
+            if (i < ba.Length && ba[i] != null && ba[i].material != null && ba[i].material.shaderKeywords.Contains("GLOW_ON"))
             {
                 var color = ba[i].material.GetColor("_GlowColor");
                 button.WithBackgroundColor(color.Multiply(color.a).WithAlpha(1).WithSatuation(0.5f));

@@ -161,7 +161,7 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
             CancelPlacement();
     }
 
-    public void OnPlaceObject(InputAction.CallbackContext context)
+    public void OnPlaceObjectPrimary(InputAction.CallbackContext context)
     {
         if (customStandaloneInputModule.IsPointerOverGameObject<GraphicRaycaster>(-1, true) ||
             !KeybindsController.IsMouseInWindow || !context.performed)
@@ -172,7 +172,22 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
         if (!IsDraggingObject && !IsDraggingObjectAtTime && IsOnPlacement && instantiatedContainer != null && IsValid
             && queuedData?.Time >= 0 && !applicationFocusChanged && instantiatedContainer.gameObject.activeSelf)
         {
-            ApplyToMap();
+            PlaceObjectPrimary();
+        }
+    }
+
+    public void OnPlaceObjectSecondary(InputAction.CallbackContext context)
+    {
+        if (customStandaloneInputModule.IsPointerOverGameObject<GraphicRaycaster>(-1, true) ||
+            !KeybindsController.IsMouseInWindow || !context.performed)
+        {
+            return;
+        }
+
+        if (!IsDraggingObject && !IsDraggingObjectAtTime && IsOnPlacement && instantiatedContainer != null && IsValid
+            && queuedData?.Time >= 0 && !applicationFocusChanged && instantiatedContainer.gameObject.activeSelf)
+        {
+            PlaceObjectSecondary();
         }
     }
 
@@ -325,7 +340,7 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
         }
     }
 
-    internal virtual void ApplyToMap()
+    internal virtual void PlaceObjectPrimary()
     {
         objectData = queuedData;
         objectData.Time = RoundedTime;
@@ -334,6 +349,8 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
         BeatmapActionContainer.AddAction(GenerateAction(objectData, conflicting));
         queuedData = BeatmapObject.GenerateCopy(queuedData);
     }
+
+    internal virtual void PlaceObjectSecondary() { }
 
     public abstract TBo GenerateOriginalData();
     public abstract BeatmapAction GenerateAction(BeatmapObject spawned, IEnumerable<BeatmapObject> conflicting);

@@ -71,6 +71,7 @@ public class Settings
 
     public bool OverviewCamera = false;
     public bool CameraRotateAroundGrid = true;
+    public bool SeparateNoteKeybinds = true;
 
     public int LastSongSortType = (int)SongList.SongSortType.Name;
 
@@ -177,6 +178,9 @@ public class Settings
 
         JSONNumber.CapNumbersToDecimals = true;
         JSONNumber.DecimalPrecision = 3;
+
+        // Hardcoding waveform to 2D. It's objectively better than 3D, and also stupid to disable.
+        settings.Waveform = 1;
 
         return settings;
     }

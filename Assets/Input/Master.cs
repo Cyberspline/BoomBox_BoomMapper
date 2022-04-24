@@ -210,7 +210,7 @@ public class @CMInput : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""036bf932-8107-4b8f-8851-2333b0cace51"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Mouse>/middleButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""ChroMapper Default"",
@@ -602,9 +602,17 @@ public class @CMInput : IInputActionCollection, IDisposable
             ""id"": ""ad57992b-d8ff-4c39-a762-db68cf7d04db"",
             ""actions"": [
                 {
-                    ""name"": ""Place Object"",
+                    ""name"": ""Place Object Primary"",
                     ""type"": ""Button"",
                     ""id"": ""12ac2167-b8c0-4f4f-aa6e-17a1aacc42ca"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Place Object Secondary"",
+                    ""type"": ""Button"",
+                    ""id"": ""f3a6dc44-cef0-4a7c-999f-669eb3da0eab"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press""
@@ -683,7 +691,7 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Place Object"",
+                    ""action"": ""Place Object Primary"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -739,6 +747,17 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""ChroMapper Default"",
                     ""action"": ""Cancel Placement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f80f07c9-5718-44b9-841f-c87e374b6190"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Place Object Secondary"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1730,33 +1749,6 @@ public class @CMInput : IInputActionCollection, IDisposable
             ]
         },
         {
-            ""name"": ""Box Select"",
-            ""id"": ""ce387cfe-7aed-46ef-ab8b-e0cf196f6a96"",
-            ""actions"": [
-                {
-                    ""name"": ""Activate Box Select"",
-                    ""type"": ""Button"",
-                    ""id"": ""1bfcb620-0275-4b3e-a89d-2e5d52203c8d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""f6185091-72dd-4efb-ab34-6ea3096834c6"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Activate Box Select"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
             ""name"": ""BPM Tapper"",
             ""id"": ""2badd83b-e1b2-41b0-abb2-cb8a4b79e7da"",
             ""actions"": [
@@ -2188,6 +2180,33 @@ public class @CMInput : IInputActionCollection, IDisposable
             ]
         },
         {
+            ""name"": ""Box Select"",
+            ""id"": ""ce387cfe-7aed-46ef-ab8b-e0cf196f6a96"",
+            ""actions"": [
+                {
+                    ""name"": ""Activate Box Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""1bfcb620-0275-4b3e-a89d-2e5d52203c8d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f6185091-72dd-4efb-ab34-6ea3096834c6"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Activate Box Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
             ""name"": ""UI Mode"",
             ""id"": ""e3f966df-bf7d-4718-9605-fbaba1af857b"",
             ""actions"": [
@@ -2440,7 +2459,8 @@ public class @CMInput : IInputActionCollection, IDisposable
         m_Actions_RedoMethod2 = m_Actions.FindAction("Redo (Method 2)", throwIfNotFound: true);
         // Placement Controllers
         m_PlacementControllers = asset.FindActionMap("Placement Controllers", throwIfNotFound: true);
-        m_PlacementControllers_PlaceObject = m_PlacementControllers.FindAction("Place Object", throwIfNotFound: true);
+        m_PlacementControllers_PlaceObjectPrimary = m_PlacementControllers.FindAction("Place Object Primary", throwIfNotFound: true);
+        m_PlacementControllers_PlaceObjectSecondary = m_PlacementControllers.FindAction("Place Object Secondary", throwIfNotFound: true);
         m_PlacementControllers_InitiateClickandDrag = m_PlacementControllers.FindAction("Initiate Click and Drag", throwIfNotFound: true);
         m_PlacementControllers_InitiateClickandDragatTime = m_PlacementControllers.FindAction("Initiate Click and Drag at Time", throwIfNotFound: true);
         m_PlacementControllers_MousePositionUpdate = m_PlacementControllers.FindAction("+Mouse Position Update", throwIfNotFound: true);
@@ -2497,9 +2517,6 @@ public class @CMInput : IInputActionCollection, IDisposable
         m_BPMChangeObjects = asset.FindActionMap("BPM Change Objects", throwIfNotFound: true);
         m_BPMChangeObjects_ReplaceBPM = m_BPMChangeObjects.FindAction("Replace BPM", throwIfNotFound: true);
         m_BPMChangeObjects_TweakBPMValue = m_BPMChangeObjects.FindAction("Tweak BPM Value", throwIfNotFound: true);
-        // Box Select
-        m_BoxSelect = asset.FindActionMap("Box Select", throwIfNotFound: true);
-        m_BoxSelect_ActivateBoxSelect = m_BoxSelect.FindAction("Activate Box Select", throwIfNotFound: true);
         // BPM Tapper
         m_BPMTapper = asset.FindActionMap("BPM Tapper", throwIfNotFound: true);
         m_BPMTapper_ToggleBPMTapper = m_BPMTapper.FindAction("Toggle BPM Tapper", throwIfNotFound: true);
@@ -2517,6 +2534,9 @@ public class @CMInput : IInputActionCollection, IDisposable
         m_Selection_RotateSelection = m_Selection.FindAction("Rotate Selection", throwIfNotFound: true);
         m_Selection_ShiftSelectionForward = m_Selection.FindAction("Shift Selection Forward", throwIfNotFound: true);
         m_Selection_ShiftSelectionBackward = m_Selection.FindAction("Shift Selection Backward", throwIfNotFound: true);
+        // Box Select
+        m_BoxSelect = asset.FindActionMap("Box Select", throwIfNotFound: true);
+        m_BoxSelect_ActivateBoxSelect = m_BoxSelect.FindAction("Activate Box Select", throwIfNotFound: true);
         // UI Mode
         m_UIMode = asset.FindActionMap("UI Mode", throwIfNotFound: true);
         m_UIMode_ToggleUIMode = m_UIMode.FindAction("Toggle UI Mode", throwIfNotFound: true);
@@ -2810,7 +2830,8 @@ public class @CMInput : IInputActionCollection, IDisposable
     // Placement Controllers
     private readonly InputActionMap m_PlacementControllers;
     private IPlacementControllersActions m_PlacementControllersActionsCallbackInterface;
-    private readonly InputAction m_PlacementControllers_PlaceObject;
+    private readonly InputAction m_PlacementControllers_PlaceObjectPrimary;
+    private readonly InputAction m_PlacementControllers_PlaceObjectSecondary;
     private readonly InputAction m_PlacementControllers_InitiateClickandDrag;
     private readonly InputAction m_PlacementControllers_InitiateClickandDragatTime;
     private readonly InputAction m_PlacementControllers_MousePositionUpdate;
@@ -2819,7 +2840,8 @@ public class @CMInput : IInputActionCollection, IDisposable
     {
         private @CMInput m_Wrapper;
         public PlacementControllersActions(@CMInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @PlaceObject => m_Wrapper.m_PlacementControllers_PlaceObject;
+        public InputAction @PlaceObjectPrimary => m_Wrapper.m_PlacementControllers_PlaceObjectPrimary;
+        public InputAction @PlaceObjectSecondary => m_Wrapper.m_PlacementControllers_PlaceObjectSecondary;
         public InputAction @InitiateClickandDrag => m_Wrapper.m_PlacementControllers_InitiateClickandDrag;
         public InputAction @InitiateClickandDragatTime => m_Wrapper.m_PlacementControllers_InitiateClickandDragatTime;
         public InputAction @MousePositionUpdate => m_Wrapper.m_PlacementControllers_MousePositionUpdate;
@@ -2833,9 +2855,12 @@ public class @CMInput : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_PlacementControllersActionsCallbackInterface != null)
             {
-                @PlaceObject.started -= m_Wrapper.m_PlacementControllersActionsCallbackInterface.OnPlaceObject;
-                @PlaceObject.performed -= m_Wrapper.m_PlacementControllersActionsCallbackInterface.OnPlaceObject;
-                @PlaceObject.canceled -= m_Wrapper.m_PlacementControllersActionsCallbackInterface.OnPlaceObject;
+                @PlaceObjectPrimary.started -= m_Wrapper.m_PlacementControllersActionsCallbackInterface.OnPlaceObjectPrimary;
+                @PlaceObjectPrimary.performed -= m_Wrapper.m_PlacementControllersActionsCallbackInterface.OnPlaceObjectPrimary;
+                @PlaceObjectPrimary.canceled -= m_Wrapper.m_PlacementControllersActionsCallbackInterface.OnPlaceObjectPrimary;
+                @PlaceObjectSecondary.started -= m_Wrapper.m_PlacementControllersActionsCallbackInterface.OnPlaceObjectSecondary;
+                @PlaceObjectSecondary.performed -= m_Wrapper.m_PlacementControllersActionsCallbackInterface.OnPlaceObjectSecondary;
+                @PlaceObjectSecondary.canceled -= m_Wrapper.m_PlacementControllersActionsCallbackInterface.OnPlaceObjectSecondary;
                 @InitiateClickandDrag.started -= m_Wrapper.m_PlacementControllersActionsCallbackInterface.OnInitiateClickandDrag;
                 @InitiateClickandDrag.performed -= m_Wrapper.m_PlacementControllersActionsCallbackInterface.OnInitiateClickandDrag;
                 @InitiateClickandDrag.canceled -= m_Wrapper.m_PlacementControllersActionsCallbackInterface.OnInitiateClickandDrag;
@@ -2852,9 +2877,12 @@ public class @CMInput : IInputActionCollection, IDisposable
             m_Wrapper.m_PlacementControllersActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @PlaceObject.started += instance.OnPlaceObject;
-                @PlaceObject.performed += instance.OnPlaceObject;
-                @PlaceObject.canceled += instance.OnPlaceObject;
+                @PlaceObjectPrimary.started += instance.OnPlaceObjectPrimary;
+                @PlaceObjectPrimary.performed += instance.OnPlaceObjectPrimary;
+                @PlaceObjectPrimary.canceled += instance.OnPlaceObjectPrimary;
+                @PlaceObjectSecondary.started += instance.OnPlaceObjectSecondary;
+                @PlaceObjectSecondary.performed += instance.OnPlaceObjectSecondary;
+                @PlaceObjectSecondary.canceled += instance.OnPlaceObjectSecondary;
                 @InitiateClickandDrag.started += instance.OnInitiateClickandDrag;
                 @InitiateClickandDrag.performed += instance.OnInitiateClickandDrag;
                 @InitiateClickandDrag.canceled += instance.OnInitiateClickandDrag;
@@ -3378,39 +3406,6 @@ public class @CMInput : IInputActionCollection, IDisposable
     }
     public BPMChangeObjectsActions @BPMChangeObjects => new BPMChangeObjectsActions(this);
 
-    // Box Select
-    private readonly InputActionMap m_BoxSelect;
-    private IBoxSelectActions m_BoxSelectActionsCallbackInterface;
-    private readonly InputAction m_BoxSelect_ActivateBoxSelect;
-    public struct BoxSelectActions
-    {
-        private @CMInput m_Wrapper;
-        public BoxSelectActions(@CMInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @ActivateBoxSelect => m_Wrapper.m_BoxSelect_ActivateBoxSelect;
-        public InputActionMap Get() { return m_Wrapper.m_BoxSelect; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(BoxSelectActions set) { return set.Get(); }
-        public void SetCallbacks(IBoxSelectActions instance)
-        {
-            if (m_Wrapper.m_BoxSelectActionsCallbackInterface != null)
-            {
-                @ActivateBoxSelect.started -= m_Wrapper.m_BoxSelectActionsCallbackInterface.OnActivateBoxSelect;
-                @ActivateBoxSelect.performed -= m_Wrapper.m_BoxSelectActionsCallbackInterface.OnActivateBoxSelect;
-                @ActivateBoxSelect.canceled -= m_Wrapper.m_BoxSelectActionsCallbackInterface.OnActivateBoxSelect;
-            }
-            m_Wrapper.m_BoxSelectActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @ActivateBoxSelect.started += instance.OnActivateBoxSelect;
-                @ActivateBoxSelect.performed += instance.OnActivateBoxSelect;
-                @ActivateBoxSelect.canceled += instance.OnActivateBoxSelect;
-            }
-        }
-    }
-    public BoxSelectActions @BoxSelect => new BoxSelectActions(this);
-
     // BPM Tapper
     private readonly InputActionMap m_BPMTapper;
     private IBPMTapperActions m_BPMTapperActionsCallbackInterface;
@@ -3573,6 +3568,39 @@ public class @CMInput : IInputActionCollection, IDisposable
         }
     }
     public SelectionActions @Selection => new SelectionActions(this);
+
+    // Box Select
+    private readonly InputActionMap m_BoxSelect;
+    private IBoxSelectActions m_BoxSelectActionsCallbackInterface;
+    private readonly InputAction m_BoxSelect_ActivateBoxSelect;
+    public struct BoxSelectActions
+    {
+        private @CMInput m_Wrapper;
+        public BoxSelectActions(@CMInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ActivateBoxSelect => m_Wrapper.m_BoxSelect_ActivateBoxSelect;
+        public InputActionMap Get() { return m_Wrapper.m_BoxSelect; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(BoxSelectActions set) { return set.Get(); }
+        public void SetCallbacks(IBoxSelectActions instance)
+        {
+            if (m_Wrapper.m_BoxSelectActionsCallbackInterface != null)
+            {
+                @ActivateBoxSelect.started -= m_Wrapper.m_BoxSelectActionsCallbackInterface.OnActivateBoxSelect;
+                @ActivateBoxSelect.performed -= m_Wrapper.m_BoxSelectActionsCallbackInterface.OnActivateBoxSelect;
+                @ActivateBoxSelect.canceled -= m_Wrapper.m_BoxSelectActionsCallbackInterface.OnActivateBoxSelect;
+            }
+            m_Wrapper.m_BoxSelectActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ActivateBoxSelect.started += instance.OnActivateBoxSelect;
+                @ActivateBoxSelect.performed += instance.OnActivateBoxSelect;
+                @ActivateBoxSelect.canceled += instance.OnActivateBoxSelect;
+            }
+        }
+    }
+    public BoxSelectActions @BoxSelect => new BoxSelectActions(this);
 
     // UI Mode
     private readonly InputActionMap m_UIMode;
@@ -3793,7 +3821,8 @@ public class @CMInput : IInputActionCollection, IDisposable
     }
     public interface IPlacementControllersActions
     {
-        void OnPlaceObject(InputAction.CallbackContext context);
+        void OnPlaceObjectPrimary(InputAction.CallbackContext context);
+        void OnPlaceObjectSecondary(InputAction.CallbackContext context);
         void OnInitiateClickandDrag(InputAction.CallbackContext context);
         void OnInitiateClickandDragatTime(InputAction.CallbackContext context);
         void OnMousePositionUpdate(InputAction.CallbackContext context);
@@ -3861,10 +3890,6 @@ public class @CMInput : IInputActionCollection, IDisposable
         void OnReplaceBPM(InputAction.CallbackContext context);
         void OnTweakBPMValue(InputAction.CallbackContext context);
     }
-    public interface IBoxSelectActions
-    {
-        void OnActivateBoxSelect(InputAction.CallbackContext context);
-    }
     public interface IBPMTapperActions
     {
         void OnToggleBPMTapper(InputAction.CallbackContext context);
@@ -3884,6 +3909,10 @@ public class @CMInput : IInputActionCollection, IDisposable
         void OnRotateSelection(InputAction.CallbackContext context);
         void OnShiftSelectionForward(InputAction.CallbackContext context);
         void OnShiftSelectionBackward(InputAction.CallbackContext context);
+    }
+    public interface IBoxSelectActions
+    {
+        void OnActivateBoxSelect(InputAction.CallbackContext context);
     }
     public interface IUIModeActions
     {

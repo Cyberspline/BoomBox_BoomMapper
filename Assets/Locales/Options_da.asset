@@ -622,6 +622,15 @@ MonoBehaviour:
     m_Localized: Waveform
     m_Metadata:
       m_Items: []
+  - m_Id: 95125259342663680
+    m_Localized: Separate Note Keybinds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 95125336480108544
+    m_Localized: Splits Left and Right drum between primary/secondary placement keybinds.
+      Replicates old BoomBox Editor behavior.
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:

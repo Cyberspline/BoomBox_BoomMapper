@@ -65,7 +65,7 @@ public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObs
         }
     }
 
-    internal override void ApplyToMap()
+    internal override void PlaceObjectPrimary()
     {
         if (IsPlacing && queuedData.A.RadialIndex != queuedData.B.RadialIndex)
         {
