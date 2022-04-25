@@ -21,7 +21,7 @@ public class BeatmapBookmark : BeatmapObject
     public Color Color;
 
     public BeatmapBookmark()
-        => Color = Color.HSVToRGB((float)rand.NextDouble(), 0.75f, 1);
+        => Color = new Color(199f / 255, 74f / 255, 1);
 
     public BeatmapBookmark(JSONNode node)
     {
@@ -36,7 +36,7 @@ public class BeatmapBookmark : BeatmapObject
     {
         Time = time;
         Name = name;
-        Color = Color.HSVToRGB((float)rand.NextDouble(), 0.75f, 1);
+        Color = new Color(199f / 255, 74f / 255, 1);
     }
 
     public override ObjectType BeatmapType { get; set; } = ObjectType.BpmChange;
