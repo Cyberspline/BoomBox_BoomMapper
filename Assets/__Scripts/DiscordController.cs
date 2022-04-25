@@ -92,7 +92,7 @@ public class DiscordController : MonoBehaviour
                 state = $"{diff.DifficultyName}";
                 break;
             case "04_Options":
-                details = "Editing ChroMapper options";
+                details = $"Editing {Application.productName} options";
                 break;
         }
 
@@ -106,10 +106,8 @@ public class DiscordController : MonoBehaviour
             },
             Assets = new ActivityAssets
             {
-                SmallImage = "newlogo",
-                SmallText = $"ChroMapper v{Application.version}",
+                LargeText = $"{Application.productName} v{Application.version}",
                 LargeImage = "newlogo_glow",
-                LargeText = "In Menus"
             }
         };
 
