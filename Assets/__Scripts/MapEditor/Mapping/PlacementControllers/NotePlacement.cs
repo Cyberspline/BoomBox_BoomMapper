@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
 public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContainer, NotesContainer>
@@ -11,6 +8,7 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
     [SerializeField] private DeleteToolController deleteToolController;
     [SerializeField] private BeatmapNoteContainer placementAreaPrefab;
     [SerializeField] private RadialIndexTable radialIndexTable;
+    [SerializeField] private ColorTypeController colorTypeController;
 
     public override int PlacementXMin => base.PlacementXMax * -1;
 
@@ -36,6 +34,7 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
 
             note.SetColor(Color.gray);
             note.SetAlpha(0.3f, true);
+            note.transform.localScale = 0.85f * Vector3.one;
 
             var radialIndexContainer = note.gameObject.AddComponent<PlacementRadialIndexContainer>();
             radialIndexContainer.RadialIndex = i;
@@ -80,6 +79,29 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
         // dirty conversion from beat saber to boombox types
         queuedData.Hand = type + 1;
         UpdateAppearance();
+    }
+
+    internal override void PlaceObjectPrimary()
+    {
+        if (Settings.Instance.SeparateNoteKeybinds)
+        {
+            queuedData.Hand = BeatmapNote.HandLeft;
+            UpdateAppearance();
+            colorTypeController.UpdateUI();
+        }
+
+        base.PlaceObjectPrimary();
+    }
+
+    internal override void PlaceObjectSecondary()
+    {
+        if (Settings.Instance.SeparateNoteKeybinds)
+        {
+            queuedData.Hand = BeatmapNote.HandRight;
+            UpdateAppearance();
+            colorTypeController.UpdateUI();
+            base.PlaceObjectPrimary();
+        }
     }
 
     private void UpdateAppearance()

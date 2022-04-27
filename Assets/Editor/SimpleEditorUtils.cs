@@ -28,10 +28,12 @@ public static class SimpleEditorUtils
         if (string.IsNullOrEmpty(buildNumber))
             buildNumber = "1";
 
-        PlayerSettings.bundleVersion = PlayerSettings.bundleVersion.Replace(".0", "." + buildNumber);
+        var majorMinor = PlayerSettings.bundleVersion.Substring(0, PlayerSettings.bundleVersion.AllIndexOf(".")[1]);
+
+        PlayerSettings.bundleVersion = $"{majorMinor}.{buildNumber}";
     }
 
-    private const BuildOptions buildOptions = BuildOptions.CompressWithLz4 | BuildOptions.Development;
+    private const BuildOptions buildOptions = BuildOptions.CompressWithLz4HC;
 
     private static void BuildWindows()
     {

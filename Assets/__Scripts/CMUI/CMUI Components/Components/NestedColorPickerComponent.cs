@@ -4,10 +4,6 @@ using UnityEngine.UI;
 
 public class NestedColorPickerComponent : CMUIComponentWithLabel<Color>
 {
-    // Cached dialog box
-    private static DialogBox nestedDialogBox;
-    private static ColorPickerComponent nestedColorPicker;
-
     [SerializeField] private Button editButton;
     [SerializeField] private TextMeshProUGUI hexColorText;
     [SerializeField] private Image previewImage;
@@ -45,33 +41,26 @@ public class NestedColorPickerComponent : CMUIComponentWithLabel<Color>
 
     private void OnEditButtonClick()
     {
-        if (nestedDialogBox == null)
+        var nestedDialogBox = PersistentUI.Instance.CreateNewDialogBox()
+            .DontDestroyOnClose()
+            .WithNoTitle();
+
+        var nestedColorPicker = nestedDialogBox.AddComponent<ColorPickerComponent>()
+            .WithInitialValue(Value);
+
+        // Determine whether or not we will use constant or changable alpha
+        if (useAlpha)
         {
-            nestedDialogBox = PersistentUI.Instance.CreateNewDialogBox()
-                .DontDestroyOnClose()
-                .WithNoTitle();
-
-            nestedColorPicker = nestedDialogBox.AddComponent<ColorPickerComponent>()
-                .WithInitialValue(Value);
-
-            // Determine whether or not we will use constant or changable alpha
-            if (useAlpha)
-            {
-                nestedColorPicker.WithAlpha();
-            }
-            else
-            {
-                nestedColorPicker.WithConstantAlpha(constantAlpha);
-            }
-
-            var cancel = nestedDialogBox.AddFooterButton(null, "PersistentUI", "cancel");
-
-            var submit = nestedDialogBox.AddFooterButton(() => Value = nestedColorPicker.Value, "PersistentUI", "ok");
+            nestedColorPicker.WithAlpha();
         }
         else
         {
-            nestedColorPicker.Value = Value;
+            nestedColorPicker.WithConstantAlpha(constantAlpha);
         }
+
+        var cancel = nestedDialogBox.AddFooterButton(null, "PersistentUI", "cancel");
+
+        var submit = nestedDialogBox.AddFooterButton(() => Value = nestedColorPicker.Value, "PersistentUI", "ok");
 
         nestedDialogBox.Open();
     }

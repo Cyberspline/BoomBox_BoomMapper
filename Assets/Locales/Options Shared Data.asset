@@ -571,6 +571,22 @@ MonoBehaviour:
     m_Key: graphics.waveform
     m_Metadata:
       m_Items: []
+  - m_Id: 95125259342663680
+    m_Key: map.separatenotekeys
+    m_Metadata:
+      m_Items: []
+  - m_Id: 95125336480108544
+    m_Key: map.separatenotekeys.tooltip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 95141052369424384
+    m_Key: controls.lockcamera
+    m_Metadata:
+      m_Items: []
+  - m_Id: 95141131780182016
+    m_Key: controls.lockcamera.tooltip
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

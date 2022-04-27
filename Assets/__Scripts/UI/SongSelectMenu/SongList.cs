@@ -141,6 +141,8 @@ public class SongList : MonoBehaviour
         {
             yield return StartCoroutine(BoomBoxAPI.AuthenticateUser());
 
+            if (!BoomBoxAPI.IsAuthenticated) yield break;
+
             var page = 1;
 
             BoomBoxOfficialSongListResponse songListResponse = null;

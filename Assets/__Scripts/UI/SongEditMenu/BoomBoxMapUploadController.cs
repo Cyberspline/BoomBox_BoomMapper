@@ -25,6 +25,8 @@ public class BoomBoxMapUploadController : MonoBehaviour
     {
         // Ensure we are authenticated.
         yield return StartCoroutine(BoomBoxAPI.AuthenticateUser());
+
+        if (!BoomBoxAPI.IsAuthenticated) yield break;
         
         // We need to create a new API map object, since the format is slightly different
         var apiMap = new BoomBoxMapAPI(BoomBoxSongContainer.Instance.Pack, difficultySelect.CurrentDiff);

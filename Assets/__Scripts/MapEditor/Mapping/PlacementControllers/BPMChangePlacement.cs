@@ -20,7 +20,7 @@ public class BPMChangePlacement : PlacementController<BeatmapBPMChange, BeatmapB
 
     public override void ClickAndDragFinished() => objectContainerCollection.RefreshModifiedBeat();
 
-    internal override void ApplyToMap()
+    internal override void PlaceObjectPrimary()
     {
         if (objectContainerCollection.LoadedObjects.Count >= BPMChangesContainer.MaxBpmChangesInShader)
         {
@@ -43,7 +43,7 @@ public class BPMChangePlacement : PlacementController<BeatmapBPMChange, BeatmapB
         {
             queuedData.Time = RoundedTime;
             queuedData.Bpm = bpm;
-            base.ApplyToMap();
+            base.PlaceObjectPrimary();
             objectContainerCollection.RefreshModifiedBeat();
         }
         else

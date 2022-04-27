@@ -197,7 +197,7 @@
                 {
                     "name": "",
                     "id": "036bf932-8107-4b8f-8851-2333b0cace51",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Mouse>/middleButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "ChroMapper Default",
@@ -589,9 +589,17 @@
             "id": "ad57992b-d8ff-4c39-a762-db68cf7d04db",
             "actions": [
                 {
-                    "name": "Place Object",
+                    "name": "Place Object Primary",
                     "type": "Button",
                     "id": "12ac2167-b8c0-4f4f-aa6e-17a1aacc42ca",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Place Object Secondary",
+                    "type": "Button",
+                    "id": "f3a6dc44-cef0-4a7c-999f-669eb3da0eab",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press"
@@ -670,7 +678,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "ChroMapper Default",
-                    "action": "Place Object",
+                    "action": "Place Object Primary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -728,6 +736,17 @@
                     "action": "Cancel Placement",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f80f07c9-5718-44b9-841f-c87e374b6190",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Place Object Secondary",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -768,9 +787,17 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "Mirror",
+                    "name": "Mirror Horizontally",
                     "type": "Button",
                     "id": "4b2fa447-5ce7-4170-b3db-e1998f0c5bf3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Mirror Vertically",
+                    "type": "Button",
+                    "id": "498f60ef-e707-40fb-b5d5-8b8f20fa37e4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
@@ -841,42 +868,9 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "ChroMapper Default",
-                    "action": "Mirror",
+                    "action": "Mirror Horizontally",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "Button With One Modifier",
-                    "id": "93c0251c-a14c-4d92-b2eb-88904f470ee2",
-                    "path": "ButtonWithOneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Mirror in Time",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "d022688c-78fc-43bd-b272-48548fc225cf",
-                    "path": "<Keyboard>/alt",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Mirror in Time",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "button",
-                    "id": "84103763-6f99-40ad-a71b-e3f98f40f162",
-                    "path": "<Keyboard>/m",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Mirror in Time",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 },
                 {
                     "name": "Button With One Modifier",
@@ -932,6 +926,83 @@
                     "action": "Swap Cursor Interval",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Button With Two Modifiers",
+                    "id": "3f754dba-427a-42e8-95f4-5bf9f47497e7",
+                    "path": "ButtonWithTwoModifiers",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mirror in Time",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier1",
+                    "id": "6e24801c-fd22-4ebd-8837-967b5189b37e",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Mirror in Time",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "modifier2",
+                    "id": "ed7f4706-bb5e-4a24-aa2e-f1c72a7f9c84",
+                    "path": "<Keyboard>/alt",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Mirror in Time",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "eb64901a-7952-46e1-a983-cbc9220435c9",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Mirror in Time",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Button With One Modifier",
+                    "id": "e147ccfb-914d-4db7-b04c-99cae5794a1d",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mirror Vertically",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "8e11b2dc-744d-46ad-ae4a-e4a935f33f77",
+                    "path": "<Keyboard>/alt",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Mirror Vertically",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "f6824464-7e6c-4f89-bcb8-d114ccb5aace",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Mirror Vertically",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
@@ -1665,33 +1736,6 @@
             ]
         },
         {
-            "name": "Box Select",
-            "id": "ce387cfe-7aed-46ef-ab8b-e0cf196f6a96",
-            "actions": [
-                {
-                    "name": "Activate Box Select",
-                    "type": "Button",
-                    "id": "1bfcb620-0275-4b3e-a89d-2e5d52203c8d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "f6185091-72dd-4efb-ab34-6ea3096834c6",
-                    "path": "<Keyboard>/ctrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ChroMapper Default",
-                    "action": "Activate Box Select",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
             "name": "BPM Tapper",
             "id": "2badd83b-e1b2-41b0-abb2-cb8a4b79e7da",
             "actions": [
@@ -1798,25 +1842,25 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "Shifting Movement",
+                    "name": "Rotate Selection",
                     "type": "Button",
-                    "id": "27818e31-e5a6-4b4d-806a-f8de698ba4ee",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Press"
-                },
-                {
-                    "name": "Activate Shift in Time",
-                    "type": "Button",
-                    "id": "cb168158-3262-4a23-bc37-4217c8213895",
+                    "id": "8c73d497-930e-4e62-a3d1-754783ee7711",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
                 },
                 {
-                    "name": "Rotate Selection",
+                    "name": "Shift Selection Forward",
                     "type": "Button",
-                    "id": "8c73d497-930e-4e62-a3d1-754783ee7711",
+                    "id": "3c016fdf-f227-498d-ad14-217c46c0324d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Shift Selection Backward",
+                    "type": "Button",
+                    "id": "11b9a468-39ee-4327-8ff5-426a8497c47b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
@@ -1989,72 +2033,6 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "ec81f6a1-21c7-4033-8a43-fef8947eeb20",
-                    "path": "<Keyboard>/shift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ChroMapper Default",
-                    "action": "Activate Shift in Time",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "Keyboard",
-                    "id": "9c22b812-71a8-4961-ab13-212454782e02",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ChroMapper Default",
-                    "action": "Shifting Movement",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "dca471d5-701d-4735-92fe-974ad1bf6c91",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ChroMapper Default",
-                    "action": "Shifting Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "fe41e156-034e-45cf-9ad0-7a2e76986029",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ChroMapper Default",
-                    "action": "Shifting Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "b813d17f-c262-4b3c-a28f-072c8647364a",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ChroMapper Default",
-                    "action": "Shifting Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "5de7b57b-9115-406b-add2-c8b5877a39af",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ChroMapper Default",
-                    "action": "Shifting Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "Keyboard",
                     "id": "79c5c421-e970-43e6-953e-444eb99927b1",
                     "path": "ButtonWithOneModifier",
@@ -2119,6 +2097,99 @@
                     "action": "Rotate Selection",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "Button With One Modifier",
+                    "id": "e8afd1e7-bd4d-4c5a-94cf-06ef54d74fbc",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shift Selection Forward",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "b0500e4d-4e2a-4a4f-a00f-dcc5642652f4",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Shift Selection Forward",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "ab220a66-8d00-4fef-98ce-837744bdf718",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Shift Selection Forward",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Button With One Modifier",
+                    "id": "fd933e86-1ff1-4cca-ac78-9952ba2c8aaa",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shift Selection Backward",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "0606f668-0f66-44b0-94b1-7edca747872b",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Shift Selection Backward",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "21798adb-05df-46ce-9ba3-3199ad766832",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Shift Selection Backward",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "Box Select",
+            "id": "ce387cfe-7aed-46ef-ab8b-e0cf196f6a96",
+            "actions": [
+                {
+                    "name": "Activate Box Select",
+                    "type": "Button",
+                    "id": "1bfcb620-0275-4b3e-a89d-2e5d52203c8d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f6185091-72dd-4efb-ab34-6ea3096834c6",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Activate Box Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

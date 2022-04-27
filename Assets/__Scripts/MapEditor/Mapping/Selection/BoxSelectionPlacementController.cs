@@ -8,6 +8,8 @@ using UnityEngine.InputSystem;
 public class BoxSelectionPlacementController : PlacementController<BeatmapNote, BeatmapNoteContainer, NotesContainer>,
     CMInput.IBoxSelectActions
 {
+    public static bool IsSelecting { get; private set; }
+
     private readonly HashSet<BeatmapObject> selected = new HashSet<BeatmapObject>();
 
     private readonly List<BeatmapObject.ObjectType> selectedTypes = new List<BeatmapObject.ObjectType>();
@@ -17,7 +19,7 @@ public class BoxSelectionPlacementController : PlacementController<BeatmapNote, 
     private Vector3 originPos;
     private Intersections.IntersectionHit previousHit;
     private Vector3 transformed;
-    public static bool IsSelecting { get; private set; }
+    private float startBeat;
 
     [HideInInspector] protected override bool CanClickAndDrag { get; set; } = false;
 
@@ -75,72 +77,29 @@ public class BoxSelectionPlacementController : PlacementController<BeatmapNote, 
         {
             Bounds = default;
             selectedTypes.Clear();
+
             TestForType<NotePlacement>(hit, BeatmapObject.ObjectType.Note);
             TestForType<ObstaclePlacement>(hit, BeatmapObject.ObjectType.Obstacle);
             TestForType<BPMChangePlacement>(hit, BeatmapObject.ObjectType.BpmChange);
 
-            instantiatedContainer.transform.localScale = Vector3.right + Vector3.up;
-            var localScale = instantiatedContainer.transform.localScale;
-            var localpos = instantiatedContainer.transform.localPosition;
-            instantiatedContainer.transform.localPosition -= new Vector3(localScale.x / 2, 0, 0);
+            instantiatedContainer.transform.localPosition = new Vector3(Bounds.min.x, 0, RoundedTime * EditorScaleController.EditorScale);
+            instantiatedContainer.transform.localScale = new Vector3(Bounds.max.x - Bounds.min.x, 0.1f, 0);
         }
         else
         {
-            var originShove = originPos;
-            float xOffset = 0;
-            float yOffset = 0;
+            var endBeat = RoundedTime;
 
-            // When moving from right to left, move the origin to the right and make
-            // the selection larger as the origin points are on the left
-            if (roundedHit.x <= originPos.x + 1)
-            {
-                xOffset = -1;
-                originShove.x += 1;
-            }
-
-            if (roundedHit.y <= originPos.y)
-            {
-                yOffset = -1;
-                originShove.y += 1;
-            }
-
-            instantiatedContainer.transform.localPosition = originShove;
-            var newLocalScale = roundedHit + new Vector3(xOffset, yOffset, 0.5f) - originShove;
-
-            var newLocalScaleY = Mathf.Max(newLocalScale.y, 1);
-            if (yOffset < 0) newLocalScaleY = Mathf.Min(-1, newLocalScale.y);
-
-            newLocalScale = new Vector3(newLocalScale.x, newLocalScaleY, newLocalScale.z);
-            instantiatedContainer.transform.localScale = newLocalScale;
-
-            var startBeat = instantiatedContainer.transform.localPosition.z / EditorScaleController.EditorScale;
-            var endBeat = (instantiatedContainer.transform.localPosition.z + newLocalScale.z) /
-                          EditorScaleController.EditorScale;
             if (startBeat > endBeat) (startBeat, endBeat) = (endBeat, startBeat);
+
+            instantiatedContainer.transform.localPosition = originPos;
+
+            var scale = instantiatedContainer.transform.localScale;
+            instantiatedContainer.transform.localScale = new Vector3(scale.x, scale.y,
+                (endBeat - startBeat) * EditorScaleController.EditorScale);
 
             SelectionController.ForEachObjectBetweenTimeByGroup(startBeat, endBeat, true, true, true, (bocc, bo) =>
             {
                 if (!selectedTypes.Contains(bo.BeatmapType)) return; // Must be a type we can select
-
-                var left = instantiatedContainer.transform.localPosition.x +
-                           instantiatedContainer.transform.localScale.x;
-                var right = instantiatedContainer.transform.localPosition.x;
-                if (right < left) (left, right) = (right, left);
-
-                var top = instantiatedContainer.transform.localPosition.y +
-                          instantiatedContainer.transform.localScale.y;
-                var bottom = instantiatedContainer.transform.localPosition.y;
-                if (top < bottom) (top, bottom) = (bottom, top);
-
-                var p = new Vector2(left, bottom);
-
-                if (bo is IBeatmapObjectBounds obj)
-                {
-                    p = obj.GetPoint();
-                }
-
-                // Check if calculated position is outside bounds
-                if (p.x < left || p.x > right || p.y < bottom || p.y >= top) return;
 
                 if (!alreadySelected.Contains(bo) && selected.Add(bo))
                     SelectionController.Select(bo, true, false, false);
@@ -163,11 +122,12 @@ public class BoxSelectionPlacementController : PlacementController<BeatmapNote, 
         base.OnMousePositionUpdate(context);
     }
 
-    internal override void ApplyToMap()
+    internal override void PlaceObjectPrimary()
     {
         if (!IsSelecting)
         {
             IsSelecting = true;
+            startBeat = RoundedTime;
             originPos = instantiatedContainer.transform.localPosition;
             alreadySelected = new HashSet<BeatmapObject>(SelectionController.SelectedObjects);
         }

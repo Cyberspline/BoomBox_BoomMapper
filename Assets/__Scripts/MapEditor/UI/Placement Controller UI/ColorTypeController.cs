@@ -14,14 +14,24 @@ public class ColorTypeController : MonoBehaviour
     {
         leftSelected.enabled = true;
         rightSelected.enabled = false;
+
+        Settings.NotifyBySettingName(nameof(Settings.LeftColor), UpdateColors);
+        Settings.NotifyBySettingName(nameof(Settings.RightColor), UpdateColors);
+
         UpdateColors();
     }
 
-    // TODO: What are good default colors for boombox
-    private void UpdateColors()
+    private void OnDestroy()
     {
-        leftNote.color = Color.red;
-        rightNote.color = Color.blue;
+        Settings.ClearSettingNotifications(nameof(Settings.LeftColor));
+        Settings.ClearSettingNotifications(nameof(Settings.RightColor));
+    }
+
+    // TODO: What are good default colors for boombox
+    private void UpdateColors(object _ = null)
+    {
+        leftNote.color = Settings.Instance.LeftColor;
+        rightNote.color = Settings.Instance.RightColor;
     }
 
     public void RedNote(bool active)

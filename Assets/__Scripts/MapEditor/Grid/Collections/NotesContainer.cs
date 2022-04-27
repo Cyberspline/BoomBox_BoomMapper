@@ -19,6 +19,10 @@ public class NotesContainer : BeatmapObjectContainerCollection
         SpawnCallbackController.RecursiveNoteCheckFinished += RecursiveCheckFinished;
         DespawnCallbackController.NotePassedThreshold += DespawnCallback;
         AudioTimeSyncController.PlayToggle += OnPlayToggle;
+
+        Settings.NotifyBySettingName(nameof(Settings.LeftColor), OnColorsChanged);
+        Settings.NotifyBySettingName(nameof(Settings.RightColor), OnColorsChanged);
+        noteAppearanceSo.UpdateColor(Settings.Instance.LeftColor, Settings.Instance.RightColor);
     }
 
     internal override void UnsubscribeToCallbacks()
@@ -27,6 +31,15 @@ public class NotesContainer : BeatmapObjectContainerCollection
         SpawnCallbackController.RecursiveNoteCheckFinished += RecursiveCheckFinished;
         DespawnCallbackController.NotePassedThreshold -= DespawnCallback;
         AudioTimeSyncController.PlayToggle -= OnPlayToggle;
+
+        Settings.ClearSettingNotifications(nameof(Settings.LeftColor));
+        Settings.ClearSettingNotifications(nameof(Settings.RightColor));
+    }
+
+    private void OnColorsChanged(object _)
+    {
+        noteAppearanceSo.UpdateColor(Settings.Instance.LeftColor, Settings.Instance.RightColor);
+        RefreshPool(true);
     }
 
     private void OnPlayToggle(bool isPlaying)

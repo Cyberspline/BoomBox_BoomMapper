@@ -24,10 +24,6 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectionActions
     [SerializeField] private Color copiedColor;
     [SerializeField] private TracksManager tracksManager;
 
-    private bool shiftInPlace;
-
-    private bool shiftInTime;
-
     public static Color SelectedColor => instance.selectedColor;
     public static Color CopiedColor => instance.copiedColor;
 
@@ -63,12 +59,16 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectionActions
         if (context.performed) Copy(true);
     }
 
-    public void OnShiftingMovement(InputAction.CallbackContext context)
+    public void OnShiftSelectionForward(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        var movement = context.ReadValue<Vector2>();
+        MoveSelection(1f / atsc.GridMeasureSnapping);
+    }
 
-        if (shiftInTime) MoveSelection(movement.y * (1f / atsc.GridMeasureSnapping));
+    public void OnShiftSelectionBackward(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        MoveSelection(-1f / atsc.GridMeasureSnapping);
     }
 
     public void OnRotateSelection(InputAction.CallbackContext context)
@@ -82,8 +82,6 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectionActions
 
         RotateSelection(direction);
     }
-
-    public void OnActivateShiftinTime(InputAction.CallbackContext context) => shiftInTime = context.performed;
 
     public void OnDeselectAll(InputAction.CallbackContext context)
     {
@@ -195,7 +193,8 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectionActions
         bool addActionEvent = true)
     {
         if (!addsToSelection)
-            DeselectAll(); //This SHOULD deselect every object unless you otherwise specify, but it aint working.
+            DeselectAll();
+
         var collection = BeatmapObjectContainerCollection.GetCollectionForType(obj.BeatmapType);
 
         if (!collection.LoadedObjects.Contains(obj))
@@ -206,7 +205,7 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectionActions
             container.SetOutlineColor(instance.selectedColor);
         if (addActionEvent)
         {
-            ObjectWasSelectedEvent.Invoke(obj);
+            ObjectWasSelectedEvent?.Invoke(obj);
             SelectionChangedEvent?.Invoke();
         }
     }

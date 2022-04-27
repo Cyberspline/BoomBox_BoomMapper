@@ -259,6 +259,22 @@ MonoBehaviour:
     m_Key: quicksettings.graphics
     m_Metadata:
       m_Items: []
+  - m_Id: 95690024620216320
+    m_Key: bar.shared.mirror.horizontal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 95690083629879296
+    m_Key: bar.shared.mirror.vertical
+    m_Metadata:
+      m_Items: []
+  - m_Id: 95690150763909120
+    m_Key: bar.shared.mirror.hand
+    m_Metadata:
+      m_Items: []
+  - m_Id: 95690217671446528
+    m_Key: bar.shared.mirror.time
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
