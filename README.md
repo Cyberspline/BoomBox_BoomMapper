@@ -17,7 +17,9 @@ BoomMapper is the new official map editor for BoomBox, built off of [ChroMapper]
 - Switch to Newtonsoft.JSON as the primary JSON library over SimpleJSON.
 
 # Releases
-BoomMapper is currently in development, so no releases are available right now. Check back later for official releases.
+Official releases are posted in the [Releases](https://github.com/Cyberspline/BoomBox_BoomMapper/releases) page.
+
+Regular development builds are also made using [GitHub Actions](https://github.com/Cyberspline/BoomBox_BoomMapper/actions).
 
 # Localization
 Localization is TBD.
@@ -26,4 +28,4 @@ Localization is TBD.
 BoomMapper is developed with Unity in C#. Please see the [build guide](BUILD.md) for setting up your development environment.
 
 ## License
-The project uses the [GNU GPL v2 license](https://github.com/Cyberspline/BoomBox_BoomMapper/blob/master/LICENSE). Please keep that license in mind as you make contributions to ChroMapper.
+The project uses the [GNU GPL v2 license](https://github.com/Cyberspline/BoomBox_BoomMapper/blob/master/LICENSE).
