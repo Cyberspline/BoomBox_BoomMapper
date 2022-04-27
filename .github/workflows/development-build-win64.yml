@@ -1,7 +1,8 @@
 name: Development Build (Win64)
 
 on:
-  push: {}
+  push:
+    branches-ignore: [ master ]
   pull_request: {}
 
 env:
@@ -13,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v3
+
       - uses: game-ci/unity-builder@v2
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
