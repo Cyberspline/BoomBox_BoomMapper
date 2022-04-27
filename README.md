@@ -1,7 +1,5 @@
 ﻿![This is BoomMapper.](https://github.com/Cyberspline/BoomBox_BoomMapper/blob/master/Assets/_Graphics/Textures%20And%20Sprites/BoomMapper.png)
 
-[![Crowdin](https://badges.crowdin.net/chromapper/localized.svg)](https://crowdin.com/project/chromapper)
-
 # This is BoomMapper.
 BoomMapper is the new official map editor for BoomBox, built off of [ChroMapper](https://github.com/Caeden117/ChroMapper).
 
