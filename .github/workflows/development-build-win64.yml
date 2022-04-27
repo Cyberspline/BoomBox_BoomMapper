@@ -1,0 +1,26 @@
+name: Development Build (Win64)
+
+on: [ push, pull_request ]
+
+env:
+	BUILD_NUMBER: ${{ github.sha }}
+	DEV: true
+	
+jobs:
+	build:
+		runs-on: ubuntu-latest
+		
+		steps:
+			- uses: game-ci/unity-builder@v2
+			  env:
+				UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+				UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+				UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+			  with:
+				customParameters: -Development -EnableDeepProfilingSupport
+				buildName: BoomMapper
+			- uses: actions/upload-artifact@v2
+			  with:
+				name: BoomMapper-${{ github.sha }}-Win64
+				path: build/StandaloneWindows64
+				if-no-files-found: error
