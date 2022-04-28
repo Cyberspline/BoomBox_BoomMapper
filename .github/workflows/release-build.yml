@@ -112,4 +112,4 @@ jobs:
         with:
           generate_release_notes: true
           files: |
-            release-files/*
+            release-files/*/*

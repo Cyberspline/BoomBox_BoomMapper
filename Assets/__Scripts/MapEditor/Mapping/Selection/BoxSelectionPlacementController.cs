@@ -15,6 +15,7 @@ public class BoxSelectionPlacementController : PlacementController<BeatmapNote, 
     private readonly List<BeatmapObject.ObjectType> selectedTypes = new List<BeatmapObject.ObjectType>();
     private HashSet<BeatmapObject> alreadySelected = new HashSet<BeatmapObject>();
 
+    [SerializeField] private List<IntersectionCollider> gridIntersections = new List<IntersectionCollider>();
     private bool keybindPressed;
     private Vector3 originPos;
     private Intersections.IntersectionHit previousHit;
@@ -59,6 +60,17 @@ public class BoxSelectionPlacementController : PlacementController<BeatmapNote, 
         }
 
         return false;
+    }
+
+    protected override void Update()
+    {
+        // Slight hackfix; disable grid colliders (allow raycasts through grid) when box select is not enabled
+        for (var i = 0; i < gridIntersections.Count; i++)
+        {
+            gridIntersections[i].enabled = keybindPressed;
+        }
+
+        base.Update();
     }
 
     public override void OnPhysicsRaycast(Intersections.IntersectionHit hit, Vector3 transformedPoint)
