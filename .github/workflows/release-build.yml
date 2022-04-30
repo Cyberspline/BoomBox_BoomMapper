@@ -94,7 +94,8 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
-    steps:
+    needs: [build-win64, build-linux64, build-macos]
+	steps:
       - name: Download Artifacts
         uses: actions/download-artifact@v2
         with:
