@@ -96,6 +96,8 @@ jobs:
     needs: [build-win64, build-linux64, build-macos]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+
       - name: Get Latest Tag
         uses: actions-ecosystem/action-get-latest-tag@v1
         id: get-latest-tag
