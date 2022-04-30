@@ -56,6 +56,11 @@ public class SongListItem : RecyclingListViewItem, IPointerEnterHandler, IPointe
         // I have sinned
         songList = FindObjectOfType<SongList>();
 
+        InitCache();
+    }
+
+    private static void InitCache()
+    {
         if (songCoreCache != null) return;
         durationCachePath = Path.Combine(Application.persistentDataPath, "SongDurationCache.dat");
         if (!File.Exists(durationCachePath))
@@ -126,7 +131,8 @@ public class SongListItem : RecyclingListViewItem, IPointerEnterHandler, IPointe
     {
         if (this.song == song && previousSearch == searchFieldText) return;
 
-        StopAllCoroutines();
+        StopCoroutine(nameof(LoadImage));
+        StopCoroutine(nameof(LoadDuration));
 
         previousSearch = searchFieldText;
         this.song = song;
@@ -146,8 +152,8 @@ public class SongListItem : RecyclingListViewItem, IPointerEnterHandler, IPointe
         favouritePreviewImage.gameObject.SetActive(this.song.IsFavourite);
         ignoreToggle = false;
 
-        StartCoroutine(LoadImage());
-        StartCoroutine(LoadDuration());
+        StartCoroutine(nameof(LoadImage));
+        StartCoroutine(nameof(LoadDuration));
     }
 
     private IEnumerator LoadImage()
@@ -204,6 +210,8 @@ public class SongListItem : RecyclingListViewItem, IPointerEnterHandler, IPointe
 
     public static void SetDuration(MonoBehaviour crTarget, string path, float length)
     {
+        InitCache();
+
         var songCoreCacheObj = songCoreCache.GetValueOrDefault(path, new JSONObject { ["id"] = "CMCachedDuration" });
         songCoreCacheObj["duration"] = length;
         songCoreCache.Add(path, songCoreCacheObj);
