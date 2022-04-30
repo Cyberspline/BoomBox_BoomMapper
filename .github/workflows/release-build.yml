@@ -27,7 +27,6 @@ jobs:
           targetPlatform: StandaloneWindows64
           customParameters: -CompressWithLz4HC
           buildName: BoomMapper
-          versioning: None
 
       - uses: actions/upload-artifact@v2
         with:
@@ -57,7 +56,6 @@ jobs:
           targetPlatform: StandaloneLinux64
           customParameters: -CompressWithLz4HC
           buildName: BoomMapper
-          versioning: None
 
       - uses: actions/upload-artifact@v2
         with:
@@ -87,7 +85,6 @@ jobs:
           targetPlatform: StandaloneOSX
           customParameters: -CompressWithLz4HC
           buildName: BoomMapper
-          versioning: None
 
       - uses: actions/upload-artifact@v2
         with:
