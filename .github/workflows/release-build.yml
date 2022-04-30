@@ -107,7 +107,7 @@ jobs:
         id: bump-semver
         with:
           current_version: ${{ steps.get-latest-tag.outputs.tag }}
-          level: minor
+          level: patch
 
       - name: Download Artifacts
         uses: actions/download-artifact@v2
