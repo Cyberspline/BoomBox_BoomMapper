@@ -235,7 +235,6 @@ public class AudioTimeSyncController : MonoBehaviour, CMInput.IPlaybackActions, 
             return;
         }
 
-        var value = context.ReadValue<float>();
         if (context.performed)
         {
             if (controlSnap) 
@@ -266,7 +265,6 @@ public class AudioTimeSyncController : MonoBehaviour, CMInput.IPlaybackActions, 
             return;
         }
 
-        var value = context.ReadValue<float>();
         if (context.performed)
         {
             if (controlSnap) 
