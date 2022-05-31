@@ -353,20 +353,12 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectionActions
 
             if (bpmChangeView.Any())
             {
-                var firstBpmChange = bpmChangeView.First() as BeatmapBPMChange;
-
-                bpmTime = firstBpmChange.Time - atsc.CurrentBeat;
-
-                for (var i = 0; i < bpmChangeView.Count - 1; i++)
-                {
-                    var leftBpm = bpmChangeView.ElementAt(i) as BeatmapBPMChange;
-                    var rightBpm = bpmChangeView.ElementAt(i + 1) as BeatmapBPMChange;
-
-                    bpmTime += (rightBpm.Time - leftBpm.Time) * (copiedBpm / leftBpm.Bpm);
-                }
-
+                
                 var lastBpmChange = bpmChangeView.Last() as BeatmapBPMChange;
-                bpmTime += (atsc.CurrentBeat + data.Time - lastBpmChange.Time) * (copiedBpm / lastBpmChange.Bpm);
+
+                bpmTime = (lastBpmChange.Time - atsc.CurrentBeat) * (copiedBpm / lastBpmChange.Bpm);
+                
+                bpmTime += (atsc.CurrentBeat + data.Time - lastBpmChange.Time) * (copiedBpm / lastBpmChange.Bpm);  
             }
 
             var newTime = bpmTime + atsc.CurrentBeat;
