@@ -238,7 +238,7 @@ public class AudioTimeSyncController : MonoBehaviour, CMInput.IPlaybackActions, 
         var value = context.ReadValue<float>();
         if (context.performed)
         {
-            if (controlSnap) //right now it doesn't use it, because it conflicts with shift selection
+            if (controlSnap) 
             {
                 if (!preciselyControlSnap)
                 {
@@ -269,7 +269,7 @@ public class AudioTimeSyncController : MonoBehaviour, CMInput.IPlaybackActions, 
         var value = context.ReadValue<float>();
         if (context.performed)
         {
-            if (controlSnap) //right now it doesn't use it, because it conflicts with shift selection
+            if (controlSnap) 
             {
                 if (!preciselyControlSnap)
                 {
