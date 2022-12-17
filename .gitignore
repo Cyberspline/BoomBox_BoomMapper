@@ -330,22 +330,3 @@ UserSettings/
 *.lighting.meta
 *.lighting
 
-# I didn't change this, I asume I should add here -Reyes
-Assets/_Graphics/Textures And Sprites/Mapper/UIMode/UIMode Title.mat
-Assets/AddressableAssetsData/AssetGroups/Localization-Assets-Shared.asset
-Assets/AddressableAssetsData/AssetGroups/Localization-Locales.asset
-Assets/AddressableAssetsData/AssetGroups/Localization-String-Tables-Danish (da).asset
-Assets/AddressableAssetsData/AssetGroups/Localization-String-Tables-Dutch (nl).asset
-Assets/AddressableAssetsData/AssetGroups/Localization-String-Tables-English (en).asset
-Assets/AddressableAssetsData/AssetGroups/Localization-String-Tables-Estonian (et).asset
-Assets/AddressableAssetsData/AssetGroups/Localization-String-Tables-Finnish (fi).asset
-Assets/AddressableAssetsData/AssetGroups/Localization-String-Tables-French (fr).asset
-Assets/AddressableAssetsData/AssetGroups/Localization-String-Tables-German (de).asset
-Assets/AddressableAssetsData/AssetGroups/Localization-String-Tables-Japanese (ja).asset
-Assets/AddressableAssetsData/AssetGroups/Localization-String-Tables-Korean (ko).asset
-Assets/AddressableAssetsData/AssetGroups/Localization-String-Tables-owospeak (en-OWO).asset
-Assets/AddressableAssetsData/AssetGroups/Localization-String-Tables-Pirate English (en-PT).asset
-Assets/AddressableAssetsData/AssetGroups/Localization-String-Tables-Russian (ru).asset
-Assets/AddressableAssetsData/AssetGroups/Localization-String-Tables-Spanish (es).asset
-Assets/AddressableAssetsData/AssetGroups/Localization-String-Tables-Swedish (sv).asset
-Assets/Plugins/Newtonsoft/Newtonsoft.Json.pdb.meta
