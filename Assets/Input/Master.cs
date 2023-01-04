@@ -1285,6 +1285,22 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Change Time and Precision Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""113b8d40-5cfd-46c6-a123-d9ce292a9802"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Change Time and Precision Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""0fb11876-9d3b-4697-a093-946d09868889"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -1318,6 +1334,28 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""ChroMapper Default"",
                     ""action"": ""Change Precision Modifier"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""991bb2b3-8264-47b1-a227-b0fda1665756"",
+                    ""path"": ""<Keyboard>/pageDown"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Change Time and Precision Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bfda0d73-fdc1-4950-b329-309387b8040d"",
+                    ""path"": ""<Keyboard>/pageUp"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ChroMapper Default"",
+                    ""action"": ""Change Time and Precision Up"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -2497,6 +2535,8 @@ public class @CMInput : IInputActionCollection, IDisposable
         m_Timeline_ChangeTimeandPrecision = m_Timeline.FindAction("+Change Time and Precision", throwIfNotFound: true);
         m_Timeline_ChangePrecisionModifier = m_Timeline.FindAction("Change Precision Modifier", throwIfNotFound: true);
         m_Timeline_PreciseSnapModification = m_Timeline.FindAction("Precise Snap Modification", throwIfNotFound: true);
+        m_Timeline_ChangeTimeandPrecisionDown = m_Timeline.FindAction("Change Time and Precision Down", throwIfNotFound: true);
+        m_Timeline_ChangeTimeandPrecisionUp = m_Timeline.FindAction("Change Time and Precision Up", throwIfNotFound: true);
         // Editor Scale
         m_EditorScale = asset.FindActionMap("Editor Scale", throwIfNotFound: true);
         m_EditorScale_DecreaseEditorScale = m_EditorScale.FindAction("Decrease Editor Scale", throwIfNotFound: true);
@@ -3167,6 +3207,8 @@ public class @CMInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Timeline_ChangeTimeandPrecision;
     private readonly InputAction m_Timeline_ChangePrecisionModifier;
     private readonly InputAction m_Timeline_PreciseSnapModification;
+    private readonly InputAction m_Timeline_ChangeTimeandPrecisionDown;
+    private readonly InputAction m_Timeline_ChangeTimeandPrecisionUp;
     public struct TimelineActions
     {
         private @CMInput m_Wrapper;
@@ -3174,6 +3216,8 @@ public class @CMInput : IInputActionCollection, IDisposable
         public InputAction @ChangeTimeandPrecision => m_Wrapper.m_Timeline_ChangeTimeandPrecision;
         public InputAction @ChangePrecisionModifier => m_Wrapper.m_Timeline_ChangePrecisionModifier;
         public InputAction @PreciseSnapModification => m_Wrapper.m_Timeline_PreciseSnapModification;
+        public InputAction @ChangeTimeandPrecisionDown => m_Wrapper.m_Timeline_ChangeTimeandPrecisionDown;
+        public InputAction @ChangeTimeandPrecisionUp => m_Wrapper.m_Timeline_ChangeTimeandPrecisionUp;
         public InputActionMap Get() { return m_Wrapper.m_Timeline; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -3192,6 +3236,12 @@ public class @CMInput : IInputActionCollection, IDisposable
                 @PreciseSnapModification.started -= m_Wrapper.m_TimelineActionsCallbackInterface.OnPreciseSnapModification;
                 @PreciseSnapModification.performed -= m_Wrapper.m_TimelineActionsCallbackInterface.OnPreciseSnapModification;
                 @PreciseSnapModification.canceled -= m_Wrapper.m_TimelineActionsCallbackInterface.OnPreciseSnapModification;
+                @ChangeTimeandPrecisionDown.started -= m_Wrapper.m_TimelineActionsCallbackInterface.OnChangeTimeandPrecisionDown;
+                @ChangeTimeandPrecisionDown.performed -= m_Wrapper.m_TimelineActionsCallbackInterface.OnChangeTimeandPrecisionDown;
+                @ChangeTimeandPrecisionDown.canceled -= m_Wrapper.m_TimelineActionsCallbackInterface.OnChangeTimeandPrecisionDown;
+                @ChangeTimeandPrecisionUp.started -= m_Wrapper.m_TimelineActionsCallbackInterface.OnChangeTimeandPrecisionUp;
+                @ChangeTimeandPrecisionUp.performed -= m_Wrapper.m_TimelineActionsCallbackInterface.OnChangeTimeandPrecisionUp;
+                @ChangeTimeandPrecisionUp.canceled -= m_Wrapper.m_TimelineActionsCallbackInterface.OnChangeTimeandPrecisionUp;
             }
             m_Wrapper.m_TimelineActionsCallbackInterface = instance;
             if (instance != null)
@@ -3205,6 +3255,12 @@ public class @CMInput : IInputActionCollection, IDisposable
                 @PreciseSnapModification.started += instance.OnPreciseSnapModification;
                 @PreciseSnapModification.performed += instance.OnPreciseSnapModification;
                 @PreciseSnapModification.canceled += instance.OnPreciseSnapModification;
+                @ChangeTimeandPrecisionDown.started += instance.OnChangeTimeandPrecisionDown;
+                @ChangeTimeandPrecisionDown.performed += instance.OnChangeTimeandPrecisionDown;
+                @ChangeTimeandPrecisionDown.canceled += instance.OnChangeTimeandPrecisionDown;
+                @ChangeTimeandPrecisionUp.started += instance.OnChangeTimeandPrecisionUp;
+                @ChangeTimeandPrecisionUp.performed += instance.OnChangeTimeandPrecisionUp;
+                @ChangeTimeandPrecisionUp.canceled += instance.OnChangeTimeandPrecisionUp;
             }
         }
     }
@@ -3865,6 +3921,8 @@ public class @CMInput : IInputActionCollection, IDisposable
         void OnChangeTimeandPrecision(InputAction.CallbackContext context);
         void OnChangePrecisionModifier(InputAction.CallbackContext context);
         void OnPreciseSnapModification(InputAction.CallbackContext context);
+        void OnChangeTimeandPrecisionDown(InputAction.CallbackContext context);
+        void OnChangeTimeandPrecisionUp(InputAction.CallbackContext context);
     }
     public interface IEditorScaleActions
     {

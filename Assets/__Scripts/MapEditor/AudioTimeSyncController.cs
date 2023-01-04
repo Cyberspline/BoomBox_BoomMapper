@@ -227,6 +227,66 @@ public class AudioTimeSyncController : MonoBehaviour, CMInput.IPlaybackActions, 
         }
     }
 
+    public void OnChangeTimeandPrecisionUp(InputAction.CallbackContext context)
+    {
+        if (!KeybindsController.IsMouseInWindow ||
+            customStandaloneInputModule.IsPointerOverGameObject<GraphicRaycaster>(-1, true))
+        {
+            return;
+        }
+
+        if (context.performed)
+        {
+            if (controlSnap) 
+            {
+                if (!preciselyControlSnap)
+                {
+                    GridMeasureSnapping = Mathf.Clamp(Mathf.RoundToInt(GridMeasureSnapping * 2), 1, 64);
+                }
+                else
+                {
+                    GridMeasureSnapping = Mathf.Clamp(GridMeasureSnapping + 1, 1, 64);
+                }
+            }
+            else
+            {
+                var beatShiftRaw = 1f / GridMeasureSnapping;
+
+                MoveToTimeInBeats(CurrentBeat + bpmChangesContainer.LocalBeatsToSongBeats(beatShiftRaw, CurrentBeat));
+            }
+        }
+    }
+
+    public void OnChangeTimeandPrecisionDown(InputAction.CallbackContext context)
+    {
+        if (!KeybindsController.IsMouseInWindow ||
+            customStandaloneInputModule.IsPointerOverGameObject<GraphicRaycaster>(-1, true))
+        {
+            return;
+        }
+
+        if (context.performed)
+        {
+            if (controlSnap) 
+            {
+                if (!preciselyControlSnap)
+                {
+                    GridMeasureSnapping = Mathf.Clamp(Mathf.RoundToInt(GridMeasureSnapping * 0.5f), 1, 64);
+                }
+                else
+                {
+                    GridMeasureSnapping = Mathf.Clamp(GridMeasureSnapping - 1, 1, 64);
+                }
+            }
+            else
+            {
+                var beatShiftRaw = 1f / GridMeasureSnapping * -1;
+
+                MoveToTimeInBeats(CurrentBeat + bpmChangesContainer.LocalBeatsToSongBeats(beatShiftRaw, CurrentBeat));
+            }
+        }
+    }
+
     public void OnChangePrecisionModifier(InputAction.CallbackContext context) => controlSnap = context.performed;
 
     public void OnPreciseSnapModification(InputAction.CallbackContext context) =>

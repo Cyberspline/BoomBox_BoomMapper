@@ -1272,6 +1272,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Change Time and Precision Down",
+                    "type": "Button",
+                    "id": "113b8d40-5cfd-46c6-a123-d9ce292a9802",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Change Time and Precision Up",
+                    "type": "Button",
+                    "id": "0fb11876-9d3b-4697-a093-946d09868889",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -1305,6 +1321,28 @@
                     "processors": "",
                     "groups": "ChroMapper Default",
                     "action": "Change Precision Modifier",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "991bb2b3-8264-47b1-a227-b0fda1665756",
+                    "path": "<Keyboard>/pageDown",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Change Time and Precision Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bfda0d73-fdc1-4950-b329-309387b8040d",
+                    "path": "<Keyboard>/pageUp",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ChroMapper Default",
+                    "action": "Change Time and Precision Up",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
